@@ -20,23 +20,21 @@
       padding-bottom: 80px;
     }
 
-    /* HEADER */
-
     header {
       background: linear-gradient(135deg, #11152f, #4034a5, #7c3aed);
       color: white;
-      padding: 22px 18px 25px;
+      padding: 22px 18px 26px;
       text-align: center;
-      box-shadow: 0 8px 25px rgba(64, 52, 165, .25);
     }
 
     .logo {
-      width: 115px;
-      height: 115px;
-      object-fit: cover;
-      border-radius: 50%;
+      width: 110px;
+      height: 110px;
       display: block;
       margin: 0 auto 12px;
+      object-fit: cover;
+      border-radius: 50%;
+      background: white;
       box-shadow: 0 8px 25px rgba(0,0,0,.25);
     }
 
@@ -50,28 +48,28 @@
       font-size: 14px;
     }
 
-    /* CONTAINER */
-
     .container {
       max-width: 620px;
       margin: auto;
       padding: 18px;
     }
 
-    /* WELCOME */
+    .welcome,
+    .offer {
+      background: white;
+      border-radius: 20px;
+      border: 1px solid #e8e5ff;
+      box-shadow: 0 7px 22px rgba(31,41,55,.08);
+    }
 
     .welcome {
-      background: white;
       padding: 20px;
-      border-radius: 20px;
       margin-bottom: 18px;
-      box-shadow: 0 7px 22px rgba(31,41,55,.08);
-      border: 1px solid #e8e5ff;
     }
 
     .welcome h2 {
-      margin-bottom: 8px;
       color: #25204d;
+      margin-bottom: 8px;
     }
 
     .welcome p {
@@ -87,63 +85,45 @@
       gap: 14px;
       text-decoration: none;
       color: white;
-
-      background: linear-gradient(
-        135deg,
-        #229ed9,
-        #1677a8
-      );
-
+      background: linear-gradient(135deg, #229ed9, #1677a8);
       padding: 17px;
       border-radius: 18px;
       margin-bottom: 23px;
-
-      box-shadow:
-        0 8px 22px rgba(34,158,217,.22);
+      box-shadow: 0 8px 22px rgba(34,158,217,.22);
     }
 
     .telegram-icon {
-      width: 48px;
-      height: 48px;
+      width: 50px;
+      height: 50px;
+      min-width: 50px;
       border-radius: 50%;
       background: rgba(255,255,255,.2);
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       font-size: 25px;
-      flex-shrink: 0;
     }
 
     .telegram h3 {
+      color: white;
       font-size: 17px;
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
 
     .telegram p {
-      font-size: 13px;
       color: #eaf8ff;
+      font-size: 13px;
       line-height: 1.4;
     }
 
-    /* OFFERS */
-
     .offer-title {
-      margin-bottom: 13px;
       color: #25204d;
+      margin-bottom: 13px;
     }
 
     .offer {
-      background: white;
       padding: 16px;
-      border-radius: 20px;
       margin-bottom: 16px;
-
-      border: 1px solid #e8e5ff;
-
-      box-shadow:
-        0 7px 22px rgba(31,41,55,.08);
     }
 
     .offer img {
@@ -157,7 +137,6 @@
     .offer h3 {
       font-size: 19px;
       margin-bottom: 7px;
-      color: #172033;
     }
 
     .offer p {
@@ -171,22 +150,11 @@
       border: none;
       border-radius: 13px;
       padding: 14px;
-
-      background: linear-gradient(
-        135deg,
-        #5b4bdb,
-        #7c3aed
-      );
-
+      background: linear-gradient(135deg, #5b4bdb, #7c3aed);
       color: white;
       font-size: 16px;
       font-weight: bold;
-
-      box-shadow:
-        0 6px 16px rgba(91,75,219,.20);
     }
-
-    /* EMPTY */
 
     .empty {
       background: white;
@@ -194,30 +162,19 @@
       border-radius: 18px;
       text-align: center;
       color: #6b7280;
-      box-shadow: 0 7px 22px rgba(31,41,55,.06);
     }
-
-    /* BOTTOM MENU */
 
     .bottom-menu {
       position: fixed;
       left: 0;
       right: 0;
       bottom: 0;
-
       background: rgba(255,255,255,.97);
-      backdrop-filter: blur(10px);
-
       border-top: 1px solid #e5e7eb;
-
       display: flex;
       justify-content: space-around;
-
       padding: 9px 5px;
-
-      box-shadow:
-        0 -6px 20px rgba(31,41,55,.08);
-
+      box-shadow: 0 -6px 20px rgba(31,41,55,.08);
       z-index: 100;
     }
 
@@ -238,39 +195,16 @@
       color: #5b4bdb;
       font-weight: bold;
     }
-
-    /* MOBILE */
-
-    @media (max-width: 600px) {
-
-      .logo {
-        width: 105px;
-        height: 105px;
-      }
-
-      header h1 {
-        font-size: 23px;
-      }
-
-      .container {
-        padding: 15px;
-      }
-
-      .offer {
-        border-radius: 18px;
-      }
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-
   <header>
 
+    <!-- WEBSITE LOGO -->
     <img
-      src="logo.png"
+      src="./logo.png"
       class="logo"
       alt="Income Offers Logo">
 
@@ -283,25 +217,21 @@
 
   <main class="container">
 
-    <!-- WELCOME -->
-
     <section class="welcome">
-
       <h2>Welcome 👋</h2>
 
       <p>
         Discover the latest offers, deals and
         opportunities in one place.
       </p>
-
     </section>
 
 
-    <!-- TELEGRAM -->
+    <!-- TELEGRAM CHANNEL -->
 
     <a
       class="telegram"
-      href="https://t.me/IncomeOffersOfficial"
+      href="https://t.me/IncomeOffersOfficia"
       target="_blank"
       rel="noopener noreferrer">
 
@@ -310,20 +240,16 @@
       </div>
 
       <div>
-
         <h3>Join Our Telegram Channel</h3>
 
         <p>
           Get the latest offers and updates
           directly on Telegram.
         </p>
-
       </div>
 
     </a>
 
-
-    <!-- OFFERS -->
 
     <h2 class="offer-title">
       🎁 Available Offers
@@ -339,8 +265,6 @@
 
   </main>
 
-
-  <!-- BOTTOM MENU -->
 
   <nav class="bottom-menu">
 
@@ -370,9 +294,7 @@
   <!-- SUPABASE -->
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <script src="supabase-config.js"></script>
-
+  <script src="./supabase-config.js"></script>
 
   <script>
 
@@ -388,7 +310,6 @@
       const offerList =
         document.getElementById("offerList");
 
-
       const { data, error } =
         await supabaseClient
           .from("offers")
@@ -398,35 +319,25 @@
             ascending: false
           });
 
-
       if (error) {
 
         console.error(error);
 
-        offerList.innerHTML = `
-          <div class="empty">
-            Unable to load offers.
-          </div>
-        `;
+        offerList.innerHTML =
+          '<div class="empty">Unable to load offers.</div>';
 
         return;
       }
-
 
       if (!data || data.length === 0) {
 
-        offerList.innerHTML = `
-          <div class="empty">
-            No active offers available right now.
-          </div>
-        `;
+        offerList.innerHTML =
+          '<div class="empty">No active offers available right now.</div>';
 
         return;
       }
 
-
       offerList.innerHTML = "";
-
 
       data.forEach(function(offer) {
 
@@ -434,7 +345,6 @@
           document.createElement("div");
 
         card.className = "offer";
-
 
         if (offer.image_url) {
 
@@ -445,9 +355,7 @@
           image.alt = "Offer";
 
           card.appendChild(image);
-
         }
-
 
         const title =
           document.createElement("h3");
@@ -456,7 +364,6 @@
           offer.title || "Offer";
 
         card.appendChild(title);
-
 
         const description =
           document.createElement("p");
@@ -467,21 +374,16 @@
 
         card.appendChild(description);
 
-
         const button =
           document.createElement("button");
 
-        button.textContent =
-          "🚀 View Offer";
-
+        button.textContent = "🚀 View Offer";
 
         button.onclick = function() {
 
           if (!offer.offer_url) {
 
-            alert(
-              "Offer link is not available."
-            );
+            alert("Offer link is not available.");
 
             return;
           }
@@ -491,16 +393,12 @@
             "_blank",
             "noopener,noreferrer"
           );
-
         };
-
 
         card.appendChild(button);
 
         offerList.appendChild(card);
-
       });
-
     }
 
 
