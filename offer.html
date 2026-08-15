@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Offer Details</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f6fa;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .offer-card {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .offer-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: #e5e7eb;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .description {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .offer-info {
+      background: #f5f6fa;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .offer-info p {
+      margin-bottom: 8px;
+    }
+
+    .offer-info p:last-child {
+      margin-bottom: 0;
+    }
+
+    .open-btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: #111827;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      color: #222;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🎁 Offer Details</h1>
+  </header>
+
+  <main class="container">
+
+    <div class="offer-card">
+
+      <img
+        class="offer-image"
+        src="https://via.placeholder.com/600x300?text=Offer"
+        alt="Offer">
+
+      <h2>Sample Offer</h2>
+
+      <p class="description">
+        This is where the complete offer description
+        will appear.
+      </p>
+
+      <div class="offer-info">
+        <p><strong>Status:</strong> Active</p>
+        <p><strong>Category:</strong> General</p>
+        <p><strong>Added:</strong> Today</p>
+      </div>
+
+      <a
+        class="open-btn"
+        href="#"
+        onclick="openOffer(); return false;">
+        🚀 Open Offer
+      </a>
+
+      <a class="back" href="index.html">
+        ← Back to Offers
+      </a>
+
+    </div>
+
+  </main>
+
+  <script>
+    function openOffer() {
+      alert(
+        "Offer link will be connected later from the Admin Panel."
+      );
+    }
+  </script>
+
+</body>
+</html>
