@@ -32,7 +32,7 @@
     header p {
       margin-top: 5px;
       font-size: 13px;
-      opacity: 0.8;
+      opacity: .8;
     }
 
     .container {
@@ -46,7 +46,7 @@
       padding: 20px;
       border-radius: 16px;
       margin-bottom: 18px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 3px 12px rgba(0,0,0,.08);
     }
 
     .section h2 {
@@ -92,6 +92,16 @@
       color: white;
     }
 
+    .secondary {
+      background: #e5e7eb;
+      color: #111;
+    }
+
+    .danger {
+      background: #111827;
+      color: white;
+    }
+
     .offer-item {
       border: 1px solid #e5e7eb;
       padding: 15px;
@@ -99,12 +109,8 @@
       margin-bottom: 12px;
     }
 
-    .offer-item:last-child {
-      margin-bottom: 0;
-    }
-
     .offer-item h3 {
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
     .offer-item p {
@@ -113,25 +119,17 @@
       line-height: 1.5;
     }
 
-    .actions {
-      display: flex;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .edit {
-      background: #e5e7eb;
-      color: #111;
-    }
-
-    .delete {
-      background: #111827;
-      color: white;
+    .offer-image {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
     }
 
     .status {
       display: inline-block;
-      margin-top: 8px;
+      margin-top: 9px;
       font-size: 13px;
       font-weight: bold;
     }
@@ -144,242 +142,625 @@
       color: #777;
     }
 
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .actions button {
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .message {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #f5f6fa;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
     .logout {
       width: 100%;
       background: #e5e7eb;
-      margin-top: 5px;
+      margin-bottom: 30px;
     }
 
-    .note {
-      background: #f5f6fa;
-      padding: 12px;
-      border-radius: 10px;
-      color: #666;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-top: 12px;
+    .loading {
+      text-align: center;
+      color: #777;
+      padding: 15px;
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>🔐 Admin Dashboard</h1>
-    <p>Manage your Income Offers website</p>
-  </header>
+<header>
+  <h1>🔐 Admin Dashboard</h1>
+  <p>Manage Income Offers</p>
+</header>
 
-  <main class="container">
+<main class="container">
 
-    <!-- ADD OFFER -->
-    <section class="section">
+  <!-- ADD / EDIT OFFER -->
 
-      <h2>➕ Add New Offer</h2>
+  <section class="section">
 
-      <label for="offerName">Offer Name</label>
-      <input
-        type="text"
-        id="offerName"
-        placeholder="Example: New User Offer">
+    <h2 id="formTitle">➕ Add New Offer</h2>
 
-      <label for="offerDescription">Description</label>
-      <textarea
-        id="offerDescription"
-        placeholder="Write offer details..."></textarea>
+    <input type="hidden" id="editId">
 
-      <label for="offerImage">Image URL</label>
-      <input
-        type="url"
-        id="offerImage"
-        placeholder="https://example.com/image.jpg">
+    <label>Offer Name</label>
+    <input
+      type="text"
+      id="offerName"
+      placeholder="Example: New User Offer">
 
-      <label for="offerLink">Offer Link</label>
-      <input
-        type="url"
-        id="offerLink"
-        placeholder="https://example.com/offer">
+    <label>Description</label>
+    <textarea
+      id="offerDescription"
+      placeholder="Write offer details..."></textarea>
 
-      <label for="offerStatus">Status</label>
+    <label>Image URL</label>
+    <input
+      type="url"
+      id="offerImage"
+      placeholder="https://example.com/image.jpg">
 
-      <select id="offerStatus">
-        <option value="active">Active</option>
-        <option value="inactive">Inactive</option>
-      </select>
+    <label>Offer Link</label>
+    <input
+      type="url"
+      id="offerLink"
+      placeholder="https://example.com/offer">
 
-      <button class="primary" onclick="addOffer()">
-        Save Offer
-      </button>
+    <label>Status</label>
 
-      <p class="note">
-        ⚠️ This first version only demonstrates the
-        Admin Panel interface. Database saving will be
-        connected in the next stage.
-      </p>
+    <select id="offerStatus">
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
 
-    </section>
-
-
-    <!-- CURRENT OFFERS -->
-    <section class="section">
-
-      <h2>🎁 Current Offers</h2>
-
-      <div id="offerList">
-
-        <div class="offer-item">
-
-          <h3>Sample Offer</h3>
-
-          <p>
-            Example offer currently displayed here.
-          </p>
-
-          <span class="status active">
-            ● Active
-          </span>
-
-          <div class="actions">
-
-            <button class="edit"
-              onclick="editOffer()">
-              ✏️ Edit
-            </button>
-
-            <button class="delete"
-              onclick="deleteOffer()">
-              🗑️ Delete
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- TELEGRAM -->
-    <section class="section">
-
-      <h2>❓ Help / Telegram</h2>
-
-      <label for="telegramLink">
-        Telegram Help Link
-      </label>
-
-      <input
-        type="url"
-        id="telegramLink"
-        placeholder="https://t.me/yourusername">
-
-      <button class="primary"
-        onclick="saveTelegram()">
-        Save Telegram Link
-      </button>
-
-      <p class="note">
-        The saved Telegram link will later be used
-        by the Help button on the user website.
-      </p>
-
-    </section>
-
-
-    <!-- HISTORY -->
-    <section class="section">
-
-      <h2>📜 History</h2>
-
-      <p class="note">
-        Offer activity, user activity and admin
-        activity history will appear here after
-        the database is connected.
-      </p>
-
-    </section>
-
-
-    <button class="logout"
-      onclick="logout()">
-      Logout
+    <button
+      class="primary"
+      id="saveButton"
+      onclick="saveOffer()">
+      Save Offer
     </button>
 
-  </main>
+    <button
+      class="primary secondary"
+      id="cancelButton"
+      onclick="cancelEdit()"
+      style="display:none;">
+      Cancel Edit
+    </button>
+
+    <div id="message"></div>
+
+  </section>
 
 
-  <script>
+  <!-- OFFERS -->
 
-    function addOffer() {
+  <section class="section">
 
-      const name =
-        document.getElementById("offerName").value;
+    <h2>🎁 Current Offers</h2>
 
-      if (!name) {
-        alert("Please enter an offer name.");
-        return;
-      }
+    <div id="offerList">
+      <div class="loading">
+        Loading offers...
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- TELEGRAM -->
+
+  <section class="section">
+
+    <h2>❓ Help / Telegram</h2>
+
+    <label>Telegram Help Link</label>
+
+    <input
+      type="url"
+      id="telegramLink"
+      placeholder="https://t.me/yourusername">
+
+    <button
+      class="primary"
+      onclick="saveTelegram()">
+      Save Telegram Link
+    </button>
+
+    <div id="telegramMessage"></div>
+
+  </section>
+
+
+  <button
+    class="logout"
+    onclick="logout()">
+    Logout
+  </button>
+
+</main>
+
+
+<!-- Supabase library -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- Your Supabase configuration -->
+
+<script src="supabase-config.js"></script>
+
+
+<script>
+
+  const ADMIN_UUID =
+    "8f49db4a-d528-49c1-b815-f6bc15e1c868";
+
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+
+  // Check Admin Login
+
+  async function checkAdmin() {
+
+    const {
+      data: { user }
+    } = await supabaseClient.auth.getUser();
+
+    if (!user) {
+
+      window.location.href = "admin-login.html";
+      return false;
+
+    }
+
+    if (user.id !== ADMIN_UUID) {
+
+      alert("Access denied.");
+
+      await supabaseClient.auth.signOut();
+
+      window.location.href = "admin-login.html";
+
+      return false;
+
+    }
+
+    return true;
+  }
+
+
+  // Load Offers
+
+  async function loadOffers() {
+
+    const allowed = await checkAdmin();
+
+    if (!allowed) return;
+
+    const offerList =
+      document.getElementById("offerList");
+
+    const { data, error } =
+      await supabaseClient
+        .from("offers")
+        .select("*")
+        .order("created_at", {
+          ascending: false
+        });
+
+    if (error) {
+
+      console.error(error);
+
+      offerList.innerHTML =
+        "<div class='loading'>Unable to load offers.</div>";
+
+      return;
+    }
+
+    if (!data || data.length === 0) {
+
+      offerList.innerHTML =
+        "<div class='loading'>No offers found.</div>";
+
+      return;
+    }
+
+    offerList.innerHTML = "";
+
+    data.forEach(function(offer) {
+
+      const item =
+        document.createElement("div");
+
+      item.className = "offer-item";
+
+      item.innerHTML = `
+
+        ${
+          offer.image_url
+            ? `<img class="offer-image"
+                 src="${escapeHtml(offer.image_url)}"
+                 alt="Offer">`
+            : ""
+        }
+
+        <h3>${escapeHtml(
+          offer.title || "Untitled Offer"
+        )}</h3>
+
+        <p>${escapeHtml(
+          offer.description || ""
+        )}</p>
+
+        <span class="status ${
+          offer.status === "active"
+            ? "active"
+            : "inactive"
+        }">
+          ● ${offer.status}
+        </span>
+
+        <div class="actions">
+
+          <button
+            class="secondary"
+            onclick="editOffer('${offer.id}')">
+            ✏️ Edit
+          </button>
+
+          <button
+            class="secondary"
+            onclick="toggleOffer(
+              '${offer.id}',
+              '${offer.status}'
+            )">
+            ${
+              offer.status === "active"
+                ? "⏸️ Turn OFF"
+                : "▶️ Turn ON"
+            }
+          </button>
+
+          <button
+            class="danger"
+            onclick="deleteOffer('${offer.id}')">
+            🗑️ Delete
+          </button>
+
+        </div>
+      `;
+
+      offerList.appendChild(item);
+
+    });
+  }
+
+
+  // Save New / Edited Offer
+
+  async function saveOffer() {
+
+    const allowed = await checkAdmin();
+
+    if (!allowed) return;
+
+    const name =
+      document.getElementById("offerName").value.trim();
+
+    const description =
+      document.getElementById("offerDescription").value.trim();
+
+    const image =
+      document.getElementById("offerImage").value.trim();
+
+    const link =
+      document.getElementById("offerLink").value.trim();
+
+    const status =
+      document.getElementById("offerStatus").value;
+
+    const editId =
+      document.getElementById("editId").value;
+
+    if (!name) {
+
+      showMessage(
+        "Please enter an offer name."
+      );
+
+      return;
+    }
+
+    const offerData = {
+
+      title: name,
+
+      description: description,
+
+      image_url: image,
+
+      offer_url: link,
+
+      status: status
+
+    };
+
+
+    let result;
+
+
+    if (editId) {
+
+      result =
+        await supabaseClient
+          .from("offers")
+          .update(offerData)
+          .eq("id", editId);
+
+    } else {
+
+      result =
+        await supabaseClient
+          .from("offers")
+          .insert([offerData]);
+
+    }
+
+
+    if (result.error) {
+
+      console.error(result.error);
+
+      showMessage(
+        "Error: " +
+        result.error.message
+      );
+
+      return;
+    }
+
+
+    showMessage(
+      editId
+        ? "Offer updated successfully! ✅"
+        : "Offer added successfully! ✅"
+    );
+
+    cancelEdit();
+
+    await loadOffers();
+
+  }
+
+
+  // Edit Offer
+
+  async function editOffer(id) {
+
+    const allowed = await checkAdmin();
+
+    if (!allowed) return;
+
+    const { data, error } =
+      await supabaseClient
+        .from("offers")
+        .select("*")
+        .eq("id", id)
+        .single();
+
+    if (error) {
 
       alert(
-        "Offer saved in the demo interface.\n\n" +
-        "Database connection will be added later."
+        "Unable to load offer."
       );
+
+      return;
     }
 
 
-    function editOffer() {
+    document.getElementById("editId").value =
+      data.id;
+
+    document.getElementById("offerName").value =
+      data.title || "";
+
+    document.getElementById("offerDescription").value =
+      data.description || "";
+
+    document.getElementById("offerImage").value =
+      data.image_url || "";
+
+    document.getElementById("offerLink").value =
+      data.offer_url || "";
+
+    document.getElementById("offerStatus").value =
+      data.status || "active";
+
+
+    document.getElementById("formTitle").textContent =
+      "✏️ Edit Offer";
+
+    document.getElementById("saveButton").textContent =
+      "Update Offer";
+
+    document.getElementById("cancelButton").style.display =
+      "block";
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }
+
+
+  // Cancel Edit
+
+  function cancelEdit() {
+
+    document.getElementById("editId").value = "";
+
+    document.getElementById("offerName").value = "";
+
+    document.getElementById("offerDescription").value = "";
+
+    document.getElementById("offerImage").value = "";
+
+    document.getElementById("offerLink").value = "";
+
+    document.getElementById("offerStatus").value = "active";
+
+    document.getElementById("formTitle").textContent =
+      "➕ Add New Offer";
+
+    document.getElementById("saveButton").textContent =
+      "Save Offer";
+
+    document.getElementById("cancelButton").style.display =
+      "none";
+
+  }
+
+
+  // Turn ON / OFF
+
+  async function toggleOffer(id, currentStatus) {
+
+    const allowed = await checkAdmin();
+
+    if (!allowed) return;
+
+    const newStatus =
+      currentStatus === "active"
+        ? "inactive"
+        : "active";
+
+    const { error } =
+      await supabaseClient
+        .from("offers")
+        .update({
+          status: newStatus
+        })
+        .eq("id", id);
+
+    if (error) {
 
       alert(
-        "Edit system will be connected to the database later."
+        "Unable to change offer status."
       );
 
+      return;
     }
 
+    await loadOffers();
 
-    function deleteOffer() {
-
-      const confirmDelete =
-        confirm("Are you sure you want to delete this offer?");
-
-      if (confirmDelete) {
-
-        alert(
-          "Delete system will be connected to the database later."
-        );
-
-      }
-
-    }
+  }
 
 
-    function saveTelegram() {
+  // Delete Offer
 
-      const link =
-        document.getElementById("telegramLink").value;
+  async function deleteOffer(id) {
 
-      if (!link) {
+    const allowed = await checkAdmin();
 
-        alert("Please enter a Telegram link.");
-        return;
+    if (!allowed) return;
 
-      }
+    const confirmed =
+      confirm(
+        "Are you sure you want to delete this offer?"
+      );
+
+    if (!confirmed) return;
+
+    const { error } =
+      await supabaseClient
+        .from("offers")
+        .delete()
+        .eq("id", id);
+
+    if (error) {
 
       alert(
-        "Telegram link saved in the demo interface."
+        "Unable to delete offer."
       );
 
+      return;
     }
 
+    await loadOffers();
 
-    function logout() {
+  }
 
-      alert(
-        "Secure logout will be connected with authentication later."
-      );
 
-    }
+  // Telegram
 
-  </script>
+  async function saveTelegram() {
+
+    alert(
+      "Telegram settings will be connected to a settings table in the next step."
+    );
+
+  }
+
+
+  // Logout
+
+  async function logout() {
+
+    await supabaseClient.auth.signOut();
+
+    window.location.href =
+      "admin-login.html";
+
+  }
+
+
+  // Message
+
+  function showMessage(text) {
+
+    document.getElementById("message").innerHTML =
+      `<div class="message">${escapeHtml(text)}</div>`;
+
+  }
+
+
+  // HTML Escape
+
+  function escapeHtml(text) {
+
+    const div =
+      document.createElement("div");
+
+    div.textContent =
+      text ?? "";
+
+    return div.innerHTML;
+
+  }
+
+
+  // Start
+
+  loadOffers();
+
+</script>
 
 </body>
 </html>
