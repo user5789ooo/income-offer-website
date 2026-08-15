@@ -29,7 +29,7 @@
       background: white;
       padding: 28px;
       border-radius: 18px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 20px rgba(0,0,0,.1);
     }
 
     .icon {
@@ -65,10 +65,6 @@
       outline: none;
     }
 
-    input:focus {
-      border-color: #111827;
-    }
-
     button {
       width: 100%;
       padding: 14px;
@@ -80,14 +76,16 @@
       cursor: pointer;
     }
 
-    button:hover {
-      opacity: 0.9;
+    button:disabled {
+      opacity: .6;
     }
 
     .message {
       text-align: center;
       margin-top: 15px;
       font-size: 14px;
+      color: #555;
+      line-height: 1.5;
     }
 
     .back {
@@ -115,12 +113,13 @@
 
     <form id="loginForm">
 
-      <label for="username">Username</label>
+      <label for="email">Admin Email</label>
 
       <input
-        type="text"
-        id="username"
-        placeholder="Enter username"
+        type="email"
+        id="email"
+        placeholder="Enter admin email"
+        autocomplete="email"
         required>
 
       <label for="password">Password</label>
@@ -129,9 +128,12 @@
         type="password"
         id="password"
         placeholder="Enter password"
+        autocomplete="current-password"
         required>
 
-      <button type="submit">
+      <button
+        type="submit"
+        id="loginButton">
         Login
       </button>
 
@@ -145,15 +147,36 @@
 
   </div>
 
+
+  <!-- Supabase library -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Your Supabase configuration -->
+
+  <script src="supabase-config.js"></script>
+
+
   <script>
+
+    const ADMIN_UUID =
+      "8f49db4a-d528-49c1-b815-f6bc15e1c868";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
+
+
     document
       .getElementById("loginForm")
-      .addEventListener("submit", function(event) {
+      .addEventListener("submit", async function(event) {
 
         event.preventDefault();
 
-        const username =
-          document.getElementById("username").value;
+        const email =
+          document.getElementById("email").value.trim();
 
         const password =
           document.getElementById("password").value;
@@ -161,27 +184,59 @@
         const message =
           document.getElementById("message");
 
-        /*
-          IMPORTANT:
-          This is only the login screen.
+        const button =
+          document.getElementById("loginButton");
 
-          Real admin authentication will be added
-          later using a secure backend/database.
-        */
 
-        if (username && password) {
+        button.disabled = true;
+
+        message.textContent =
+          "Logging in...";
+
+
+        const { data, error } =
+          await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: password
+          });
+
+
+        if (error) {
+
+          console.error(error);
 
           message.textContent =
-            "Login system will be connected securely in the next step.";
+            "Login failed: " + error.message;
 
-        } else {
+          button.disabled = false;
 
-          message.textContent =
-            "Please enter username and password.";
-
+          return;
         }
 
+
+        if (!data.user ||
+            data.user.id !== ADMIN_UUID) {
+
+          await supabaseClient.auth.signOut();
+
+          message.textContent =
+            "Access denied. This account is not the Admin.";
+
+          button.disabled = false;
+
+          return;
+        }
+
+
+        message.textContent =
+          "Login successful. Opening Admin Panel...";
+
+
+        window.location.href =
+          "admin.html";
+
       });
+
   </script>
 
 </body>
