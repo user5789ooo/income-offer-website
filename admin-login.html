@@ -9,12 +9,11 @@
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
       font-family: Arial, sans-serif;
     }
 
     body {
+      margin: 0;
       min-height: 100vh;
       background: #f5f6fa;
       display: flex;
@@ -62,30 +61,27 @@
       border-radius: 10px;
       margin-bottom: 16px;
       font-size: 16px;
-      outline: none;
     }
 
     button {
       width: 100%;
       padding: 14px;
-      border: none;
+      border: 0;
       border-radius: 10px;
       background: #111827;
       color: white;
       font-size: 16px;
-      cursor: pointer;
     }
 
     button:disabled {
       opacity: .6;
     }
 
-    .message {
-      text-align: center;
+    #message {
       margin-top: 15px;
-      font-size: 14px;
-      color: #555;
+      text-align: center;
       line-height: 1.5;
+      font-size: 14px;
     }
 
     .back {
@@ -94,7 +90,6 @@
       margin-top: 18px;
       color: #222;
       text-decoration: none;
-      font-size: 14px;
     }
   </style>
 </head>
@@ -111,7 +106,7 @@
       Login to manage your website
     </p>
 
-    <form id="loginForm">
+    <form id="loginForm" onsubmit="loginAdmin(event)">
 
       <label for="email">Admin Email</label>
 
@@ -119,7 +114,6 @@
         type="email"
         id="email"
         placeholder="Enter admin email"
-        autocomplete="email"
         required>
 
       <label for="password">Password</label>
@@ -128,31 +122,24 @@
         type="password"
         id="password"
         placeholder="Enter password"
-        autocomplete="current-password"
         required>
 
-      <button
-        type="submit"
-        id="loginButton">
+      <button type="submit" id="loginButton">
         Login
       </button>
 
     </form>
 
-    <p id="message" class="message"></p>
+    <div id="message"></div>
 
-    <a href="index.html" class="back">
+    <a class="back" href="index.html">
       ← Back to Home
     </a>
 
   </div>
 
 
-  <!-- Supabase library -->
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- Your Supabase configuration -->
 
   <script src="supabase-config.js"></script>
 
@@ -162,37 +149,65 @@
     const ADMIN_UUID =
       "8f49db4a-d528-49c1-b815-f6bc15e1c868";
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-      );
+
+    let supabaseClient = null;
 
 
-    document
-      .getElementById("loginForm")
-      .addEventListener("submit", async function(event) {
-
-        event.preventDefault();
-
-        const email =
-          document.getElementById("email").value.trim();
-
-        const password =
-          document.getElementById("password").value;
-
-        const message =
-          document.getElementById("message");
-
-        const button =
-          document.getElementById("loginButton");
+    function showMessage(text) {
+      document.getElementById("message").textContent = text;
+    }
 
 
-        button.disabled = true;
+    function setupSupabase() {
 
-        message.textContent =
-          "Logging in...";
+      if (!window.supabase) {
+        showMessage("Supabase library load হয়নি।");
+        return false;
+      }
 
+      if (
+        typeof SUPABASE_URL === "undefined" ||
+        typeof SUPABASE_ANON_KEY === "undefined"
+      ) {
+        showMessage("Supabase configuration পাওয়া যাচ্ছে না।");
+        return false;
+      }
+
+      supabaseClient =
+        window.supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_ANON_KEY
+        );
+
+      return true;
+    }
+
+
+    async function loginAdmin(event) {
+
+      event.preventDefault();
+
+      const button =
+        document.getElementById("loginButton");
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      button.disabled = true;
+
+      showMessage("Logging in...");
+
+
+      if (!setupSupabase()) {
+        button.disabled = false;
+        return;
+      }
+
+
+      try {
 
         const { data, error } =
           await supabaseClient.auth.signInWithPassword({
@@ -203,39 +218,64 @@
 
         if (error) {
 
-          console.error(error);
-
-          message.textContent =
-            "Login failed: " + error.message;
+          showMessage(
+            "Login failed: " + error.message
+          );
 
           button.disabled = false;
-
           return;
         }
 
 
-        if (!data.user ||
-            data.user.id !== ADMIN_UUID) {
+        if (!data.user) {
+
+          showMessage(
+            "Login failed: User পাওয়া যায়নি।"
+          );
+
+          button.disabled = false;
+          return;
+        }
+
+
+        if (data.user.id !== ADMIN_UUID) {
 
           await supabaseClient.auth.signOut();
 
-          message.textContent =
-            "Access denied. This account is not the Admin.";
+          showMessage(
+            "এই account-টি Admin account নয়।"
+          );
 
           button.disabled = false;
-
           return;
         }
 
 
-        message.textContent =
-          "Login successful. Opening Admin Panel...";
+        showMessage(
+          "Login successful! Admin Panel খুলছে..."
+        );
 
 
-        window.location.href =
-          "admin.html";
+        setTimeout(function() {
 
-      });
+          window.location.href =
+            "admin.html";
+
+        }, 500);
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+          "Error: " + error.message
+        );
+
+        button.disabled = false;
+      }
+
+    }
 
   </script>
 
