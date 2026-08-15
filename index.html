@@ -1,1 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Income Offers</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f6fa;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 24px;
+    }
+
+    header p {
+      margin-top: 6px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .welcome {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .welcome h2 {
+      margin-bottom: 8px;
+    }
+
+    .offer-title {
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .offer {
+      background: white;
+      padding: 18px;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .offer h3 {
+      margin-bottom: 8px;
+    }
+
+    .offer p {
+      color: #666;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .offer button {
+      width: 100%;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      background: #111827;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .offer button:hover {
+      opacity: 0.9;
+    }
+
+    .bottom-menu {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 5px;
+    }
+
+    .bottom-menu a {
+      text-decoration: none;
+      color: #222;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .bottom-menu span {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 3px;
+    }
+
+    .page-space {
+      height: 70px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Income Offers</h1>
+    <p>Latest offers in one place</p>
+  </header>
+
+  <main class="container">
+
+    <section class="welcome">
+      <h2>Welcome 👋</h2>
+      <p>Check the latest available offers below.</p>
+    </section>
+
+    <h2 class="offer-title">🎁 Available Offers</h2>
+
+    <!-- Offer 1 -->
+    <div class="offer">
+      <h3>Sample Offer 1</h3>
+      <p>
+        This is a sample offer. Later you will be able
+        to add offers yourself from the Admin Panel.
+      </p>
+
+      <button onclick="openOffer('Sample Offer 1')">
+        View Offer
+      </button>
+    </div>
+
+    <!-- Offer 2 -->
+    <div class="offer">
+      <h3>Sample Offer 2</h3>
+      <p>
+        More offers will automatically appear here
+        when they are added from the Admin Panel.
+      </p>
+
+      <button onclick="openOffer('Sample Offer 2')">
+        View Offer
+      </button>
+    </div>
+
+    <div class="page-space"></div>
+
+  </main>
+
+  <nav class="bottom-menu">
+
+    <a href="index.html">
+      <span>🏠</span>
+      Home
+    </a>
+
+    <a href="index.html">
+      <span>🎁</span>
+      Offers
+    </a>
+
+    <a href="history.html">
+      <span>📜</span>
+      History
+    </a>
+
+    <a href="help.html">
+      <span>❓</span>
+      Help
+    </a>
+
+  </nav>
+
+  <script>
+    function openOffer(offerName) {
+      alert(
+        offerName +
+        "\n\nOffer details page will be added in the next step."
+      );
+    }
+  </script>
+
+</body>
+</html>
