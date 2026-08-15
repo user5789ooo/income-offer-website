@@ -15,151 +15,332 @@
     }
 
     body {
-      background: #f5f6fa;
-      color: #222;
+      background: linear-gradient(180deg, #eef2ff, #f8fafc);
+      color: #172033;
+      padding-bottom: 80px;
     }
 
+    /* HEADER */
+
     header {
-      background: #111827;
+      background: linear-gradient(135deg, #11152f, #4034a5, #7c3aed);
       color: white;
-      padding: 18px;
+      padding: 22px 18px 25px;
       text-align: center;
+      box-shadow: 0 8px 25px rgba(64, 52, 165, .25);
+    }
+
+    .logo {
+      width: 115px;
+      height: 115px;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,.25);
     }
 
     header h1 {
-      font-size: 24px;
+      font-size: 25px;
+      margin-bottom: 6px;
     }
 
     header p {
-      margin-top: 6px;
+      color: #e0e7ff;
       font-size: 14px;
-      opacity: 0.8;
     }
 
+    /* CONTAINER */
+
     .container {
-      max-width: 600px;
+      max-width: 620px;
       margin: auto;
-      padding: 20px;
+      padding: 18px;
     }
+
+    /* WELCOME */
 
     .welcome {
       background: white;
       padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      border-radius: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 7px 22px rgba(31,41,55,.08);
+      border: 1px solid #e8e5ff;
     }
 
     .welcome h2 {
       margin-bottom: 8px;
+      color: #25204d;
     }
 
+    .welcome p {
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    /* TELEGRAM */
+
+    .telegram {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: white;
+
+      background: linear-gradient(
+        135deg,
+        #229ed9,
+        #1677a8
+      );
+
+      padding: 17px;
+      border-radius: 18px;
+      margin-bottom: 23px;
+
+      box-shadow:
+        0 8px 22px rgba(34,158,217,.22);
+    }
+
+    .telegram-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.2);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 25px;
+      flex-shrink: 0;
+    }
+
+    .telegram h3 {
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .telegram p {
+      font-size: 13px;
+      color: #eaf8ff;
+      line-height: 1.4;
+    }
+
+    /* OFFERS */
+
     .offer-title {
-      margin-bottom: 12px;
-      font-size: 20px;
+      margin-bottom: 13px;
+      color: #25204d;
     }
 
     .offer {
       background: white;
-      padding: 18px;
-      border-radius: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      padding: 16px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+
+      border: 1px solid #e8e5ff;
+
+      box-shadow:
+        0 7px 22px rgba(31,41,55,.08);
     }
 
     .offer img {
       width: 100%;
-      height: 170px;
+      height: 180px;
       object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 12px;
+      border-radius: 15px;
+      margin-bottom: 13px;
     }
 
     .offer h3 {
-      margin-bottom: 8px;
+      font-size: 19px;
+      margin-bottom: 7px;
+      color: #172033;
     }
 
     .offer p {
-      color: #666;
+      color: #6b7280;
+      line-height: 1.55;
       margin-bottom: 14px;
-      line-height: 1.5;
     }
 
     .offer button {
       width: 100%;
       border: none;
-      padding: 12px;
-      border-radius: 10px;
-      background: #111827;
+      border-radius: 13px;
+      padding: 14px;
+
+      background: linear-gradient(
+        135deg,
+        #5b4bdb,
+        #7c3aed
+      );
+
       color: white;
       font-size: 16px;
-      cursor: pointer;
+      font-weight: bold;
+
+      box-shadow:
+        0 6px 16px rgba(91,75,219,.20);
     }
+
+    /* EMPTY */
 
     .empty {
       background: white;
-      padding: 25px;
-      border-radius: 15px;
+      padding: 28px 20px;
+      border-radius: 18px;
       text-align: center;
-      color: #777;
+      color: #6b7280;
+      box-shadow: 0 7px 22px rgba(31,41,55,.06);
     }
+
+    /* BOTTOM MENU */
 
     .bottom-menu {
       position: fixed;
-      bottom: 0;
       left: 0;
       right: 0;
-      background: white;
-      border-top: 1px solid #ddd;
+      bottom: 0;
+
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(10px);
+
+      border-top: 1px solid #e5e7eb;
+
       display: flex;
       justify-content: space-around;
-      padding: 10px 5px;
+
+      padding: 9px 5px;
+
+      box-shadow:
+        0 -6px 20px rgba(31,41,55,.08);
+
+      z-index: 100;
     }
 
     .bottom-menu a {
       text-decoration: none;
-      color: #222;
-      font-size: 13px;
+      color: #4b5563;
+      font-size: 12px;
       text-align: center;
     }
 
     .bottom-menu span {
       display: block;
-      font-size: 22px;
-      margin-bottom: 3px;
+      font-size: 21px;
+      margin-bottom: 2px;
     }
 
-    .page-space {
-      height: 70px;
+    .bottom-menu a:first-child {
+      color: #5b4bdb;
+      font-weight: bold;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      .logo {
+        width: 105px;
+        height: 105px;
+      }
+
+      header h1 {
+        font-size: 23px;
+      }
+
+      .container {
+        padding: 15px;
+      }
+
+      .offer {
+        border-radius: 18px;
+      }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- HEADER -->
+
   <header>
+
+    <img
+      src="logo.png"
+      class="logo"
+      alt="Income Offers Logo">
+
     <h1>Income Offers</h1>
-    <p>Latest offers in one place</p>
+
+    <p>Latest Offers • Best Deals • More Income</p>
+
   </header>
+
 
   <main class="container">
 
+    <!-- WELCOME -->
+
     <section class="welcome">
+
       <h2>Welcome 👋</h2>
-      <p>Check the latest available offers below.</p>
+
+      <p>
+        Discover the latest offers, deals and
+        opportunities in one place.
+      </p>
+
     </section>
 
-    <h2 class="offer-title">🎁 Available Offers</h2>
+
+    <!-- TELEGRAM -->
+
+    <a
+      class="telegram"
+      href="https://t.me/IncomeOffersOfficial"
+      target="_blank"
+      rel="noopener noreferrer">
+
+      <div class="telegram-icon">
+        ✈️
+      </div>
+
+      <div>
+
+        <h3>Join Our Telegram Channel</h3>
+
+        <p>
+          Get the latest offers and updates
+          directly on Telegram.
+        </p>
+
+      </div>
+
+    </a>
+
+
+    <!-- OFFERS -->
+
+    <h2 class="offer-title">
+      🎁 Available Offers
+    </h2>
 
     <div id="offerList">
+
       <div class="empty">
         Loading offers...
       </div>
+
     </div>
 
-    <div class="page-space"></div>
-
   </main>
+
+
+  <!-- BOTTOM MENU -->
 
   <nav class="bottom-menu">
 
@@ -185,29 +366,41 @@
 
   </nav>
 
-  <!-- Supabase library -->
+
+  <!-- SUPABASE -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Your Supabase configuration -->
   <script src="supabase-config.js"></script>
 
+
   <script>
-    const supabaseClient = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY
-    );
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
+
 
     async function loadOffers() {
 
-      const offerList = document.getElementById("offerList");
+      const offerList =
+        document.getElementById("offerList");
 
-      const { data, error } = await supabaseClient
-        .from("offers")
-        .select("*")
-        .eq("status", "active")
-        .order("created_at", { ascending: false });
+
+      const { data, error } =
+        await supabaseClient
+          .from("offers")
+          .select("*")
+          .eq("status", "active")
+          .order("created_at", {
+            ascending: false
+          });
+
 
       if (error) {
+
         console.error(error);
 
         offerList.innerHTML = `
@@ -219,7 +412,9 @@
         return;
       }
 
+
       if (!data || data.length === 0) {
+
         offerList.innerHTML = `
           <div class="empty">
             No active offers available right now.
@@ -229,62 +424,88 @@
         return;
       }
 
+
       offerList.innerHTML = "";
+
 
       data.forEach(function(offer) {
 
-        const card = document.createElement("div");
+        const card =
+          document.createElement("div");
 
         card.className = "offer";
 
-        card.innerHTML = `
-          ${
-            offer.image_url
-              ? `<img src="${offer.image_url}" alt="Offer">`
-              : ""
+
+        if (offer.image_url) {
+
+          const image =
+            document.createElement("img");
+
+          image.src = offer.image_url;
+          image.alt = "Offer";
+
+          card.appendChild(image);
+
+        }
+
+
+        const title =
+          document.createElement("h3");
+
+        title.textContent =
+          offer.title || "Offer";
+
+        card.appendChild(title);
+
+
+        const description =
+          document.createElement("p");
+
+        description.textContent =
+          offer.description ||
+          "No description available.";
+
+        card.appendChild(description);
+
+
+        const button =
+          document.createElement("button");
+
+        button.textContent =
+          "🚀 View Offer";
+
+
+        button.onclick = function() {
+
+          if (!offer.offer_url) {
+
+            alert(
+              "Offer link is not available."
+            );
+
+            return;
           }
 
-          <h3>${escapeHtml(offer.title || "Offer")}</h3>
+          window.open(
+            offer.offer_url,
+            "_blank",
+            "noopener,noreferrer"
+          );
 
-          <p>
-            ${escapeHtml(
-              offer.description || "No description available."
-            )}
-          </p>
+        };
 
-          <button onclick="openOffer('${encodeURIComponent(
-            offer.offer_url || ""
-          )}')">
-            View Offer
-          </button>
-        `;
+
+        card.appendChild(button);
 
         offerList.appendChild(card);
+
       });
+
     }
 
-    function openOffer(url) {
-
-      const decodedUrl = decodeURIComponent(url);
-
-      if (!decodedUrl) {
-        alert("Offer link is not available.");
-        return;
-      }
-
-      window.open(decodedUrl, "_blank");
-    }
-
-    function escapeHtml(text) {
-
-      const div = document.createElement("div");
-
-      div.textContent = text;
-
-      return div.innerHTML;
-    }
 
     loadOffers();
+
   </script>
 
 </body>
