@@ -1,410 +1,624 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Income Offers</title>
 
-  <title>Income Offers</title>
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+body{
+  background:linear-gradient(180deg,#eef2ff,#f8fafc);
+  color:#172033;
+  padding-bottom:80px;
+}
 
-    body {
-      background: linear-gradient(180deg, #eef2ff, #f8fafc);
-      color: #172033;
-      padding-bottom: 80px;
-    }
+header{
+  background:linear-gradient(135deg,#11152f,#4034a5,#7c3aed);
+  color:#fff;
+  padding:22px 18px 26px;
+  text-align:center;
+}
 
-    header {
-      background: linear-gradient(135deg, #11152f, #4034a5, #7c3aed);
-      color: white;
-      padding: 22px 18px 26px;
-      text-align: center;
-    }
+.logo{
+  width:110px;
+  height:110px;
+  display:block;
+  margin:0 auto 12px;
+  object-fit:cover;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+}
 
-    .logo {
-      width: 110px;
-      height: 110px;
-      display: block;
-      margin: 0 auto 12px;
-      object-fit: cover;
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 8px 25px rgba(0,0,0,.25);
-    }
+header h1{
+  font-size:25px;
+  margin-bottom:6px;
+}
 
-    header h1 {
-      font-size: 25px;
-      margin-bottom: 6px;
-    }
+header p{
+  color:#e0e7ff;
+  font-size:14px;
+}
 
-    header p {
-      color: #e0e7ff;
-      font-size: 14px;
-    }
+.container{
+  max-width:620px;
+  margin:auto;
+  padding:18px;
+}
 
-    .container {
-      max-width: 620px;
-      margin: auto;
-      padding: 18px;
-    }
+.welcome,
+.offer{
+  background:#fff;
+  border-radius:20px;
+  border:1px solid #e8e5ff;
+  box-shadow:0 7px 22px rgba(31,41,55,.08);
+}
 
-    .welcome,
-    .offer {
-      background: white;
-      border-radius: 20px;
-      border: 1px solid #e8e5ff;
-      box-shadow: 0 7px 22px rgba(31,41,55,.08);
-    }
+.welcome{
+  padding:20px;
+  margin-bottom:18px;
+}
 
-    .welcome {
-      padding: 20px;
-      margin-bottom: 18px;
-    }
+.welcome h2{
+  color:#25204d;
+  margin-bottom:8px;
+}
 
-    .welcome h2 {
-      color: #25204d;
-      margin-bottom: 8px;
-    }
+.welcome p{
+  color:#6b7280;
+  line-height:1.6;
+}
 
-    .welcome p {
-      color: #6b7280;
-      line-height: 1.6;
-    }
+.telegram{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  text-decoration:none;
+  color:#fff;
+  background:linear-gradient(135deg,#229ed9,#1677a8);
+  padding:17px;
+  border-radius:18px;
+  margin-bottom:23px;
+  box-shadow:0 8px 22px rgba(34,158,217,.22);
+}
 
-    /* TELEGRAM */
+.telegram-icon{
+  width:50px;
+  height:50px;
+  min-width:50px;
+  border-radius:50%;
+  background:rgba(255,255,255,.2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
 
-    .telegram {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: white;
-      background: linear-gradient(135deg, #229ed9, #1677a8);
-      padding: 17px;
-      border-radius: 18px;
-      margin-bottom: 23px;
-      box-shadow: 0 8px 22px rgba(34,158,217,.22);
-    }
+.telegram h3{
+  color:#fff;
+  font-size:17px;
+  margin-bottom:5px;
+}
 
-    .telegram-icon {
-      width: 50px;
-      height: 50px;
-      min-width: 50px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 25px;
-    }
+.telegram p{
+  color:#eaf8ff;
+  font-size:13px;
+  line-height:1.4;
+}
 
-    .telegram h3 {
-      color: white;
-      font-size: 17px;
-      margin-bottom: 5px;
-    }
+.offer-title{
+  color:#25204d;
+  margin-bottom:13px;
+}
 
-    .telegram p {
-      color: #eaf8ff;
-      font-size: 13px;
-      line-height: 1.4;
-    }
+.offer{
+  padding:16px;
+  margin-bottom:16px;
+}
 
-    .offer-title {
-      color: #25204d;
-      margin-bottom: 13px;
-    }
+.offer img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:contain;
+  border-radius:15px;
+  margin-bottom:13px;
+  cursor:zoom-in;
+}
 
-    .offer {
-      padding: 16px;
-      margin-bottom: 16px;
-    }
+.offer h3{
+  font-size:19px;
+  margin-bottom:7px;
+}
 
-    .offer img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 15px;
-      margin-bottom: 13px;
-    }
+.offer p{
+  color:#6b7280;
+  line-height:1.55;
+  margin-bottom:14px;
+}
 
-    .offer h3 {
-      font-size: 19px;
-      margin-bottom: 7px;
-    }
+.offer button{
+  width:100%;
+  border:none;
+  border-radius:13px;
+  padding:14px;
+  background:linear-gradient(135deg,#5b4bdb,#7c3aed);
+  color:#fff;
+  font-size:16px;
+  font-weight:bold;
+}
 
-    .offer p {
-      color: #6b7280;
-      line-height: 1.55;
-      margin-bottom: 14px;
-    }
+.empty{
+  background:#fff;
+  padding:28px 20px;
+  border-radius:18px;
+  text-align:center;
+  color:#6b7280;
+}
 
-    .offer button {
-      width: 100%;
-      border: none;
-      border-radius: 13px;
-      padding: 14px;
-      background: linear-gradient(135deg, #5b4bdb, #7c3aed);
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-    }
+.bottom-menu{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  background:rgba(255,255,255,.97);
+  border-top:1px solid #e5e7eb;
+  display:flex;
+  justify-content:space-around;
+  padding:9px 5px;
+  box-shadow:0 -6px 20px rgba(31,41,55,.08);
+  z-index:100;
+}
 
-    .empty {
-      background: white;
-      padding: 28px 20px;
-      border-radius: 18px;
-      text-align: center;
-      color: #6b7280;
-    }
+.bottom-menu a{
+  text-decoration:none;
+  color:#4b5563;
+  font-size:12px;
+  text-align:center;
+}
 
-    .bottom-menu {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255,255,255,.97);
-      border-top: 1px solid #e5e7eb;
-      display: flex;
-      justify-content: space-around;
-      padding: 9px 5px;
-      box-shadow: 0 -6px 20px rgba(31,41,55,.08);
-      z-index: 100;
-    }
+.bottom-menu span{
+  display:block;
+  font-size:21px;
+  margin-bottom:2px;
+}
 
-    .bottom-menu a {
-      text-decoration: none;
-      color: #4b5563;
-      font-size: 12px;
-      text-align: center;
-    }
+.bottom-menu a:first-child{
+  color:#5b4bdb;
+  font-weight:bold;
+}
 
-    .bottom-menu span {
-      display: block;
-      font-size: 21px;
-      margin-bottom: 2px;
-    }
+/* FULL IMAGE VIEWER */
 
-    .bottom-menu a:first-child {
-      color: #5b4bdb;
-      font-weight: bold;
-    }
-  </style>
+.image-viewer{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.94);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+  touch-action:none;
+}
+
+.image-viewer.show{
+  display:flex;
+}
+
+.image-viewer img{
+  max-width:100%;
+  max-height:94vh;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  border-radius:8px;
+  cursor:zoom-in;
+  transition:transform .2s ease;
+}
+
+.image-viewer.zoomed img{
+  max-width:none;
+  max-height:none;
+  transform:scale(1.7);
+  cursor:zoom-out;
+}
+
+.close-viewer{
+  position:absolute;
+  top:12px;
+  right:16px;
+  color:#fff;
+  font-size:30px;
+  cursor:pointer;
+  z-index:2;
+  background:rgba(0,0,0,.35);
+  border-radius:50%;
+  width:42px;
+  height:42px;
+  text-align:center;
+  line-height:40px;
+}
+
+@media(max-width:600px){
+  .logo{
+    width:105px;
+    height:105px;
+  }
+
+  .container{
+    padding:15px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
+<header>
 
-    <!-- WEBSITE LOGO -->
-    <img
-      src="./logo.png"
-      class="logo"
-      alt="Income Offers Logo">
+  <img
+    src="./logo.png"
+    class="logo"
+    alt="Income Offers Logo">
 
-    <h1>Income Offers</h1>
+  <h1>Income Offers</h1>
 
-    <p>Latest Offers • Best Deals • More Income</p>
+  <p>Latest Offers • Best Deals • More Income</p>
 
-  </header>
+</header>
 
 
-  <main class="container">
+<main class="container">
 
-    <section class="welcome">
-      <h2>Welcome 👋</h2>
+  <section class="welcome">
+
+    <h2>Welcome 👋</h2>
+
+    <p>
+      Discover the latest offers, deals and
+      opportunities in one place.
+    </p>
+
+  </section>
+
+
+  <!-- TELEGRAM -->
+
+  <a
+    class="telegram"
+    href="https://t.me/IncomeOffersOfficia"
+    target="_blank"
+    rel="noopener noreferrer">
+
+    <div class="telegram-icon">
+      ✈️
+    </div>
+
+    <div>
+
+      <h3>Join Our Telegram Channel</h3>
 
       <p>
-        Discover the latest offers, deals and
-        opportunities in one place.
+        Get the latest offers and updates
+        directly on Telegram.
       </p>
-    </section>
-
-
-    <!-- TELEGRAM CHANNEL -->
-
-    <a
-      class="telegram"
-      href="https://t.me/IncomeOffersOfficia"
-      target="_blank"
-      rel="noopener noreferrer">
-
-      <div class="telegram-icon">
-        ✈️
-      </div>
-
-      <div>
-        <h3>Join Our Telegram Channel</h3>
-
-        <p>
-          Get the latest offers and updates
-          directly on Telegram.
-        </p>
-      </div>
-
-    </a>
-
-
-    <h2 class="offer-title">
-      🎁 Available Offers
-    </h2>
-
-    <div id="offerList">
-
-      <div class="empty">
-        Loading offers...
-      </div>
 
     </div>
 
-  </main>
+  </a>
 
 
-  <nav class="bottom-menu">
-
-    <a href="index.html">
-      <span>🏠</span>
-      Home
-    </a>
-
-    <a href="index.html">
-      <span>🎁</span>
-      Offers
-    </a>
-
-    <a href="history.html">
-      <span>📜</span>
-      History
-    </a>
-
-    <a href="help.html">
-      <span>❓</span>
-      Help
-    </a>
-
-  </nav>
+  <h2 class="offer-title">
+    🎁 Available Offers
+  </h2>
 
 
-  <!-- SUPABASE -->
+  <div id="offerList">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./supabase-config.js"></script>
+    <div class="empty">
+      Loading offers...
+    </div>
 
-  <script>
+  </div>
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-      );
+</main>
 
 
-    async function loadOffers() {
+<!-- BOTTOM MENU -->
 
-      const offerList =
-        document.getElementById("offerList");
+<nav class="bottom-menu">
 
-      const { data, error } =
-        await supabaseClient
-          .from("offers")
-          .select("*")
-          .eq("status", "active")
-          .order("created_at", {
-            ascending: false
-          });
+  <a href="index.html">
+    <span>🏠</span>
+    Home
+  </a>
 
-      if (error) {
+  <a href="index.html">
+    <span>🎁</span>
+    Offers
+  </a>
 
-        console.error(error);
+  <a href="history.html">
+    <span>📜</span>
+    History
+  </a>
 
-        offerList.innerHTML =
-          '<div class="empty">Unable to load offers.</div>';
+  <a href="help.html">
+    <span>❓</span>
+    Help
+  </a>
 
-        return;
-      }
+</nav>
 
-      if (!data || data.length === 0) {
 
-        offerList.innerHTML =
-          '<div class="empty">No active offers available right now.</div>';
+<!-- FULLSCREEN IMAGE -->
 
-        return;
-      }
+<div
+  id="imageViewer"
+  class="image-viewer"
+  onclick="closeImageViewer(event)">
 
-      offerList.innerHTML = "";
+  <span
+    class="close-viewer"
+    onclick="closeImageViewer(event)">
+    ✕
+  </span>
 
-      data.forEach(function(offer) {
+  <img
+    id="fullImage"
+    src=""
+    alt="Full Offer Image"
+    onclick="toggleZoom(event)">
 
-        const card =
-          document.createElement("div");
+</div>
 
-        card.className = "offer";
 
-        if (offer.image_url) {
+<!-- SUPABASE -->
 
-          const image =
-            document.createElement("img");
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-          image.src = offer.image_url;
-          image.alt = "Offer";
+<script src="./supabase-config.js"></script>
 
-          card.appendChild(image);
-        }
 
-        const title =
-          document.createElement("h3");
+<script>
 
-        title.textContent =
-          offer.title || "Offer";
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
 
-        card.appendChild(title);
 
-        const description =
-          document.createElement("p");
+async function loadOffers(){
 
-        description.textContent =
-          offer.description ||
-          "No description available.";
+  const offerList =
+    document.getElementById("offerList");
 
-        card.appendChild(description);
 
-        const button =
-          document.createElement("button");
+  const { data, error } =
+    await supabaseClient
+      .from("offers")
+      .select("*")
+      .eq("status","active")
+      .order("created_at",{
+        ascending:false
+      });
 
-        button.textContent = "🚀 View Offer";
 
-        button.onclick = function() {
+  if(error){
 
-          if (!offer.offer_url) {
+    console.error(error);
 
-            alert("Offer link is not available.");
+    offerList.innerHTML =
+      '<div class="empty">Unable to load offers.</div>';
 
-            return;
-          }
+    return;
+  }
 
-          window.open(
-            offer.offer_url,
-            "_blank",
-            "noopener,noreferrer"
+
+  if(!data || data.length === 0){
+
+    offerList.innerHTML =
+      '<div class="empty">No active offers available right now.</div>';
+
+    return;
+  }
+
+
+  offerList.innerHTML = "";
+
+
+  data.forEach(function(offer){
+
+    const card =
+      document.createElement("div");
+
+    card.className = "offer";
+
+
+    /* IMAGE */
+
+    if(offer.image_url){
+
+      const image =
+        document.createElement("img");
+
+      image.src =
+        offer.image_url;
+
+      image.alt =
+        "Offer";
+
+      image.onclick =
+        function(){
+
+          openImageViewer(
+            offer.image_url
           );
+
         };
 
-        card.appendChild(button);
+      card.appendChild(image);
 
-        offerList.appendChild(card);
-      });
     }
 
 
-    loadOffers();
+    /* TITLE */
 
-  </script>
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      offer.title || "Offer";
+
+    card.appendChild(title);
+
+
+    /* DESCRIPTION */
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      offer.description ||
+      "No description available.";
+
+    card.appendChild(description);
+
+
+    /* OFFER BUTTON */
+
+    const button =
+      document.createElement("button");
+
+    button.textContent =
+      "🚀 View Offer";
+
+
+    button.onclick =
+      function(){
+
+        if(!offer.offer_url){
+
+          alert(
+            "Offer link is not available."
+          );
+
+          return;
+        }
+
+
+        window.open(
+          offer.offer_url,
+          "_blank",
+          "noopener,noreferrer"
+        );
+
+      };
+
+
+    card.appendChild(button);
+
+    offerList.appendChild(card);
+
+  });
+
+}
+
+
+/* OPEN IMAGE */
+
+function openImageViewer(url){
+
+  const viewer =
+    document.getElementById(
+      "imageViewer"
+    );
+
+  const image =
+    document.getElementById(
+      "fullImage"
+    );
+
+
+  image.src = url;
+
+  viewer.classList.add("show");
+
+  viewer.classList.remove("zoomed");
+
+  document.body.style.overflow =
+    "hidden";
+
+}
+
+
+/* CLOSE IMAGE */
+
+function closeImageViewer(event){
+
+  if(event){
+
+    event.stopPropagation();
+
+  }
+
+
+  const viewer =
+    document.getElementById(
+      "imageViewer"
+    );
+
+  const image =
+    document.getElementById(
+      "fullImage"
+    );
+
+
+  viewer.classList.remove(
+    "show",
+    "zoomed"
+  );
+
+  image.src = "";
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+/* ZOOM */
+
+function toggleZoom(event){
+
+  event.stopPropagation();
+
+
+  const viewer =
+    document.getElementById(
+      "imageViewer"
+    );
+
+
+  viewer.classList.toggle(
+    "zoomed"
+  );
+
+}
+
+
+loadOffers();
+
+</script>
 
 </body>
 </html>
