@@ -1,1314 +1,1190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050505">
-
-  <title>Offers - Nexum</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
-    }
-
-    body {
-      background: #050505;
-      color: white;
-      font-family:
-        'Geist',
-        -apple-system,
-        BlinkMacSystemFont,
-        sans-serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    /* =========================
-       BACKGROUND
-    ========================= */
-
-    .background {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      overflow: hidden;
-      background:
-        radial-gradient(
-          circle at 10% 10%,
-          rgba(255,255,255,.08),
-          transparent 32%
-        ),
-        radial-gradient(
-          circle at 90% 80%,
-          rgba(255,255,255,.05),
-          transparent 35%
-        ),
-        #050505;
-    }
-
-    .background::before,
-    .background::after {
-      content: "";
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: .16;
-      background: white;
-      animation:
-        floatGlow
-        12s
-        ease-in-out
-        infinite alternate;
-    }
-
-    .background::before {
-      left: -180px;
-      top: 10%;
-    }
-
-    .background::after {
-      right: -180px;
-      bottom: 5%;
-      animation-delay: -5s;
-    }
-
-    @keyframes floatGlow {
-      from {
-        transform: translate(0,0) scale(1);
-      }
-
-      to {
-        transform: translate(80px,-40px) scale(1.2);
-      }
-    }
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,.08);
-
-      background:
-        rgba(5,5,5,.72);
-
-      backdrop-filter:
-        blur(20px);
-
-      -webkit-backdrop-filter:
-        blur(20px);
-    }
-
-    .nav {
-      width: 100%;
-      max-width: 1200px;
-      margin: auto;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      padding:
-        17px 20px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      font-size: 18px;
-      font-weight: 700;
-    }
-
-    .brand svg {
-      width: 24px;
-      height: 24px;
-      fill: white;
-
-      transition:
-        transform .5s ease;
-    }
-
-    .brand:hover svg {
-      transform: rotate(180deg);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      padding:
-        9px 15px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-
-      border-radius: 999px;
-
-      background:
-        rgba(255,255,255,.07);
-
-      color:
-        rgba(255,255,255,.85);
-
-      font-size: 13px;
-
-      transition:
-        transform .2s ease,
-        background .2s ease;
-    }
-
-    .nav-button:hover {
-      background:
-        rgba(255,255,255,.13);
-
-      transform:
-        translateY(-1px);
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      max-width: 1200px;
-      margin: auto;
-
-      padding:
-        65px 20px 35px;
-
-      animation:
-        fadeUp
-        .8s
-        cubic-bezier(.16,1,.3,1);
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform:
-          translateY(25px);
-      }
-
-      to {
-        opacity: 1;
-        transform:
-          translateY(0);
-      }
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      margin-bottom: 14px;
-
-      color:
-        rgba(255,255,255,.55);
-
-      font-size: 12px;
-      font-weight: 600;
-
-      letter-spacing:
-        .08em;
-
-      text-transform:
-        uppercase;
-    }
-
-    .dot {
-      width: 7px;
-      height: 7px;
-
-      border-radius: 50%;
-
-      background: white;
-
-      box-shadow:
-        0 0 15px
-        rgba(255,255,255,.8);
-
-      animation:
-        pulse
-        1.8s
-        ease-in-out
-        infinite;
-    }
-
-    @keyframes pulse {
-      0%,
-      100% {
-        transform: scale(1);
-        opacity: .6;
-      }
-
-      50% {
-        transform: scale(1.5);
-        opacity: 1;
-      }
-    }
-
-    h1 {
-      margin: 0;
-
-      max-width: 750px;
-
-      font-size:
-        clamp(2.4rem, 7vw, 5rem);
-
-      line-height: 1.02;
-
-      letter-spacing:
-        -.055em;
-    }
-
-    .hero p {
-      max-width: 600px;
-
-      margin:
-        18px 0 0;
-
-      color:
-        rgba(255,255,255,.55);
-
-      font-size: 15px;
-
-      line-height: 1.65;
-    }
-
-    /* =========================
-       FILTER
-    ========================= */
-
-    .toolbar {
-      max-width: 1200px;
-      margin: auto;
-
-      padding:
-        0 20px 25px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 12px;
-    }
-
-    .offer-count {
-      color:
-        rgba(255,255,255,.45);
-
-      font-size: 13px;
-    }
-
-    .refresh {
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-
-      border-radius: 999px;
-
-      padding:
-        9px 14px;
-
-      background:
-        rgba(255,255,255,.06);
-
-      color: white;
-
-      cursor: pointer;
-
-      transition:
-        transform .25s ease,
-        background .25s ease;
-    }
-
-    .refresh:hover {
-      background:
-        rgba(255,255,255,.12);
-
-      transform:
-        translateY(-1px);
-    }
-
-    .refresh.loading {
-      animation:
-        spin .7s linear infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* =========================
-       OFFERS
-    ========================= */
-
-    .container {
-      width: 100%;
-      max-width: 1200px;
-
-      margin: auto;
-
-      padding:
-        0 20px 80px;
-    }
-
-    .offer-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(
-            260px,
-            1fr
-          )
-        );
-
-      gap: 18px;
-    }
-
-    .offer-card {
-      position: relative;
-
-      overflow: hidden;
-
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-
-      border-radius: 22px;
-
-      background:
-        rgba(255,255,255,.065);
-
-      backdrop-filter:
-        blur(18px);
-
-      -webkit-backdrop-filter:
-        blur(18px);
-
-      box-shadow:
-        0 15px 60px
-        rgba(0,0,0,.22);
-
-      opacity: 0;
-
-      transform:
-        translateY(25px)
-        scale(.97);
-
-      animation:
-        cardShow
-        .65s
-        cubic-bezier(.16,1,.3,1)
-        forwards;
-
-      transition:
-        transform .35s
-        cubic-bezier(.16,1,.3,1),
-        border-color .35s ease,
-        background .35s ease,
-        box-shadow .35s ease;
-    }
-
-    .offer-card:hover {
-      transform:
-        translateY(-7px)
-        scale(1.01);
-
-      border-color:
-        rgba(255,255,255,.20);
-
-      background:
-        rgba(255,255,255,.09);
-
-      box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.35);
-    }
-
-    @keyframes cardShow {
-      to {
-        opacity: 1;
-
-        transform:
-          translateY(0)
-          scale(1);
-      }
-    }
-
-    .offer-image-wrap {
-      position: relative;
-
-      width: 100%;
-      aspect-ratio: 16 / 9;
-
-      overflow: hidden;
-
-      background:
-        rgba(255,255,255,.05);
-    }
-
-    .offer-image {
-      width: 100%;
-      height: 100%;
-
-      display: block;
-
-      object-fit: cover;
-
-      transition:
-        transform .6s
-        cubic-bezier(.16,1,.3,1);
-    }
-
-    .offer-card:hover
-    .offer-image {
-      transform:
-        scale(1.06);
-    }
-
-    .image-placeholder {
-      width: 100%;
-      height: 100%;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      color:
-        rgba(255,255,255,.25);
-
-      font-size: 40px;
-    }
-
-    .status {
-      position: absolute;
-
-      top: 12px;
-      left: 12px;
-
-      padding:
-        6px 10px;
-
-      border-radius: 999px;
-
-      background:
-        rgba(0,0,0,.65);
-
-      border:
-        1px solid
-        rgba(255,255,255,.12);
-
-      backdrop-filter:
-        blur(10px);
-
-      color: #8dffa9;
-
-      font-size: 11px;
-
-      font-weight: 600;
-
-      text-transform:
-        uppercase;
-    }
-
-    .offer-body {
-      padding: 19px;
-    }
-
-    .offer-title {
-      margin: 0 0 8px;
-
-      font-size: 19px;
-
-      line-height: 1.25;
-
-      letter-spacing:
-        -.02em;
-    }
-
-    .offer-description {
-      min-height: 48px;
-
-      margin: 0;
-
-      color:
-        rgba(255,255,255,.52);
-
-      font-size: 13px;
-
-      line-height: 1.6;
-    }
-
-    .offer-footer {
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 10px;
-
-      margin-top: 18px;
-    }
-
-    .date {
-      color:
-        rgba(255,255,255,.35);
-
-      font-size: 11px;
-    }
-
-    .open-button {
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      padding:
-        10px 15px;
-
-      border-radius: 999px;
-
-      background: white;
-
-      color: #111;
-
-      font-size: 12px;
-
-      font-weight: 600;
-
-      transition:
-        transform .2s ease;
-    }
-
-    .open-button:hover {
-      transform:
-        translateY(-2px);
-    }
-
-    .open-button:active {
-      transform:
-        scale(.95);
-    }
-
-    /* =========================
-       EMPTY / LOADING
-    ========================= */
-
-    .state {
-      grid-column:
-        1 / -1;
-
-      padding:
-        70px 20px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.08);
-
-      border-radius: 22px;
-
-      background:
-        rgba(255,255,255,.04);
-
-      text-align: center;
-
-      color:
-        rgba(255,255,255,.45);
-    }
-
-    .state-icon {
-      font-size: 38px;
-
-      margin-bottom: 12px;
-    }
-
-    .state h2 {
-      margin:
-        0 0 8px;
-
-      color: white;
-
-      font-size: 20px;
-    }
-
-    .state p {
-      margin: 0;
-
-      font-size: 13px;
-    }
-
-    /* =========================
-       BOTTOM NAV
-    ========================= */
-
-    .bottom-nav {
-      position: fixed;
-
-      left: 50%;
-      bottom: 15px;
-
-      z-index: 30;
-
-      width:
-        min(
-          calc(100% - 30px),
-          460px
-        );
-
-      transform:
-        translateX(-50%);
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-around;
-
-      padding: 7px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-
-      border-radius: 999px;
-
-      background:
-        rgba(10,10,10,.78);
-
-      backdrop-filter:
-        blur(20px);
-
-      -webkit-backdrop-filter:
-        blur(20px);
-
-      box-shadow:
-        0 15px 50px
-        rgba(0,0,0,.45);
-    }
-
-    .bottom-link {
-      flex: 1;
-
-      display: flex;
-
-      flex-direction: column;
-
-      align-items: center;
-
-      gap: 2px;
-
-      padding:
-        7px 5px;
-
-      border-radius: 999px;
-
-      color:
-        rgba(255,255,255,.45);
-
-      font-size: 10px;
-
-      transition:
-        background .2s ease,
-        color .2s ease,
-        transform .2s ease;
-    }
-
-    .bottom-link span {
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    .bottom-link:hover,
-    .bottom-link.active {
-      background:
-        rgba(255,255,255,.10);
-
-      color: white;
-
-      transform:
-        translateY(-1px);
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 520px) {
-
-      .hero {
-        padding-top: 45px;
-      }
-
-      .nav-button {
-        padding:
-          8px 11px;
-
-        font-size: 12px;
-      }
-
-      .offer-grid {
-        grid-template-columns:
-          1fr;
-      }
-
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-
-        animation-duration:
-          .01ms !important;
-
-        animation-iteration-count:
-          1 !important;
-
-        transition-duration:
-          .01ms !important;
-      }
-
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
+<title>SAHIL - Offers</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  min-height:100%;
+}
+
+body{
+  background:#050505;
+  color:white;
+  font-family:'Geist',Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+button{
+  font:inherit;
+}
+
+.background{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(255,255,255,.09),transparent 30%),
+    radial-gradient(circle at 90% 80%,rgba(255,255,255,.06),transparent 35%),
+    #050505;
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(5,5,5,.78);
+  backdrop-filter:blur(20px);
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:20px;
+  font-weight:700;
+}
+
+.brand svg{
+  width:25px;
+  height:25px;
+  fill:white;
+}
+
+.menu-button{
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  color:white;
+  cursor:pointer;
+}
+
+.desktop-actions{
+  display:none;
+  gap:8px;
+}
+
+.nav-btn{
+  padding:9px 14px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  color:white;
+  font-size:13px;
+}
+
+/* SIDE MENU */
+
+.menu-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:40;
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(7px);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+}
+
+.menu-backdrop.open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.side-menu{
+  position:fixed;
+  top:0;
+  right:0;
+  z-index:50;
+  width:300px;
+  max-width:88%;
+  height:100%;
+  padding:25px 20px;
+  background:#0b0b0b;
+  border-left:1px solid rgba(255,255,255,.1);
+  transform:translateX(100%);
+  transition:.4s cubic-bezier(.16,1,.3,1);
+  overflow-y:auto;
+}
+
+.side-menu.open{
+  transform:translateX(0);
+}
+
+.menu-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:25px;
+}
+
+.menu-head h2{
+  margin:0;
+  font-size:21px;
+}
+
+.close-btn{
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  color:white;
+  font-size:20px;
+}
+
+.profile-box{
+  padding:16px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;
+  background:rgba(255,255,255,.06);
+  margin-bottom:15px;
+}
+
+.profile-box strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.profile-box span{
+  color:rgba(255,255,255,.5);
+  font-size:12px;
+  word-break:break-all;
+}
+
+.menu-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  width:100%;
+  padding:15px;
+  margin-bottom:8px;
+  border:0;
+  border-radius:13px;
+  background:rgba(255,255,255,.05);
+  color:white;
+  text-align:left;
+  font-size:15px;
+}
+
+.menu-item:hover{
+  background:rgba(255,255,255,.1);
+}
+
+.telegram{
+  margin-top:14px;
+  padding:17px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#168bd0,#229ed9);
+}
+
+.telegram strong{
+  display:block;
+  margin-bottom:6px;
+}
+
+.telegram p{
+  margin:0 0 13px;
+  color:rgba(255,255,255,.8);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.telegram a{
+  display:block;
+  padding:11px;
+  border-radius:10px;
+  background:white;
+  color:#111;
+  text-align:center;
+  font-weight:700;
+  font-size:13px;
+}
+
+.logout{
+  margin-top:12px;
+  background:#171717;
+  color:#ff7777;
+}
+
+/* HERO */
+
+.hero{
+  max-width:1200px;
+  margin:auto;
+  padding:55px 20px 30px;
+}
+
+.eyebrow{
+  color:rgba(255,255,255,.5);
+  font-size:12px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+h1{
+  margin:12px 0 0;
+  max-width:750px;
+  font-size:clamp(2.4rem,7vw,5rem);
+  line-height:1.02;
+  letter-spacing:-.055em;
+}
+
+.hero p{
+  max-width:600px;
+  margin:17px 0 0;
+  color:rgba(255,255,255,.5);
+  line-height:1.6;
+  font-size:14px;
+}
+
+/* OFFERS */
+
+.toolbar{
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.count{
+  color:rgba(255,255,255,.45);
+  font-size:13px;
+}
+
+.refresh{
+  padding:9px 14px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  color:white;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px 100px;
+}
+
+.offer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+}
+
+.offer-card{
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:22px;
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(18px);
+  animation:cardIn .6s both;
+}
+
+@keyframes cardIn{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.offer-image{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  display:block;
+}
+
+.offer-body{
+  padding:19px;
+}
+
+.offer-title{
+  margin:0 0 8px;
+  font-size:19px;
+}
+
+.offer-description{
+  margin:0;
+  min-height:45px;
+  color:rgba(255,255,255,.5);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.offer-footer{
+  margin-top:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.date{
+  color:rgba(255,255,255,.35);
+  font-size:11px;
+}
+
+.open-btn{
+  padding:10px 15px;
+  border-radius:999px;
+  background:white;
+  color:#111;
+  font-size:12px;
+  font-weight:700;
+}
+
+.state{
+  grid-column:1/-1;
+  padding:65px 20px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  background:rgba(255,255,255,.04);
+}
+
+.state-icon{
+  font-size:38px;
+}
+
+.state h2{
+  margin:10px 0 7px;
+}
+
+.state p{
+  margin:0;
+  color:rgba(255,255,255,.45);
+  font-size:13px;
+}
+
+/* BOTTOM */
+
+.bottom-nav{
+  position:fixed;
+  left:50%;
+  bottom:15px;
+  z-index:30;
+  transform:translateX(-50%);
+  width:min(calc(100% - 30px),460px);
+  display:flex;
+  padding:7px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  background:rgba(10,10,10,.82);
+  backdrop-filter:blur(20px);
+}
+
+.bottom-link{
+  flex:1;
+  padding:8px 4px;
+  border-radius:999px;
+  color:rgba(255,255,255,.45);
+  text-align:center;
+  font-size:10px;
+}
+
+.bottom-link span{
+  display:block;
+  font-size:18px;
+  margin-bottom:3px;
+}
+
+.bottom-link.active{
+  color:white;
+  background:rgba(255,255,255,.1);
+}
+
+@media(min-width:700px){
+
+  .menu-button{
+    display:none;
+  }
+
+  .desktop-actions{
+    display:flex;
+  }
+
+  .nav{
+    padding:17px 32px;
+  }
+
+  .hero,
+  .toolbar,
+  .container{
+    padding-left:32px;
+    padding-right:32px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="background"></div>
+<div class="background"></div>
 
-  <!-- HEADER -->
+<header>
 
-  <header>
+<nav class="nav">
 
-    <nav class="nav">
+<a class="brand" href="index.html">
 
-      <a
-        class="brand"
-        href="index.html"
-      >
+<svg viewBox="0 0 256 256">
+<path d="
+M128 128
+C128 198.692 70.692 256 0 256
+C0 185.308 57.308 128 128 128Z
+M128 128
+C198.692 128 256 185.308 256 256
+C185.308 256 128 198.692 128 128Z
+M0 0
+C70.692 0 128 57.308 128 128
+C57.308 128 0 70.692 0 0Z
+M256 0
+C256 70.692 198.692 128 128 128
+C128 57.308 185.308 0 256 0Z"/>
+</svg>
 
-        <svg
-          viewBox="0 0 256 256"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="
-            M128 128
-            C128 198.692 70.692 256 0 256
-            C0 185.308 57.308 128 128 128Z
+<span>SAHIL</span>
 
-            M128 128
-            C198.692 128 256 185.308 256 256
-            C185.308 256 128 198.692 128 128Z
+</a>
 
-            M0 0
-            C70.692 0 128 57.308 128 128
-            C57.308 128 0 70.692 0 0Z
+<div class="desktop-actions">
 
-            M256 0
-            C256 70.692 198.692 128 128 128
-            C128 57.308 185.308 0 256 0Z
-          "/>
-        </svg>
+<a class="nav-btn" href="history.html">
+📜 History
+</a>
 
-        <span>Nexum</span>
+<a class="nav-btn" href="help.html">
+❓ Help
+</a>
 
-      </a>
+<button class="nav-btn" id="desktopProfile">
+👤 Profile
+</button>
 
-      <div class="nav-actions">
+</div>
 
-        <a
-          class="nav-button"
-          href="history.html"
-        >
-          📜 History
-        </a>
+<button
+class="menu-button"
+id="menuButton"
+type="button"
+>
+☰
+</button>
 
-        <a
-          class="nav-button"
-          href="help.html"
-        >
-          ❓ Help
-        </a>
+</nav>
 
-      </div>
-
-    </nav>
-
-  </header>
+</header>
 
 
-  <!-- HERO -->
+<!-- SIDE MENU -->
 
-  <section class="hero">
+<div
+class="menu-backdrop"
+id="menuBackdrop"
+></div>
 
-    <div class="eyebrow">
+<aside
+class="side-menu"
+id="sideMenu"
+>
 
-      <span class="dot"></span>
+<div class="menu-head">
 
-      <span>Live Offers</span>
+<h2>SAHIL Menu</h2>
 
-    </div>
+<button
+class="close-btn"
+id="closeMenu"
+>
+×
+</button>
 
-    <h1>
-      Discover offers worth opening.
-    </h1>
+</div>
 
-    <p>
-      Browse the latest active offers,
-      rewards and opportunities. Open an
-      offer to see the complete details.
-    </p>
+<div class="profile-box">
 
-  </section>
+<strong id="profileName">
+My Profile
+</strong>
+
+<span id="profileEmail">
+Loading...
+</span>
+
+</div>
+
+<a
+class="menu-item"
+href="profile.html"
+>
+👤 My Profile
+</a>
+
+<a
+class="menu-item"
+href="offer.html"
+>
+🎁 Offers
+</a>
+
+<a
+class="menu-item"
+href="history.html"
+>
+📜 My History
+</a>
+
+<div class="telegram">
+
+<strong>
+📢 Join SAHIL Telegram
+</strong>
+
+<p>
+Get new offers and important updates directly on Telegram.
+</p>
+
+<a
+href="https://t.me/IncomeOffersOfficia"
+target="_blank"
+rel="noopener"
+>
+Join Telegram Channel
+</a>
+
+</div>
+
+<button
+class="menu-item logout"
+id="logoutButton"
+>
+🚪 Logout
+</button>
+
+</aside>
 
 
-  <!-- TOOLBAR -->
+<section class="hero">
 
-  <div class="toolbar">
+<div class="eyebrow">
+● LIVE OFFERS
+</div>
 
-    <div
-      class="offer-count"
-      id="offerCount"
-    >
-      Loading offers...
-    </div>
+<h1>
+Discover offers worth opening.
+</h1>
 
-    <button
-      class="refresh"
-      id="refreshButton"
-      type="button"
-    >
-      ↻ Refresh
-    </button>
+<p>
+Browse the latest active offers,
+rewards and opportunities.
+Open an offer to see the complete details.
+</p>
 
-  </div>
+</section>
 
 
-  <!-- OFFERS -->
+<div class="toolbar">
 
-  <main class="container">
+<div
+class="count"
+id="offerCount"
+>
+Loading offers...
+</div>
 
-    <div
-      class="offer-grid"
-      id="offerGrid"
-    >
+<button
+class="refresh"
+id="refreshButton"
+>
+↻ Refresh
+</button>
+
+</div>
+
+
+<main class="container">
+
+<div
+class="offer-grid"
+id="offerGrid"
+>
+
+<div class="state">
+
+<div class="state-icon">
+⏳
+</div>
+
+<h2>
+Loading offers
+</h2>
+
+<p>
+Please wait...
+</p>
+
+</div>
+
+</div>
+
+</main>
+
+
+<nav class="bottom-nav">
+
+<a
+class="bottom-link"
+href="index.html"
+>
+<span>🏠</span>
+Home
+</a>
+
+<a
+class="bottom-link active"
+href="offer.html"
+>
+<span>🎁</span>
+Offers
+</a>
+
+<a
+class="bottom-link"
+href="history.html"
+>
+<span>📜</span>
+History
+</a>
+
+<a
+class="bottom-link"
+href="help.html"
+>
+<span>❓</span>
+Help
+</a>
+
+</nav>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+
+<script>
+
+const TELEGRAM_URL =
+"https://t.me/IncomeOffersOfficia";
+
+
+/* =========================
+   LOGIN CHECK
+========================= */
+
+async function checkLogin(){
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .auth
+      .getSession();
+
+  if(error){
+
+    console.error(error);
+    return false;
+
+  }
+
+  if(!data.session){
+
+    window.location.replace(
+      "login.html"
+    );
+
+    return false;
+
+  }
+
+  const user =
+    data.session.user;
+
+  document.getElementById(
+    "profileEmail"
+  ).textContent =
+    user.email || "User";
+
+  return true;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+const menuButton =
+document.getElementById(
+  "menuButton"
+);
+
+const menu =
+document.getElementById(
+  "sideMenu"
+);
+
+const backdrop =
+document.getElementById(
+  "menuBackdrop"
+);
+
+const closeMenu =
+document.getElementById(
+  "closeMenu"
+);
+
+function openMenu(){
+
+  menu.classList.add("open");
+  backdrop.classList.add("open");
+
+}
+
+function closeSideMenu(){
+
+  menu.classList.remove("open");
+  backdrop.classList.remove("open");
+
+}
+
+menuButton.addEventListener(
+  "click",
+  openMenu
+);
+
+closeMenu.addEventListener(
+  "click",
+  closeSideMenu
+);
+
+backdrop.addEventListener(
+  "click",
+  closeSideMenu
+);
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+document.getElementById(
+  "logoutButton"
+).addEventListener(
+  "click",
+  async function(){
+
+    await supabaseClient
+      .auth
+      .signOut();
+
+    window.location.replace(
+      "login.html"
+    );
+
+  }
+);
+
+
+/* =========================
+   HTML ESCAPE
+========================= */
+
+function escapeHtml(value){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    value ?? "";
+
+  return div.innerHTML;
+
+}
+
+
+/* =========================
+   DATE
+========================= */
+
+function formatDate(value){
+
+  if(!value){
+    return "Recently added";
+  }
+
+  const date =
+    new Date(value);
+
+  if(Number.isNaN(
+    date.getTime()
+  )){
+    return "Recently added";
+  }
+
+  return date.toLocaleDateString(
+    undefined,
+    {
+      day:"numeric",
+      month:"short",
+      year:"numeric"
+    }
+  );
+
+}
+
+
+/* =========================
+   ACTIVITY LOG
+========================= */
+
+async function logActivity(
+  action,
+  offerId = null
+){
+
+  try{
+
+    const {
+      data:{
+        session
+      }
+    } =
+      await supabaseClient
+        .auth
+        .getSession();
+
+    if(!session){
+      return;
+    }
+
+    await supabaseClient
+      .from("activity_logs")
+      .insert({
+
+        user_id:
+          session.user.id,
+
+        action:
+          action,
+
+        offer_id:
+          offerId,
+
+        page:
+          "offer.html",
+
+        metadata:
+          {}
+
+      });
+
+  }catch(error){
+
+    console.log(
+      "Activity log skipped"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   LOAD OFFERS
+========================= */
+
+async function loadOffers(){
+
+  const offerGrid =
+    document.getElementById(
+      "offerGrid"
+    );
+
+  const offerCount =
+    document.getElementById(
+      "offerCount"
+    );
+
+  const {
+    data,
+    error
+  } =
+    await supabaseClient
+      .from("offers")
+      .select("*")
+      .eq("status","active")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+  if(error){
+
+    console.error(error);
+
+    offerCount.textContent =
+      "Unable to load offers";
+
+    offerGrid.innerHTML = `
 
       <div class="state">
 
         <div class="state-icon">
-          ⏳
+          ⚠️
         </div>
 
         <h2>
-          Loading offers
+          Something went wrong
         </h2>
 
         <p>
-          Please wait a moment...
+          Please refresh and try again.
         </p>
 
       </div>
 
-    </div>
+    `;
 
-  </main>
+    return;
 
+  }
 
-  <!-- BOTTOM NAV -->
+  if(!data || data.length === 0){
 
-  <nav class="bottom-nav">
+    offerCount.textContent =
+      "0 active offers";
 
-    <a
-      class="bottom-link"
-      href="index.html"
-    >
-      <span>🏠</span>
-      Home
-    </a>
+    offerGrid.innerHTML = `
 
-    <a
-      class="bottom-link active"
-      href="offer.html"
-    >
-      <span>🎁</span>
-      Offers
-    </a>
+      <div class="state">
 
-    <a
-      class="bottom-link"
-      href="history.html"
-    >
-      <span>📜</span>
-      History
-    </a>
+        <div class="state-icon">
+          🎁
+        </div>
 
-    <a
-      class="bottom-link"
-      href="help.html"
-    >
-      <span>❓</span>
-      Help
-    </a>
+        <h2>
+          No active offers
+        </h2>
 
-  </nav>
+        <p>
+          New offers will appear here when available.
+        </p>
 
+      </div>
 
-  <!-- SUPABASE -->
+    `;
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    return;
 
-  <script src="supabase-config.js"></script>
+  }
 
+  offerCount.textContent =
+    data.length === 1
+      ? "1 active offer"
+      : data.length +
+        " active offers";
 
-  <script>
+  offerGrid.innerHTML = "";
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-      );
+  data.forEach(
+    function(offer,index){
 
-
-    const offerGrid =
-      document.getElementById(
-        "offerGrid"
-      );
-
-    const offerCount =
-      document.getElementById(
-        "offerCount"
-      );
-
-    const refreshButton =
-      document.getElementById(
-        "refreshButton"
-      );
-
-
-    /* =========================
-       ESCAPE HTML
-    ========================= */
-
-    function escapeHtml(
-      value
-    ) {
-
-      const div =
+      const card =
         document.createElement(
-          "div"
+          "article"
         );
 
-      div.textContent =
-        value ?? "";
+      card.className =
+        "offer-card";
 
-      return div.innerHTML;
+      card.style.animationDelay =
+        Math.min(
+          index * 80,
+          500
+        ) + "ms";
 
-    }
+      const image =
+        offer.image_url
+          ? `
+            <img
+              class="offer-image"
+              src="${escapeHtml(
+                offer.image_url
+              )}"
+              alt="${escapeHtml(
+                offer.title ||
+                "Offer"
+              )}"
+              loading="lazy"
+            >
+          `
+          : `
+            <div
+              class="offer-image"
+              style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                background:#111;
+                font-size:40px;
+              "
+            >
+              🎁
+            </div>
+          `;
 
+      card.innerHTML = `
 
-    /* =========================
-       DATE
-    ========================= */
+        ${image}
 
-    function formatDate(
-      value
-    ) {
+        <div class="offer-body">
 
-      if (!value) {
-        return "Recently added";
-      }
+          <h2 class="offer-title">
+            ${escapeHtml(
+              offer.title ||
+              "Untitled Offer"
+            )}
+          </h2>
 
-      const date =
-        new Date(value);
+          <p class="offer-description">
+            ${escapeHtml(
+              offer.description ||
+              "View complete offer details."
+            )}
+          </p>
 
-      if (
-        Number.isNaN(
-          date.getTime()
-        )
-      ) {
-        return "Recently added";
-      }
+          <div class="offer-footer">
 
-      return date.toLocaleDateString(
-        undefined,
-        {
-          day: "numeric",
-          month: "short",
-          year: "numeric"
+            <span class="date">
+              ${formatDate(
+                offer.created_at
+              )}
+            </span>
+
+            <a
+              class="open-btn"
+              href="offer-details.html?id=${encodeURIComponent(
+                offer.id
+              )}"
+              data-offer-id="${escapeHtml(
+                offer.id
+              )}"
+            >
+              Open Offer →
+            </a>
+
+          </div>
+
+        </div>
+
+      `;
+
+      const openButton =
+        card.querySelector(
+          ".open-btn"
+        );
+
+      openButton.addEventListener(
+        "click",
+        function(){
+
+          logActivity(
+            "offer_open",
+            offer.id
+          );
+
         }
       );
 
-    }
-
-
-    /* =========================
-       ACTIVITY
-    ========================= */
-
-    async function logActivity(
-      action,
-      offerId = null
-    ) {
-
-      try {
-
-        const {
-          data: {
-            user
-          }
-        } =
-          await supabaseClient
-            .auth
-            .getUser();
-
-        if (!user) return;
-
-        await supabaseClient
-          .from("activity_logs")
-          .insert({
-
-            user_id:
-              user.id,
-
-            action:
-              action,
-
-            offer_id:
-              offerId,
-
-            page:
-              "offer.html",
-
-            metadata:
-              {}
-
-          });
-
-      } catch (error) {
-
-        console.log(
-          "Activity logging skipped"
-        );
-
-      }
+      offerGrid.appendChild(card);
 
     }
+  );
+
+}
 
 
-    /* =========================
-       LOAD OFFERS
-    ========================= */
+/* =========================
+   START
+========================= */
 
-    async function loadOffers() {
+async function start(){
 
-      refreshButton.classList.add(
-        "loading"
-      );
+  const loggedIn =
+    await checkLogin();
 
-      offerCount.textContent =
-        "Loading offers...";
+  if(!loggedIn){
+    return;
+  }
 
+  await logActivity(
+    "offers_page_view"
+  );
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .from("offers")
-          .select("*")
-          .eq("status", "active")
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          );
+  await loadOffers();
 
+}
 
-      refreshButton.classList.remove(
-        "loading"
-      );
+document.getElementById(
+  "refreshButton"
+).addEventListener(
+  "click",
+  loadOffers
+);
 
+start();
 
-      if (error) {
+</script>
 
-        console.error(error);
-
-        offerCount.textContent =
-          "Unable to load offers";
-
-        offerGrid.innerHTML = `
-
-          <div class="state">
-
-            <div class="state-icon">
-              ⚠️
-            </div>
-
-            <h2>
-              Something went wrong
-            </h2>
-
-            <p>
-              Please refresh and try again.
-            </p>
-
-          </div>
-
-        `;
-
-        return;
-
-      }
-
-
-      if (
-        !data ||
-        data.length === 0
-      ) {
-
-        offerCount.textContent =
-          "0 active offers";
-
-        offerGrid.innerHTML = `
-
-          <div class="state">
-
-            <div class="state-icon">
-              🎁
-            </div>
-
-            <h2>
-              No active offers
-            </h2>
-
-            <p>
-              New offers will appear here when available.
-            </p>
-
-          </div>
-
-        `;
-
-        return;
-
-      }
-
-
-      offerCount.textContent =
-        data.length === 1
-          ? "1 active offer"
-          : data.length +
-            " active offers";
-
-
-      offerGrid.innerHTML = "";
-
-
-      data.forEach(
-        function(
-          offer,
-          index
-        ) {
-
-          const card =
-            document.createElement(
-              "article"
-            );
-
-          card.className =
-            "offer-card";
-
-          card.style.animationDelay =
-            Math.min(
-              index * 80,
-              500
-            ) + "ms";
-
-
-          const image =
-            offer.image_url
-              ? `
-
-                <img
-                  class="offer-image"
-                  src="${escapeHtml(
-                    offer.image_url
-                  )}"
-                  alt="${escapeHtml(
-                    offer.title ||
-                    "Offer"
-                  )}"
-                  loading="lazy"
-                >
-
-              `
-              : `
-
-                <div
-                  class="image-placeholder"
-                >
-                  🎁
-                </div>
-
-              `;
-
-
-          const title =
-            escapeHtml(
-              offer.title ||
-              "Untitled Of
+</body>
+</html>
