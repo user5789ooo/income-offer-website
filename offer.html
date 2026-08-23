@@ -3,150 +3,1312 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
 
-  <title>Offer Details</title>
+  <title>Offers - Nexum</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     * {
       box-sizing: border-box;
+    }
+
+    html,
+    body {
       margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+      min-height: 100%;
     }
 
     body {
-      background: #f5f6fa;
-      color: #222;
+      background: #050505;
+      color: white;
+      font-family:
+        'Geist',
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* =========================
+       BACKGROUND
+    ========================= */
+
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(255,255,255,.08),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 90% 80%,
+          rgba(255,255,255,.05),
+          transparent 35%
+        ),
+        #050505;
+    }
+
+    .background::before,
+    .background::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .16;
+      background: white;
+      animation:
+        floatGlow
+        12s
+        ease-in-out
+        infinite alternate;
+    }
+
+    .background::before {
+      left: -180px;
+      top: 10%;
+    }
+
+    .background::after {
+      right: -180px;
+      bottom: 5%;
+      animation-delay: -5s;
+    }
+
+    @keyframes floatGlow {
+      from {
+        transform: translate(0,0) scale(1);
+      }
+
+      to {
+        transform: translate(80px,-40px) scale(1.2);
+      }
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
 
     header {
-      background: #111827;
-      color: white;
-      padding: 18px;
-      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
+      background:
+        rgba(5,5,5,.72);
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
     }
 
-    .container {
-      max-width: 600px;
+    .nav {
+      width: 100%;
+      max-width: 1200px;
       margin: auto;
-      padding: 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding:
+        17px 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .brand svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+
+      transition:
+        transform .5s ease;
+    }
+
+    .brand:hover svg {
+      transform: rotate(180deg);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        9px 15px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.10);
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,.07);
+
+      color:
+        rgba(255,255,255,.85);
+
+      font-size: 13px;
+
+      transition:
+        transform .2s ease,
+        background .2s ease;
+    }
+
+    .nav-button:hover {
+      background:
+        rgba(255,255,255,.13);
+
+      transform:
+        translateY(-1px);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+
+      padding:
+        65px 20px 35px;
+
+      animation:
+        fadeUp
+        .8s
+        cubic-bezier(.16,1,.3,1);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform:
+          translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0);
+      }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      margin-bottom: 14px;
+
+      color:
+        rgba(255,255,255,.55);
+
+      font-size: 12px;
+      font-weight: 600;
+
+      letter-spacing:
+        .08em;
+
+      text-transform:
+        uppercase;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      box-shadow:
+        0 0 15px
+        rgba(255,255,255,.8);
+
+      animation:
+        pulse
+        1.8s
+        ease-in-out
+        infinite;
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .6;
+      }
+
+      50% {
+        transform: scale(1.5);
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      margin: 0;
+
+      max-width: 750px;
+
+      font-size:
+        clamp(2.4rem, 7vw, 5rem);
+
+      line-height: 1.02;
+
+      letter-spacing:
+        -.055em;
+    }
+
+    .hero p {
+      max-width: 600px;
+
+      margin:
+        18px 0 0;
+
+      color:
+        rgba(255,255,255,.55);
+
+      font-size: 15px;
+
+      line-height: 1.65;
+    }
+
+    /* =========================
+       FILTER
+    ========================= */
+
+    .toolbar {
+      max-width: 1200px;
+      margin: auto;
+
+      padding:
+        0 20px 25px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 12px;
+    }
+
+    .offer-count {
+      color:
+        rgba(255,255,255,.45);
+
+      font-size: 13px;
+    }
+
+    .refresh {
+      border:
+        1px solid
+        rgba(255,255,255,.10);
+
+      border-radius: 999px;
+
+      padding:
+        9px 14px;
+
+      background:
+        rgba(255,255,255,.06);
+
+      color: white;
+
+      cursor: pointer;
+
+      transition:
+        transform .25s ease,
+        background .25s ease;
+    }
+
+    .refresh:hover {
+      background:
+        rgba(255,255,255,.12);
+
+      transform:
+        translateY(-1px);
+    }
+
+    .refresh.loading {
+      animation:
+        spin .7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       OFFERS
+    ========================= */
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding:
+        0 20px 80px;
+    }
+
+    .offer-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(
+            260px,
+            1fr
+          )
+        );
+
+      gap: 18px;
     }
 
     .offer-card {
-      background: white;
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      position: relative;
+
+      overflow: hidden;
+
+      border:
+        1px solid
+        rgba(255,255,255,.10);
+
+      border-radius: 22px;
+
+      background:
+        rgba(255,255,255,.065);
+
+      backdrop-filter:
+        blur(18px);
+
+      -webkit-backdrop-filter:
+        blur(18px);
+
+      box-shadow:
+        0 15px 60px
+        rgba(0,0,0,.22);
+
+      opacity: 0;
+
+      transform:
+        translateY(25px)
+        scale(.97);
+
+      animation:
+        cardShow
+        .65s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+
+      transition:
+        transform .35s
+        cubic-bezier(.16,1,.3,1),
+        border-color .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
+    }
+
+    .offer-card:hover {
+      transform:
+        translateY(-7px)
+        scale(1.01);
+
+      border-color:
+        rgba(255,255,255,.20);
+
+      background:
+        rgba(255,255,255,.09);
+
+      box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.35);
+    }
+
+    @keyframes cardShow {
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    .offer-image-wrap {
+      position: relative;
+
+      width: 100%;
+      aspect-ratio: 16 / 9;
+
+      overflow: hidden;
+
+      background:
+        rgba(255,255,255,.05);
     }
 
     .offer-image {
       width: 100%;
-      height: 180px;
+      height: 100%;
+
+      display: block;
+
       object-fit: cover;
-      border-radius: 12px;
-      background: #e5e7eb;
-      margin-bottom: 18px;
+
+      transition:
+        transform .6s
+        cubic-bezier(.16,1,.3,1);
     }
 
-    h2 {
-      margin-bottom: 10px;
+    .offer-card:hover
+    .offer-image {
+      transform:
+        scale(1.06);
     }
 
-    .description {
-      color: #666;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .offer-info {
-      background: #f5f6fa;
-      padding: 15px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-
-    .offer-info p {
-      margin-bottom: 8px;
-    }
-
-    .offer-info p:last-child {
-      margin-bottom: 0;
-    }
-
-    .open-btn {
-      display: block;
+    .image-placeholder {
       width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      background: #111827;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
+      height: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color:
+        rgba(255,255,255,.25);
+
+      font-size: 40px;
     }
 
-    .back {
-      display: block;
-      text-align: center;
+    .status {
+      position: absolute;
+
+      top: 12px;
+      left: 12px;
+
+      padding:
+        6px 10px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(0,0,0,.65);
+
+      border:
+        1px solid
+        rgba(255,255,255,.12);
+
+      backdrop-filter:
+        blur(10px);
+
+      color: #8dffa9;
+
+      font-size: 11px;
+
+      font-weight: 600;
+
+      text-transform:
+        uppercase;
+    }
+
+    .offer-body {
+      padding: 19px;
+    }
+
+    .offer-title {
+      margin: 0 0 8px;
+
+      font-size: 19px;
+
+      line-height: 1.25;
+
+      letter-spacing:
+        -.02em;
+    }
+
+    .offer-description {
+      min-height: 48px;
+
+      margin: 0;
+
+      color:
+        rgba(255,255,255,.52);
+
+      font-size: 13px;
+
+      line-height: 1.6;
+    }
+
+    .offer-footer {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
       margin-top: 18px;
-      color: #222;
-      text-decoration: none;
+    }
+
+    .date {
+      color:
+        rgba(255,255,255,.35);
+
+      font-size: 11px;
+    }
+
+    .open-button {
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding:
+        10px 15px;
+
+      border-radius: 999px;
+
+      background: white;
+
+      color: #111;
+
+      font-size: 12px;
+
+      font-weight: 600;
+
+      transition:
+        transform .2s ease;
+    }
+
+    .open-button:hover {
+      transform:
+        translateY(-2px);
+    }
+
+    .open-button:active {
+      transform:
+        scale(.95);
+    }
+
+    /* =========================
+       EMPTY / LOADING
+    ========================= */
+
+    .state {
+      grid-column:
+        1 / -1;
+
+      padding:
+        70px 20px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.08);
+
+      border-radius: 22px;
+
+      background:
+        rgba(255,255,255,.04);
+
+      text-align: center;
+
+      color:
+        rgba(255,255,255,.45);
+    }
+
+    .state-icon {
+      font-size: 38px;
+
+      margin-bottom: 12px;
+    }
+
+    .state h2 {
+      margin:
+        0 0 8px;
+
+      color: white;
+
+      font-size: 20px;
+    }
+
+    .state p {
+      margin: 0;
+
+      font-size: 13px;
+    }
+
+    /* =========================
+       BOTTOM NAV
+    ========================= */
+
+    .bottom-nav {
+      position: fixed;
+
+      left: 50%;
+      bottom: 15px;
+
+      z-index: 30;
+
+      width:
+        min(
+          calc(100% - 30px),
+          460px
+        );
+
+      transform:
+        translateX(-50%);
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-around;
+
+      padding: 7px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.10);
+
+      border-radius: 999px;
+
+      background:
+        rgba(10,10,10,.78);
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+
+      box-shadow:
+        0 15px 50px
+        rgba(0,0,0,.45);
+    }
+
+    .bottom-link {
+      flex: 1;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 2px;
+
+      padding:
+        7px 5px;
+
+      border-radius: 999px;
+
+      color:
+        rgba(255,255,255,.45);
+
+      font-size: 10px;
+
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+    }
+
+    .bottom-link span {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .bottom-link:hover,
+    .bottom-link.active {
+      background:
+        rgba(255,255,255,.10);
+
+      color: white;
+
+      transform:
+        translateY(-1px);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 520px) {
+
+      .hero {
+        padding-top: 45px;
+      }
+
+      .nav-button {
+        padding:
+          8px 11px;
+
+        font-size: 12px;
+      }
+
+      .offer-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+
+        animation-duration:
+          .01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          .01ms !important;
+      }
+
     }
   </style>
 </head>
 
 <body>
 
+  <div class="background"></div>
+
+  <!-- HEADER -->
+
   <header>
-    <h1>🎁 Offer Details</h1>
+
+    <nav class="nav">
+
+      <a
+        class="brand"
+        href="index.html"
+      >
+
+        <svg
+          viewBox="0 0 256 256"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="
+            M128 128
+            C128 198.692 70.692 256 0 256
+            C0 185.308 57.308 128 128 128Z
+
+            M128 128
+            C198.692 128 256 185.308 256 256
+            C185.308 256 128 198.692 128 128Z
+
+            M0 0
+            C70.692 0 128 57.308 128 128
+            C57.308 128 0 70.692 0 0Z
+
+            M256 0
+            C256 70.692 198.692 128 128 128
+            C128 57.308 185.308 0 256 0Z
+          "/>
+        </svg>
+
+        <span>Nexum</span>
+
+      </a>
+
+      <div class="nav-actions">
+
+        <a
+          class="nav-button"
+          href="history.html"
+        >
+          📜 History
+        </a>
+
+        <a
+          class="nav-button"
+          href="help.html"
+        >
+          ❓ Help
+        </a>
+
+      </div>
+
+    </nav>
+
   </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="eyebrow">
+
+      <span class="dot"></span>
+
+      <span>Live Offers</span>
+
+    </div>
+
+    <h1>
+      Discover offers worth opening.
+    </h1>
+
+    <p>
+      Browse the latest active offers,
+      rewards and opportunities. Open an
+      offer to see the complete details.
+    </p>
+
+  </section>
+
+
+  <!-- TOOLBAR -->
+
+  <div class="toolbar">
+
+    <div
+      class="offer-count"
+      id="offerCount"
+    >
+      Loading offers...
+    </div>
+
+    <button
+      class="refresh"
+      id="refreshButton"
+      type="button"
+    >
+      ↻ Refresh
+    </button>
+
+  </div>
+
+
+  <!-- OFFERS -->
 
   <main class="container">
 
-    <div class="offer-card">
+    <div
+      class="offer-grid"
+      id="offerGrid"
+    >
 
-      <img
-        class="offer-image"
-        src="https://via.placeholder.com/600x300?text=Offer"
-        alt="Offer">
+      <div class="state">
 
-      <h2>Sample Offer</h2>
+        <div class="state-icon">
+          ⏳
+        </div>
 
-      <p class="description">
-        This is where the complete offer description
-        will appear.
-      </p>
+        <h2>
+          Loading offers
+        </h2>
 
-      <div class="offer-info">
-        <p><strong>Status:</strong> Active</p>
-        <p><strong>Category:</strong> General</p>
-        <p><strong>Added:</strong> Today</p>
+        <p>
+          Please wait a moment...
+        </p>
+
       </div>
-
-      <a
-        class="open-btn"
-        href="#"
-        onclick="openOffer(); return false;">
-        🚀 Open Offer
-      </a>
-
-      <a class="back" href="index.html">
-        ← Back to Offers
-      </a>
 
     </div>
 
   </main>
 
-  <script>
-    function openOffer() {
-      alert(
-        "Offer link will be connected later from the Admin Panel."
-      );
-    }
-  </script>
 
-</body>
-</html>
+  <!-- BOTTOM NAV -->
+
+  <nav class="bottom-nav">
+
+    <a
+      class="bottom-link"
+      href="index.html"
+    >
+      <span>🏠</span>
+      Home
+    </a>
+
+    <a
+      class="bottom-link active"
+      href="offer.html"
+    >
+      <span>🎁</span>
+      Offers
+    </a>
+
+    <a
+      class="bottom-link"
+      href="history.html"
+    >
+      <span>📜</span>
+      History
+    </a>
+
+    <a
+      class="bottom-link"
+      href="help.html"
+    >
+      <span>❓</span>
+      Help
+    </a>
+
+  </nav>
+
+
+  <!-- SUPABASE -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="supabase-config.js"></script>
+
+
+  <script>
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
+
+
+    const offerGrid =
+      document.getElementById(
+        "offerGrid"
+      );
+
+    const offerCount =
+      document.getElementById(
+        "offerCount"
+      );
+
+    const refreshButton =
+      document.getElementById(
+        "refreshButton"
+      );
+
+
+    /* =========================
+       ESCAPE HTML
+    ========================= */
+
+    function escapeHtml(
+      value
+    ) {
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+      div.textContent =
+        value ?? "";
+
+      return div.innerHTML;
+
+    }
+
+
+    /* =========================
+       DATE
+    ========================= */
+
+    function formatDate(
+      value
+    ) {
+
+      if (!value) {
+        return "Recently added";
+      }
+
+      const date =
+        new Date(value);
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+        return "Recently added";
+      }
+
+      return date.toLocaleDateString(
+        undefined,
+        {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        }
+      );
+
+    }
+
+
+    /* =========================
+       ACTIVITY
+    ========================= */
+
+    async function logActivity(
+      action,
+      offerId = null
+    ) {
+
+      try {
+
+        const {
+          data: {
+            user
+          }
+        } =
+          await supabaseClient
+            .auth
+            .getUser();
+
+        if (!user) return;
+
+        await supabaseClient
+          .from("activity_logs")
+          .insert({
+
+            user_id:
+              user.id,
+
+            action:
+              action,
+
+            offer_id:
+              offerId,
+
+            page:
+              "offer.html",
+
+            metadata:
+              {}
+
+          });
+
+      } catch (error) {
+
+        console.log(
+          "Activity logging skipped"
+        );
+
+      }
+
+    }
+
+
+    /* =========================
+       LOAD OFFERS
+    ========================= */
+
+    async function loadOffers() {
+
+      refreshButton.classList.add(
+        "loading"
+      );
+
+      offerCount.textContent =
+        "Loading offers...";
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("offers")
+          .select("*")
+          .eq("status", "active")
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      refreshButton.classList.remove(
+        "loading"
+      );
+
+
+      if (error) {
+
+        console.error(error);
+
+        offerCount.textContent =
+          "Unable to load offers";
+
+        offerGrid.innerHTML = `
+
+          <div class="state">
+
+            <div class="state-icon">
+              ⚠️
+            </div>
+
+            <h2>
+              Something went wrong
+            </h2>
+
+            <p>
+              Please refresh and try again.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+        offerCount.textContent =
+          "0 active offers";
+
+        offerGrid.innerHTML = `
+
+          <div class="state">
+
+            <div class="state-icon">
+              🎁
+            </div>
+
+            <h2>
+              No active offers
+            </h2>
+
+            <p>
+              New offers will appear here when available.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      offerCount.textContent =
+        data.length === 1
+          ? "1 active offer"
+          : data.length +
+            " active offers";
+
+
+      offerGrid.innerHTML = "";
+
+
+      data.forEach(
+        function(
+          offer,
+          index
+        ) {
+
+          const card =
+            document.createElement(
+              "article"
+            );
+
+          card.className =
+            "offer-card";
+
+          card.style.animationDelay =
+            Math.min(
+              index * 80,
+              500
+            ) + "ms";
+
+
+          const image =
+            offer.image_url
+              ? `
+
+                <img
+                  class="offer-image"
+                  src="${escapeHtml(
+                    offer.image_url
+                  )}"
+                  alt="${escapeHtml(
+                    offer.title ||
+                    "Offer"
+                  )}"
+                  loading="lazy"
+                >
+
+              `
+              : `
+
+                <div
+                  class="image-placeholder"
+                >
+                  🎁
+                </div>
+
+              `;
+
+
+          const title =
+            escapeHtml(
+              offer.title ||
+              "Untitled Of
