@@ -1,425 +1,741 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050505">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
 
-<title>SAHIL - Login</title>
+  <title>SAHIL - Login</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
-<style>
-*{
-  box-sizing:border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Geist', Arial, sans-serif;
+    }
 
-html,body{
-  margin:0;
-  min-height:100%;
-}
+    body {
+      min-height: 100vh;
+      background: #050505;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: hidden;
+    }
 
-body{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:#050505;
-  color:white;
-  font-family:'Geist',Arial,sans-serif;
-}
+    /* =========================
+       BACKGROUND
+    ========================= */
 
-.login-box{
-  width:100%;
-  max-width:410px;
-  padding:30px 24px;
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:24px;
-  background:rgba(255,255,255,.07);
-  backdrop-filter:blur(20px);
-  box-shadow:0 25px 80px rgba(0,0,0,.45);
-  animation:show .6s ease both;
-}
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      background:
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(255,255,255,.08),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 80% 80%,
+          rgba(255,255,255,.06),
+          transparent 30%
+        ),
+        #050505;
+    }
 
-@keyframes show{
-  from{
-    opacity:0;
-    transform:translateY(25px) scale(.97);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-}
+    /* =========================
+       LOGIN BOX
+    ========================= */
 
-.logo{
-  text-align:center;
-  margin-bottom:25px;
-}
+    .login-box {
+      width: 100%;
+      max-width: 410px;
 
-.logo svg{
-  width:48px;
-  height:48px;
-  fill:white;
-}
+      padding: 30px 24px;
 
-.logo h1{
-  margin:10px 0 0;
-  font-size:28px;
-}
+      border-radius: 24px;
 
-.subtitle{
-  margin:6px 0 25px;
-  text-align:center;
-  color:rgba(255,255,255,.55);
-  font-size:14px;
-}
+      background:
+        rgba(255,255,255,.07);
 
-label{
-  display:block;
-  margin:14px 0 7px;
-  font-size:13px;
-  font-weight:600;
-}
+      border:
+        1px solid
+        rgba(255,255,255,.10);
 
-input{
-  width:100%;
-  padding:14px 15px;
-  border:1px solid rgba(255,255,255,.12);
-  outline:none;
-  border-radius:12px;
-  background:rgba(255,255,255,.07);
-  color:white;
-  font-size:15px;
-}
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
 
-input:focus{
-  border-color:rgba(255,255,255,.35);
-}
+      box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.45);
 
-input::placeholder{
-  color:rgba(255,255,255,.35);
-}
+      animation:
+        boxIn .7s
+        cubic-bezier(.16,1,.3,1);
+    }
 
-.login-button{
-  width:100%;
-  margin-top:22px;
-  padding:14px;
-  border:0;
-  border-radius:12px;
-  background:white;
-  color:#111;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
-}
+    @keyframes boxIn {
+      from {
+        opacity: 0;
+        transform:
+          translateY(30px)
+          scale(.96);
+      }
 
-.login-button:disabled{
-  opacity:.55;
-  cursor:not-allowed;
-}
+      to {
+        opacity: 1;
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
 
-.message{
-  min-height:22px;
-  margin-top:15px;
-  text-align:center;
-  color:rgba(255,255,255,.7);
-  font-size:13px;
-  line-height:1.5;
-}
+    .logo {
+      width: 58px;
+      height: 58px;
 
-.back{
-  display:block;
-  margin-top:20px;
-  text-align:center;
-  color:rgba(255,255,255,.55);
-  font-size:13px;
-  text-decoration:none;
-}
+      margin: 0 auto 18px;
 
-.back:hover{
-  color:white;
-}
-</style>
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 18px;
+
+      background: white;
+      color: #050505;
+
+      font-size: 25px;
+      font-weight: 700;
+
+      box-shadow:
+        0 10px 35px
+        rgba(255,255,255,.12);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 28px;
+      letter-spacing: -.04em;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      margin-bottom: 28px;
+
+      text-align: center;
+
+      color:
+        rgba(255,255,255,.48);
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       INPUT
+    ========================= */
+
+    label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color:
+        rgba(255,255,255,.75);
+
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+
+      padding: 14px 15px;
+
+      margin-bottom: 17px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.10);
+
+      border-radius: 13px;
+
+      outline: none;
+
+      background:
+        rgba(255,255,255,.06);
+
+      color: white;
+
+      font-size: 15px;
+
+      transition:
+        border-color .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+    }
+
+    input::placeholder {
+      color:
+        rgba(255,255,255,.30);
+    }
+
+    input:focus {
+      border-color:
+        rgba(255,255,255,.35);
+
+      background:
+        rgba(255,255,255,.09);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(255,255,255,.05);
+    }
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    .login-button {
+      width: 100%;
+
+      padding: 14px;
+
+      border: 0;
+      border-radius: 13px;
+
+      background: white;
+      color: #050505;
+
+      font-size: 15px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        transform .2s ease,
+        opacity .2s ease;
+    }
+
+    .login-button:hover {
+      transform:
+        translateY(-2px);
+    }
+
+    .login-button:active {
+      transform:
+        scale(.97);
+    }
+
+    .login-button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    /* =========================
+       MESSAGE
+    ========================= */
+
+    #message {
+      min-height: 20px;
+
+      margin-top: 15px;
+
+      text-align: center;
+
+      color:
+        rgba(255,255,255,.65);
+
+      font-size: 13px;
+
+      line-height: 1.5;
+    }
+
+    .back {
+      display: block;
+
+      margin-top: 20px;
+
+      text-align: center;
+
+      color:
+        rgba(255,255,255,.50);
+
+      font-size: 13px;
+
+      text-decoration: none;
+    }
+
+    .back:hover {
+      color: white;
+    }
+
+    /* =========================
+       MONEY ANIMATION
+    ========================= */
+
+    #moneyRain {
+      position: fixed;
+      inset: 0;
+
+      z-index: 9999;
+
+      pointer-events: none;
+
+      overflow: hidden;
+
+      display: none;
+    }
+
+    #moneyRain.show {
+      display: block;
+    }
+
+    .money {
+      position: absolute;
+
+      top: -80px;
+
+      font-size: 28px;
+
+      opacity: 0;
+
+      animation:
+        moneyFall
+        2.8s
+        cubic-bezier(.2,.7,.3,1)
+        forwards;
+    }
+
+    @keyframes moneyFall {
+
+      0% {
+        opacity: 0;
+
+        transform:
+          translateY(-80px)
+          rotate(0deg)
+          scale(.7);
+      }
+
+      10% {
+        opacity: 1;
+      }
+
+      80% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+
+        transform:
+          translateY(115vh)
+          rotate(720deg)
+          scale(1);
+      }
+    }
+
+    /* =========================
+       SUCCESS
+    ========================= */
+
+    .success {
+      color: #8dffa9 !important;
+      font-weight: 600;
+    }
+
+    @media (max-width: 420px) {
+
+      .login-box {
+        padding: 26px 20px;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="login-box">
+  <div class="background"></div>
 
-  <div class="logo">
+  <!-- MONEY RAIN -->
 
-    <svg viewBox="0 0 256 256">
-      <path d="
-      M128 128
-      C128 198.692 70.692 256 0 256
-      C0 185.308 57.308 128 128 128Z
+  <div id="moneyRain"></div>
 
-      M128 128
-      C198.692 128 256 185.308 256 256
-      C185.308 256 128 198.692 128 128Z
 
-      M0 0
-      C70.692 0 128 57.308 128 128
-      C57.308 128 0 70.692 0 0Z
+  <!-- LOGIN -->
 
-      M256 0
-      C256 70.692 198.692 128 128 128
-      C128 57.308 185.308 0 256 0Z"/>
-    </svg>
+  <div class="login-box">
 
-    <h1>SAHIL</h1>
+    <div class="logo">
+      S
+    </div>
+
+    <h1>
+      Welcome to SAHIL
+    </h1>
+
+    <p class="subtitle">
+      Login to continue
+    </p>
+
+
+    <form
+      id="loginForm"
+      onsubmit="loginUser(event)"
+    >
+
+      <label for="email">
+        Email
+      </label>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        autocomplete="email"
+        required
+      >
+
+
+      <label for="password">
+        Password
+      </label>
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter your password"
+        autocomplete="current-password"
+        required
+      >
+
+
+      <button
+        class="login-button"
+        id="loginButton"
+        type="submit"
+      >
+        Login
+      </button>
+
+    </form>
+
+
+    <div id="message"></div>
+
+
+    <a
+      class="back"
+      href="index.html"
+    >
+      ← Back to Home
+    </a>
 
   </div>
 
-  <p class="subtitle">
-    Login to continue
-  </p>
 
-  <form id="loginForm">
+  <!-- SUPABASE -->
 
-    <label for="email">
-      Email
-    </label>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <input
-      id="email"
-      type="email"
-      placeholder="Enter your email"
-      autocomplete="email"
-      required
-    >
-
-    <label for="password">
-      Password
-    </label>
-
-    <input
-      id="password"
-      type="password"
-      placeholder="Enter your password"
-      autocomplete="current-password"
-      required
-    >
-
-    <button
-      class="login-button"
-      id="loginButton"
-      type="submit"
-    >
-      Login
-    </button>
-
-  </form>
-
-  <div
-    class="message"
-    id="message"
-  ></div>
-
-  <a
-    class="back"
-    href="index.html"
-  >
-    ← Back to Home
-  </a>
-
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
-
-<script>
-
-const form =
-  document.getElementById("loginForm");
-
-const button =
-  document.getElementById("loginButton");
-
-const message =
-  document.getElementById("message");
+  <script src="supabase-config.js"></script>
 
 
-function showMessage(text){
+  <script>
 
-  message.textContent = text;
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
 
-}
 
+    /* =========================
+       MESSAGE
+    ========================= */
 
-/* =========================
-   CHECK EXISTING LOGIN
-========================= */
+    function showMessage(
+      text,
+      success = false
+    ) {
 
-async function checkExistingSession(){
+      const message =
+        document.getElementById(
+          "message"
+        );
 
-  try{
+      message.textContent = text;
 
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .auth
-        .getSession();
-
-    if(error){
-
-      console.error(error);
-      return;
+      message.className =
+        success
+          ? "success"
+          : "";
 
     }
 
-    if(data.session){
+
+    /* =========================
+       MONEY RAIN
+    ========================= */
+
+    function startMoneyRain() {
+
+      const container =
+        document.getElementById(
+          "moneyRain"
+        );
+
+      container.innerHTML = "";
+
+      container.classList.add(
+        "show"
+      );
+
+
+      const symbols = [
+        "💰",
+        "💵",
+        "💸",
+        "🪙",
+        "💲"
+      ];
+
+
+      const amount = 45;
+
+
+      for (
+        let i = 0;
+        i < amount;
+        i++
+      ) {
+
+        const money =
+          document.createElement(
+            "span"
+          );
+
+        money.className =
+          "money";
+
+
+        money.textContent =
+          symbols[
+            Math.floor(
+              Math.random() *
+              symbols.length
+            )
+          ];
+
+
+        money.style.left =
+          Math.random() * 100 + "%";
+
+
+        money.style.fontSize =
+          (20 +
+            Math.random() * 20) +
+          "px";
+
+
+        money.style.animationDelay =
+          Math.random() * 1.2 +
+          "s";
+
+
+        money.style.animationDuration =
+          (2.2 +
+            Math.random() * 1.4) +
+          "s";
+
+
+        container.appendChild(
+          money
+        );
+
+      }
+
+
+      setTimeout(
+        function() {
+
+          container.classList.remove(
+            "show"
+          );
+
+          container.innerHTML = "";
+
+        },
+        4500
+      );
+
+    }
+
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+    async function loginUser(
+      event
+    ) {
+
+      event.preventDefault();
+
+
+      const button =
+        document.getElementById(
+          "loginButton"
+        );
+
+
+      const email =
+        document.getElementById(
+          "email"
+        ).value.trim();
+
+
+      const password =
+        document.getElementById(
+          "password"
+        ).value;
+
+
+      button.disabled = true;
+
+      button.textContent =
+        "Logging in...";
+
 
       showMessage(
-        "Already logged in. Opening..."
+        "Checking your account..."
       );
 
-      window.location.replace(
-        "offer.html"
-      );
 
-    }
+      try {
 
-  }catch(error){
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .auth
+            .signInWithPassword({
 
-    console.error(error);
+              email:
+                email,
 
-  }
+              password:
+                password
 
-}
-
-
-/* =========================
-   LOGIN
-========================= */
-
-form.addEventListener(
-  "submit",
-  async function(event){
-
-    event.preventDefault();
-
-    const email =
-      document
-        .getElementById("email")
-        .value
-        .trim();
-
-    const password =
-      document
-        .getElementById("password")
-        .value;
-
-    if(!email || !password){
-
-      showMessage(
-        "Please enter email and password."
-      );
-
-      return;
-
-    }
-
-    button.disabled = true;
-    button.textContent = "Logging in...";
-
-    showMessage(
-      "Please wait..."
-    );
-
-    try{
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .auth
-          .signInWithPassword({
-
-            email:email,
-
-            password:password
-
-          });
+            });
 
 
-      if(error){
+        if (error) {
+
+          console.error(error);
+
+          showMessage(
+            "Login failed: " +
+            error.message
+          );
+
+          button.disabled = false;
+
+          button.textContent =
+            "Login";
+
+          return;
+
+        }
+
+
+        if (!data.user) {
+
+          showMessage(
+            "User account পাওয়া যায়নি।"
+          );
+
+          button.disabled = false;
+
+          button.textContent =
+            "Login";
+
+          return;
+
+        }
+
+
+        /* SUCCESS */
+
+        showMessage(
+          "Login successful! 💰",
+          true
+        );
+
+
+        button.textContent =
+          "Welcome!";
+
+
+        startMoneyRain();
+
+
+        /*
+          Give Supabase session
+          time to save locally before
+          redirecting.
+        */
+
+        setTimeout(
+          function() {
+
+            window.location.href =
+              "index.html";
+
+          },
+          3500
+        );
+
+
+      } catch (error) {
 
         console.error(error);
 
         showMessage(
-          "Login failed: " +
+          "Something went wrong: " +
           error.message
         );
 
         button.disabled = false;
-        button.textContent = "Login";
 
-        return;
-
-      }
-
-
-      if(!data.session){
-
-        showMessage(
-          "Login failed. Session তৈরি হয়নি."
-        );
-
-        button.disabled = false;
-        button.textContent = "Login";
-
-        return;
+        button.textContent =
+          "Login";
 
       }
-
-
-      showMessage(
-        "Login successful! Opening..."
-      );
-
-
-      /*
-        Supabase automatically stores
-        the session because
-        persistSession=true.
-      */
-
-      window.location.replace(
-        "offer.html"
-      );
-
-
-    }catch(error){
-
-      console.error(error);
-
-      showMessage(
-        "Something went wrong."
-      );
-
-      button.disabled = false;
-      button.textContent = "Login";
 
     }
 
-  }
-);
-
-
-/* START */
-
-checkExistingSession();
-
-</script>
+  </script>
 
 </body>
 </html>
