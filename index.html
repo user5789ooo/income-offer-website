@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
@@ -11,18 +10,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link
-href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
   box-sizing:border-box;
 }
 
-html,
-body{
+html,body{
   margin:0;
   width:100%;
   min-height:100%;
@@ -41,11 +36,13 @@ a{
   text-decoration:none;
 }
 
-button,
-input{
+button,input{
   font:inherit;
 }
 
+button,a{
+  -webkit-tap-highlight-color:transparent;
+}
 
 /* =========================
    HERO
@@ -72,15 +69,8 @@ input{
 }
 
 @keyframes videoZoom{
-
-  from{
-    transform:scale(1.02);
-  }
-
-  to{
-    transform:scale(1.08);
-  }
-
+  from{transform:scale(1.02)}
+  to{transform:scale(1.08)}
 }
 
 .hero::before{
@@ -88,14 +78,12 @@ input{
   position:absolute;
   inset:0;
   z-index:-2;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,.12),
-      rgba(255,255,255,.05) 40%,
-      rgba(0,0,0,.38)
-    );
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,.12),
+    rgba(255,255,255,.05) 40%,
+    rgba(0,0,0,.38)
+  );
 }
 
 .hero::after{
@@ -103,26 +91,21 @@ input{
   position:absolute;
   inset:0;
   z-index:-1;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,.08),
-      rgba(0,0,0,.28)
-    );
+  background:linear-gradient(
+    to bottom,
+    rgba(255,255,255,.08),
+    rgba(0,0,0,.28)
+  );
 }
 
 .hero-content{
   position:relative;
   z-index:5;
-
   min-height:100vh;
   min-height:100svh;
-
   display:flex;
   flex-direction:column;
 }
-
 
 /* =========================
    NAV
@@ -132,18 +115,14 @@ input{
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   padding:20px;
 }
 
 .brand{
   display:inline-flex;
   align-items:center;
-
   gap:8px;
-
   color:#050505;
-
   font-size:20px;
   font-weight:700;
 }
@@ -151,40 +130,31 @@ input{
 .brand svg{
   width:27px;
   height:27px;
-
   fill:#050505;
 }
 
 .desktop-nav{
   display:none;
-
   align-items:center;
-  gap:12px;
+  gap:10px;
 }
 
 .nav-pill{
   display:flex;
   align-items:center;
-
   gap:3px;
   padding:6px;
-
   border-radius:999px;
-
   background:rgba(0,0,0,.20);
-
   backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
 }
 
 .nav-link{
   padding:8px 15px;
-
   border-radius:999px;
-
   color:rgba(255,255,255,.9);
-
   font-size:14px;
-
   transition:.25s;
 }
 
@@ -194,34 +164,23 @@ input{
 
 .cta{
   display:inline-flex;
-
   align-items:center;
   justify-content:center;
-
   padding:11px 20px;
-
-  border-radius:999px;
   border:0;
-
+  border-radius:999px;
   background:#111;
   color:white;
-
   font-size:14px;
   font-weight:600;
-
   cursor:pointer;
-
   transition:.25s;
 }
 
 .cta:hover{
   transform:translateY(-2px);
-
-  box-shadow:
-    0 10px 30px
-    rgba(0,0,0,.3);
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
-
 
 /* =========================
    PROFILE BUTTON
@@ -229,27 +188,20 @@ input{
 
 .profile-button{
   display:none;
-
   align-items:center;
   gap:7px;
-
   padding:10px 15px;
-
+  border:1px solid rgba(255,255,255,.15);
   border-radius:999px;
-
   background:rgba(0,0,0,.28);
-
   color:white;
-
-  border:
-    1px solid
-    rgba(255,255,255,.15);
-
   cursor:pointer;
-
   font-size:13px;
 }
 
+.profile-button:active{
+  transform:scale(.97);
+}
 
 /* =========================
    MOBILE MENU
@@ -257,64 +209,52 @@ input{
 
 .menu-button{
   display:flex;
-
   align-items:center;
   justify-content:center;
-
+  position:relative;
+  z-index:60;
   width:42px;
   height:42px;
-
   border:0;
   border-radius:50%;
-
-  background:
-    rgba(255,255,255,.18);
-
+  background:rgba(255,255,255,.18);
   color:#050505;
-
   backdrop-filter:blur(15px);
-
+  -webkit-backdrop-filter:blur(15px);
   cursor:pointer;
 }
 
 .menu-button svg{
+  position:absolute;
   width:21px;
   height:21px;
-
-  position:absolute;
+  transition:.25s;
 }
 
 .close-icon{
   opacity:0;
-  transform:scale(.5);
+  transform:scale(.5) rotate(-90deg);
 }
 
 .menu-button.open .menu-icon{
   opacity:0;
-  transform:scale(.5);
+  transform:scale(.5) rotate(90deg);
 }
 
 .menu-button.open .close-icon{
   opacity:1;
-  transform:scale(1);
+  transform:scale(1) rotate(0);
 }
 
 .mobile-backdrop{
   position:fixed;
-
   inset:0;
-
   z-index:40;
-
-  background:
-    rgba(0,0,0,.72);
-
+  background:rgba(0,0,0,.72);
   backdrop-filter:blur(8px);
-
+  -webkit-backdrop-filter:blur(8px);
   opacity:0;
-
   pointer-events:none;
-
   transition:.3s;
 }
 
@@ -325,27 +265,17 @@ input{
 
 .mobile-drawer{
   position:fixed;
-
   right:0;
   top:0;
-
   z-index:50;
-
   width:290px;
   height:100%;
-
-  background:
-    rgba(8,8,8,.94);
-
-  backdrop-filter:blur(25px);
-
-  transform:
-    translateX(100%);
-
-  transition:
-    .45s cubic-bezier(.16,1,.3,1);
-
   padding-top:80px;
+  background:rgba(8,8,8,.94);
+  backdrop-filter:blur(25px);
+  -webkit-backdrop-filter:blur(25px);
+  transform:translateX(100%);
+  transition:.45s cubic-bezier(.16,1,.3,1);
 }
 
 .mobile-drawer.open{
@@ -354,42 +284,31 @@ input{
 
 .mobile-links{
   display:flex;
-
   flex-direction:column;
-
   gap:8px;
-
-  padding:
-    20px 24px;
+  padding:20px 24px;
 }
 
 .mobile-link{
+  display:block;
   padding:15px;
-
   border-radius:12px;
-
   color:white;
-
   font-size:16px;
-
-  background:
-    rgba(255,255,255,.05);
+  background:rgba(255,255,255,.05);
 }
 
 .mobile-link:hover{
-  background:
-    rgba(255,255,255,.12);
+  background:rgba(255,255,255,.12);
 }
 
 .mobile-cta-wrap{
-  padding:
-    20px 24px;
+  padding:20px 24px;
 }
 
 .mobile-cta-wrap .cta{
   width:100%;
 }
-
 
 /* =========================
    MAIN
@@ -397,122 +316,71 @@ input{
 
 .main{
   width:100%;
-
   margin-top:auto;
-
-  padding:
-    0 20px 35px;
-
+  padding:0 20px 35px;
   display:flex;
-
   flex-direction:column;
-
   gap:25px;
 }
 
 .hero-left{
   max-width:620px;
-
-  animation:
-    heroText
-    1s
-    .15s
-    both
-    cubic-bezier(.16,1,.3,1);
+  animation:heroText 1s .15s both cubic-bezier(.16,1,.3,1);
 }
 
 @keyframes heroText{
-
   from{
     opacity:0;
-
-    transform:
-      translateY(35px);
+    transform:translateY(35px);
   }
-
   to{
     opacity:1;
-
-    transform:
-      translateY(0);
+    transform:translateY(0);
   }
-
 }
 
 .eyebrow{
   display:flex;
-
   align-items:center;
-
   gap:8px;
-
   margin-bottom:12px;
-
   color:#111;
-
   font-size:12px;
-
   font-weight:700;
-
   letter-spacing:.08em;
-
   text-transform:uppercase;
 }
 
 .eyebrow-dot{
   width:7px;
   height:7px;
-
   border-radius:50%;
-
   background:#111;
-
-  animation:
-    pulse
-    1.8s
-    infinite;
+  animation:pulse 1.8s infinite;
 }
 
 @keyframes pulse{
-
   50%{
     transform:scale(1.5);
     opacity:.6;
   }
-
 }
 
 h1{
   margin:0;
-
   color:#050505;
-
-  font-size:
-    clamp(
-      2.2rem,
-      8vw,
-      4rem
-    );
-
+  font-size:clamp(2.2rem,8vw,4rem);
   line-height:1.05;
-
   letter-spacing:-.05em;
 }
 
 .hero-description{
-  margin:
-    15px 0 0;
-
+  margin:15px 0 0;
   max-width:500px;
-
-  color:
-    rgba(0,0,0,.7);
-
+  color:rgba(0,0,0,.7);
   font-size:14px;
-
   line-height:1.6;
 }
-
 
 /* =========================
    EMAIL
@@ -520,177 +388,30 @@ h1{
 
 .email-cta{
   display:flex;
-
   flex-direction:column;
-
   gap:10px;
-
   margin-top:22px;
-
   max-width:430px;
 }
 
 .email-input{
   width:100%;
-
-  padding:
-    14px 20px;
-
+  padding:14px 20px;
   border:0;
-
   outline:0;
-
   border-radius:999px;
-
   background:white;
-
   color:#111;
+  font-size:15px;
+}
+
+.email-input:focus{
+  box-shadow:0 0 0 3px rgba(255,255,255,.25);
 }
 
 .email-cta .cta{
   width:100%;
 }
-
-
-/* =========================
-   PROFILE PANEL
-========================= */
-
-.profile-panel{
-  display:none;
-
-  position:fixed;
-
-  top:75px;
-  right:20px;
-
-  z-index:100;
-
-  width:
-    min(
-      340px,
-      calc(100% - 40px)
-    );
-
-  padding:20px;
-
-  border-radius:20px;
-
-  background:
-    rgba(10,10,10,.94);
-
-  border:
-    1px solid
-    rgba(255,255,255,.12);
-
-  backdrop-filter:blur(25px);
-
-  box-shadow:
-    0 25px 70px
-    rgba(0,0,0,.5);
-}
-
-.profile-panel.show{
-  display:block;
-
-  animation:
-    profileIn
-    .3s
-    ease;
-}
-
-@keyframes profileIn{
-
-  from{
-    opacity:0;
-
-    transform:
-      translateY(-10px)
-      scale(.97);
-  }
-
-  to{
-    opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
-  }
-
-}
-
-.profile-title{
-  font-size:18px;
-  font-weight:700;
-}
-
-.profile-email{
-  margin-top:6px;
-
-  color:
-    rgba(255,255,255,.5);
-
-  font-size:12px;
-
-  word-break:break-all;
-}
-
-.profile-actions{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:9px;
-
-  margin-top:18px;
-}
-
-.profile-action{
-  display:block;
-
-  width:100%;
-
-  padding:
-    12px 14px;
-
-  border-radius:12px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.08);
-
-  background:
-    rgba(255,255,255,.06);
-
-  color:white;
-
-  text-align:left;
-
-  cursor:pointer;
-}
-
-.profile-action:hover{
-  background:
-    rgba(255,255,255,.12);
-}
-
-.telegram-banner{
-  margin-top:12px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #229ed9,
-      #147bb0
-    );
-
-  border:0;
-}
-
-.logout{
-  color:#ff8f8f;
-}
-
 
 /* =========================
    TELEGRAM
@@ -698,66 +419,125 @@ h1{
 
 .telegram-card{
   display:none;
-
   max-width:430px;
-
   margin-top:14px;
-
-  padding:
-    14px 16px;
-
+  padding:14px 16px;
   border-radius:15px;
-
-  background:
-    rgba(0,0,0,.28);
-
-  border:
-    1px solid
-    rgba(255,255,255,.15);
-
+  background:rgba(0,0,0,.30);
+  border:1px solid rgba(255,255,255,.15);
   backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
 }
 
 .telegram-card.show{
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
   gap:12px;
 }
 
 .telegram-text{
   font-size:13px;
+  font-weight:600;
 }
 
 .telegram-text small{
   display:block;
-
   margin-top:3px;
-
-  color:
-    rgba(255,255,255,.55);
+  color:rgba(255,255,255,.55);
+  font-weight:400;
 }
 
 .telegram-button{
   flex-shrink:0;
-
-  padding:
-    9px 13px;
-
+  padding:9px 13px;
   border-radius:999px;
-
   background:#229ed9;
-
   color:white;
-
   font-size:12px;
-
   font-weight:700;
 }
 
+/* =========================
+   PROFILE PANEL
+========================= */
+
+.profile-panel{
+  display:none;
+  position:fixed;
+  top:78px;
+  right:20px;
+  z-index:100;
+  width:min(350px,calc(100% - 40px));
+  padding:20px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;
+  background:rgba(8,8,8,.96);
+  backdrop-filter:blur(25px);
+  -webkit-backdrop-filter:blur(25px);
+  box-shadow:0 25px 70px rgba(0,0,0,.55);
+}
+
+.profile-panel.show{
+  display:block;
+  animation:profileIn .25s ease;
+}
+
+@keyframes profileIn{
+  from{
+    opacity:0;
+    transform:translateY(-10px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.profile-title{
+  font-size:19px;
+  font-weight:700;
+}
+
+.profile-email{
+  margin-top:6px;
+  color:rgba(255,255,255,.50);
+  font-size:12px;
+  word-break:break-all;
+}
+
+.profile-actions{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  margin-top:18px;
+}
+
+.profile-action{
+  display:block;
+  width:100%;
+  padding:13px 14px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
+  background:rgba(255,255,255,.06);
+  color:white;
+  text-align:left;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.profile-action:hover{
+  background:rgba(255,255,255,.12);
+}
+
+.telegram-banner{
+  background:linear-gradient(135deg,#229ed9,#147bb0);
+  border:0;
+}
+
+.logout{
+  color:#ff8f8f;
+}
 
 /* =========================
    CARDS
@@ -765,36 +545,20 @@ h1{
 
 .cards{
   display:flex;
-
   flex-direction:column;
-
   gap:14px;
 }
 
 .glass-card{
   width:100%;
-
   padding:20px;
-
+  border:1px solid rgba(255,255,255,.16);
   border-radius:18px;
-
-  background:
-    rgba(255,255,255,.16);
-
-  border:
-    1px solid
-    rgba(255,255,255,.16);
-
+  background:rgba(255,255,255,.16);
   backdrop-filter:blur(18px);
-
-  box-shadow:
-    0 15px 50px
-    rgba(0,0,0,.2);
-
-  animation:
-    cardIn
-    .8s
-    both;
+  -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 15px 50px rgba(0,0,0,.2);
+  animation:cardIn .8s both;
 }
 
 .glass-card:nth-child(2){
@@ -802,132 +566,87 @@ h1{
 }
 
 @keyframes cardIn{
-
   from{
     opacity:0;
-
-    transform:
-      translateY(25px)
-      scale(.97);
+    transform:translateY(25px) scale(.97);
   }
-
   to{
     opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
+    transform:translateY(0) scale(1);
   }
-
 }
 
 .stats-number{
-  font-family:
-    'Silkscreen',
-    cursive;
-
+  font-family:'Silkscreen',cursive;
   font-size:32px;
-
   color:#050505;
 }
 
 .stats-body{
   margin-top:12px;
-
-  color:
-    rgba(0,0,0,.7);
-
+  color:rgba(0,0,0,.7);
   font-size:14px;
-
   line-height:1.5;
 }
 
 .testimonial-header{
   display:flex;
-
   align-items:center;
-
   gap:8px;
-
   margin-bottom:12px;
 }
 
 .stratify-icon{
-  width:25px;
-  height:25px;
-
+  width:30px;
+  height:30px;
   display:flex;
-
   align-items:center;
   justify-content:center;
-
-  border-radius:6px;
-
+  border-radius:7px;
   background:#050505;
-
   color:white;
-
-  font-size:12px;
-
+  font-size:13px;
   font-weight:bold;
 }
 
 .stratify-name{
   color:#050505;
-
   font-size:14px;
-
   font-weight:700;
 }
 
 .quote{
   margin:0;
-
-  color:
-    rgba(0,0,0,.8);
-
+  color:rgba(0,0,0,.8);
   font-size:14px;
-
   line-height:1.55;
 }
 
 .testimonial-footer{
   display:flex;
-
   align-items:center;
-
   gap:10px;
-
   margin-top:18px;
 }
 
 .avatar{
   width:36px;
   height:36px;
-
   border-radius:50%;
-
-  background:
-    rgba(255,255,255,.25);
+  background:rgba(255,255,255,.25);
 }
 
 .person-name{
   color:#050505;
-
   font-size:14px;
-
   font-weight:700;
 }
 
 .person-role{
   margin-top:2px;
-
-  color:
-    rgba(0,0,0,.55);
-
+  color:rgba(0,0,0,.55);
   font-size:12px;
 }
-
 
 /* =========================
    DESKTOP
@@ -936,8 +655,7 @@ h1{
 @media(min-width:768px){
 
   .nav{
-    padding:
-      25px 40px;
+    padding:25px 40px;
   }
 
   .desktop-nav{
@@ -955,8 +673,7 @@ h1{
   }
 
   .main{
-    padding:
-      0 40px 50px;
+    padding:0 40px 50px;
   }
 
   .hero-description{
@@ -984,24 +701,20 @@ h1{
   }
 
   .stats-body{
-    color:
-      rgba(255,255,255,.7);
+    color:rgba(255,255,255,.7);
   }
 
   .quote{
-    color:
-      rgba(255,255,255,.8);
+    color:rgba(255,255,255,.8);
   }
 
   .person-role{
-    color:
-      rgba(255,255,255,.6);
+    color:rgba(255,255,255,.6);
   }
 
   .profile-button{
     display:inline-flex;
   }
-
 }
 
 @media(min-width:1024px){
@@ -1013,13 +726,9 @@ h1{
 
   .main{
     flex-direction:row;
-
     align-items:flex-end;
-
     justify-content:space-between;
-
-    padding:
-      0 48px 65px;
+    padding:0 48px 65px;
   }
 
   h1{
@@ -1029,15 +738,15 @@ h1{
   .cards{
     gap:20px;
   }
-
 }
 
 @media(max-width:767px){
 
-  .profile-button{
-    display:none;
+  .profile-panel{
+    top:72px;
+    right:15px;
+    width:calc(100% - 30px);
   }
-
 }
 
 @media(max-width:420px){
@@ -1053,7 +762,6 @@ h1{
   .glass-card{
     padding:18px;
   }
-
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -1064,12 +772,9 @@ h1{
     animation-duration:.01ms!important;
     transition-duration:.01ms!important;
   }
-
 }
-
 </style>
 </head>
-
 
 <body>
 
@@ -1083,28 +788,20 @@ h1{
   playsinline
   preload="auto"
 >
-
 <source
-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260803_192301_9231ed6b-c55c-4a48-909c-4ebe11cf2e11.mp4"
-type="video/mp4">
-
+  src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260803_192301_9231ed6b-c55c-4a48-909c-4ebe11cf2e11.mp4"
+  type="video/mp4">
 </video>
-
 
 <div class="hero-content">
 
-
-<!-- NAV -->
+<!-- ================= NAV ================= -->
 
 <nav class="nav">
 
-<a
-class="brand"
-href="index.html"
->
+<a class="brand" href="index.html">
 
-<svg viewBox="0 0 256 256">
-
+<svg viewBox="0 0 256 256" aria-hidden="true">
 <path d="
 M128 128
 C128 198.692 70.692 256 0 256
@@ -1120,9 +817,7 @@ C57.308 128 0 70.692 0 0Z
 
 M256 0
 C256 70.692 198.692 128 128 128
-C128 57.308 185.308 0 256 0Z"
-/>
-
+C128 57.308 185.308 0 256 0Z"/>
 </svg>
 
 <span>SAHIL</span>
@@ -1130,22 +825,17 @@ C128 57.308 185.308 0 256 0Z"
 </a>
 
 
-<div class="desktop-nav">
+<!-- DESKTOP -->
 
+<div class="desktop-nav">
 
 <div class="nav-pill">
 
-<a
-class="nav-link"
-href="offer.html"
->
+<a class="nav-link" href="offer.html">
 Offers
 </a>
 
-<a
-class="nav-link"
-href="history.html"
->
+<a class="nav-link" href="history.html">
 My History
 </a>
 
@@ -1153,56 +843,53 @@ My History
 
 
 <button
-class="profile-button"
-id="profileButton"
-type="button"
+  class="profile-button"
+  id="profileButton"
+  type="button"
 >
 👤 My Profile
 </button>
 
 
 <a
-class="cta"
-id="loginLink"
-href="login.html"
+  class="cta"
+  id="loginLink"
+  href="login.html"
 >
 Login / Sign up
 </a>
 
-
 </div>
 
 
+<!-- MOBILE -->
+
 <button
-class="menu-button"
-id="menuButton"
-type="button"
-aria-label="Open menu"
+  class="menu-button"
+  id="menuButton"
+  type="button"
+  aria-label="Open menu"
+  aria-expanded="false"
 >
 
 <svg
-class="menu-icon"
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="2"
+  class="menu-icon"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
 >
-
 <path d="M4 6h16M4 12h16M4 18h16"/>
-
 </svg>
 
-
 <svg
-class="close-icon"
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="2"
+  class="close-icon"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
 >
-
 <path d="M6 6l12 12M18 6L6 18"/>
-
 </svg>
 
 </button>
@@ -1213,65 +900,64 @@ stroke-width="2"
 <!-- MOBILE BACKDROP -->
 
 <div
-class="mobile-backdrop"
-id="mobileBackdrop"
+  class="mobile-backdrop"
+  id="mobileBackdrop"
 ></div>
 
 
 <!-- MOBILE DRAWER -->
 
 <div
-class="mobile-drawer"
-id="mobileDrawer"
+  class="mobile-drawer"
+  id="mobileDrawer"
 >
 
 <div class="mobile-links">
 
 <a
-class="mobile-link"
-href="offer.html"
+  class="mobile-link"
+  href="offer.html"
 >
 🎁 Offers
 </a>
 
 <a
-class="mobile-link"
-href="history.html"
+  class="mobile-link"
+  href="history.html"
 >
 📜 My History
 </a>
 
 <a
-class="mobile-link"
-href="help.html"
+  class="mobile-link"
+  href="help.html"
 >
 ❓ Help
 </a>
 
 <a
-class="mobile-link"
-id="mobileProfile"
-href="history.html"
+  class="mobile-link"
+  id="mobileProfile"
+  href="history.html"
 >
 👤 My Profile
 </a>
 
 <a
-class="mobile-link"
-id="mobileLogin"
-href="login.html"
+  class="mobile-link"
+  id="mobileLogin"
+  href="login.html"
 >
 🔐 Login / Sign up
 </a>
 
 </div>
 
-
 <div class="mobile-cta-wrap">
 
 <a
-class="cta"
-href="offer.html"
+  class="cta"
+  href="offer.html"
 >
 View Offers
 </a>
@@ -1281,21 +967,20 @@ View Offers
 </div>
 
 
-<!-- PROFILE PANEL -->
+<!-- ================= PROFILE PANEL ================= -->
 
 <div
-class="profile-panel"
-id="profilePanel"
+  class="profile-panel"
+  id="profilePanel"
 >
 
 <div class="profile-title">
 My Profile
 </div>
 
-
 <div
-class="profile-email"
-id="profileEmail"
+  class="profile-email"
+  id="profileEmail"
 >
 Loading...
 </div>
@@ -1303,46 +988,42 @@ Loading...
 
 <div class="profile-actions">
 
-
 <a
-class="profile-action"
-href="history.html"
+  class="profile-action"
+  href="history.html"
 >
 📜 View My History
 </a>
 
 
 <a
-class="profile-action telegram-banner"
-href="https://t.me/IncomeOffersOfficia"
-target="_blank"
-rel="noopener"
+  class="profile-action telegram-banner"
+  href="https://t.me/IncomeOffersOfficia"
+  target="_blank"
+  rel="noopener noreferrer"
 >
 📢 Join My Telegram Channel
 </a>
 
 
 <button
-class="profile-action logout"
-id="logoutButton"
-type="button"
+  class="profile-action logout"
+  id="logoutButton"
+  type="button"
 >
 🚪 Logout
 </button>
 
-
 </div>
 
 </div>
 
 
-<!-- MAIN -->
+<!-- ================= MAIN ================= -->
 
 <main class="main">
 
-
 <div class="hero-left">
-
 
 <div class="eyebrow">
 
@@ -1361,31 +1042,26 @@ Discover offers worth opening.
 
 
 <p class="hero-description">
-
 Browse the latest active offers,
 rewards and opportunities.
 Open an offer to see the complete details.
-
 </p>
 
 
-<div
-class="email-cta"
->
+<div class="email-cta">
 
 <input
-class="email-input"
-id="emailInput"
-type="email"
-placeholder="Enter your email"
-autocomplete="email"
+  class="email-input"
+  id="emailInput"
+  type="email"
+  placeholder="Enter your email"
+  autocomplete="email"
 >
 
-
 <button
-class="cta"
-id="startButton"
-type="button"
+  class="cta"
+  id="startButton"
+  type="button"
 >
 Get Started
 </button>
@@ -1393,11 +1069,9 @@ Get Started
 </div>
 
 
-<!-- TELEGRAM -->
-
 <div
-class="telegram-card"
-id="telegramCard"
+  class="telegram-card"
+  id="telegramCard"
 >
 
 <div class="telegram-text">
@@ -1412,16 +1086,15 @@ Get the latest offers and updates.
 
 
 <a
-class="telegram-button"
-href="https://t.me/IncomeOffersOfficia"
-target="_blank"
-rel="noopener"
+  class="telegram-button"
+  href="https://t.me/IncomeOffersOfficia"
+  target="_blank"
+  rel="noopener noreferrer"
 >
 Join
 </a>
 
 </div>
-
 
 </div>
 
@@ -1430,7 +1103,6 @@ Join
 
 <div class="cards">
 
-
 <div class="glass-card">
 
 <div class="stats-number">
@@ -1438,10 +1110,8 @@ Join
 </div>
 
 <div class="stats-body">
-
 New opportunities and active offers
 are available whenever you need them.
-
 </div>
 
 </div>
@@ -1463,17 +1133,14 @@ SAHIL
 
 
 <p class="quote">
-
 "Simple, fast and easy to explore
 the latest opportunities."
-
 </p>
 
 
 <div class="testimonial-footer">
 
 <div class="avatar"></div>
-
 
 <div>
 
@@ -1493,7 +1160,6 @@ Community Member
 
 </div>
 
-
 </main>
 
 </div>
@@ -1501,34 +1167,61 @@ Community Member
 </section>
 
 
-<!-- SUPABASE -->
+<!-- ================= SUPABASE ================= -->
 
-<script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="supabase-config.js"></script>
 
 
 <script>
 
-/* =========================
-   SUPABASE CLIENT
-========================= */
+/*
+  IMPORTANT:
+  If supabase-config.js already creates
+  "supabaseClient", use it.
 
-const supabaseClient =
-window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY,
-  {
-    auth:{
-      persistSession:true,
-      autoRefreshToken:true,
-      detectSessionInUrl:true,
-      storageKey:"sahil-auth-session"
-    }
+  Otherwise create one here.
+
+  This prevents duplicate-client errors.
+*/
+
+let appClient;
+
+try{
+
+  if(
+    typeof supabaseClient !== "undefined"
+  ){
+
+    appClient = supabaseClient;
+
+  }else{
+
+    appClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY,
+        {
+          auth:{
+            persistSession:true,
+            autoRefreshToken:true,
+            detectSessionInUrl:true,
+            storage:window.localStorage
+          }
+        }
+      );
+
   }
-);
+
+}catch(error){
+
+  console.error(
+    "Supabase initialization error:",
+    error
+  );
+
+}
 
 
 /* =========================
@@ -1536,76 +1229,143 @@ window.supabase.createClient(
 ========================= */
 
 const menuButton =
-document.getElementById(
-  "menuButton"
-);
+  document.getElementById(
+    "menuButton"
+  );
 
 const mobileDrawer =
-document.getElementById(
-  "mobileDrawer"
-);
+  document.getElementById(
+    "mobileDrawer"
+  );
 
 const mobileBackdrop =
-document.getElementById(
-  "mobileBackdrop"
-);
+  document.getElementById(
+    "mobileBackdrop"
+  );
 
 const profileButton =
-document.getElementById(
-  "profileButton"
-);
+  document.getElementById(
+    "profileButton"
+  );
 
 const profilePanel =
-document.getElementById(
-  "profilePanel"
-);
+  document.getElementById(
+    "profilePanel"
+  );
 
 const profileEmail =
-document.getElementById(
-  "profileEmail"
-);
+  document.getElementById(
+    "profileEmail"
+  );
 
 const logoutButton =
-document.getElementById(
-  "logoutButton"
-);
+  document.getElementById(
+    "logoutButton"
+  );
 
 const loginLink =
-document.getElementById(
-  "loginLink"
-);
-
-const startButton =
-document.getElementById(
-  "startButton"
-);
+  document.getElementById(
+    "loginLink"
+  );
 
 const emailInput =
-document.getElementById(
-  "emailInput"
-);
+  document.getElementById(
+    "emailInput"
+  );
+
+const startButton =
+  document.getElementById(
+    "startButton"
+  );
 
 const telegramCard =
-document.getElementById(
-  "telegramCard"
-);
+  document.getElementById(
+    "telegramCard"
+  );
 
 const mobileLogin =
-document.getElementById(
-  "mobileLogin"
-);
+  document.getElementById(
+    "mobileLogin"
+  );
 
 const mobileProfile =
-document.getElementById(
-  "mobileProfile"
-);
+  document.getElementById(
+    "mobileProfile"
+  );
+
+
+/* =========================
+   UI STATE
+========================= */
+
+function setLoggedInUI(user){
+
+  emailInput.style.display =
+    "none";
+
+  startButton.textContent =
+    "View Offers";
+
+  loginLink.style.display =
+    "none";
+
+  profileButton.style.display =
+    "inline-flex";
+
+  profileEmail.textContent =
+    user && user.email
+      ? user.email
+      : "Logged in user";
+
+  telegramCard.classList.add(
+    "show"
+  );
+
+  mobileLogin.style.display =
+    "none";
+
+  mobileProfile.style.display =
+    "block";
+
+}
+
+
+function setLoggedOutUI(){
+
+  emailInput.style.display =
+    "block";
+
+  startButton.textContent =
+    "Get Started";
+
+  loginLink.style.display =
+    "inline-flex";
+
+  profileButton.style.display =
+    "none";
+
+  telegramCard.classList.remove(
+    "show"
+  );
+
+  mobileLogin.style.display =
+    "block";
+
+  mobileProfile.style.display =
+    "none";
+
+  profilePanel.classList.remove(
+    "show"
+  );
+
+}
 
 
 /* =========================
    MOBILE MENU
 ========================= */
 
-function closeMobileMenu(){
+function closeMenu(){
 
   menuButton.classList.remove(
     "open"
@@ -1619,22 +1379,45 @@ function closeMobileMenu(){
     "open"
   );
 
+  menuButton.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
 }
 
 
 function toggleMenu(){
 
-  menuButton.classList.toggle(
-    "open"
-  );
+  const isOpen =
+    mobileDrawer.classList.contains(
+      "open"
+    );
 
-  mobileDrawer.classList.toggle(
-    "open"
-  );
+  if(isOpen){
 
-  mobileBackdrop.classList.toggle(
-    "open"
-  );
+    closeMenu();
+
+  }else{
+
+    menuButton.classList.add(
+      "open"
+    );
+
+    mobileDrawer.classList.add(
+      "open"
+    );
+
+    mobileBackdrop.classList.add(
+      "open"
+    );
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "true"
+    );
+
+  }
 
 }
 
@@ -1647,183 +1430,20 @@ menuButton.addEventListener(
 
 mobileBackdrop.addEventListener(
   "click",
-  closeMobileMenu
+  closeMenu
 );
 
 
 document
   .querySelectorAll(".mobile-link")
-  .forEach(
-    function(link){
+  .forEach(function(link){
 
-      link.addEventListener(
-        "click",
-        closeMobileMenu
-      );
-
-    }
-  );
-
-
-/* =========================
-   SHOW LOGGED-IN UI
-========================= */
-
-function showLoggedInUser(
-  user
-){
-
-  if(!user){
-    return;
-  }
-
-
-  emailInput.style.display =
-    "none";
-
-
-  startButton.textContent =
-    "View Offers";
-
-
-  loginLink.style.display =
-    "none";
-
-
-  profileButton.style.display =
-    "inline-flex";
-
-
-  profileEmail.textContent =
-    user.email ||
-    "Logged in user";
-
-
-  telegramCard.classList.add(
-    "show"
-  );
-
-
-  mobileLogin.style.display =
-    "none";
-
-
-  mobileProfile.style.display =
-    "block";
-
-}
-
-
-/* =========================
-   SHOW LOGGED-OUT UI
-========================= */
-
-function showLoggedOutUser(){
-
-  emailInput.style.display =
-    "block";
-
-
-  startButton.textContent =
-    "Get Started";
-
-
-  loginLink.style.display =
-    "inline-flex";
-
-
-  profileButton.style.display =
-    "none";
-
-
-  profileEmail.textContent =
-    "";
-
-
-  telegramCard.classList.remove(
-    "show"
-  );
-
-
-  mobileLogin.style.display =
-    "block";
-
-
-  mobileProfile.style.display =
-    "none";
-
-
-  profilePanel.classList.remove(
-    "show"
-  );
-
-}
-
-
-/* =========================
-   CHECK SESSION
-========================= */
-
-async function checkSession(){
-
-  try{
-
-    const {
-      data,
-      error
-    } =
-    await supabaseClient
-      .auth
-      .getSession();
-
-
-    if(error){
-
-      console.error(
-        "Session error:",
-        error
-      );
-
-      showLoggedOutUser();
-
-      return;
-
-    }
-
-
-    if(
-      data &&
-      data.session &&
-      data.session.user
-    ){
-
-      showLoggedInUser(
-        data.session.user
-      );
-
-    }else{
-
-      showLoggedOutUser();
-
-    }
-
-  }catch(error){
-
-    console.error(
-      "Session check failed:",
-      error
+    link.addEventListener(
+      "click",
+      closeMenu
     );
 
-    showLoggedOutUser();
-
-  }
-
-}
+  });
 
 
-/* =========================
-   AUTH STATE
-========================= */
-
-supabaseClient
-  .
+/* ============
