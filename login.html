@@ -34,10 +34,6 @@
       overflow: hidden;
     }
 
-    /* =========================
-       BACKGROUND
-    ========================= */
-
     .background {
       position: fixed;
       inset: 0;
@@ -56,32 +52,18 @@
         #050505;
     }
 
-    /* =========================
-       LOGIN BOX
-    ========================= */
-
     .login-box {
       width: 100%;
       max-width: 410px;
-
       padding: 30px 24px;
-
       border-radius: 24px;
-
-      background:
-        rgba(255,255,255,.07);
-
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.10);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-
       box-shadow:
         0 25px 80px
         rgba(0,0,0,.45);
-
       animation:
         boxIn .7s
         cubic-bezier(.16,1,.3,1);
@@ -106,21 +88,15 @@
     .logo {
       width: 58px;
       height: 58px;
-
       margin: 0 auto 18px;
-
       display: flex;
       align-items: center;
       justify-content: center;
-
       border-radius: 18px;
-
       background: white;
       color: #050505;
-
       font-size: 25px;
       font-weight: 700;
-
       box-shadow:
         0 10px 35px
         rgba(255,255,255,.12);
@@ -135,53 +111,32 @@
     .subtitle {
       margin-top: 8px;
       margin-bottom: 28px;
-
       text-align: center;
-
-      color:
-        rgba(255,255,255,.48);
-
+      color: rgba(255,255,255,.48);
       font-size: 14px;
     }
 
-    /* =========================
-       INPUT
-    ========================= */
-
     label {
       display: block;
-
       margin-bottom: 7px;
-
-      color:
-        rgba(255,255,255,.75);
-
+      color: rgba(255,255,255,.75);
       font-size: 13px;
       font-weight: 600;
     }
 
     input {
       width: 100%;
-
       padding: 14px 15px;
-
       margin-bottom: 17px;
-
       border:
         1px solid
         rgba(255,255,255,.10);
-
       border-radius: 13px;
-
       outline: none;
-
       background:
         rgba(255,255,255,.06);
-
       color: white;
-
       font-size: 15px;
-
       transition:
         border-color .2s ease,
         background .2s ease,
@@ -205,26 +160,16 @@
         rgba(255,255,255,.05);
     }
 
-    /* =========================
-       BUTTON
-    ========================= */
-
     .login-button {
       width: 100%;
-
       padding: 14px;
-
       border: 0;
       border-radius: 13px;
-
       background: white;
       color: #050505;
-
       font-size: 15px;
       font-weight: 700;
-
       cursor: pointer;
-
       transition:
         transform .2s ease,
         opacity .2s ease;
@@ -245,37 +190,28 @@
       cursor: not-allowed;
     }
 
-    /* =========================
-       MESSAGE
-    ========================= */
-
     #message {
       min-height: 20px;
-
       margin-top: 15px;
-
       text-align: center;
-
       color:
         rgba(255,255,255,.65);
-
       font-size: 13px;
-
       line-height: 1.5;
+    }
+
+    .success {
+      color: #8dffa9 !important;
+      font-weight: 600;
     }
 
     .back {
       display: block;
-
       margin-top: 20px;
-
       text-align: center;
-
       color:
         rgba(255,255,255,.50);
-
       font-size: 13px;
-
       text-decoration: none;
     }
 
@@ -283,20 +219,14 @@
       color: white;
     }
 
-    /* =========================
-       MONEY ANIMATION
-    ========================= */
+    /* MONEY */
 
     #moneyRain {
       position: fixed;
       inset: 0;
-
       z-index: 9999;
-
       pointer-events: none;
-
       overflow: hidden;
-
       display: none;
     }
 
@@ -306,11 +236,7 @@
 
     .money {
       position: absolute;
-
       top: -80px;
-
-      font-size: 28px;
-
       opacity: 0;
 
       animation:
@@ -324,7 +250,6 @@
 
       0% {
         opacity: 0;
-
         transform:
           translateY(-80px)
           rotate(0deg)
@@ -341,21 +266,11 @@
 
       100% {
         opacity: 0;
-
         transform:
           translateY(115vh)
           rotate(720deg)
           scale(1);
       }
-    }
-
-    /* =========================
-       SUCCESS
-    ========================= */
-
-    .success {
-      color: #8dffa9 !important;
-      font-weight: 600;
     }
 
     @media (max-width: 420px) {
@@ -367,7 +282,16 @@
       h1 {
         font-size: 25px;
       }
+    }
 
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
@@ -376,12 +300,7 @@
 
   <div class="background"></div>
 
-  <!-- MONEY RAIN -->
-
   <div id="moneyRain"></div>
-
-
-  <!-- LOGIN -->
 
   <div class="login-box">
 
@@ -397,11 +316,7 @@
       Login to continue
     </p>
 
-
-    <form
-      id="loginForm"
-      onsubmit="loginUser(event)"
-    >
+    <form id="loginForm">
 
       <label for="email">
         Email
@@ -415,7 +330,6 @@
         required
       >
 
-
       <label for="password">
         Password
       </label>
@@ -428,7 +342,6 @@
         required
       >
 
-
       <button
         class="login-button"
         id="loginButton"
@@ -439,9 +352,7 @@
 
     </form>
 
-
     <div id="message"></div>
-
 
     <a
       class="back"
@@ -452,20 +363,47 @@
 
   </div>
 
-
-  <!-- SUPABASE -->
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
   <script src="supabase-config.js"></script>
 
-
   <script>
+
+    /* =========================
+       SUPABASE
+    ========================= */
 
     const supabaseClient =
       window.supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_ANON_KEY
+        SUPABASE_ANON_KEY,
+        {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true,
+            storageKey: "sahil-auth-session"
+          }
+        }
+      );
+
+
+    /* =========================
+       ELEMENTS
+    ========================= */
+
+    const loginForm =
+      document.getElementById(
+        "loginForm"
+      );
+
+    const loginButton =
+      document.getElementById(
+        "loginButton"
+      );
+
+    const message =
+      document.getElementById(
+        "message"
       );
 
 
@@ -478,18 +416,12 @@
       success = false
     ) {
 
-      const message =
-        document.getElementById(
-          "message"
-        );
-
       message.textContent = text;
 
       message.className =
         success
           ? "success"
           : "";
-
     }
 
 
@@ -510,7 +442,6 @@
         "show"
       );
 
-
       const symbols = [
         "💰",
         "💵",
@@ -519,13 +450,9 @@
         "💲"
       ];
 
-
-      const amount = 45;
-
-
       for (
         let i = 0;
-        i < amount;
+        i < 45;
         i++
       ) {
 
@@ -537,7 +464,6 @@
         money.className =
           "money";
 
-
         money.textContent =
           symbols[
             Math.floor(
@@ -546,34 +472,27 @@
             )
           ];
 
-
         money.style.left =
           Math.random() * 100 + "%";
-
 
         money.style.fontSize =
           (20 +
             Math.random() * 20) +
           "px";
 
-
         money.style.animationDelay =
           Math.random() * 1.2 +
           "s";
-
 
         money.style.animationDuration =
           (2.2 +
             Math.random() * 1.4) +
           "s";
 
-
         container.appendChild(
           money
         );
-
       }
-
 
       setTimeout(
         function() {
@@ -587,49 +506,14 @@
         },
         4500
       );
-
     }
 
 
     /* =========================
-       LOGIN
+       CHECK EXISTING SESSION
     ========================= */
 
-    async function loginUser(
-      event
-    ) {
-
-      event.preventDefault();
-
-
-      const button =
-        document.getElementById(
-          "loginButton"
-        );
-
-
-      const email =
-        document.getElementById(
-          "email"
-        ).value.trim();
-
-
-      const password =
-        document.getElementById(
-          "password"
-        ).value;
-
-
-      button.disabled = true;
-
-      button.textContent =
-        "Logging in...";
-
-
-      showMessage(
-        "Checking your account..."
-      );
-
+    async function checkExistingSession() {
 
       try {
 
@@ -639,101 +523,276 @@
         } =
           await supabaseClient
             .auth
-            .signInWithPassword({
-
-              email:
-                email,
-
-              password:
-                password
-
-            });
-
+            .getSession();
 
         if (error) {
 
-          console.error(error);
-
-          showMessage(
-            "Login failed: " +
-            error.message
+          console.error(
+            "Session check error:",
+            error
           );
 
-          button.disabled = false;
-
-          button.textContent =
-            "Login";
-
           return;
-
         }
 
+        if (
+          data &&
+          data.session &&
+          data.session.user
+        ) {
 
-        if (!data.user) {
+          /*
+            Already logged in.
+            No need to login again.
+          */
 
-          showMessage(
-            "User account পাওয়া যায়নি।"
+          window.location.replace(
+            "index.html"
           );
 
-          button.disabled = false;
-
-          button.textContent =
-            "Login";
-
-          return;
-
         }
-
-
-        /* SUCCESS */
-
-        showMessage(
-          "Login successful! 💰",
-          true
-        );
-
-
-        button.textContent =
-          "Welcome!";
-
-
-        startMoneyRain();
-
-
-        /*
-          Give Supabase session
-          time to save locally before
-          redirecting.
-        */
-
-        setTimeout(
-          function() {
-
-            window.location.href =
-              "index.html";
-
-          },
-          3500
-        );
-
 
       } catch (error) {
 
-        console.error(error);
+        console.error(
+          "Session error:",
+          error
+        );
+      }
+    }
+
+
+    /*
+      Run immediately when
+      login page opens.
+    */
+
+    checkExistingSession();
+
+
+    /* =========================
+       AUTH STATE
+    ========================= */
+
+    supabaseClient
+      .auth
+      .onAuthStateChange(
+        function(
+          event,
+          session
+        ) {
+
+          console.log(
+            "Auth event:",
+            event
+          );
+
+          /*
+            Do NOT redirect on
+            INITIAL_SESSION here.
+            checkExistingSession()
+            already handles it.
+          */
+
+          if (
+            event ===
+            "SIGNED_IN" &&
+            session &&
+            session.user
+          ) {
+
+            console.log(
+              "User signed in:",
+              session.user.email
+            );
+          }
+
+        }
+      );
+
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+    loginForm.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+        const email =
+          document.getElementById(
+            "email"
+          ).value.trim();
+
+        const password =
+          document.getElementById(
+            "password"
+          ).value;
+
+        if (!email || !password) {
+
+          showMessage(
+            "Email and password are required."
+          );
+
+          return;
+        }
+
+        loginButton.disabled =
+          true;
+
+        loginButton.textContent =
+          "Logging in...";
 
         showMessage(
-          "Something went wrong: " +
-          error.message
+          "Checking your account..."
         );
 
-        button.disabled = false;
 
-        button.textContent =
-          "Login";
+        try {
 
-      }
+          const {
+            data,
+            error
+          } =
+            await supabaseClient
+              .auth
+              .signInWithPassword({
 
-    }
+                email:
+                  email,
+
+                password:
+                  password
+
+              });
+
+
+          if (error) {
+
+            console.error(
+              "Login error:",
+              error
+            );
+
+            showMessage(
+              "Login failed: " +
+              error.message
+            );
+
+            loginButton.disabled =
+              false;
+
+            loginButton.textContent =
+              "Login";
+
+            return;
+          }
+
+
+          if (
+            !data ||
+            !data.user ||
+            !data.session
+          ) {
+
+            showMessage(
+              "Login session তৈরি হয়নি। আবার চেষ্টা করো।"
+            );
+
+            loginButton.disabled =
+              false;
+
+            loginButton.textContent =
+              "Login";
+
+            return;
+          }
+
+
+          /*
+            IMPORTANT:
+            Supabase client is configured
+            with persistSession:true.
+            So the session is saved locally.
+          */
+
+          showMessage(
+            "Login successful! 💰",
+            true
+          );
+
+          loginButton.textContent =
+            "Welcome!";
+
+          startMoneyRain();
+
+
+          /*
+            Wait briefly for the
+            session/storage to finish,
+            then redirect.
+          */
+
+          setTimeout(
+            async function() {
+
+              const {
+                data: verifyData
+              } =
+                await supabaseClient
+                  .auth
+                  .getSession();
+
+              if (
+                verifyData &&
+                verifyData.session
+              ) {
+
+                window.location.replace(
+                  "index.html"
+                );
+
+              } else {
+
+                showMessage(
+                  "Session save হয়নি। আবার চেষ্টা করো।"
+                );
+
+                loginButton.disabled =
+                  false;
+
+                loginButton.textContent =
+                  "Login";
+              }
+
+            },
+            1200
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Unexpected login error:",
+            error
+          );
+
+          showMessage(
+            "Something went wrong: " +
+            error.message
+          );
+
+          loginButton.disabled =
+            false;
+
+          loginButton.textContent =
+            "Login";
+        }
+
+      });
 
   </script>
 
