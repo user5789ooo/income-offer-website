@@ -5,1169 +5,593 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
 
-<title>SAHIL - Income Offers</title>
+<title>SAHIL - Login</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+>
 
 <style>
+
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html,body{
-  margin:0;
+html,
+body{
   width:100%;
   min-height:100%;
 }
 
 body{
-  font-family:'Geist',Arial,sans-serif;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
   background:#050505;
   color:white;
-  overflow-x:hidden;
+
+  font-family:
+    'Geist',
+    Arial,
+    sans-serif;
+
+  overflow:hidden;
   -webkit-font-smoothing:antialiased;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
-button,input{
-  font:inherit;
-}
-
-button,a{
-  -webkit-tap-highlight-color:transparent;
-}
-
 /* =========================
-   HERO
+   BACKGROUND
 ========================= */
 
-.hero{
-  position:relative;
-  width:100%;
-  min-height:100vh;
-  min-height:100svh;
-  overflow:hidden;
-  isolation:isolate;
-}
-
-.hero-video{
-  position:absolute;
+.background{
+  position:fixed;
   inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-3;
-  transform:scale(1.02);
-  animation:videoZoom 18s ease-in-out infinite alternate;
+  z-index:-10;
+
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(255,255,255,.10),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(255,255,255,.07),
+      transparent 32%
+    ),
+    #050505;
 }
 
-@keyframes videoZoom{
-  from{transform:scale(1.02)}
-  to{transform:scale(1.08)}
-}
-
-.hero::before{
+.background::before,
+.background::after{
   content:"";
+
   position:absolute;
-  inset:0;
-  z-index:-2;
-  background:linear-gradient(
-    to bottom,
-    rgba(255,255,255,.12),
-    rgba(255,255,255,.05) 40%,
-    rgba(0,0,0,.38)
-  );
-}
 
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:-1;
-  background:linear-gradient(
-    to bottom,
-    rgba(255,255,255,.08),
-    rgba(0,0,0,.28)
-  );
-}
+  width:400px;
+  height:400px;
 
-.hero-content{
-  position:relative;
-  z-index:5;
-  min-height:100vh;
-  min-height:100svh;
-  display:flex;
-  flex-direction:column;
-}
-
-/* =========================
-   NAV
-========================= */
-
-.nav{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:20px;
-}
-
-.brand{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  color:#050505;
-  font-size:20px;
-  font-weight:700;
-}
-
-.brand svg{
-  width:27px;
-  height:27px;
-  fill:#050505;
-}
-
-.desktop-nav{
-  display:none;
-  align-items:center;
-  gap:10px;
-}
-
-.nav-pill{
-  display:flex;
-  align-items:center;
-  gap:3px;
-  padding:6px;
-  border-radius:999px;
-  background:rgba(0,0,0,.20);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-}
-
-.nav-link{
-  padding:8px 15px;
-  border-radius:999px;
-  color:rgba(255,255,255,.9);
-  font-size:14px;
-  transition:.25s;
-}
-
-.nav-link:hover{
-  background:rgba(255,255,255,.15);
-}
-
-.cta{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:11px 20px;
-  border:0;
-  border-radius:999px;
-  background:#111;
-  color:white;
-  font-size:14px;
-  font-weight:600;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.cta:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
-
-/* =========================
-   PROFILE BUTTON
-========================= */
-
-.profile-button{
-  display:none;
-  align-items:center;
-  gap:7px;
-  padding:10px 15px;
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:999px;
-  background:rgba(0,0,0,.28);
-  color:white;
-  cursor:pointer;
-  font-size:13px;
-}
-
-.profile-button:active{
-  transform:scale(.97);
-}
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-.menu-button{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  z-index:60;
-  width:42px;
-  height:42px;
-  border:0;
   border-radius:50%;
-  background:rgba(255,255,255,.18);
-  color:#050505;
-  backdrop-filter:blur(15px);
-  -webkit-backdrop-filter:blur(15px);
-  cursor:pointer;
+
+  background:white;
+
+  filter:blur(120px);
+
+  opacity:.06;
+
+  animation:
+    glowMove
+    12s
+    ease-in-out
+    infinite
+    alternate;
 }
 
-.menu-button svg{
-  position:absolute;
-  width:21px;
-  height:21px;
-  transition:.25s;
+.background::before{
+  left:-180px;
+  top:10%;
 }
 
-.close-icon{
-  opacity:0;
-  transform:scale(.5) rotate(-90deg);
+.background::after{
+  right:-180px;
+  bottom:0;
+
+  animation-delay:-5s;
 }
 
-.menu-button.open .menu-icon{
-  opacity:0;
-  transform:scale(.5) rotate(90deg);
-}
+@keyframes glowMove{
 
-.menu-button.open .close-icon{
-  opacity:1;
-  transform:scale(1) rotate(0);
-}
+  from{
+    transform:translate(0,0) scale(1);
+  }
 
-.mobile-backdrop{
-  position:fixed;
-  inset:0;
-  z-index:40;
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
-}
+  to{
+    transform:translate(70px,-40px) scale(1.2);
+  }
 
-.mobile-backdrop.open{
-  opacity:1;
-  pointer-events:auto;
-}
-
-.mobile-drawer{
-  position:fixed;
-  right:0;
-  top:0;
-  z-index:50;
-  width:290px;
-  height:100%;
-  padding-top:80px;
-  background:rgba(8,8,8,.94);
-  backdrop-filter:blur(25px);
-  -webkit-backdrop-filter:blur(25px);
-  transform:translateX(100%);
-  transition:.45s cubic-bezier(.16,1,.3,1);
-}
-
-.mobile-drawer.open{
-  transform:translateX(0);
-}
-
-.mobile-links{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  padding:20px 24px;
-}
-
-.mobile-link{
-  display:block;
-  padding:15px;
-  border-radius:12px;
-  color:white;
-  font-size:16px;
-  background:rgba(255,255,255,.05);
-}
-
-.mobile-link:hover{
-  background:rgba(255,255,255,.12);
-}
-
-.mobile-cta-wrap{
-  padding:20px 24px;
-}
-
-.mobile-cta-wrap .cta{
-  width:100%;
 }
 
 /* =========================
-   MAIN
+   LOGIN BOX
 ========================= */
 
-.main{
+.login-box{
+
   width:100%;
-  margin-top:auto;
-  padding:0 20px 35px;
-  display:flex;
-  flex-direction:column;
-  gap:25px;
+  max-width:410px;
+
+  padding:30px 24px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.10);
+
+  border-radius:24px;
+
+  background:
+    rgba(255,255,255,.07);
+
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+
+  box-shadow:
+    0 25px 80px
+    rgba(0,0,0,.50);
+
+  animation:
+    boxIn
+    .7s
+    cubic-bezier(.16,1,.3,1);
 }
 
-.hero-left{
-  max-width:620px;
-  animation:heroText 1s .15s both cubic-bezier(.16,1,.3,1);
-}
+@keyframes boxIn{
 
-@keyframes heroText{
   from{
     opacity:0;
-    transform:translateY(35px);
+
+    transform:
+      translateY(30px)
+      scale(.96);
   }
+
   to{
     opacity:1;
-    transform:translateY(0);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
+
 }
 
-.eyebrow{
+/* =========================
+   LOGO
+========================= */
+
+.logo{
+
+  width:58px;
+  height:58px;
+
+  margin:
+    0 auto 18px;
+
   display:flex;
+
   align-items:center;
-  gap:8px;
-  margin-bottom:12px;
-  color:#111;
-  font-size:12px;
+  justify-content:center;
+
+  border-radius:18px;
+
+  background:white;
+  color:#050505;
+
+  font-size:25px;
   font-weight:700;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
 
-.eyebrow-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#111;
-  animation:pulse 1.8s infinite;
-}
-
-@keyframes pulse{
-  50%{
-    transform:scale(1.5);
-    opacity:.6;
-  }
+  box-shadow:
+    0 10px 35px
+    rgba(255,255,255,.12);
 }
 
 h1{
-  margin:0;
-  color:#050505;
-  font-size:clamp(2.2rem,8vw,4rem);
-  line-height:1.05;
-  letter-spacing:-.05em;
+
+  text-align:center;
+
+  font-size:28px;
+
+  letter-spacing:-.04em;
 }
 
-.hero-description{
-  margin:15px 0 0;
-  max-width:500px;
-  color:rgba(0,0,0,.7);
+.subtitle{
+
+  margin:
+    8px 0 28px;
+
+  text-align:center;
+
+  color:
+    rgba(255,255,255,.48);
+
   font-size:14px;
-  line-height:1.6;
 }
 
 /* =========================
-   EMAIL
+   FORM
 ========================= */
 
-.email-cta{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  margin-top:22px;
-  max-width:430px;
-}
+label{
 
-.email-input{
-  width:100%;
-  padding:14px 20px;
-  border:0;
-  outline:0;
-  border-radius:999px;
-  background:white;
-  color:#111;
-  font-size:15px;
-}
+  display:block;
 
-.email-input:focus{
-  box-shadow:0 0 0 3px rgba(255,255,255,.25);
-}
+  margin-bottom:7px;
 
-.email-cta .cta{
-  width:100%;
-}
+  color:
+    rgba(255,255,255,.75);
 
-/* =========================
-   TELEGRAM
-========================= */
-
-.telegram-card{
-  display:none;
-  max-width:430px;
-  margin-top:14px;
-  padding:14px 16px;
-  border-radius:15px;
-  background:rgba(0,0,0,.30);
-  border:1px solid rgba(255,255,255,.15);
-  backdrop-filter:blur(15px);
-  -webkit-backdrop-filter:blur(15px);
-}
-
-.telegram-card.show{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.telegram-text{
   font-size:13px;
+
   font-weight:600;
 }
 
-.telegram-text small{
-  display:block;
-  margin-top:3px;
-  color:rgba(255,255,255,.55);
-  font-weight:400;
+input{
+
+  width:100%;
+
+  padding:14px 15px;
+
+  margin-bottom:17px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.10);
+
+  border-radius:13px;
+
+  outline:none;
+
+  background:
+    rgba(255,255,255,.06);
+
+  color:white;
+
+  font-size:15px;
+
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    box-shadow .2s ease;
 }
 
-.telegram-button{
-  flex-shrink:0;
-  padding:9px 13px;
-  border-radius:999px;
-  background:#229ed9;
-  color:white;
-  font-size:12px;
-  font-weight:700;
+input::placeholder{
+
+  color:
+    rgba(255,255,255,.30);
+}
+
+input:focus{
+
+  border-color:
+    rgba(255,255,255,.35);
+
+  background:
+    rgba(255,255,255,.09);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(255,255,255,.05);
 }
 
 /* =========================
-   PROFILE PANEL
+   LOGIN BUTTON
 ========================= */
 
-.profile-panel{
-  display:none;
-  position:fixed;
-  top:78px;
-  right:20px;
-  z-index:100;
-  width:min(350px,calc(100% - 40px));
-  padding:20px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:20px;
-  background:rgba(8,8,8,.96);
-  backdrop-filter:blur(25px);
-  -webkit-backdrop-filter:blur(25px);
-  box-shadow:0 25px 70px rgba(0,0,0,.55);
-}
+.login-button{
 
-.profile-panel.show{
-  display:block;
-  animation:profileIn .25s ease;
-}
-
-@keyframes profileIn{
-  from{
-    opacity:0;
-    transform:translateY(-10px) scale(.97);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-}
-
-.profile-title{
-  font-size:19px;
-  font-weight:700;
-}
-
-.profile-email{
-  margin-top:6px;
-  color:rgba(255,255,255,.50);
-  font-size:12px;
-  word-break:break-all;
-}
-
-.profile-actions{
-  display:flex;
-  flex-direction:column;
-  gap:9px;
-  margin-top:18px;
-}
-
-.profile-action{
-  display:block;
   width:100%;
-  padding:13px 14px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:12px;
-  background:rgba(255,255,255,.06);
-  color:white;
-  text-align:left;
-  cursor:pointer;
-  font-size:14px;
-}
 
-.profile-action:hover{
-  background:rgba(255,255,255,.12);
-}
+  padding:14px;
 
-.telegram-banner{
-  background:linear-gradient(135deg,#229ed9,#147bb0);
   border:0;
+
+  border-radius:13px;
+
+  background:white;
+
+  color:#050505;
+
+  font-size:15px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:
+    transform .2s ease,
+    opacity .2s ease;
 }
 
-.logout{
-  color:#ff8f8f;
+.login-button:hover{
+
+  transform:
+    translateY(-2px);
+}
+
+.login-button:active{
+
+  transform:
+    scale(.97);
+}
+
+.login-button:disabled{
+
+  opacity:.55;
+
+  cursor:not-allowed;
 }
 
 /* =========================
-   CARDS
+   MESSAGE
 ========================= */
 
-.cards{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
+#message{
 
-.glass-card{
-  width:100%;
-  padding:20px;
-  border:1px solid rgba(255,255,255,.16);
-  border-radius:18px;
-  background:rgba(255,255,255,.16);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  box-shadow:0 15px 50px rgba(0,0,0,.2);
-  animation:cardIn .8s both;
-}
+  min-height:20px;
 
-.glass-card:nth-child(2){
-  animation-delay:.15s;
-}
+  margin-top:15px;
 
-@keyframes cardIn{
-  from{
-    opacity:0;
-    transform:translateY(25px) scale(.97);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-}
+  text-align:center;
 
-.stats-number{
-  font-family:'Silkscreen',cursive;
-  font-size:32px;
-  color:#050505;
-}
+  color:
+    rgba(255,255,255,.65);
 
-.stats-body{
-  margin-top:12px;
-  color:rgba(0,0,0,.7);
-  font-size:14px;
+  font-size:13px;
+
   line-height:1.5;
 }
 
-.testimonial-header{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-bottom:12px;
+.success{
+
+  color:#8dffa9 !important;
+
+  font-weight:600;
 }
 
-.stratify-icon{
-  width:30px;
-  height:30px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:7px;
-  background:#050505;
-  color:white;
-  font-size:13px;
-  font-weight:bold;
-}
+.error{
 
-.stratify-name{
-  color:#050505;
-  font-size:14px;
-  font-weight:700;
-}
+  color:#ff8f8f !important;
 
-.quote{
-  margin:0;
-  color:rgba(0,0,0,.8);
-  font-size:14px;
-  line-height:1.55;
-}
-
-.testimonial-footer{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-top:18px;
-}
-
-.avatar{
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:rgba(255,255,255,.25);
-}
-
-.person-name{
-  color:#050505;
-  font-size:14px;
-  font-weight:700;
-}
-
-.person-role{
-  margin-top:2px;
-  color:rgba(0,0,0,.55);
-  font-size:12px;
+  font-weight:600;
 }
 
 /* =========================
-   DESKTOP
+   BACK
 ========================= */
 
-@media(min-width:768px){
+.back{
 
-  .nav{
-    padding:25px 40px;
-  }
+  display:block;
 
-  .desktop-nav{
-    display:flex;
-  }
+  margin-top:20px;
 
-  .menu-button{
-    display:none;
-  }
+  text-align:center;
 
-  .brand,
-  .brand svg{
-    color:white;
-    fill:white;
-  }
+  color:
+    rgba(255,255,255,.50);
 
-  .main{
-    padding:0 40px 50px;
-  }
-
-  .hero-description{
-    display:none;
-  }
-
-  .cards{
-    flex-direction:row;
-  }
-
-  .glass-card{
-    width:250px;
-  }
-
-  .eyebrow,
-  h1,
-  .stats-number,
-  .stratify-name,
-  .person-name{
-    color:white;
-  }
-
-  .eyebrow-dot{
-    background:white;
-  }
-
-  .stats-body{
-    color:rgba(255,255,255,.7);
-  }
-
-  .quote{
-    color:rgba(255,255,255,.8);
-  }
-
-  .person-role{
-    color:rgba(255,255,255,.6);
-  }
-
-  .profile-button{
-    display:inline-flex;
-  }
+  font-size:13px;
 }
 
-@media(min-width:1024px){
+.back:hover{
 
-  .nav{
-    padding-left:48px;
-    padding-right:48px;
-  }
-
-  .main{
-    flex-direction:row;
-    align-items:flex-end;
-    justify-content:space-between;
-    padding:0 48px 65px;
-  }
-
-  h1{
-    font-size:3.6rem;
-  }
-
-  .cards{
-    gap:20px;
-  }
+  color:white;
 }
 
-@media(max-width:767px){
+/* =========================
+   MONEY RAIN
+========================= */
 
-  .profile-panel{
-    top:72px;
-    right:15px;
-    width:calc(100% - 30px);
-  }
+#moneyRain{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:9999;
+
+  pointer-events:none;
+
+  overflow:hidden;
+
+  display:none;
 }
+
+#moneyRain.show{
+
+  display:block;
+}
+
+.money{
+
+  position:absolute;
+
+  top:-80px;
+
+  opacity:0;
+
+  user-select:none;
+
+  animation:
+    moneyFall
+    2.8s
+    cubic-bezier(.2,.7,.3,1)
+    forwards;
+}
+
+@keyframes moneyFall{
+
+  0%{
+
+    opacity:0;
+
+    transform:
+      translateY(-80px)
+      rotate(0deg)
+      scale(.7);
+  }
+
+  10%{
+
+    opacity:1;
+  }
+
+  80%{
+
+    opacity:1;
+  }
+
+  100%{
+
+    opacity:0;
+
+    transform:
+      translateY(115vh)
+      rotate(720deg)
+      scale(1);
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:420px){
 
-  .hero{
-    min-height:680px;
+  .login-box{
+
+    padding:
+      26px 20px;
   }
 
   h1{
-    font-size:1.9rem;
+
+    font-size:25px;
   }
 
-  .glass-card{
-    padding:18px;
-  }
 }
+
+/* =========================
+   REDUCED MOTION
+========================= */
 
 @media(prefers-reduced-motion:reduce){
 
   *,
   *::before,
   *::after{
-    animation-duration:.01ms!important;
-    transition-duration:.01ms!important;
+
+    animation-duration:
+      .01ms !important;
+
+    transition-duration:
+      .01ms !important;
   }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<section class="hero">
+<div class="background"></div>
 
-<video
-  class="hero-video"
-  autoplay
-  loop
-  muted
-  playsinline
-  preload="auto"
->
-<source
-  src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260803_192301_9231ed6b-c55c-4a48-909c-4ebe11cf2e11.mp4"
-  type="video/mp4">
-</video>
+<!-- MONEY -->
 
-<div class="hero-content">
-
-<!-- ================= NAV ================= -->
-
-<nav class="nav">
-
-<a class="brand" href="index.html">
-
-<svg viewBox="0 0 256 256" aria-hidden="true">
-<path d="
-M128 128
-C128 198.692 70.692 256 0 256
-C0 185.308 57.308 128 128 128Z
-
-M128 128
-C198.692 128 256 185.308 256 256
-C185.308 256 128 198.692 128 128Z
-
-M0 0
-C70.692 0 128 57.308 128 128
-C57.308 128 0 70.692 0 0Z
-
-M256 0
-C256 70.692 198.692 128 128 128
-C128 57.308 185.308 0 256 0Z"/>
-</svg>
-
-<span>SAHIL</span>
-
-</a>
+<div id="moneyRain"></div>
 
 
-<!-- DESKTOP -->
+<!-- LOGIN -->
 
-<div class="desktop-nav">
+<div class="login-box">
 
-<div class="nav-pill">
+  <div class="logo">
+    S
+  </div>
 
-<a class="nav-link" href="offer.html">
-Offers
-</a>
+  <h1>
+    Welcome to SAHIL
+  </h1>
 
-<a class="nav-link" href="history.html">
-My History
-</a>
-
-</div>
-
-
-<button
-  class="profile-button"
-  id="profileButton"
-  type="button"
->
-👤 My Profile
-</button>
+  <p class="subtitle">
+    Login to continue
+  </p>
 
 
-<a
-  class="cta"
-  id="loginLink"
-  href="login.html"
->
-Login / Sign up
-</a>
+  <form id="loginForm">
+
+    <label for="email">
+      Email
+    </label>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Enter your email"
+      autocomplete="email"
+      required
+    >
+
+
+    <label for="password">
+      Password
+    </label>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter your password"
+      autocomplete="current-password"
+      required
+    >
+
+
+    <button
+      class="login-button"
+      id="loginButton"
+      type="submit"
+    >
+      Login
+    </button>
+
+  </form>
+
+
+  <div id="message"></div>
+
+
+  <a
+    class="back"
+    href="index.html"
+  >
+    ← Back to Home
+  </a>
 
 </div>
 
 
-<!-- MOBILE -->
-
-<button
-  class="menu-button"
-  id="menuButton"
-  type="button"
-  aria-label="Open menu"
-  aria-expanded="false"
->
-
-<svg
-  class="menu-icon"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
->
-<path d="M4 6h16M4 12h16M4 18h16"/>
-</svg>
-
-<svg
-  class="close-icon"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
->
-<path d="M6 6l12 12M18 6L6 18"/>
-</svg>
-
-</button>
-
-</nav>
-
-
-<!-- MOBILE BACKDROP -->
-
-<div
-  class="mobile-backdrop"
-  id="mobileBackdrop"
-></div>
-
-
-<!-- MOBILE DRAWER -->
-
-<div
-  class="mobile-drawer"
-  id="mobileDrawer"
->
-
-<div class="mobile-links">
-
-<a
-  class="mobile-link"
-  href="offer.html"
->
-🎁 Offers
-</a>
-
-<a
-  class="mobile-link"
-  href="history.html"
->
-📜 My History
-</a>
-
-<a
-  class="mobile-link"
-  href="help.html"
->
-❓ Help
-</a>
-
-<a
-  class="mobile-link"
-  id="mobileProfile"
-  href="history.html"
->
-👤 My Profile
-</a>
-
-<a
-  class="mobile-link"
-  id="mobileLogin"
-  href="login.html"
->
-🔐 Login / Sign up
-</a>
-
-</div>
-
-<div class="mobile-cta-wrap">
-
-<a
-  class="cta"
-  href="offer.html"
->
-View Offers
-</a>
-
-</div>
-
-</div>
-
-
-<!-- ================= PROFILE PANEL ================= -->
-
-<div
-  class="profile-panel"
-  id="profilePanel"
->
-
-<div class="profile-title">
-My Profile
-</div>
-
-<div
-  class="profile-email"
-  id="profileEmail"
->
-Loading...
-</div>
-
-
-<div class="profile-actions">
-
-<a
-  class="profile-action"
-  href="history.html"
->
-📜 View My History
-</a>
-
-
-<a
-  class="profile-action telegram-banner"
-  href="https://t.me/IncomeOffersOfficia"
-  target="_blank"
-  rel="noopener noreferrer"
->
-📢 Join My Telegram Channel
-</a>
-
-
-<button
-  class="profile-action logout"
-  id="logoutButton"
-  type="button"
->
-🚪 Logout
-</button>
-
-</div>
-
-</div>
-
-
-<!-- ================= MAIN ================= -->
-
-<main class="main">
-
-<div class="hero-left">
-
-<div class="eyebrow">
-
-<span class="eyebrow-dot"></span>
-
-<span>
-Live Income Offers
-</span>
-
-</div>
-
-
-<h1>
-Discover offers worth opening.
-</h1>
-
-
-<p class="hero-description">
-Browse the latest active offers,
-rewards and opportunities.
-Open an offer to see the complete details.
-</p>
-
-
-<div class="email-cta">
-
-<input
-  class="email-input"
-  id="emailInput"
-  type="email"
-  placeholder="Enter your email"
-  autocomplete="email"
->
-
-<button
-  class="cta"
-  id="startButton"
-  type="button"
->
-Get Started
-</button>
-
-</div>
-
-
-<div
-  class="telegram-card"
-  id="telegramCard"
->
-
-<div class="telegram-text">
-
-📢 Join our Telegram
-
-<small>
-Get the latest offers and updates.
-</small>
-
-</div>
-
-
-<a
-  class="telegram-button"
-  href="https://t.me/IncomeOffersOfficia"
-  target="_blank"
-  rel="noopener noreferrer"
->
-Join
-</a>
-
-</div>
-
-</div>
-
-
-<!-- CARDS -->
-
-<div class="cards">
-
-<div class="glass-card">
-
-<div class="stats-number">
-24/7
-</div>
-
-<div class="stats-body">
-New opportunities and active offers
-are available whenever you need them.
-</div>
-
-</div>
-
-
-<div class="glass-card">
-
-<div class="testimonial-header">
-
-<div class="stratify-icon">
-S
-</div>
-
-<div class="stratify-name">
-SAHIL
-</div>
-
-</div>
-
-
-<p class="quote">
-"Simple, fast and easy to explore
-the latest opportunities."
-</p>
-
-
-<div class="testimonial-footer">
-
-<div class="avatar"></div>
-
-<div>
-
-<div class="person-name">
-SAHIL User
-</div>
-
-<div class="person-role">
-Community Member
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</main>
-
-</div>
-
-</section>
-
-
-<!-- ================= SUPABASE ================= -->
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1176,245 +600,197 @@ Community Member
 
 <script>
 
-/*
-  IMPORTANT:
-  If supabase-config.js already creates
-  "supabaseClient", use it.
-
-  Otherwise create one here.
-
-  This prevents duplicate-client errors.
-*/
-
-let appClient;
-
-try{
-
-  if(
-    typeof supabaseClient !== "undefined"
-  ){
-
-    appClient = supabaseClient;
-
-  }else{
-
-    appClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY,
-        {
-          auth:{
-            persistSession:true,
-            autoRefreshToken:true,
-            detectSessionInUrl:true,
-            storage:window.localStorage
-          }
-        }
-      );
-
-  }
-
-}catch(error){
-
-  console.error(
-    "Supabase initialization error:",
-    error
-  );
-
-}
-
-
 /* =========================
    ELEMENTS
 ========================= */
 
-const menuButton =
+const form =
   document.getElementById(
-    "menuButton"
-  );
-
-const mobileDrawer =
-  document.getElementById(
-    "mobileDrawer"
-  );
-
-const mobileBackdrop =
-  document.getElementById(
-    "mobileBackdrop"
-  );
-
-const profileButton =
-  document.getElementById(
-    "profileButton"
-  );
-
-const profilePanel =
-  document.getElementById(
-    "profilePanel"
-  );
-
-const profileEmail =
-  document.getElementById(
-    "profileEmail"
-  );
-
-const logoutButton =
-  document.getElementById(
-    "logoutButton"
-  );
-
-const loginLink =
-  document.getElementById(
-    "loginLink"
+    "loginForm"
   );
 
 const emailInput =
   document.getElementById(
-    "emailInput"
+    "email"
   );
 
-const startButton =
+const passwordInput =
   document.getElementById(
-    "startButton"
+    "password"
   );
 
-const telegramCard =
+const loginButton =
   document.getElementById(
-    "telegramCard"
+    "loginButton"
   );
 
-const mobileLogin =
+const message =
   document.getElementById(
-    "mobileLogin"
-  );
-
-const mobileProfile =
-  document.getElementById(
-    "mobileProfile"
+    "message"
   );
 
 
 /* =========================
-   UI STATE
+   MESSAGE
 ========================= */
 
-function setLoggedInUI(user){
+function showMessage(
+  text,
+  type = ""
+){
 
-  emailInput.style.display =
-    "none";
+  message.textContent =
+    text;
 
-  startButton.textContent =
-    "View Offers";
-
-  loginLink.style.display =
-    "none";
-
-  profileButton.style.display =
-    "inline-flex";
-
-  profileEmail.textContent =
-    user && user.email
-      ? user.email
-      : "Logged in user";
-
-  telegramCard.classList.add(
-    "show"
-  );
-
-  mobileLogin.style.display =
-    "none";
-
-  mobileProfile.style.display =
-    "block";
-
+  message.className =
+    type;
 }
 
 
-function setLoggedOutUI(){
+/* =========================
+   MONEY RAIN
+========================= */
 
-  emailInput.style.display =
-    "block";
+function startMoneyRain(){
 
-  startButton.textContent =
-    "Get Started";
+  const container =
+    document.getElementById(
+      "moneyRain"
+    );
 
-  loginLink.style.display =
-    "inline-flex";
+  container.innerHTML = "";
 
-  profileButton.style.display =
-    "none";
-
-  telegramCard.classList.remove(
+  container.classList.add(
     "show"
   );
 
-  mobileLogin.style.display =
-    "block";
 
-  mobileProfile.style.display =
-    "none";
+  const symbols = [
+    "💰",
+    "💵",
+    "💸",
+    "🪙",
+    "💲"
+  ];
 
-  profilePanel.classList.remove(
-    "show"
+
+  const amount = 50;
+
+
+  for(
+    let i = 0;
+    i < amount;
+    i++
+  ){
+
+    const money =
+      document.createElement(
+        "span"
+      );
+
+    money.className =
+      "money";
+
+    money.textContent =
+      symbols[
+        Math.floor(
+          Math.random() *
+          symbols.length
+        )
+      ];
+
+
+    money.style.left =
+      Math.random() * 100 +
+      "%";
+
+
+    money.style.fontSize =
+      (20 +
+       Math.random() * 22) +
+      "px";
+
+
+    money.style.animationDelay =
+      Math.random() * 1.2 +
+      "s";
+
+
+    money.style.animationDuration =
+      (2.3 +
+       Math.random() * 1.4) +
+      "s";
+
+
+    container.appendChild(
+      money
+    );
+
+  }
+
+
+  setTimeout(
+    function(){
+
+      container.classList.remove(
+        "show"
+      );
+
+      container.innerHTML = "";
+
+    },
+    5000
   );
 
 }
 
 
 /* =========================
-   MOBILE MENU
+   CHECK EXISTING SESSION
 ========================= */
 
-function closeMenu(){
+async function checkExistingSession(){
 
-  menuButton.classList.remove(
-    "open"
-  );
+  try{
 
-  mobileDrawer.classList.remove(
-    "open"
-  );
-
-  mobileBackdrop.classList.remove(
-    "open"
-  );
-
-  menuButton.setAttribute(
-    "aria-expanded",
-    "false"
-  );
-
-}
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .auth
+        .getSession();
 
 
-function toggleMenu(){
+    if(error){
 
-  const isOpen =
-    mobileDrawer.classList.contains(
-      "open"
-    );
+      console.error(
+        "Session error:",
+        error
+      );
 
-  if(isOpen){
+      return;
+    }
 
-    closeMenu();
 
-  }else{
+    /*
+      Already logged in.
+      Don't show login again.
+    */
 
-    menuButton.classList.add(
-      "open"
-    );
+    if(data && data.session){
 
-    mobileDrawer.classList.add(
-      "open"
-    );
+      window.location.replace(
+        "index.html"
+      );
 
-    mobileBackdrop.classList.add(
-      "open"
-    );
+    }
 
-    menuButton.setAttribute(
-      "aria-expanded",
-      "true"
+  }catch(error){
+
+    console.error(
+      "Session check failed:",
+      error
     );
 
   }
@@ -1422,28 +798,224 @@ function toggleMenu(){
 }
 
 
-menuButton.addEventListener(
-  "click",
-  toggleMenu
-);
+/* =========================
+   LOGIN
+========================= */
+
+form.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
 
 
-mobileBackdrop.addEventListener(
-  "click",
-  closeMenu
-);
+    const email =
+      emailInput.value.trim();
+
+    const password =
+      passwordInput.value;
 
 
-document
-  .querySelectorAll(".mobile-link")
-  .forEach(function(link){
+    if(!email){
 
-    link.addEventListener(
-      "click",
-      closeMenu
+      showMessage(
+        "Please enter your email.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if(!password){
+
+      showMessage(
+        "Please enter your password.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    loginButton.disabled =
+      true;
+
+    loginButton.textContent =
+      "Logging in...";
+
+
+    showMessage(
+      "Checking your account..."
     );
 
-  });
+
+    try{
+
+      /*
+        IMPORTANT:
+        supabaseClient comes
+        from supabase-config.js
+      */
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .auth
+          .signInWithPassword({
+
+            email:
+              email,
+
+            password:
+              password
+
+          });
 
 
-/* ============
+      if(error){
+
+        console.error(
+          "Login error:",
+          error
+        );
+
+
+        showMessage(
+          error.message ||
+          "Login failed.",
+          "error"
+        );
+
+
+        loginButton.disabled =
+          false;
+
+        loginButton.textContent =
+          "Login";
+
+        return;
+      }
+
+
+      if(
+        !data ||
+        !data.user ||
+        !data.session
+      ){
+
+        showMessage(
+          "Login failed. Session was not created.",
+          "error"
+        );
+
+
+        loginButton.disabled =
+          false;
+
+        loginButton.textContent =
+          "Login";
+
+        return;
+      }
+
+
+      /*
+        SUCCESS
+      */
+
+      showMessage(
+        "Login successful! 💰",
+        "success"
+      );
+
+
+      loginButton.textContent =
+        "Welcome!";
+
+
+      /*
+        Supabase persistSession:true
+        will save the session locally.
+      */
+
+      startMoneyRain();
+
+
+      /*
+        Small delay so the
+        animation can be seen.
+      */
+
+      setTimeout(
+        function(){
+
+          window.location.replace(
+            "index.html"
+          );
+
+        },
+        1800
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "Unexpected login error:",
+        error
+      );
+
+
+      showMessage(
+        error.message ||
+        "Something went wrong.",
+        "error"
+      );
+
+
+      loginButton.disabled =
+        false;
+
+      loginButton.textContent =
+        "Login";
+
+    }
+
+  }
+);
+
+
+/* =========================
+   AUTH STATE
+========================= */
+
+supabaseClient
+  .auth
+  .onAuthStateChange(
+    function(
+      event,
+      session
+    ){
+
+      console.log(
+        "Auth event:",
+        event
+      );
+
+    }
+  );
+
+
+/* =========================
+   START
+========================= */
+
+checkExistingSession();
+
+</script>
+
+</body>
+</html>
