@@ -3,142 +3,1059 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
 
-  <title>History - Income Offers</title>
+  <title>History - Nexum</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     * {
       box-sizing: border-box;
+    }
+
+    html,
+    body {
       margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+      min-height: 100%;
     }
 
     body {
-      background: #f5f6fa;
-      color: #222;
+      background: #050505;
+      color: white;
+
+      font-family:
+        'Geist',
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       BACKGROUND
+    ========================= */
+
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(255,255,255,.08),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 90% 90%,
+          rgba(255,255,255,.05),
+          transparent 35%
+        ),
+        #050505;
+    }
+
+    /* =========================
+       HEADER
+    ========================= */
 
     header {
-      background: #111827;
-      color: white;
-      padding: 18px;
-      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
+      background:
+        rgba(5,5,5,.72);
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
     }
 
-    header h1 {
-      font-size: 24px;
+    .nav {
+      max-width: 900px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 17px 20px;
     }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .brand svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+
+      transition:
+        transform .5s ease;
+    }
+
+    .brand:hover svg {
+      transform:
+        rotate(180deg);
+    }
+
+    .back {
+      padding:
+        9px 14px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.10);
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,.06);
+
+      color:
+        rgba(255,255,255,.70);
+
+      font-size: 13px;
+
+      transition:
+        background .2s ease,
+        transform .2s ease;
+    }
+
+    .back:hover {
+      background:
+        rgba(255,255,255,.12);
+
+      color: white;
+
+      transform:
+        translateX(-2px);
+    }
+
+    /* =========================
+       MAIN
+    ========================= */
 
     .container {
-      max-width: 600px;
+      width: 100%;
+      max-width: 900px;
+
       margin: auto;
-      padding: 20px;
+
+      padding:
+        50px 20px 110px;
+
+      animation:
+        pageIn
+        .7s
+        cubic-bezier(.16,1,.3,1);
     }
 
-    .history-title {
-      margin-bottom: 15px;
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform:
+          translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0);
+      }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      color:
+        rgba(255,255,255,.45);
+
+      font-size: 11px;
+      font-weight: 600;
+
+      letter-spacing:
+        .08em;
+
+      text-transform:
+        uppercase;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      box-shadow:
+        0 0 12px
+        rgba(255,255,255,.7);
+    }
+
+    h1 {
+      margin:
+        13px 0 8px;
+
+      font-size:
+        clamp(
+          2.2rem,
+          7vw,
+          3.8rem
+        );
+
+      line-height: 1;
+
+      letter-spacing:
+        -.055em;
+    }
+
+    .subtitle {
+      margin: 0;
+
+      color:
+        rgba(255,255,255,.48);
+
+      font-size: 14px;
+
+      line-height: 1.6;
+    }
+
+    /* =========================
+       HISTORY LIST
+    ========================= */
+
+    .history-list {
+      display: flex;
+      flex-direction: column;
+
+      gap: 12px;
+
+      margin-top: 30px;
     }
 
     .history-item {
-      background: white;
-      padding: 16px;
-      border-radius: 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      display: flex;
+
+      align-items: center;
+
+      gap: 14px;
+
+      padding:
+        16px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.08);
+
+      border-radius: 17px;
+
+      background:
+        rgba(255,255,255,.055);
+
+      backdrop-filter:
+        blur(16px);
+
+      -webkit-backdrop-filter:
+        blur(16px);
+
+      opacity: 0;
+
+      transform:
+        translateY(18px);
+
+      animation:
+        itemIn
+        .55s
+        cubic-bezier(.16,1,.3,1)
+        forwards;
+
+      transition:
+        transform .3s ease,
+        background .3s ease,
+        border-color .3s ease;
     }
 
-    .history-item h3 {
-      margin-bottom: 7px;
+    .history-item:hover {
+      transform:
+        translateY(-3px);
+
+      background:
+        rgba(255,255,255,.08);
+
+      border-color:
+        rgba(255,255,255,.15);
     }
 
-    .history-item p {
-      color: #666;
+    @keyframes itemIn {
+      to {
+        opacity: 1;
+        transform:
+          translateY(0);
+      }
+    }
+
+    .activity-icon {
+      width: 44px;
+      height: 44px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      background:
+        rgba(255,255,255,.09);
+
+      font-size: 20px;
+    }
+
+    .activity-content {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .activity-title {
+      margin: 0;
+
+      color: white;
+
       font-size: 14px;
+      font-weight: 600;
+
+      line-height: 1.35;
+    }
+
+    .activity-description {
+      margin:
+        4px 0 0;
+
+      color:
+        rgba(255,255,255,.42);
+
+      font-size: 12px;
+
+      line-height: 1.45;
+    }
+
+    .activity-time {
+      flex-shrink: 0;
+
+      color:
+        rgba(255,255,255,.30);
+
+      font-size: 11px;
+
+      text-align: right;
+    }
+
+    /* =========================
+       EMPTY / LOADING
+    ========================= */
+
+    .state {
+      margin-top: 30px;
+
+      padding:
+        60px 20px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.08);
+
+      border-radius: 22px;
+
+      background:
+        rgba(255,255,255,.04);
+
+      text-align: center;
+
+      color:
+        rgba(255,255,255,.45);
+    }
+
+    .state-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .state h2 {
+      margin:
+        0 0 8px;
+
+      color: white;
+
+      font-size: 20px;
+    }
+
+    .state p {
+      margin: 0;
+
+      font-size: 13px;
+
       line-height: 1.5;
     }
 
-    .empty {
-      background: white;
-      padding: 25px;
-      border-radius: 14px;
-      text-align: center;
-      color: #777;
-    }
+    /* =========================
+       BOTTOM NAV
+    ========================= */
 
-    .bottom-menu {
+    .bottom-nav {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      border-top: 1px solid #ddd;
+
+      left: 50%;
+      bottom: 15px;
+
+      z-index: 30;
+
+      width:
+        min(
+          calc(100% - 30px),
+          460px
+        );
+
+      transform:
+        translateX(-50%);
+
       display: flex;
+
+      align-items: center;
       justify-content: space-around;
-      padding: 10px 5px;
+
+      padding: 7px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.10);
+
+      border-radius: 999px;
+
+      background:
+        rgba(10,10,10,.78);
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+
+      box-shadow:
+        0 15px 50px
+        rgba(0,0,0,.45);
     }
 
-    .bottom-menu a {
-      text-decoration: none;
-      color: #222;
-      font-size: 13px;
-      text-align: center;
+    .bottom-link {
+      flex: 1;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 2px;
+
+      padding:
+        7px 5px;
+
+      border-radius: 999px;
+
+      color:
+        rgba(255,255,255,.45);
+
+      font-size: 10px;
+
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
     }
 
-    .bottom-menu span {
-      display: block;
-      font-size: 22px;
-      margin-bottom: 3px;
+    .bottom-link span {
+      font-size: 18px;
+      line-height: 1;
     }
 
-    .page-space {
-      height: 70px;
+    .bottom-link:hover,
+    .bottom-link.active {
+      background:
+        rgba(255,255,255,.10);
+
+      color: white;
+
+      transform:
+        translateY(-1px);
+    }
+
+    @media (max-width: 520px) {
+
+      .container {
+        padding:
+          38px 14px 110px;
+      }
+
+      .history-item {
+        align-items:
+          flex-start;
+      }
+
+      .activity-time {
+        display: none;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+
+        animation-duration:
+          .01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          .01ms !important;
+      }
+
     }
   </style>
 </head>
 
 <body>
 
+  <div class="background"></div>
+
+  <!-- HEADER -->
+
   <header>
-    <h1>📜 History</h1>
+
+    <nav class="nav">
+
+      <a
+        class="brand"
+        href="index.html"
+      >
+
+        <svg
+          viewBox="0 0 256 256"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="
+            M128 128
+            C128 198.692 70.692 256 0 256
+            C0 185.308 57.308 128 128 128Z
+
+            M128 128
+            C198.692 128 256 185.308 256 256
+            C185.308 256 128 198.692 128 128Z
+
+            M0 0
+            C70.692 0 128 57.308 128 128
+            C57.308 128 0 70.692 0 0Z
+
+            M256 0
+            C256 70.692 198.692 128 128 128
+            C128 57.308 185.308 0 256 0Z
+          "/>
+        </svg>
+
+        <span>Nexum</span>
+
+      </a>
+
+      <a
+        class="back"
+        href="offer.html"
+      >
+        ← Offers
+      </a>
+
+    </nav>
+
   </header>
+
+
+  <!-- MAIN -->
 
   <main class="container">
 
-    <h2 class="history-title">Your Activity</h2>
+    <div class="eyebrow">
 
-    <div class="empty">
-      <p>No activity yet.</p>
-      <p>Your offer activity will appear here.</p>
+      <span class="dot"></span>
+
+      <span>Your Activity</span>
+
     </div>
 
-    <div class="page-space"></div>
+    <h1>
+      History
+    </h1>
+
+    <p class="subtitle">
+      See your recent activity and offer interactions.
+    </p>
+
+
+    <div
+      class="history-list"
+      id="historyList"
+    >
+
+      <div class="state">
+
+        <div class="state-icon">
+          ⏳
+        </div>
+
+        <h2>
+          Loading history
+        </h2>
+
+        <p>
+          Please wait a moment...
+        </p>
+
+      </div>
+
+    </div>
 
   </main>
 
-  <nav class="bottom-menu">
 
-    <a href="index.html">
+  <!-- BOTTOM NAV -->
+
+  <nav class="bottom-nav">
+
+    <a
+      class="bottom-link"
+      href="index.html"
+    >
       <span>🏠</span>
       Home
     </a>
 
-    <a href="index.html">
+    <a
+      class="bottom-link"
+      href="offer.html"
+    >
       <span>🎁</span>
       Offers
     </a>
 
-    <a href="history.html">
+    <a
+      class="bottom-link active"
+      href="history.html"
+    >
       <span>📜</span>
       History
     </a>
 
-    <a href="help.html">
+    <a
+      class="bottom-link"
+      href="help.html"
+    >
       <span>❓</span>
       Help
     </a>
 
   </nav>
+
+
+  <!-- SUPABASE -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="supabase-config.js"></script>
+
+
+  <script>
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
+
+
+    const historyList =
+      document.getElementById(
+        "historyList"
+      );
+
+
+    /* =========================
+       LOGIN REQUIRED
+    ========================= */
+
+    async function getCurrentUser() {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .auth
+          .getUser();
+
+      if (error) {
+
+        console.error(error);
+
+        return null;
+
+      }
+
+      return data.user || null;
+
+    }
+
+
+    /* =========================
+       ACTIVITY DETAILS
+    ========================= */
+
+    function activityInfo(
+      action
+    ) {
+
+      const map = {
+
+        login: {
+          icon: "🔐",
+          title: "Logged in",
+          description:
+            "You logged in to your Nexum account."
+        },
+
+        signup: {
+          icon: "✨",
+          title: "Account created",
+          description:
+            "Your Nexum account was created."
+        },
+
+        link_click: {
+          icon: "🔗",
+          title: "Link opened",
+          description:
+            "You interacted with a website link."
+        },
+
+        offer_view: {
+          icon: "👀",
+          title: "Viewed an offer",
+          description:
+            "You opened an offer details page."
+        },
+
+        offer_open: {
+          icon: "🎁",
+          title: "Opened an offer",
+          description:
+            "You selected an offer from the offers list."
+        },
+
+        offer_click: {
+          icon: "🚀",
+          title: "Offer link opened",
+          description:
+            "You continued to the external offer."
+        }
+
+      };
+
+
+      return (
+        map[action] ||
+        {
+          icon: "•",
+          title: "Activity",
+          description:
+            "A recent activity was recorded."
+        }
+      );
+
+    }
+
+
+    /* =========================
+       TIME
+    ========================= */
+
+    function formatTime(
+      value
+    ) {
+
+      if (!value) {
+        return "";
+      }
+
+      const date =
+        new Date(value);
+
+      if (
+        Number.isNaN(
+          date.getTime()
+        )
+      ) {
+        return "";
+      }
+
+      return date.toLocaleString(
+        undefined,
+        {
+          day: "numeric",
+          month: "short",
+          hour: "numeric",
+          minute: "2-digit"
+        }
+      );
+
+    }
+
+
+    /* =========================
+       LOAD HISTORY
+    ========================= */
+
+    async function loadHistory() {
+
+      const user =
+        await getCurrentUser();
+
+
+      if (!user) {
+
+        historyList.innerHTML = `
+
+          <div class="state">
+
+            <div class="state-icon">
+              🔐
+            </div>
+
+            <h2>
+              Login required
+            </h2>
+
+            <p>
+              Please login to see your activity history.
+            </p>
+
+            <br>
+
+            <a
+              class="back"
+              href="login.html"
+            >
+              Login / Sign up →
+            </a>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .from("activity_logs")
+          .select(
+            `
+              id,
+              action,
+              page,
+              created_at,
+              offer_id
+            `
+          )
+          .eq(
+            "user_id",
+            user.id
+          )
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          )
+          .limit(50);
+
+
+      if (error) {
+
+        console.error(error);
+
+        historyList.innerHTML = `
+
+          <div class="state">
+
+            <div class="state-icon">
+              ⚠️
+            </div>
+
+            <h2>
+              Unable to load history
+            </h2>
+
+            <p>
+              Please refresh and try again.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+        historyList.innerHTML = `
+
+          <div class="state">
+
+            <div class="state-icon">
+              📜
+            </div>
+
+            <h2>
+              No activity yet
+            </h2>
+
+            <p>
+              Your offer activity will appear here.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      historyList.innerHTML = "";
+
+
+      data.forEach(
+        function(
+          item,
+          index
+        ) {
+
+          const info =
+            activityInfo(
+              item.action
+            );
+
+
+          const element =
+            document.createElement(
+              "div"
+            );
+
+          element.className =
+            "history-item";
+
+          element.style.animationDelay =
+            Math.min(
+              index * 60,
+              600
+            ) + "ms";
+
+
+          element.innerHTML = `
+
+            <div class="activity-icon">
+              ${info.icon}
+            </div>
+
+            <div class="activity-content">
+
+              <p class="activity-title">
+                ${info.title}
+              </p>
+
+              <p class="activity-description">
+                ${info.description}
+              </p>
+
+            </div>
+
+            <div class="activity-time">
+              ${formatTime(
+                item.created_at
+              )}
+            </div>
+
+          `;
+
+
+          historyList.appendChild(
+            element
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       START
+    ========================= */
+
+    loadHistory();
+
+  </script>
 
 </body>
 </html>
