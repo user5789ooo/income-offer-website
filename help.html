@@ -3,100 +3,750 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Help - Income Offers</title>
+  <meta name="theme-color" content="#050505">
+
+  <title>Help - Nexum</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
     * {
       box-sizing: border-box;
+    }
+
+    html,
+    body {
       margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+      min-height: 100%;
     }
 
     body {
-      background: #f5f6fa;
-      color: #222;
-      text-align: center;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    .help-box {
-      background: white;
-      padding: 30px 20px;
-      border-radius: 18px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    }
-
-    .icon {
-      font-size: 55px;
-      margin-bottom: 15px;
-    }
-
-    h1 {
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: #666;
-      line-height: 1.5;
-      margin-bottom: 25px;
-    }
-
-    .telegram-btn {
-      display: block;
-      text-decoration: none;
-      background: #229ED9;
+      background: #050505;
       color: white;
-      padding: 14px;
-      border-radius: 12px;
-      font-size: 17px;
-      font-weight: bold;
+      font-family:
+        'Geist',
+        -apple-system,
+        BlinkMacSystemFont,
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* BACKGROUND */
+
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+
+      background:
+        radial-gradient(
+          circle at 15% 15%,
+          rgba(255,255,255,.08),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 85% 85%,
+          rgba(255,255,255,.05),
+          transparent 35%
+        ),
+        #050505;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
+      background:
+        rgba(5,5,5,.72);
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+    }
+
+    .nav {
+      max-width: 900px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 17px 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .brand svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
     }
 
     .back {
-      display: block;
-      margin-top: 18px;
-      color: #222;
-      text-decoration: none;
+      padding: 9px 14px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.10);
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,.06);
+
+      color:
+        rgba(255,255,255,.70);
+
+      font-size: 13px;
+    }
+
+    .back:hover {
+      background:
+        rgba(255,255,255,.12);
+
+      color: white;
+    }
+
+    /* MAIN */
+
+    .container {
+      width: 100%;
+      max-width: 700px;
+
+      margin: auto;
+
+      padding:
+        55px 20px 110px;
+
+      animation:
+        pageIn
+        .7s
+        cubic-bezier(.16,1,.3,1);
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform:
+          translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0);
+      }
+    }
+
+    .help-card {
+      padding: 30px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.10);
+
+      border-radius: 25px;
+
+      background:
+        rgba(255,255,255,.065);
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+
+      text-align: center;
+
+      box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.30);
+    }
+
+    .icon {
+      width: 70px;
+      height: 70px;
+
+      margin:
+        0 auto 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 22px;
+
+      background:
+        rgba(255,255,255,.09);
+
+      border:
+        1px solid
+        rgba(255,255,255,.10);
+
+      font-size: 32px;
+    }
+
+    h1 {
+      margin: 0;
+
+      font-size:
+        clamp(2rem, 7vw, 3.2rem);
+
+      line-height: 1;
+
+      letter-spacing:
+        -.05em;
+    }
+
+    .subtitle {
+      max-width: 480px;
+
+      margin:
+        16px auto 0;
+
+      color:
+        rgba(255,255,255,.52);
+
+      font-size: 14px;
+
+      line-height: 1.65;
+    }
+
+    /* TELEGRAM */
+
+    .telegram-button {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 9px;
+
+      width: 100%;
+
+      margin-top: 25px;
+
+      padding: 15px 20px;
+
+      border-radius: 999px;
+
+      background:
+        #229ED9;
+
+      color: white;
+
+      font-size: 15px;
+      font-weight: 700;
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        opacity .25s ease;
+    }
+
+    .telegram-button:hover {
+      transform:
+        translateY(-3px);
+
+      box-shadow:
+        0 15px 40px
+        rgba(34,158,217,.25);
+    }
+
+    .telegram-button:active {
+      transform:
+        scale(.97);
+    }
+
+    .telegram-button.disabled {
+      opacity: .45;
+      pointer-events: none;
+    }
+
+    /* STATUS */
+
+    .message {
+      margin-top: 14px;
+
+      color:
+        rgba(255,255,255,.35);
+
+      font-size: 12px;
+
+      line-height: 1.5;
+    }
+
+    /* INFO */
+
+    .info {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 10px;
+
+      margin-top: 25px;
+
+      text-align: left;
+    }
+
+    .info-box {
+      padding: 15px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.07);
+
+      border-radius: 14px;
+
+      background:
+        rgba(255,255,255,.04);
+    }
+
+    .info-title {
+      margin-bottom: 5px;
+
+      color:
+        rgba(255,255,255,.35);
+
+      font-size: 10px;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        .06em;
+    }
+
+    .info-text {
+      color:
+        rgba(255,255,255,.72);
+
+      font-size: 12px;
+
+      line-height: 1.45;
+    }
+
+    /* BOTTOM NAV */
+
+    .bottom-nav {
+      position: fixed;
+
+      left: 50%;
+      bottom: 15px;
+
+      z-index: 30;
+
+      width:
+        min(
+          calc(100% - 30px),
+          460px
+        );
+
+      transform:
+        translateX(-50%);
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-around;
+
+      padding: 7px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.10);
+
+      border-radius: 999px;
+
+      background:
+        rgba(10,10,10,.78);
+
+      backdrop-filter:
+        blur(20px);
+
+      -webkit-backdrop-filter:
+        blur(20px);
+
+      box-shadow:
+        0 15px 50px
+        rgba(0,0,0,.45);
+    }
+
+    .bottom-link {
+      flex: 1;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 2px;
+
+      padding:
+        7px 5px;
+
+      border-radius: 999px;
+
+      color:
+        rgba(255,255,255,.45);
+
+      font-size: 10px;
+
+      transition:
+        background .2s ease,
+        color .2s ease;
+    }
+
+    .bottom-link span {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .bottom-link:hover,
+    .bottom-link.active {
+      background:
+        rgba(255,255,255,.10);
+
+      color: white;
+    }
+
+    @media (max-width: 520px) {
+
+      .container {
+        padding:
+          35px 14px 110px;
+      }
+
+      .help-card {
+        padding: 23px 18px;
+      }
+
+      .info {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+
+        animation-duration:
+          .01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          .01ms !important;
+      }
+
     }
   </style>
 </head>
 
 <body>
 
+  <div class="background"></div>
+
+
+  <!-- HEADER -->
+
+  <header>
+
+    <nav class="nav">
+
+      <a
+        class="brand"
+        href="index.html"
+      >
+
+        <svg
+          viewBox="0 0 256 256"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="
+            M128 128
+            C128 198.692 70.692 256 0 256
+            C0 185.308 57.308 128 128 128Z
+
+            M128 128
+            C198.692 128 256 185.308 256 256
+            C185.308 256 128 198.692 128 128Z
+
+            M0 0
+            C70.692 0 128 57.308 128 128
+            C57.308 128 0 70.692 0 0Z
+
+            M256 0
+            C256 70.692 198.692 128 128 128
+            C128 57.308 185.308 0 256 0Z
+          "/>
+        </svg>
+
+        <span>Nexum</span>
+
+      </a>
+
+      <a
+        class="back"
+        href="index.html"
+      >
+        ← Home
+      </a>
+
+    </nav>
+
+  </header>
+
+
+  <!-- MAIN -->
+
   <main class="container">
 
-    <div class="help-box">
+    <section class="help-card">
 
-      <div class="icon">❓</div>
+      <div class="icon">
+        ❓
+      </div>
 
-      <h1>Need Help?</h1>
+      <h1>
+        Need Help?
+      </h1>
 
-      <p>
-        If you need any help regarding an offer,
-        contact us on Telegram.
+      <p class="subtitle">
+        If you have any questions about an offer,
+        need assistance, or face any problem,
+        contact our support team on Telegram.
       </p>
 
-      <!-- Telegram link will be managed later from Admin Panel -->
+
       <a
-        class="telegram-btn"
-        href="https://t.me/YOUR_TELEGRAM_USERNAME"
-        target="_blank">
+        id="telegramButton"
+        class="telegram-button disabled"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         💬 Contact us on Telegram
       </a>
 
-      <a class="back" href="index.html">
-        ← Back to Home
-      </a>
 
-    </div>
+      <div
+        class="message"
+        id="message"
+      >
+        Loading support information...
+      </div>
+
+
+      <div class="info">
+
+        <div class="info-box">
+
+          <div class="info-title">
+            Support
+          </div>
+
+          <div class="info-text">
+            Telegram support is available for offer-related help.
+          </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+          <div class="info-title">
+            Response
+          </div>
+
+          <div class="info-text">
+            Send your question clearly so our team can assist you.
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
 
   </main>
+
+
+  <!-- BOTTOM NAV -->
+
+  <nav class="bottom-nav">
+
+    <a
+      class="bottom-link"
+      href="index.html"
+    >
+      <span>🏠</span>
+      Home
+    </a>
+
+    <a
+      class="bottom-link"
+      href="offer.html"
+    >
+      <span>🎁</span>
+      Offers
+    </a>
+
+    <a
+      class="bottom-link"
+      href="history.html"
+    >
+      <span>📜</span>
+      History
+    </a>
+
+    <a
+      class="bottom-link active"
+      href="help.html"
+    >
+      <span>❓</span>
+      Help
+    </a>
+
+  </nav>
+
+
+  <!-- SUPABASE -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="supabase-config.js"></script>
+
+
+  <script>
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+      );
+
+
+    const telegramButton =
+      document.getElementById(
+        "telegramButton"
+      );
+
+    const message =
+      document.getElementById(
+        "message"
+      );
+
+
+    /* =========================
+       LOAD TELEGRAM
+    ========================= */
+
+    async function loadTelegram() {
+
+      try {
+
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .from("settings")
+            .select("value")
+            .eq("key", "telegram_link")
+            .maybeSingle();
+
+
+        if (
+          error ||
+          !data ||
+          !data.value
+        ) {
+
+          message.textContent =
+            "Telegram support link has not been configured yet.";
+
+          return;
+
+        }
+
+
+        const link =
+          data.value;
+
+
+        if (
+          typeof link !== "string" ||
+          !/^https?:\/\/t\.me\//i.test(link)
+        ) {
+
+          message.textContent =
+            "Support link is currently unavailable.";
+
+          return;
+
+        }
+
+
+        telegramButton.href =
+          link;
+
+        telegramButton.classList.remove(
+          "disabled"
+        );
+
+        message.textContent =
+          "Tap the button to contact our support team.";
+
+      } catch (error) {
+
+        console.error(error);
+
+        message.textContent =
+          "Unable to load support information.";
+
+      }
+
+    }
+
+
+    loadTelegram();
+
+  </script>
 
 </body>
 </html>
