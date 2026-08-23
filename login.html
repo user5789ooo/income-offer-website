@@ -1,1226 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050505">
-
-  <title>Login / Sign Up - Nexum</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
-    }
-
-    body {
-      min-height: 100vh;
-      min-height: 100svh;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      padding: 20px;
-
-      background:
-        radial-gradient(
-          circle at 20% 10%,
-          #ffffff10,
-          transparent 35%
-        ),
-        radial-gradient(
-          circle at 90% 90%,
-          #ffffff0b,
-          transparent 35%
-        ),
-        #050505;
-
-      color: white;
-
-      font-family:
-        'Geist',
-        -apple-system,
-        BlinkMacSystemFont,
-        sans-serif;
-
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-
-      position: fixed;
-      inset: -30%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(255,255,255,.06),
-          transparent 35%
-        );
-
-      animation:
-        backgroundMove
-        10s
-        ease-in-out
-        infinite alternate;
-
-      pointer-events: none;
-    }
-
-    @keyframes backgroundMove {
-
-      from {
-        transform:
-          translate(-4%, -3%)
-          scale(1);
-      }
-
-      to {
-        transform:
-          translate(4%, 3%)
-          scale(1.15);
-      }
-
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    button {
-      -webkit-tap-highlight-color:
-        transparent;
-    }
-
-    /* =========================
-       LOGIN BOX
-    ========================= */
-
-    .login-box {
-
-      position: relative;
-
-      width: 100%;
-      max-width: 430px;
-
-      padding: 28px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.12);
-
-      border-radius: 26px;
-
-      background:
-        rgba(255,255,255,.07);
-
-      backdrop-filter:
-        blur(24px);
-
-      -webkit-backdrop-filter:
-        blur(24px);
-
-      box-shadow:
-        0 30px 100px
-        rgba(0,0,0,.55);
-
-      animation:
-        boxIn
-        .8s
-        cubic-bezier(.16,1,.3,1);
-    }
-
-    @keyframes boxIn {
-
-      from {
-        opacity: 0;
-
-        transform:
-          translateY(30px)
-          scale(.96);
-      }
-
-      to {
-        opacity: 1;
-
-        transform:
-          translateY(0)
-          scale(1);
-      }
-
-    }
-
-    /* =========================
-       BRAND
-    ========================= */
-
-    .brand {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 9px;
-
-      margin-bottom: 25px;
-
-      font-size: 22px;
-
-      font-weight: 700;
-    }
-
-    .brand-icon {
-
-      width: 27px;
-      height: 27px;
-
-      fill: white;
-
-      animation:
-        logoSpin
-        8s
-        linear
-        infinite;
-    }
-
-    @keyframes logoSpin {
-
-      from {
-        transform:
-          rotate(0deg);
-      }
-
-      to {
-        transform:
-          rotate(360deg);
-      }
-
-    }
-
-    /* =========================
-       HEADING
-    ========================= */
-
-    h1 {
-
-      margin: 0;
-
-      font-size: 30px;
-
-      line-height: 1.1;
-
-      letter-spacing:
-        -.04em;
-    }
-
-    .subtitle {
-
-      margin:
-        9px 0 22px;
-
-      color:
-        rgba(255,255,255,.55);
-
-      font-size: 14px;
-
-      line-height: 1.5;
-    }
-
-    /* =========================
-       TABS
-    ========================= */
-
-    .tabs {
-
-      display: flex;
-
-      gap: 4px;
-
-      padding: 4px;
-
-      margin-bottom: 22px;
-
-      border-radius: 999px;
-
-      background:
-        rgba(255,255,255,.07);
-    }
-
-    .tab {
-
-      flex: 1;
-
-      border: 0;
-
-      border-radius: 999px;
-
-      padding: 10px;
-
-      background:
-        transparent;
-
-      color:
-        rgba(255,255,255,.50);
-
-      cursor: pointer;
-
-      transition:
-        background .25s ease,
-        color .25s ease,
-        transform .2s ease;
-    }
-
-    .tab:hover {
-
-      color: white;
-
-    }
-
-    .tab.active {
-
-      background: white;
-
-      color: #111;
-
-      box-shadow:
-        0 5px 20px
-        rgba(255,255,255,.12);
-    }
-
-    .tab:active {
-
-      transform:
-        scale(.97);
-    }
-
-    /* =========================
-       FORM
-    ========================= */
-
-    .field {
-
-      margin-bottom: 16px;
-
-      animation:
-        fieldIn
-        .45s
-        both;
-    }
-
-    @keyframes fieldIn {
-
-      from {
-        opacity: 0;
-
-        transform:
-          translateY(8px);
-      }
-
-      to {
-        opacity: 1;
-
-        transform:
-          translateY(0);
-      }
-
-    }
-
-    label {
-
-      display: block;
-
-      margin-bottom: 7px;
-
-      color:
-        rgba(255,255,255,.72);
-
-      font-size: 13px;
-
-      font-weight: 500;
-    }
-
-    input {
-
-      width: 100%;
-
-      padding:
-        14px 15px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.12);
-
-      border-radius: 13px;
-
-      outline: none;
-
-      background:
-        rgba(0,0,0,.35);
-
-      color: white;
-
-      font-size: 15px;
-
-      transition:
-        border-color .25s ease,
-        box-shadow .25s ease,
-        transform .25s ease;
-    }
-
-    input::placeholder {
-
-      color:
-        rgba(255,255,255,.30);
-    }
-
-    input:focus {
-
-      border-color:
-        rgba(255,255,255,.45);
-
-      box-shadow:
-        0 0 0 3px
-        rgba(255,255,255,.06);
-
-      transform:
-        translateY(-1px);
-    }
-
-    /* =========================
-       SUBMIT
-    ========================= */
-
-    .submit {
-
-      width: 100%;
-
-      margin-top: 3px;
-
-      padding:
-        14px 20px;
-
-      border: 0;
-
-      border-radius: 999px;
-
-      background:
-        linear-gradient(
-          to bottom,
-          #2b2b2b,
-          #101010
-        );
-
-      color: white;
-
-      font-size: 15px;
-
-      font-weight: 600;
-
-      cursor: pointer;
-
-      transition:
-        transform .2s ease,
-        opacity .2s ease,
-        box-shadow .3s ease;
-    }
-
-    .submit:hover {
-
-      opacity: .94;
-
-      box-shadow:
-        0 12px 35px
-        rgba(0,0,0,.35);
-
-      transform:
-        translateY(-2px);
-    }
-
-    .submit:active {
-
-      transform:
-        scale(.97);
-    }
-
-    .submit:disabled {
-
-      opacity: .5;
-
-      cursor:
-        not-allowed;
-
-      transform: none;
-    }
-
-    /* =========================
-       MESSAGE
-    ========================= */
-
-    .message {
-
-      min-height: 22px;
-
-      margin-top: 14px;
-
-      color:
-        rgba(255,255,255,.62);
-
-      font-size: 13px;
-
-      line-height: 1.5;
-
-      text-align: center;
-    }
-
-    .message.error {
-
-      color:
-        #ff8c8c;
-    }
-
-    .message.success {
-
-      color:
-        #8dffa9;
-    }
-
-    /* =========================
-       BACK
-    ========================= */
-
-    .back {
-
-      display: block;
-
-      margin-top: 20px;
-
-      color:
-        rgba(255,255,255,.48);
-
-      font-size: 13px;
-
-      text-align: center;
-
-      transition:
-        color .2s ease;
-    }
-
-    .back:hover {
-
-      color: white;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 420px) {
-
-      body {
-        padding: 14px;
-      }
-
-      .login-box {
-
-        padding: 22px;
-
-        border-radius: 22px;
-      }
-
-      h1 {
-
-        font-size: 27px;
-      }
-
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-
-        animation:
-          none !important;
-
-        transition:
-          none !important;
-      }
-
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
+<title>SAHIL - Login</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:#050505;
+  color:white;
+  font-family:'Geist',Arial,sans-serif;
+}
+
+.login-box{
+  width:100%;
+  max-width:410px;
+  padding:30px 24px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:24px;
+  background:rgba(255,255,255,.07);
+  backdrop-filter:blur(20px);
+  box-shadow:0 25px 80px rgba(0,0,0,.45);
+  animation:show .6s ease both;
+}
+
+@keyframes show{
+  from{
+    opacity:0;
+    transform:translateY(25px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.logo{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.logo svg{
+  width:48px;
+  height:48px;
+  fill:white;
+}
+
+.logo h1{
+  margin:10px 0 0;
+  font-size:28px;
+}
+
+.subtitle{
+  margin:6px 0 25px;
+  text-align:center;
+  color:rgba(255,255,255,.55);
+  font-size:14px;
+}
+
+label{
+  display:block;
+  margin:14px 0 7px;
+  font-size:13px;
+  font-weight:600;
+}
+
+input{
+  width:100%;
+  padding:14px 15px;
+  border:1px solid rgba(255,255,255,.12);
+  outline:none;
+  border-radius:12px;
+  background:rgba(255,255,255,.07);
+  color:white;
+  font-size:15px;
+}
+
+input:focus{
+  border-color:rgba(255,255,255,.35);
+}
+
+input::placeholder{
+  color:rgba(255,255,255,.35);
+}
+
+.login-button{
+  width:100%;
+  margin-top:22px;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  background:white;
+  color:#111;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.login-button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.message{
+  min-height:22px;
+  margin-top:15px;
+  text-align:center;
+  color:rgba(255,255,255,.7);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.back{
+  display:block;
+  margin-top:20px;
+  text-align:center;
+  color:rgba(255,255,255,.55);
+  font-size:13px;
+  text-decoration:none;
+}
+
+.back:hover{
+  color:white;
+}
+</style>
 </head>
 
 <body>
 
-  <main class="login-box">
+<div class="login-box">
 
-    <!-- BRAND -->
+  <div class="logo">
 
-    <div class="brand">
+    <svg viewBox="0 0 256 256">
+      <path d="
+      M128 128
+      C128 198.692 70.692 256 0 256
+      C0 185.308 57.308 128 128 128Z
 
-      <svg
-        class="brand-icon"
-        viewBox="0 0 256 256"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="
-          M128 128
-          C128 198.692 70.692 256 0 256
-          C0 185.308 57.308 128 128 128Z
+      M128 128
+      C198.692 128 256 185.308 256 256
+      C185.308 256 128 198.692 128 128Z
 
-          M128 128
-          C198.692 128 256 185.308 256 256
-          C185.308 256 128 198.692 128 128Z
+      M0 0
+      C70.692 0 128 57.308 128 128
+      C57.308 128 0 70.692 0 0Z
 
-          M0 0
-          C70.692 0 128 57.308 128 128
-          C57.308 128 0 70.692 0 0Z
+      M256 0
+      C256 70.692 198.692 128 128 128
+      C128 57.308 185.308 0 256 0Z"/>
+    </svg>
 
-          M256 0
-          C256 70.692 198.692 128 128 128
-          C128 57.308 185.308 0 256 0Z
-        "/>
-      </svg>
+    <h1>SAHIL</h1>
 
-      <span>nexum</span>
+  </div>
 
-    </div>
+  <p class="subtitle">
+    Login to continue
+  </p>
 
-    <h1 id="title">
-      Welcome back
-    </h1>
+  <form id="loginForm">
 
-    <p class="subtitle" id="subtitle">
-      Login to continue to your offers.
-    </p>
+    <label for="email">
+      Email
+    </label>
 
-    <!-- TABS -->
-
-    <div class="tabs">
-
-      <button
-        class="tab active"
-        id="loginTab"
-        type="button"
-      >
-        Login
-      </button>
-
-      <button
-        class="tab"
-        id="signupTab"
-        type="button"
-      >
-        Sign up
-      </button>
-
-    </div>
-
-    <!-- FORM -->
-
-    <form
-      id="authForm"
-      autocomplete="on"
+    <input
+      id="email"
+      type="email"
+      placeholder="Enter your email"
+      autocomplete="email"
+      required
     >
 
-      <div class="field">
+    <label for="password">
+      Password
+    </label>
 
-        <label for="email">
-          Email
-        </label>
-
-        <input
-          id="email"
-          type="email"
-          placeholder="Enter your email"
-          autocomplete="email"
-          required
-        >
-
-      </div>
-
-      <div class="field">
-
-        <label for="password">
-          Password
-        </label>
-
-        <input
-          id="password"
-          type="password"
-          placeholder="Minimum 6 characters"
-          minlength="6"
-          autocomplete="current-password"
-          required
-        >
-
-      </div>
-
-      <button
-        class="submit"
-        id="submitButton"
-        type="submit"
-      >
-        Login
-      </button>
-
-    </form>
-
-    <div
-      class="message"
-      id="message"
-    ></div>
-
-    <a
-      class="back"
-      href="index.html"
+    <input
+      id="password"
+      type="password"
+      placeholder="Enter your password"
+      autocomplete="current-password"
+      required
     >
-      ← Back to Home
-    </a>
 
-  </main>
+    <button
+      class="login-button"
+      id="loginButton"
+      type="submit"
+    >
+      Login
+    </button>
+
+  </form>
+
+  <div
+    class="message"
+    id="message"
+  ></div>
+
+  <a
+    class="back"
+    href="index.html"
+  >
+    ← Back to Home
+  </a>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+
+<script>
+
+const form =
+  document.getElementById("loginForm");
+
+const button =
+  document.getElementById("loginButton");
+
+const message =
+  document.getElementById("message");
 
 
-  <!-- SUPABASE -->
+function showMessage(text){
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  message.textContent = text;
 
-  <script src="supabase-config.js"></script>
+}
 
 
-  <script>
+/* =========================
+   CHECK EXISTING LOGIN
+========================= */
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
+async function checkExistingSession(){
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .auth
+        .getSession();
+
+    if(error){
+
+      console.error(error);
+      return;
+
+    }
+
+    if(data.session){
+
+      showMessage(
+        "Already logged in. Opening..."
       );
 
-    let mode = "login";
-
-
-    /* =========================
-       ELEMENTS
-    ========================= */
-
-    const loginTab =
-      document.getElementById(
-        "loginTab"
+      window.location.replace(
+        "offer.html"
       );
 
-    const signupTab =
-      document.getElementById(
-        "signupTab"
-      );
+    }
 
-    const title =
-      document.getElementById(
-        "title"
-      );
+  }catch(error){
 
-    const subtitle =
-      document.getElementById(
-        "subtitle"
-      );
+    console.error(error);
+
+  }
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+form.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
 
     const email =
-      document.getElementById(
-        "email"
-      );
+      document
+        .getElementById("email")
+        .value
+        .trim();
 
     const password =
-      document.getElementById(
-        "password"
+      document
+        .getElementById("password")
+        .value;
+
+    if(!email || !password){
+
+      showMessage(
+        "Please enter email and password."
       );
 
-    const submitButton =
-      document.getElementById(
-        "submitButton"
-      );
-
-    const message =
-      document.getElementById(
-        "message"
-      );
-
-
-    /* =========================
-       PREFILL EMAIL
-    ========================= */
-
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
-
-    const emailFromUrl =
-      params.get("email");
-
-    const savedEmail =
-      sessionStorage.getItem(
-        "prefill_email"
-      );
-
-    if (emailFromUrl) {
-
-      email.value =
-        emailFromUrl;
-
-    } else if (savedEmail) {
-
-      email.value =
-        savedEmail;
+      return;
 
     }
 
+    button.disabled = true;
+    button.textContent = "Logging in...";
 
-    /* =========================
-       MESSAGE
-    ========================= */
-
-    function showMessage(
-      text,
-      type = ""
-    ) {
-
-      message.textContent =
-        text;
-
-      message.className =
-        "message " + type;
-
-    }
-
-
-    /* =========================
-       MODE
-    ========================= */
-
-    function setMode(
-      newMode
-    ) {
-
-      mode =
-        newMode;
-
-      const login =
-        mode === "login";
-
-      loginTab.classList.toggle(
-        "active",
-        login
-      );
-
-      signupTab.classList.toggle(
-        "active",
-        !login
-      );
-
-
-      if (login) {
-
-        title.textContent =
-          "Welcome back";
-
-        subtitle.textContent =
-          "Login to continue to your offers.";
-
-        submitButton.textContent =
-          "Login";
-
-        password.autocomplete =
-          "current-password";
-
-      } else {
-
-        title.textContent =
-          "Create your account";
-
-        subtitle.textContent =
-          "Create an account to access offers.";
-
-        submitButton.textContent =
-          "Create account";
-
-        password.autocomplete =
-          "new-password";
-
-      }
-
-      showMessage("");
-
-    }
-
-
-    loginTab.addEventListener(
-      "click",
-      function() {
-
-        setMode("login");
-
-      }
+    showMessage(
+      "Please wait..."
     );
 
+    try{
 
-    signupTab.addEventListener(
-      "click",
-      function() {
-
-        setMode("signup");
-
-      }
-    );
-
-
-    /* =========================
-       ACTIVITY
-    ========================= */
-
-    async function logActivity(
-      userId,
-      action
-    ) {
-
-      try {
-
+      const {
+        data,
+        error
+      } =
         await supabaseClient
-          .from("activity_logs")
-          .insert({
+          .auth
+          .signInWithPassword({
 
-            user_id:
-              userId,
+            email:email,
 
-            action:
-              action,
-
-            offer_id:
-              null,
-
-            page:
-              "login.html",
-
-            metadata:
-              {}
+            password:password
 
           });
 
-      } catch (error) {
 
-        console.log(
-          "Activity log skipped"
+      if(error){
+
+        console.error(error);
+
+        showMessage(
+          "Login failed: " +
+          error.message
         );
+
+        button.disabled = false;
+        button.textContent = "Login";
+
+        return;
 
       }
 
-    }
 
+      if(!data.session){
 
-    /* =========================
-       AUTH
-    ========================= */
+        showMessage(
+          "Login failed. Session তৈরি হয়নি."
+        );
 
-    document
-      .getElementById("authForm")
-      .addEventListener(
-        "submit",
-        async function(event) {
+        button.disabled = false;
+        button.textContent = "Login";
 
-          event.preventDefault();
+        return;
 
-          const userEmail =
-            email.value.trim();
+      }
 
-          const userPassword =
-            password.value;
 
-
-          submitButton.disabled =
-            true;
-
-
-          showMessage(
-            mode === "login"
-              ? "Logging in..."
-              : "Creating account..."
-          );
-
-
-          try {
-
-            let result;
-
-
-            /* LOGIN */
-
-            if (
-              mode === "login"
-            ) {
-
-              result =
-                await supabaseClient
-                  .auth
-                  .signInWithPassword({
-
-                    email:
-                      userEmail,
-
-                    password:
-                      userPassword
-
-                  });
-
-            }
-
-
-            /* SIGN UP */
-
-            else {
-
-              result =
-                await supabaseClient
-                  .auth
-                  .signUp({
-
-                    email:
-                      userEmail,
-
-                    password:
-                      userPassword
-
-                  });
-
-            }
-
-
-            if (result.error) {
-
-              throw result.error;
-
-            }
-
-
-            const user =
-              result.data.user;
-
-
-            /* =====================
-               SIGN UP
-            ===================== */
-
-            if (
-              mode === "signup"
-            ) {
-
-              /*
-                If email confirmation is
-                enabled in Supabase, there
-                will be no active session yet.
-              */
-
-              if (
-                !result.data.session
-              ) {
-
-                showMessage(
-                  "Account created. Please confirm your email if Supabase asks you to.",
-                  "success"
-                );
-
-                return;
-
-              }
-
-            }
-
-
-            /* =====================
-               SESSION CHECK
-            ===================== */
-
-            if (!user) {
-
-              showMessage(
-                "Authentication failed.",
-                "error"
-              );
-
-              return;
-
-            }
-
-
-            await logActivity(
-              user.id,
-              mode === "login"
-                ? "login"
-                : "signup"
-            );
-
-
-            /* =====================
-               REDIRECT
-            ===================== */
-
-            const afterLogin =
-              sessionStorage.getItem(
-                "after_login"
-              );
-
-
-            sessionStorage.removeItem(
-              "prefill_email"
-            );
-
-
-            sessionStorage.removeItem(
-              "after_login"
-            );
-
-
-            showMessage(
-              "Success! Opening offers...",
-              "success"
-            );
-
-
-            setTimeout(
-              function() {
-
-                window.location.href =
-                  afterLogin ||
-                  "offer.html";
-
-              },
-              450
-            );
-
-          } catch (error) {
-
-            console.error(
-              error
-            );
-
-            showMessage(
-              error.message ||
-              "Something went wrong.",
-              "error"
-            );
-
-          } finally {
-
-            submitButton.disabled =
-              false;
-
-          }
-
-        }
+      showMessage(
+        "Login successful! Opening..."
       );
 
 
-    /* =========================
-       TAP SOUND
-    ========================= */
+      /*
+        Supabase automatically stores
+        the session because
+        persistSession=true.
+      */
 
-    let audioContext = null;
+      window.location.replace(
+        "offer.html"
+      );
 
-    function playTapSound() {
 
-      try {
+    }catch(error){
 
-        if (!audioContext) {
+      console.error(error);
 
-          audioContext =
-            new (
-              window.AudioContext ||
-              window.webkitAudioContext
-            )();
+      showMessage(
+        "Something went wrong."
+      );
 
-        }
-
-        const oscillator =
-          audioContext.createOscillator();
-
-        const gain =
-          audioContext.createGain();
-
-        oscillator.type =
-          "sine";
-
-        oscillator.frequency.value =
-          620;
-
-        gain.gain.setValueAtTime(
-          0.0001,
-          audioContext.currentTime
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-          0.035,
-          audioContext.currentTime + 0.008
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-          0.0001,
-          audioContext.currentTime + 0.065
-        );
-
-        oscillator
-          .connect(gain)
-          .connect(
-            audioContext.destination
-          );
-
-        oscillator.start();
-
-        oscillator.stop(
-          audioContext.currentTime +
-          0.07
-        );
-
-      } catch (_) {}
+      button.disabled = false;
+      button.textContent = "Login";
 
     }
 
+  }
+);
 
-    document.addEventListener(
-      "pointerdown",
-      function(event) {
 
-        if (
-          event.target.closest(
-            "button, a"
-          )
-        ) {
+/* START */
 
-          playTapSound();
+checkExistingSession();
 
-        }
-
-      },
-      {
-        passive: true
-      }
-    );
-
-  </script>
+</script>
 
 </body>
 </html>
