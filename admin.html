@@ -102,18 +102,21 @@
       color: white;
     }
 
-    .offer-item {
+    .offer-item,
+    .activity-item {
       border: 1px solid #e5e7eb;
       padding: 15px;
       border-radius: 12px;
       margin-bottom: 12px;
     }
 
-    .offer-item h3 {
+    .offer-item h3,
+    .activity-item h3 {
       margin-bottom: 7px;
     }
 
-    .offer-item p {
+    .offer-item p,
+    .activity-item p {
       color: #666;
       font-size: 14px;
       line-height: 1.5;
@@ -177,18 +180,17 @@
       padding: 15px;
     }
 
-    .activity-item {
-      border: 1px solid #e5e7eb;
-      padding: 15px;
-      border-radius: 12px;
-      margin-bottom: 12px;
-      background: #fafafa;
+    .refresh-activity {
+      width: 100%;
+      margin-bottom: 15px;
+      background: #e5e7eb;
+      color: #111;
     }
 
     .activity-action {
       display: inline-block;
-      margin-bottom: 8px;
-      padding: 5px 9px;
+      margin-bottom: 10px;
+      padding: 6px 10px;
       border-radius: 999px;
       background: #111827;
       color: white;
@@ -199,14 +201,17 @@
     .activity-time {
       color: #777;
       font-size: 12px;
-      margin-top: 8px;
+      margin-top: 10px;
     }
 
-    .refresh-activity {
-      width: 100%;
-      margin-bottom: 15px;
-      background: #e5e7eb;
-      color: #111;
+    .user-email {
+      color: #111827;
+      font-weight: bold;
+    }
+
+    .offer-name {
+      color: #111827;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -224,9 +229,13 @@
 
   <section class="section">
 
-    <h2 id="formTitle">➕ Add New Offer</h2>
+    <h2 id="formTitle">
+      ➕ Add New Offer
+    </h2>
 
-    <input type="hidden" id="editId">
+    <input
+      type="hidden"
+      id="editId">
 
     <label>Offer Name</label>
 
@@ -403,9 +412,8 @@ async function checkAdmin() {
       user
     }
   } =
-    await supabaseClient
-      .auth
-      .getUser();
+    await supabaseClient.auth.getUser();
+
 
   if (!user) {
 
@@ -415,19 +423,19 @@ async function checkAdmin() {
     return false;
   }
 
+
   if (user.id !== ADMIN_UUID) {
 
     alert("Access denied.");
 
-    await supabaseClient
-      .auth
-      .signOut();
+    await supabaseClient.auth.signOut();
 
     window.location.href =
       "admin-login.html";
 
     return false;
   }
+
 
   return true;
 }
@@ -444,10 +452,12 @@ async function loadOffers() {
 
   if (!allowed) return;
 
+
   const offerList =
     document.getElementById(
       "offerList"
     );
+
 
   const {
     data,
@@ -475,10 +485,7 @@ async function loadOffers() {
   }
 
 
-  if (
-    !data ||
-    data.length === 0
-  ) {
+  if (!data || data.length === 0) {
 
     offerList.innerHTML =
       "<div class='loading'>No offers found.</div>";
@@ -496,6 +503,7 @@ async function loadOffers() {
       document.createElement(
         "div"
       );
+
 
     item.className =
       "offer-item";
@@ -516,6 +524,7 @@ async function loadOffers() {
           : ""
       }
 
+
       <h3>
         ${escapeHtml(
           offer.title ||
@@ -523,12 +532,14 @@ async function loadOffers() {
         )}
       </h3>
 
+
       <p>
         ${escapeHtml(
           offer.description ||
           ""
         )}
       </p>
+
 
       <span class="status ${
         offer.status === "active"
@@ -542,6 +553,7 @@ async function loadOffers() {
         )}
 
       </span>
+
 
       <div class="actions">
 
@@ -587,9 +599,7 @@ async function loadOffers() {
     `;
 
 
-    offerList.appendChild(
-      item
-    );
+    offerList.appendChild(item);
 
   });
 
@@ -610,53 +620,41 @@ async function saveOffer() {
 
   const name =
     document
-      .getElementById(
-        "offerName"
-      )
+      .getElementById("offerName")
       .value
       .trim();
 
 
   const description =
     document
-      .getElementById(
-        "offerDescription"
-      )
+      .getElementById("offerDescription")
       .value
       .trim();
 
 
   const image =
     document
-      .getElementById(
-        "offerImage"
-      )
+      .getElementById("offerImage")
       .value
       .trim();
 
 
   const link =
     document
-      .getElementById(
-        "offerLink"
-      )
+      .getElementById("offerLink")
       .value
       .trim();
 
 
   const status =
     document
-      .getElementById(
-        "offerStatus"
-      )
+      .getElementById("offerStatus")
       .value;
 
 
   const editId =
     document
-      .getElementById(
-        "editId"
-      )
+      .getElementById("editId")
       .value;
 
 
@@ -698,9 +696,7 @@ async function saveOffer() {
     result =
       await supabaseClient
         .from("offers")
-        .update(
-          offerData
-        )
+        .update(offerData)
         .eq(
           "id",
           editId
@@ -783,77 +779,58 @@ async function editOffer(id) {
   }
 
 
-  document
-    .getElementById(
-      "editId"
-    )
-    .value =
-      data.id;
+  document.getElementById(
+    "editId"
+  ).value =
+    data.id;
 
 
-  document
-    .getElementById(
-      "offerName"
-    )
-    .value =
-      data.title || "";
+  document.getElementById(
+    "offerName"
+  ).value =
+    data.title || "";
 
 
-  document
-    .getElementById(
-      "offerDescription"
-    )
-    .value =
-      data.description || "";
+  document.getElementById(
+    "offerDescription"
+  ).value =
+    data.description || "";
 
 
-  document
-    .getElementById(
-      "offerImage"
-    )
-    .value =
-      data.image_url || "";
+  document.getElementById(
+    "offerImage"
+  ).value =
+    data.image_url || "";
 
 
-  document
-    .getElementById(
-      "offerLink"
-    )
-    .value =
-      data.offer_url || "";
+  document.getElementById(
+    "offerLink"
+  ).value =
+    data.offer_url || "";
 
 
-  document
-    .getElementById(
-      "offerStatus"
-    )
-    .value =
-      data.status || "active";
+  document.getElementById(
+    "offerStatus"
+  ).value =
+    data.status || "active";
 
 
-  document
-    .getElementById(
-      "formTitle"
-    )
-    .textContent =
-      "✏️ Edit Offer";
+  document.getElementById(
+    "formTitle"
+  ).textContent =
+    "✏️ Edit Offer";
 
 
-  document
-    .getElementById(
-      "saveButton"
-    )
-    .textContent =
-      "Update Offer";
+  document.getElementById(
+    "saveButton"
+  ).textContent =
+    "Update Offer";
 
 
-  document
-    .getElementById(
-      "cancelButton"
-    )
-    .style
-    .display =
-      "block";
+  document.getElementById(
+    "cancelButton"
+  ).style.display =
+    "block";
 
 
   window.scrollTo({
@@ -874,72 +851,53 @@ async function editOffer(id) {
 
 function cancelEdit() {
 
-  document
-    .getElementById(
-      "editId"
-    )
-    .value = "";
+  document.getElementById(
+    "editId"
+  ).value = "";
 
 
-  document
-    .getElementById(
-      "offerName"
-    )
-    .value = "";
+  document.getElementById(
+    "offerName"
+  ).value = "";
 
 
-  document
-    .getElementById(
-      "offerDescription"
-    )
-    .value = "";
+  document.getElementById(
+    "offerDescription"
+  ).value = "";
 
 
-  document
-    .getElementById(
-      "offerImage"
-    )
-    .value = "";
+  document.getElementById(
+    "offerImage"
+  ).value = "";
 
 
-  document
-    .getElementById(
-      "offerLink"
-    )
-    .value = "";
+  document.getElementById(
+    "offerLink"
+  ).value = "";
 
 
-  document
-    .getElementById(
-      "offerStatus"
-    )
-    .value =
-      "active";
+  document.getElementById(
+    "offerStatus"
+  ).value =
+    "active";
 
 
-  document
-    .getElementById(
-      "formTitle"
-    )
-    .textContent =
-      "➕ Add New Offer";
+  document.getElementById(
+    "formTitle"
+  ).textContent =
+    "➕ Add New Offer";
 
 
-  document
-    .getElementById(
-      "saveButton"
-    )
-    .textContent =
-      "Save Offer";
+  document.getElementById(
+    "saveButton"
+  ).textContent =
+    "Save Offer";
 
 
-  document
-    .getElementById(
-      "cancelButton"
-    )
-    .style
-    .display =
-      "none";
+  document.getElementById(
+    "cancelButton"
+  ).style.display =
+    "none";
 
 }
 
@@ -971,10 +929,8 @@ async function toggleOffer(
     await supabaseClient
       .from("offers")
       .update({
-
         status:
           newStatus
-
       })
       .eq(
         "id",
@@ -1083,7 +1039,13 @@ async function loadUserActivity() {
         offer_id,
         page,
         metadata,
-        created_at
+        created_at,
+        profiles:user_id (
+          email
+        ),
+        offers:offer_id (
+          title
+        )
       `)
       .order(
         "created_at",
@@ -1100,11 +1062,15 @@ async function loadUserActivity() {
 
     activityList.innerHTML = `
       <div class="loading">
-        Unable to load user activity.
+
+        Unable to load activity.
+
         <br><br>
+
         ${escapeHtml(
           error.message
         )}
+
       </div>
     `;
 
@@ -1112,10 +1078,7 @@ async function loadUserActivity() {
   }
 
 
-  if (
-    !data ||
-    data.length === 0
-  ) {
+  if (!data || data.length === 0) {
 
     activityList.innerHTML = `
       <div class="loading">
@@ -1130,115 +1093,107 @@ async function loadUserActivity() {
   activityList.innerHTML = "";
 
 
-  data.forEach(
-    function(activity) {
+  data.forEach(function(activity) {
 
-      const item =
-        document.createElement(
-          "div"
-        );
-
-
-      item.className =
-        "activity-item";
-
-
-      const date =
-        activity.created_at
-          ? new Date(
-              activity.created_at
-            ).toLocaleString()
-          : "Unknown";
-
-
-      let metadataText = "";
-
-
-      if (
-        activity.metadata &&
-        Object.keys(
-          activity.metadata
-        ).length > 0
-      ) {
-
-        metadataText =
-          JSON.stringify(
-            activity.metadata
-          );
-
-      }
-
-
-      item.innerHTML = `
-
-        <div class="activity-action">
-
-          ${escapeHtml(
-            activity.action ||
-            "Unknown Action"
-          )}
-
-        </div>
-
-
-        <p>
-          <strong>👤 User ID:</strong><br>
-          ${escapeHtml(
-            activity.user_id ||
-            "Unknown"
-          )}
-        </p>
-
-
-        <p>
-          <strong>🎁 Offer ID:</strong><br>
-          ${escapeHtml(
-            activity.offer_id ||
-            "—"
-          )}
-        </p>
-
-
-        <p>
-          <strong>📄 Page:</strong>
-          ${escapeHtml(
-            activity.page ||
-            "—"
-          )}
-        </p>
-
-
-        ${
-          metadataText
-            ? `
-              <p>
-                <strong>ℹ️ Details:</strong><br>
-                ${escapeHtml(
-                  metadataText
-                )}
-              </p>
-            `
-            : ""
-        }
-
-
-        <div class="activity-time">
-
-          🕒 ${escapeHtml(
-            date
-          )}
-
-        </div>
-
-      `;
-
-
-      activityList.appendChild(
-        item
+    const item =
+      document.createElement(
+        "div"
       );
 
-    }
-  );
+
+    item.className =
+      "activity-item";
+
+
+    const email =
+      activity.profiles?.email ||
+      "Unknown user";
+
+
+    const offerName =
+      activity.offers?.title ||
+      "Unknown offer";
+
+
+    const date =
+      activity.created_at
+        ? new Date(
+            activity.created_at
+          ).toLocaleString()
+        : "Unknown";
+
+
+    item.innerHTML = `
+
+      <div class="activity-action">
+
+        ⚡ ${escapeHtml(
+          activity.action ||
+          "Unknown Action"
+        )}
+
+      </div>
+
+
+      <h3>
+        👤
+        <span class="user-email">
+          ${escapeHtml(email)}
+        </span>
+      </h3>
+
+
+      <p>
+
+        🎁 <strong>Offer:</strong>
+
+        <span class="offer-name">
+          ${escapeHtml(
+            offerName
+          )}
+        </span>
+
+      </p>
+
+
+      <p>
+
+        📄 <strong>Page:</strong>
+
+        ${escapeHtml(
+          activity.page ||
+          "—"
+        )}
+
+      </p>
+
+
+      <p>
+
+        🆔 <strong>User ID:</strong>
+
+        ${escapeHtml(
+          activity.user_id ||
+          "—"
+        )}
+
+      </p>
+
+
+      <div class="activity-time">
+
+        🕒 ${escapeHtml(date)}
+
+      </div>
+
+    `;
+
+
+    activityList.appendChild(
+      item
+    );
+
+  });
 
 }
 
@@ -1277,18 +1232,14 @@ async function logout() {
    MESSAGE
 ========================= */
 
-function showMessage(
-  text
-) {
+function showMessage(text) {
 
-  document
-    .getElementById(
-      "message"
-    )
-    .innerHTML =
-      `<div class="message">${
-        escapeHtml(text)
-      }</div>`;
+  document.getElementById(
+    "message"
+  ).innerHTML =
+    `<div class="message">${
+      escapeHtml(text)
+    }</div>`;
 
 }
 
@@ -1297,19 +1248,15 @@ function showMessage(
    HTML ESCAPE
 ========================= */
 
-function escapeHtml(
-  text
-) {
+function escapeHtml(text) {
 
   const div =
     document.createElement(
       "div"
     );
 
-
   div.textContent =
     text ?? "";
-
 
   return div.innerHTML;
 
