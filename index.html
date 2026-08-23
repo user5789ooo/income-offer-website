@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
@@ -10,14 +11,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&display=swap"
+rel="stylesheet">
 
 <style>
+
 *{
   box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
   margin:0;
   width:100%;
   min-height:100%;
@@ -36,9 +41,15 @@ a{
   text-decoration:none;
 }
 
-button,input{
+button,
+input{
   font:inherit;
 }
+
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
   position:relative;
@@ -61,8 +72,15 @@ button,input{
 }
 
 @keyframes videoZoom{
-  from{transform:scale(1.02)}
-  to{transform:scale(1.08)}
+
+  from{
+    transform:scale(1.02);
+  }
+
+  to{
+    transform:scale(1.08);
+  }
+
 }
 
 .hero::before{
@@ -70,6 +88,7 @@ button,input{
   position:absolute;
   inset:0;
   z-index:-2;
+
   background:
     linear-gradient(
       to bottom,
@@ -84,6 +103,7 @@ button,input{
   position:absolute;
   inset:0;
   z-index:-1;
+
   background:
     linear-gradient(
       to bottom,
@@ -95,26 +115,35 @@ button,input{
 .hero-content{
   position:relative;
   z-index:5;
+
   min-height:100vh;
   min-height:100svh;
+
   display:flex;
   flex-direction:column;
 }
 
-/* NAV */
+
+/* =========================
+   NAV
+========================= */
 
 .nav{
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   padding:20px;
 }
 
 .brand{
   display:inline-flex;
   align-items:center;
+
   gap:8px;
+
   color:#050505;
+
   font-size:20px;
   font-weight:700;
 }
@@ -122,11 +151,13 @@ button,input{
 .brand svg{
   width:27px;
   height:27px;
+
   fill:#050505;
 }
 
 .desktop-nav{
   display:none;
+
   align-items:center;
   gap:12px;
 }
@@ -134,18 +165,26 @@ button,input{
 .nav-pill{
   display:flex;
   align-items:center;
+
   gap:3px;
   padding:6px;
+
   border-radius:999px;
+
   background:rgba(0,0,0,.20);
+
   backdrop-filter:blur(16px);
 }
 
 .nav-link{
   padding:8px 15px;
+
   border-radius:999px;
+
   color:rgba(255,255,255,.9);
+
   font-size:14px;
+
   transition:.25s;
 }
 
@@ -155,58 +194,93 @@ button,input{
 
 .cta{
   display:inline-flex;
+
   align-items:center;
   justify-content:center;
+
   padding:11px 20px;
+
   border-radius:999px;
+  border:0;
+
   background:#111;
   color:white;
+
   font-size:14px;
   font-weight:600;
-  border:0;
+
   cursor:pointer;
+
   transition:.25s;
 }
 
 .cta:hover{
   transform:translateY(-2px);
-  box-shadow:0 10px 30px rgba(0,0,0,.3);
+
+  box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.3);
 }
 
-/* PROFILE BUTTON */
+
+/* =========================
+   PROFILE BUTTON
+========================= */
 
 .profile-button{
   display:none;
+
   align-items:center;
   gap:7px;
+
   padding:10px 15px;
+
   border-radius:999px;
+
   background:rgba(0,0,0,.28);
+
   color:white;
-  border:1px solid rgba(255,255,255,.15);
+
+  border:
+    1px solid
+    rgba(255,255,255,.15);
+
   cursor:pointer;
+
   font-size:13px;
 }
 
-/* MOBILE */
+
+/* =========================
+   MOBILE MENU
+========================= */
 
 .menu-button{
   display:flex;
+
   align-items:center;
   justify-content:center;
+
   width:42px;
   height:42px;
+
   border:0;
   border-radius:50%;
-  background:rgba(255,255,255,.18);
+
+  background:
+    rgba(255,255,255,.18);
+
   color:#050505;
+
   backdrop-filter:blur(15px);
+
   cursor:pointer;
 }
 
 .menu-button svg{
   width:21px;
   height:21px;
+
   position:absolute;
 }
 
@@ -227,12 +301,20 @@ button,input{
 
 .mobile-backdrop{
   position:fixed;
+
   inset:0;
+
   z-index:40;
-  background:rgba(0,0,0,.72);
+
+  background:
+    rgba(0,0,0,.72);
+
   backdrop-filter:blur(8px);
+
   opacity:0;
+
   pointer-events:none;
+
   transition:.3s;
 }
 
@@ -243,15 +325,26 @@ button,input{
 
 .mobile-drawer{
   position:fixed;
+
   right:0;
   top:0;
+
   z-index:50;
+
   width:290px;
   height:100%;
-  background:rgba(8,8,8,.94);
+
+  background:
+    rgba(8,8,8,.94);
+
   backdrop-filter:blur(25px);
-  transform:translateX(100%);
-  transition:.45s cubic-bezier(.16,1,.3,1);
+
+  transform:
+    translateX(100%);
+
+  transition:
+    .45s cubic-bezier(.16,1,.3,1);
+
   padding-top:80px;
 }
 
@@ -261,118 +354,196 @@ button,input{
 
 .mobile-links{
   display:flex;
+
   flex-direction:column;
+
   gap:8px;
-  padding:20px 24px;
+
+  padding:
+    20px 24px;
 }
 
 .mobile-link{
   padding:15px;
+
   border-radius:12px;
+
   color:white;
+
   font-size:16px;
-  background:rgba(255,255,255,.05);
+
+  background:
+    rgba(255,255,255,.05);
 }
 
 .mobile-link:hover{
-  background:rgba(255,255,255,.12);
+  background:
+    rgba(255,255,255,.12);
 }
 
 .mobile-cta-wrap{
-  padding:20px 24px;
+  padding:
+    20px 24px;
 }
 
 .mobile-cta-wrap .cta{
   width:100%;
 }
 
-/* MAIN */
+
+/* =========================
+   MAIN
+========================= */
 
 .main{
   width:100%;
+
   margin-top:auto;
-  padding:0 20px 35px;
+
+  padding:
+    0 20px 35px;
+
   display:flex;
+
   flex-direction:column;
+
   gap:25px;
 }
 
 .hero-left{
   max-width:620px;
-  animation:heroText 1s .15s both cubic-bezier(.16,1,.3,1);
+
+  animation:
+    heroText
+    1s
+    .15s
+    both
+    cubic-bezier(.16,1,.3,1);
 }
 
 @keyframes heroText{
+
   from{
     opacity:0;
-    transform:translateY(35px);
+
+    transform:
+      translateY(35px);
   }
+
   to{
     opacity:1;
-    transform:translateY(0);
+
+    transform:
+      translateY(0);
   }
+
 }
 
 .eyebrow{
   display:flex;
+
   align-items:center;
+
   gap:8px;
+
   margin-bottom:12px;
+
   color:#111;
+
   font-size:12px;
+
   font-weight:700;
+
   letter-spacing:.08em;
+
   text-transform:uppercase;
 }
 
 .eyebrow-dot{
   width:7px;
   height:7px;
+
   border-radius:50%;
+
   background:#111;
-  animation:pulse 1.8s infinite;
+
+  animation:
+    pulse
+    1.8s
+    infinite;
 }
 
 @keyframes pulse{
+
   50%{
     transform:scale(1.5);
     opacity:.6;
   }
+
 }
 
 h1{
   margin:0;
+
   color:#050505;
-  font-size:clamp(2.2rem,8vw,4rem);
+
+  font-size:
+    clamp(
+      2.2rem,
+      8vw,
+      4rem
+    );
+
   line-height:1.05;
+
   letter-spacing:-.05em;
 }
 
 .hero-description{
-  margin:15px 0 0;
+  margin:
+    15px 0 0;
+
   max-width:500px;
-  color:rgba(0,0,0,.7);
+
+  color:
+    rgba(0,0,0,.7);
+
   font-size:14px;
+
   line-height:1.6;
 }
 
-/* EMAIL */
+
+/* =========================
+   EMAIL
+========================= */
 
 .email-cta{
   display:flex;
+
   flex-direction:column;
+
   gap:10px;
+
   margin-top:22px;
+
   max-width:430px;
 }
 
 .email-input{
   width:100%;
-  padding:14px 20px;
+
+  padding:
+    14px 20px;
+
   border:0;
+
   outline:0;
+
   border-radius:999px;
+
   background:white;
+
   color:#111;
 }
 
@@ -380,37 +551,72 @@ h1{
   width:100%;
 }
 
-/* PROFILE */
+
+/* =========================
+   PROFILE PANEL
+========================= */
 
 .profile-panel{
   display:none;
+
   position:fixed;
+
   top:75px;
   right:20px;
+
   z-index:100;
-  width:min(340px,calc(100% - 40px));
+
+  width:
+    min(
+      340px,
+      calc(100% - 40px)
+    );
+
   padding:20px;
+
   border-radius:20px;
-  background:rgba(10,10,10,.94);
-  border:1px solid rgba(255,255,255,.12);
+
+  background:
+    rgba(10,10,10,.94);
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
   backdrop-filter:blur(25px);
-  box-shadow:0 25px 70px rgba(0,0,0,.5);
+
+  box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.5);
 }
 
 .profile-panel.show{
   display:block;
-  animation:profileIn .3s ease;
+
+  animation:
+    profileIn
+    .3s
+    ease;
 }
 
 @keyframes profileIn{
+
   from{
     opacity:0;
-    transform:translateY(-10px) scale(.97);
+
+    transform:
+      translateY(-10px)
+      scale(.97);
   }
+
   to{
     opacity:1;
-    transform:translateY(0) scale(1);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
+
 }
 
 .profile-title{
@@ -420,37 +626,64 @@ h1{
 
 .profile-email{
   margin-top:6px;
-  color:rgba(255,255,255,.5);
+
+  color:
+    rgba(255,255,255,.5);
+
   font-size:12px;
+
   word-break:break-all;
 }
 
 .profile-actions{
   display:flex;
+
   flex-direction:column;
+
   gap:9px;
+
   margin-top:18px;
 }
 
 .profile-action{
   display:block;
+
   width:100%;
-  padding:12px 14px;
+
+  padding:
+    12px 14px;
+
   border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(255,255,255,.06);
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  background:
+    rgba(255,255,255,.06);
+
   color:white;
+
   text-align:left;
+
   cursor:pointer;
 }
 
 .profile-action:hover{
-  background:rgba(255,255,255,.12);
+  background:
+    rgba(255,255,255,.12);
 }
 
 .telegram-banner{
   margin-top:12px;
-  background:linear-gradient(135deg,#229ed9,#147bb0);
+
+  background:
+    linear-gradient(
+      135deg,
+      #229ed9,
+      #147bb0
+    );
+
   border:0;
 }
 
@@ -458,23 +691,40 @@ h1{
   color:#ff8f8f;
 }
 
-/* TELEGRAM */
+
+/* =========================
+   TELEGRAM
+========================= */
 
 .telegram-card{
   display:none;
+
   max-width:430px;
+
   margin-top:14px;
-  padding:14px 16px;
+
+  padding:
+    14px 16px;
+
   border-radius:15px;
-  background:rgba(0,0,0,.28);
-  border:1px solid rgba(255,255,255,.15);
+
+  background:
+    rgba(0,0,0,.28);
+
+  border:
+    1px solid
+    rgba(255,255,255,.15);
+
   backdrop-filter:blur(15px);
 }
 
 .telegram-card.show{
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   gap:12px;
 }
 
@@ -484,37 +734,67 @@ h1{
 
 .telegram-text small{
   display:block;
+
   margin-top:3px;
-  color:rgba(255,255,255,.55);
+
+  color:
+    rgba(255,255,255,.55);
 }
 
 .telegram-button{
   flex-shrink:0;
-  padding:9px 13px;
+
+  padding:
+    9px 13px;
+
   border-radius:999px;
+
   background:#229ed9;
+
   color:white;
+
   font-size:12px;
+
   font-weight:700;
 }
 
-/* CARDS */
+
+/* =========================
+   CARDS
+========================= */
 
 .cards{
   display:flex;
+
   flex-direction:column;
+
   gap:14px;
 }
 
 .glass-card{
   width:100%;
+
   padding:20px;
+
   border-radius:18px;
-  background:rgba(255,255,255,.16);
-  border:1px solid rgba(255,255,255,.16);
+
+  background:
+    rgba(255,255,255,.16);
+
+  border:
+    1px solid
+    rgba(255,255,255,.16);
+
   backdrop-filter:blur(18px);
-  box-shadow:0 15px 50px rgba(0,0,0,.2);
-  animation:cardIn .8s both;
+
+  box-shadow:
+    0 15px 50px
+    rgba(0,0,0,.2);
+
+  animation:
+    cardIn
+    .8s
+    both;
 }
 
 .glass-card:nth-child(2){
@@ -522,94 +802,142 @@ h1{
 }
 
 @keyframes cardIn{
+
   from{
     opacity:0;
-    transform:translateY(25px) scale(.97);
+
+    transform:
+      translateY(25px)
+      scale(.97);
   }
+
   to{
     opacity:1;
-    transform:translateY(0) scale(1);
+
+    transform:
+      translateY(0)
+      scale(1);
   }
+
 }
 
 .stats-number{
-  font-family:'Silkscreen',cursive;
+  font-family:
+    'Silkscreen',
+    cursive;
+
   font-size:32px;
+
   color:#050505;
 }
 
 .stats-body{
   margin-top:12px;
-  color:rgba(0,0,0,.7);
+
+  color:
+    rgba(0,0,0,.7);
+
   font-size:14px;
+
   line-height:1.5;
 }
 
 .testimonial-header{
   display:flex;
+
   align-items:center;
+
   gap:8px;
+
   margin-bottom:12px;
 }
 
 .stratify-icon{
   width:25px;
   height:25px;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
+
   border-radius:6px;
+
   background:#050505;
+
   color:white;
+
   font-size:12px;
+
   font-weight:bold;
 }
 
 .stratify-name{
   color:#050505;
+
   font-size:14px;
+
   font-weight:700;
 }
 
 .quote{
   margin:0;
-  color:rgba(0,0,0,.8);
+
+  color:
+    rgba(0,0,0,.8);
+
   font-size:14px;
+
   line-height:1.55;
 }
 
 .testimonial-footer{
   display:flex;
+
   align-items:center;
+
   gap:10px;
+
   margin-top:18px;
 }
 
 .avatar{
   width:36px;
   height:36px;
+
   border-radius:50%;
-  background:rgba(255,255,255,.25);
+
+  background:
+    rgba(255,255,255,.25);
 }
 
 .person-name{
   color:#050505;
+
   font-size:14px;
+
   font-weight:700;
 }
 
 .person-role{
   margin-top:2px;
-  color:rgba(0,0,0,.55);
+
+  color:
+    rgba(0,0,0,.55);
+
   font-size:12px;
 }
 
-/* DESKTOP */
+
+/* =========================
+   DESKTOP
+========================= */
 
 @media(min-width:768px){
 
   .nav{
-    padding:25px 40px;
+    padding:
+      25px 40px;
   }
 
   .desktop-nav{
@@ -627,7 +955,8 @@ h1{
   }
 
   .main{
-    padding:0 40px 50px;
+    padding:
+      0 40px 50px;
   }
 
   .hero-description{
@@ -655,20 +984,24 @@ h1{
   }
 
   .stats-body{
-    color:rgba(255,255,255,.7);
+    color:
+      rgba(255,255,255,.7);
   }
 
   .quote{
-    color:rgba(255,255,255,.8);
+    color:
+      rgba(255,255,255,.8);
   }
 
   .person-role{
-    color:rgba(255,255,255,.6);
+    color:
+      rgba(255,255,255,.6);
   }
 
   .profile-button{
     display:inline-flex;
   }
+
 }
 
 @media(min-width:1024px){
@@ -680,9 +1013,13 @@ h1{
 
   .main{
     flex-direction:row;
+
     align-items:flex-end;
+
     justify-content:space-between;
-    padding:0 48px 65px;
+
+    padding:
+      0 48px 65px;
   }
 
   h1{
@@ -692,6 +1029,7 @@ h1{
   .cards{
     gap:20px;
   }
+
 }
 
 @media(max-width:767px){
@@ -699,6 +1037,7 @@ h1{
   .profile-button{
     display:none;
   }
+
 }
 
 @media(max-width:420px){
@@ -714,9 +1053,23 @@ h1{
   .glass-card{
     padding:18px;
   }
+
 }
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+  }
+
+}
+
 </style>
 </head>
+
 
 <body>
 
@@ -730,50 +1083,74 @@ h1{
   playsinline
   preload="auto"
 >
+
 <source
 src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260803_192301_9231ed6b-c55c-4a48-909c-4ebe11cf2e11.mp4"
 type="video/mp4">
+
 </video>
+
 
 <div class="hero-content">
 
+
+<!-- NAV -->
+
 <nav class="nav">
 
-<a class="brand" href="index.html">
+<a
+class="brand"
+href="index.html"
+>
 
 <svg viewBox="0 0 256 256">
+
 <path d="
 M128 128
 C128 198.692 70.692 256 0 256
 C0 185.308 57.308 128 128 128Z
+
 M128 128
 C198.692 128 256 185.308 256 256
 C185.308 256 128 198.692 128 128Z
+
 M0 0
 C70.692 0 128 57.308 128 128
 C57.308 128 0 70.692 0 0Z
+
 M256 0
 C256 70.692 198.692 128 128 128
-C128 57.308 185.308 0 256 0Z"/>
+C128 57.308 185.308 0 256 0Z"
+/>
+
 </svg>
 
 <span>SAHIL</span>
 
 </a>
 
+
 <div class="desktop-nav">
+
 
 <div class="nav-pill">
 
-<a class="nav-link" href="offer.html">
+<a
+class="nav-link"
+href="offer.html"
+>
 Offers
 </a>
 
-<a class="nav-link" href="history.html">
+<a
+class="nav-link"
+href="history.html"
+>
 My History
 </a>
 
 </div>
+
 
 <button
 class="profile-button"
@@ -783,6 +1160,7 @@ type="button"
 👤 My Profile
 </button>
 
+
 <a
 class="cta"
 id="loginLink"
@@ -791,7 +1169,9 @@ href="login.html"
 Login / Sign up
 </a>
 
+
 </div>
+
 
 <button
 class="menu-button"
@@ -807,8 +1187,11 @@ fill="none"
 stroke="currentColor"
 stroke-width="2"
 >
+
 <path d="M4 6h16M4 12h16M4 18h16"/>
+
 </svg>
+
 
 <svg
 class="close-icon"
@@ -817,7 +1200,9 @@ fill="none"
 stroke="currentColor"
 stroke-width="2"
 >
+
 <path d="M6 6l12 12M18 6L6 18"/>
+
 </svg>
 
 </button>
@@ -825,11 +1210,15 @@ stroke-width="2"
 </nav>
 
 
+<!-- MOBILE BACKDROP -->
+
 <div
 class="mobile-backdrop"
 id="mobileBackdrop"
 ></div>
 
+
+<!-- MOBILE DRAWER -->
 
 <div
 class="mobile-drawer"
@@ -838,15 +1227,24 @@ id="mobileDrawer"
 
 <div class="mobile-links">
 
-<a class="mobile-link" href="offer.html">
+<a
+class="mobile-link"
+href="offer.html"
+>
 🎁 Offers
 </a>
 
-<a class="mobile-link" href="history.html">
+<a
+class="mobile-link"
+href="history.html"
+>
 📜 My History
 </a>
 
-<a class="mobile-link" href="help.html">
+<a
+class="mobile-link"
+href="help.html"
+>
 ❓ Help
 </a>
 
@@ -868,9 +1266,13 @@ href="login.html"
 
 </div>
 
+
 <div class="mobile-cta-wrap">
 
-<a class="cta" href="offer.html">
+<a
+class="cta"
+href="offer.html"
+>
 View Offers
 </a>
 
@@ -890,6 +1292,7 @@ id="profilePanel"
 My Profile
 </div>
 
+
 <div
 class="profile-email"
 id="profileEmail"
@@ -897,7 +1300,9 @@ id="profileEmail"
 Loading...
 </div>
 
+
 <div class="profile-actions">
+
 
 <a
 class="profile-action"
@@ -905,6 +1310,7 @@ href="history.html"
 >
 📜 View My History
 </a>
+
 
 <a
 class="profile-action telegram-banner"
@@ -915,6 +1321,7 @@ rel="noopener"
 📢 Join My Telegram Channel
 </a>
 
+
 <button
 class="profile-action logout"
 id="logoutButton"
@@ -923,35 +1330,48 @@ type="button"
 🚪 Logout
 </button>
 
-</div>
 
 </div>
 
+</div>
+
+
+<!-- MAIN -->
 
 <main class="main">
 
+
 <div class="hero-left">
+
 
 <div class="eyebrow">
 
 <span class="eyebrow-dot"></span>
 
-<span>Live Income Offers</span>
+<span>
+Live Income Offers
+</span>
 
 </div>
+
 
 <h1>
 Discover offers worth opening.
 </h1>
 
+
 <p class="hero-description">
+
 Browse the latest active offers,
 rewards and opportunities.
 Open an offer to see the complete details.
+
 </p>
 
 
-<div class="email-cta">
+<div
+class="email-cta"
+>
 
 <input
 class="email-input"
@@ -960,6 +1380,7 @@ type="email"
 placeholder="Enter your email"
 autocomplete="email"
 >
+
 
 <button
 class="cta"
@@ -971,6 +1392,8 @@ Get Started
 
 </div>
 
+
+<!-- TELEGRAM -->
 
 <div
 class="telegram-card"
@@ -987,6 +1410,7 @@ Get the latest offers and updates.
 
 </div>
 
+
 <a
 class="telegram-button"
 href="https://t.me/IncomeOffersOfficia"
@@ -998,10 +1422,14 @@ Join
 
 </div>
 
+
 </div>
 
 
+<!-- CARDS -->
+
 <div class="cards">
+
 
 <div class="glass-card">
 
@@ -1010,8 +1438,10 @@ Join
 </div>
 
 <div class="stats-body">
+
 New opportunities and active offers
 are available whenever you need them.
+
 </div>
 
 </div>
@@ -1031,14 +1461,19 @@ SAHIL
 
 </div>
 
+
 <p class="quote">
+
 "Simple, fast and easy to explore
 the latest opportunities."
+
 </p>
+
 
 <div class="testimonial-footer">
 
 <div class="avatar"></div>
+
 
 <div>
 
@@ -1058,6 +1493,7 @@ Community Member
 
 </div>
 
+
 </main>
 
 </div>
@@ -1067,17 +1503,31 @@ Community Member
 
 <!-- SUPABASE -->
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
 <script src="supabase-config.js"></script>
 
 
 <script>
 
+/* =========================
+   SUPABASE CLIENT
+========================= */
+
 const supabaseClient =
 window.supabase.createClient(
   SUPABASE_URL,
-  SUPABASE_ANON_KEY
+  SUPABASE_ANON_KEY,
+  {
+    auth:{
+      persistSession:true,
+      autoRefreshToken:true,
+      detectSessionInUrl:true,
+      storageKey:"sahil-auth-session"
+    }
+  }
 );
 
 
@@ -1086,84 +1536,228 @@ window.supabase.createClient(
 ========================= */
 
 const menuButton =
-document.getElementById("menuButton");
+document.getElementById(
+  "menuButton"
+);
 
 const mobileDrawer =
-document.getElementById("mobileDrawer");
+document.getElementById(
+  "mobileDrawer"
+);
 
 const mobileBackdrop =
-document.getElementById("mobileBackdrop");
+document.getElementById(
+  "mobileBackdrop"
+);
 
 const profileButton =
-document.getElementById("profileButton");
+document.getElementById(
+  "profileButton"
+);
 
 const profilePanel =
-document.getElementById("profilePanel");
+document.getElementById(
+  "profilePanel"
+);
 
 const profileEmail =
-document.getElementById("profileEmail");
+document.getElementById(
+  "profileEmail"
+);
 
 const logoutButton =
-document.getElementById("logoutButton");
+document.getElementById(
+  "logoutButton"
+);
 
 const loginLink =
-document.getElementById("loginLink");
+document.getElementById(
+  "loginLink"
+);
 
 const startButton =
-document.getElementById("startButton");
+document.getElementById(
+  "startButton"
+);
 
 const emailInput =
-document.getElementById("emailInput");
+document.getElementById(
+  "emailInput"
+);
 
 const telegramCard =
-document.getElementById("telegramCard");
+document.getElementById(
+  "telegramCard"
+);
 
 const mobileLogin =
-document.getElementById("mobileLogin");
+document.getElementById(
+  "mobileLogin"
+);
 
 const mobileProfile =
-document.getElementById("mobileProfile");
+document.getElementById(
+  "mobileProfile"
+);
 
 
 /* =========================
    MOBILE MENU
 ========================= */
 
-function toggleMenu(){
+function closeMobileMenu(){
 
-  menuButton.classList.toggle("open");
+  menuButton.classList.remove(
+    "open"
+  );
 
-  mobileDrawer.classList.toggle("open");
+  mobileDrawer.classList.remove(
+    "open"
+  );
 
-  mobileBackdrop.classList.toggle("open");
+  mobileBackdrop.classList.remove(
+    "open"
+  );
 
 }
+
+
+function toggleMenu(){
+
+  menuButton.classList.toggle(
+    "open"
+  );
+
+  mobileDrawer.classList.toggle(
+    "open"
+  );
+
+  mobileBackdrop.classList.toggle(
+    "open"
+  );
+
+}
+
 
 menuButton.addEventListener(
   "click",
   toggleMenu
 );
 
+
 mobileBackdrop.addEventListener(
   "click",
-  toggleMenu
+  closeMobileMenu
 );
+
+
+document
+  .querySelectorAll(".mobile-link")
+  .forEach(
+    function(link){
+
+      link.addEventListener(
+        "click",
+        closeMobileMenu
+      );
+
+    }
+  );
 
 
 /* =========================
-   PROFILE
+   SHOW LOGGED-IN UI
 ========================= */
 
-profileButton.addEventListener(
-  "click",
-  function(){
+function showLoggedInUser(
+  user
+){
 
-    profilePanel.classList.toggle(
-      "show"
-    );
-
+  if(!user){
+    return;
   }
-);
+
+
+  emailInput.style.display =
+    "none";
+
+
+  startButton.textContent =
+    "View Offers";
+
+
+  loginLink.style.display =
+    "none";
+
+
+  profileButton.style.display =
+    "inline-flex";
+
+
+  profileEmail.textContent =
+    user.email ||
+    "Logged in user";
+
+
+  telegramCard.classList.add(
+    "show"
+  );
+
+
+  mobileLogin.style.display =
+    "none";
+
+
+  mobileProfile.style.display =
+    "block";
+
+}
+
+
+/* =========================
+   SHOW LOGGED-OUT UI
+========================= */
+
+function showLoggedOutUser(){
+
+  emailInput.style.display =
+    "block";
+
+
+  startButton.textContent =
+    "Get Started";
+
+
+  loginLink.style.display =
+    "inline-flex";
+
+
+  profileButton.style.display =
+    "none";
+
+
+  profileEmail.textContent =
+    "";
+
+
+  telegramCard.classList.remove(
+    "show"
+  );
+
+
+  mobileLogin.style.display =
+    "block";
+
+
+  mobileProfile.style.display =
+    "none";
+
+
+  profilePanel.classList.remove(
+    "show"
+  );
+
+}
 
 
 /* =========================
@@ -1172,84 +1766,55 @@ profileButton.addEventListener(
 
 async function checkSession(){
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .auth
-    .getSession();
+  try{
 
-  if(error){
-
-    console.error(error);
-
-    return;
-
-  }
-
-  const session =
-    data.session;
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+      .auth
+      .getSession();
 
 
-  if(session){
+    if(error){
 
-    const user =
-      session.user;
+      console.error(
+        "Session error:",
+        error
+      );
+
+      showLoggedOutUser();
+
+      return;
+
+    }
 
 
-    /* LOGGED IN */
+    if(
+      data &&
+      data.session &&
+      data.session.user
+    ){
 
-    emailInput.style.display =
-      "none";
+      showLoggedInUser(
+        data.session.user
+      );
 
-    startButton.textContent =
-      "View Offers";
+    }else{
 
-    loginLink.style.display =
-      "none";
+      showLoggedOutUser();
 
-    profileButton.style.display =
-      "inline-flex";
+    }
 
-    profileEmail.textContent =
-      user.email || "Logged in user";
+  }catch(error){
 
-    telegramCard.classList.add(
-      "show"
+    console.error(
+      "Session check failed:",
+      error
     );
 
-    mobileLogin.style.display =
-      "none";
-
-    mobileProfile.style.display =
-      "block";
-
-  }else{
-
-    /* LOGGED OUT */
-
-    emailInput.style.display =
-      "block";
-
-    startButton.textContent =
-      "Get Started";
-
-    loginLink.style.display =
-      "inline-flex";
-
-    profileButton.style.display =
-      "none";
-
-    telegramCard.classList.remove(
-      "show"
-    );
-
-    mobileLogin.style.display =
-      "block";
-
-    mobileProfile.style.display =
-      "none";
+    showLoggedOutUser();
 
   }
 
@@ -1257,199 +1822,8 @@ async function checkSession(){
 
 
 /* =========================
-   SESSION LISTENER
+   AUTH STATE
 ========================= */
 
 supabaseClient
-  .auth
-  .onAuthStateChange(
-    function(
-      event,
-      session
-    ){
-
-      if(session){
-
-        emailInput.style.display =
-          "none";
-
-        startButton.textContent =
-          "View Offers";
-
-        loginLink.style.display =
-          "none";
-
-        profileButton.style.display =
-          "inline-flex";
-
-        profileEmail.textContent =
-          session.user.email ||
-          "Logged in user";
-
-        telegramCard.classList.add(
-          "show"
-        );
-
-        mobileLogin.style.display =
-          "none";
-
-        mobileProfile.style.display =
-          "block";
-
-      }else{
-
-        emailInput.style.display =
-          "block";
-
-        startButton.textContent =
-          "Get Started";
-
-        loginLink.style.display =
-          "inline-flex";
-
-        profileButton.style.display =
-          "none";
-
-        telegramCard.classList.remove(
-          "show"
-        );
-
-        mobileLogin.style.display =
-          "block";
-
-        mobileProfile.style.display =
-          "none";
-
-      }
-
-    }
-  );
-
-
-/* =========================
-   GET STARTED
-========================= */
-
-startButton.addEventListener(
-  "click",
-  async function(){
-
-    const {
-      data
-    } =
-    await supabaseClient
-      .auth
-      .getSession();
-
-
-    /* Already logged in */
-
-    if(data.session){
-
-      window.location.href =
-        "offer.html";
-
-      return;
-
-    }
-
-
-    /* Not logged in */
-
-    const email =
-      emailInput.value.trim();
-
-
-    if(!email){
-
-      window.location.href =
-        "login.html";
-
-      return;
-
-    }
-
-
-    if(!email.includes("@")){
-
-      alert(
-        "Please enter a valid email."
-      );
-
-      return;
-
-    }
-
-
-    /*
-      Email is not used as authentication.
-      Send user to the real login page.
-    */
-
-    window.location.href =
-      "login.html?email=" +
-      encodeURIComponent(email);
-
-  }
-);
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-logoutButton.addEventListener(
-  "click",
-  async function(){
-
-    logoutButton.disabled =
-      true;
-
-    logoutButton.textContent =
-      "Logging out...";
-
-
-    const {
-      error
-    } =
-    await supabaseClient
-      .auth
-      .signOut();
-
-
-    if(error){
-
-      console.error(error);
-
-      alert(
-        "Logout failed. Please try again."
-      );
-
-      logoutButton.disabled =
-        false;
-
-      logoutButton.textContent =
-        "🚪 Logout";
-
-      return;
-
-    }
-
-
-    window.location.href =
-      "index.html";
-
-  }
-);
-
-
-/* =========================
-   CLOSE PROFILE
-========================= */
-
-document.addEventListener(
-  "click",
-  function(event){
-
-    if(
-      profile
+  .
