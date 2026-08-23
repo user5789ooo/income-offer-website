@@ -1,800 +1,857 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050505">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
 
-  <title>SAHIL - Login</title>
+<title>SAHIL - Login</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+<link
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Geist', Arial, sans-serif;
-    }
+<style>
 
-    body {
-      min-height: 100vh;
-      background: #050505;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      overflow: hidden;
-    }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    .background {
-      position: fixed;
-      inset: 0;
-      z-index: -5;
-      background:
-        radial-gradient(
-          circle at 20% 20%,
-          rgba(255,255,255,.08),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 80% 80%,
-          rgba(255,255,255,.06),
-          transparent 30%
-        ),
-        #050505;
-    }
+html,
+body{
+  width:100%;
+  min-height:100%;
+}
 
-    .login-box {
-      width: 100%;
-      max-width: 410px;
-      padding: 30px 24px;
-      border-radius: 24px;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.10);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.45);
-      animation:
-        boxIn .7s
-        cubic-bezier(.16,1,.3,1);
-    }
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:#050505;
+  color:#fff;
+  font-family:'Geist',Arial,sans-serif;
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
 
-    @keyframes boxIn {
-      from {
-        opacity: 0;
-        transform:
-          translateY(30px)
-          scale(.96);
-      }
 
-      to {
-        opacity: 1;
-        transform:
-          translateY(0)
-          scale(1);
-      }
-    }
+/* BACKGROUND */
 
-    .logo {
-      width: 58px;
-      height: 58px;
-      margin: 0 auto 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 18px;
-      background: white;
-      color: #050505;
-      font-size: 25px;
-      font-weight: 700;
-      box-shadow:
-        0 10px 35px
-        rgba(255,255,255,.12);
-    }
+.background{
+  position:fixed;
+  inset:0;
+  z-index:-10;
 
-    h1 {
-      text-align: center;
-      font-size: 28px;
-      letter-spacing: -.04em;
-    }
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255,255,255,.10),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(255,255,255,.07),
+      transparent 32%
+    ),
+    #050505;
+}
 
-    .subtitle {
-      margin-top: 8px;
-      margin-bottom: 28px;
-      text-align: center;
-      color: rgba(255,255,255,.48);
-      font-size: 14px;
-    }
 
-    label {
-      display: block;
-      margin-bottom: 7px;
-      color: rgba(255,255,255,.75);
-      font-size: 13px;
-      font-weight: 600;
-    }
+/* LOGIN BOX */
 
-    input {
-      width: 100%;
-      padding: 14px 15px;
-      margin-bottom: 17px;
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-      border-radius: 13px;
-      outline: none;
-      background:
-        rgba(255,255,255,.06);
-      color: white;
-      font-size: 15px;
-      transition:
-        border-color .2s ease,
-        background .2s ease,
-        box-shadow .2s ease;
-    }
+.login-box{
+  width:100%;
+  max-width:410px;
 
-    input::placeholder {
-      color:
-        rgba(255,255,255,.30);
-    }
+  padding:30px 24px;
 
-    input:focus {
-      border-color:
-        rgba(255,255,255,.35);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:24px;
 
-      background:
-        rgba(255,255,255,.09);
+  background:rgba(255,255,255,.07);
 
-      box-shadow:
-        0 0 0 3px
-        rgba(255,255,255,.05);
-    }
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
 
-    .login-button {
-      width: 100%;
-      padding: 14px;
-      border: 0;
-      border-radius: 13px;
-      background: white;
-      color: #050505;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition:
-        transform .2s ease,
-        opacity .2s ease;
-    }
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.50);
 
-    .login-button:hover {
-      transform:
-        translateY(-2px);
-    }
+  animation:
+    boxIn .7s
+    cubic-bezier(.16,1,.3,1);
+}
 
-    .login-button:active {
-      transform:
-        scale(.97);
-    }
+@keyframes boxIn{
 
-    .login-button:disabled {
-      opacity: .55;
-      cursor: not-allowed;
-    }
+  from{
+    opacity:0;
+    transform:
+      translateY(30px)
+      scale(.96);
+  }
 
-    #message {
-      min-height: 20px;
-      margin-top: 15px;
-      text-align: center;
-      color:
-        rgba(255,255,255,.65);
-      font-size: 13px;
-      line-height: 1.5;
-    }
+  to{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
 
-    .success {
-      color: #8dffa9 !important;
-      font-weight: 600;
-    }
+}
 
-    .back {
-      display: block;
-      margin-top: 20px;
-      text-align: center;
-      color:
-        rgba(255,255,255,.50);
-      font-size: 13px;
-      text-decoration: none;
-    }
 
-    .back:hover {
-      color: white;
-    }
+/* LOGO */
 
-    /* MONEY */
+.logo{
+  width:58px;
+  height:58px;
 
-    #moneyRain {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      pointer-events: none;
-      overflow: hidden;
-      display: none;
-    }
+  margin:0 auto 18px;
 
-    #moneyRain.show {
-      display: block;
-    }
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-    .money {
-      position: absolute;
-      top: -80px;
-      opacity: 0;
+  border-radius:18px;
 
-      animation:
-        moneyFall
-        2.8s
-        cubic-bezier(.2,.7,.3,1)
-        forwards;
-    }
+  background:#fff;
+  color:#050505;
 
-    @keyframes moneyFall {
+  font-size:25px;
+  font-weight:700;
 
-      0% {
-        opacity: 0;
-        transform:
-          translateY(-80px)
-          rotate(0deg)
-          scale(.7);
-      }
+  box-shadow:
+    0 10px 35px
+    rgba(255,255,255,.12);
+}
 
-      10% {
-        opacity: 1;
-      }
+h1{
+  text-align:center;
 
-      80% {
-        opacity: 1;
-      }
+  font-size:28px;
+  font-weight:700;
 
-      100% {
-        opacity: 0;
-        transform:
-          translateY(115vh)
-          rotate(720deg)
-          scale(1);
-      }
-    }
+  letter-spacing:-.04em;
+}
 
-    @media (max-width: 420px) {
+.subtitle{
+  margin:8px 0 28px;
 
-      .login-box {
-        padding: 26px 20px;
-      }
+  text-align:center;
 
-      h1 {
-        font-size: 25px;
-      }
-    }
+  color:rgba(255,255,255,.48);
 
-    @media (prefers-reduced-motion: reduce) {
+  font-size:14px;
+}
 
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
-      }
-    }
-  </style>
+
+/* INPUT */
+
+label{
+  display:block;
+
+  margin-bottom:7px;
+
+  color:rgba(255,255,255,.75);
+
+  font-size:13px;
+  font-weight:600;
+}
+
+input{
+  width:100%;
+
+  padding:14px 15px;
+
+  margin-bottom:17px;
+
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:13px;
+
+  outline:none;
+
+  background:rgba(255,255,255,.06);
+
+  color:#fff;
+
+  font-size:15px;
+}
+
+input::placeholder{
+  color:rgba(255,255,255,.30);
+}
+
+input:focus{
+  border-color:rgba(255,255,255,.35);
+
+  background:rgba(255,255,255,.09);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(255,255,255,.05);
+}
+
+
+/* BUTTON */
+
+.login-button{
+  width:100%;
+
+  padding:14px;
+
+  border:0;
+  border-radius:13px;
+
+  background:#fff;
+  color:#050505;
+
+  font-size:15px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:
+    transform .2s ease,
+    opacity .2s ease;
+}
+
+.login-button:hover{
+  transform:translateY(-2px);
+}
+
+.login-button:active{
+  transform:scale(.97);
+}
+
+.login-button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+
+/* MESSAGE */
+
+#message{
+  min-height:20px;
+
+  margin-top:15px;
+
+  text-align:center;
+
+  color:rgba(255,255,255,.65);
+
+  font-size:13px;
+}
+
+.success{
+  color:#8dffa9 !important;
+  font-weight:600;
+}
+
+.error{
+  color:#ff8f8f !important;
+  font-weight:600;
+}
+
+
+/* BACK */
+
+.back{
+  display:block;
+
+  margin-top:20px;
+
+  text-align:center;
+
+  color:rgba(255,255,255,.50);
+
+  font-size:13px;
+
+  text-decoration:none;
+}
+
+.back:hover{
+  color:#fff;
+}
+
+
+/* MONEY */
+
+#moneyRain{
+  position:fixed;
+  inset:0;
+
+  z-index:9999;
+
+  pointer-events:none;
+
+  overflow:hidden;
+
+  display:none;
+}
+
+#moneyRain.show{
+  display:block;
+}
+
+.money{
+  position:absolute;
+  top:-80px;
+
+  opacity:0;
+
+  animation:
+    moneyFall
+    2.5s
+    ease-out
+    forwards;
+}
+
+@keyframes moneyFall{
+
+  0%{
+    opacity:0;
+
+    transform:
+      translateY(-80px)
+      rotate(0deg)
+      scale(.7);
+  }
+
+  10%{
+    opacity:1;
+  }
+
+  80%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+
+    transform:
+      translateY(115vh)
+      rotate(720deg)
+      scale(1);
+  }
+
+}
+
+
+@media(max-width:420px){
+
+  .login-box{
+    padding:26px 20px;
+  }
+
+  h1{
+    font-size:25px;
+  }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <div class="background"></div>
+<div class="background"></div>
 
-  <div id="moneyRain"></div>
+<div id="moneyRain"></div>
 
-  <div class="login-box">
 
-    <div class="logo">
-      S
-    </div>
+<div class="login-box">
 
-    <h1>
-      Welcome to SAHIL
-    </h1>
-
-    <p class="subtitle">
-      Login to continue
-    </p>
-
-    <form id="loginForm">
-
-      <label for="email">
-        Email
-      </label>
-
-      <input
-        type="email"
-        id="email"
-        placeholder="Enter your email"
-        autocomplete="email"
-        required
-      >
-
-      <label for="password">
-        Password
-      </label>
-
-      <input
-        type="password"
-        id="password"
-        placeholder="Enter your password"
-        autocomplete="current-password"
-        required
-      >
-
-      <button
-        class="login-button"
-        id="loginButton"
-        type="submit"
-      >
-        Login
-      </button>
-
-    </form>
-
-    <div id="message"></div>
-
-    <a
-      class="back"
-      href="index.html"
-    >
-      ← Back to Home
-    </a>
-
+  <div class="logo">
+    S
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase-config.js"></script>
+  <h1>
+    Welcome back to SAHIL
+  </h1>
 
-  <script>
-
-    /* =========================
-       SUPABASE
-    ========================= */
-
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY,
-        {
-          auth: {
-            persistSession: true,
-            autoRefreshToken: true,
-            detectSessionInUrl: true,
-            storageKey: "sahil-auth-session"
-          }
-        }
-      );
+  <p class="subtitle">
+    Login to continue
+  </p>
 
 
-    /* =========================
-       ELEMENTS
-    ========================= */
+  <!-- IMPORTANT:
+       NO NORMAL FORM SUBMIT -->
+  <form
+    id="loginForm"
+    action="javascript:void(0)"
+    method="post"
+    novalidate
+  >
 
-    const loginForm =
-      document.getElementById(
-        "loginForm"
-      );
+    <label for="email">
+      Email
+    </label>
 
-    const loginButton =
-      document.getElementById(
-        "loginButton"
-      );
-
-    const message =
-      document.getElementById(
-        "message"
-      );
+    <input
+      type="email"
+      id="email"
+      placeholder="Enter your email"
+      autocomplete="email"
+    >
 
 
-    /* =========================
-       MESSAGE
-    ========================= */
+    <label for="password">
+      Password
+    </label>
 
-    function showMessage(
-      text,
-      success = false
-    ) {
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter your password"
+      autocomplete="current-password"
+    >
 
-      message.textContent = text;
 
-      message.className =
-        success
-          ? "success"
-          : "";
+    <button
+      class="login-button"
+      id="loginButton"
+      type="button"
+    >
+      Login
+    </button>
+
+  </form>
+
+
+  <div id="message"></div>
+
+
+  <a
+    class="back"
+    href="index.html"
+  >
+    ← Back to Home
+  </a>
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+/* =========================================
+   SUPABASE CLIENT
+========================================= */
+
+const SUPABASE_URL =
+  "https://ylquvyebfgsvipecljuu.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "sb_publishable_Ur8pHDUGsj8yTqo4cnEdmA_hoLwHYxT";
+
+const loginClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY,
+    {
+      auth:{
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true,
+        storage:window.localStorage
+      }
     }
+  );
 
 
-    /* =========================
-       MONEY RAIN
-    ========================= */
+/* =========================================
+   ELEMENTS
+========================================= */
 
-    function startMoneyRain() {
+const emailInput =
+  document.getElementById("email");
 
-      const container =
-        document.getElementById(
-          "moneyRain"
-        );
+const passwordInput =
+  document.getElementById("password");
 
-      container.innerHTML = "";
+const loginButton =
+  document.getElementById("loginButton");
 
-      container.classList.add(
-        "show"
-      );
+const message =
+  document.getElementById("message");
 
-      const symbols = [
-        "💰",
-        "💵",
-        "💸",
-        "🪙",
-        "💲"
+const moneyRain =
+  document.getElementById("moneyRain");
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(text,type){
+
+  message.textContent = text;
+
+  message.className =
+    type || "";
+
+}
+
+
+/* =========================================
+   URL EMAIL
+========================================= */
+
+(function(){
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const email =
+    params.get("email");
+
+  if(email){
+    emailInput.value = email;
+  }
+
+})();
+
+
+/* =========================================
+   MONEY ANIMATION
+========================================= */
+
+function startMoneyRain(){
+
+  moneyRain.innerHTML = "";
+
+  moneyRain.classList.add("show");
+
+  const symbols = [
+    "💰",
+    "💵",
+    "💸",
+    "🪙",
+    "💲"
+  ];
+
+  for(
+    let i = 0;
+    i < 45;
+    i++
+  ){
+
+    const item =
+      document.createElement("span");
+
+    item.className = "money";
+
+    item.textContent =
+      symbols[
+        Math.floor(
+          Math.random() *
+          symbols.length
+        )
       ];
 
-      for (
-        let i = 0;
-        i < 45;
-        i++
-      ) {
-
-        const money =
-          document.createElement(
-            "span"
-          );
-
-        money.className =
-          "money";
-
-        money.textContent =
-          symbols[
-            Math.floor(
-              Math.random() *
-              symbols.length
-            )
-          ];
+    item.style.left =
+      Math.random() * 100 + "%";
 
-        money.style.left =
-          Math.random() * 100 + "%";
+    item.style.fontSize =
+      20 +
+      Math.random() * 22 +
+      "px";
 
-        money.style.fontSize =
-          (20 +
-            Math.random() * 20) +
-          "px";
-
-        money.style.animationDelay =
-          Math.random() * 1.2 +
-          "s";
-
-        money.style.animationDuration =
-          (2.2 +
-            Math.random() * 1.4) +
-          "s";
-
-        container.appendChild(
-          money
-        );
-      }
-
-      setTimeout(
-        function() {
-
-          container.classList.remove(
-            "show"
-          );
-
-          container.innerHTML = "";
-
-        },
-        4500
-      );
-    }
-
-
-    /* =========================
-       CHECK EXISTING SESSION
-    ========================= */
-
-    async function checkExistingSession() {
-
-      try {
-
-        const {
-          data,
-          error
-        } =
-          await supabaseClient
-            .auth
-            .getSession();
-
-        if (error) {
-
-          console.error(
-            "Session check error:",
-            error
-          );
-
-          return;
-        }
-
-        if (
-          data &&
-          data.session &&
-          data.session.user
-        ) {
-
-          /*
-            Already logged in.
-            No need to login again.
-          */
-
-          window.location.replace(
-            "index.html"
-          );
-
-        }
+    item.style.animationDelay =
+      Math.random() * .9 +
+      "s";
 
-      } catch (error) {
+    item.style.animationDuration =
+      2.2 +
+      Math.random() * 1 +
+      "s";
 
-        console.error(
-          "Session error:",
-          error
-        );
-      }
-    }
+    moneyRain.appendChild(item);
 
+  }
 
-    /*
-      Run immediately when
-      login page opens.
-    */
+  setTimeout(function(){
 
-    checkExistingSession();
+    moneyRain.classList.remove("show");
 
+    moneyRain.innerHTML = "";
 
-    /* =========================
-       AUTH STATE
-    ========================= */
+  },4300);
 
-    supabaseClient
-      .auth
-      .onAuthStateChange(
-        function(
-          event,
-          session
-        ) {
+}
 
-          console.log(
-            "Auth event:",
-            event
-          );
 
-          /*
-            Do NOT redirect on
-            INITIAL_SESSION here.
-            checkExistingSession()
-            already handles it.
-          */
+/* =========================================
+   LOGIN FUNCTION
+========================================= */
 
-          if (
-            event ===
-            "SIGNED_IN" &&
-            session &&
-            session.user
-          ) {
+async function doLogin(){
 
-            console.log(
-              "User signed in:",
-              session.user.email
-            );
-          }
+  /* Prevent double click */
 
-        }
-      );
+  if(loginButton.disabled){
+    return;
+  }
 
 
-    /* =========================
-       LOGIN
-    ========================= */
+  const email =
+    emailInput.value.trim();
 
-    loginForm.addEventListener(
-      "submit",
-      async function(event) {
+  const password =
+    passwordInput.value;
 
-        event.preventDefault();
 
-        const email =
-          document.getElementById(
-            "email"
-          ).value.trim();
+  /* VALIDATION */
 
-        const password =
-          document.getElementById(
-            "password"
-          ).value;
+  if(!email){
 
-        if (!email || !password) {
+    showMessage(
+      "Please enter your email.",
+      "error"
+    );
 
-          showMessage(
-            "Email and password are required."
-          );
+    emailInput.focus();
 
-          return;
-        }
+    return;
 
-        loginButton.disabled =
-          true;
+  }
 
-        loginButton.textContent =
-          "Logging in...";
 
-        showMessage(
-          "Checking your account..."
-        );
+  if(!email.includes("@")){
 
+    showMessage(
+      "Please enter a valid email.",
+      "error"
+    );
 
-        try {
+    emailInput.focus();
 
-          const {
-            data,
-            error
-          } =
-            await supabaseClient
-              .auth
-              .signInWithPassword({
+    return;
 
-                email:
-                  email,
+  }
 
-                password:
-                  password
 
-              });
+  if(!password){
 
+    showMessage(
+      "Please enter your password.",
+      "error"
+    );
 
-          if (error) {
+    passwordInput.focus();
 
-            console.error(
-              "Login error:",
-              error
-            );
+    return;
 
-            showMessage(
-              "Login failed: " +
-              error.message
-            );
+  }
 
-            loginButton.disabled =
-              false;
 
-            loginButton.textContent =
-              "Login";
+  /* LOCK BUTTON */
 
-            return;
-          }
+  loginButton.disabled = true;
 
+  loginButton.textContent =
+    "Logging in...";
 
-          if (
-            !data ||
-            !data.user ||
-            !data.session
-          ) {
+  showMessage(
+    "Checking your account..."
+  );
 
-            showMessage(
-              "Login session তৈরি হয়নি। আবার চেষ্টা করো।"
-            );
 
-            loginButton.disabled =
-              false;
+  try{
 
-            loginButton.textContent =
-              "Login";
+    const response =
+      await loginClient.auth.signInWithPassword({
 
-            return;
-          }
+        email:email,
 
-
-          /*
-            IMPORTANT:
-            Supabase client is configured
-            with persistSession:true.
-            So the session is saved locally.
-          */
-
-          showMessage(
-            "Login successful! 💰",
-            true
-          );
-
-          loginButton.textContent =
-            "Welcome!";
-
-          startMoneyRain();
-
-
-          /*
-            Wait briefly for the
-            session/storage to finish,
-            then redirect.
-          */
-
-          setTimeout(
-            async function() {
-
-              const {
-                data: verifyData
-              } =
-                await supabaseClient
-                  .auth
-                  .getSession();
-
-              if (
-                verifyData &&
-                verifyData.session
-              ) {
-
-                window.location.replace(
-                  "index.html"
-                );
-
-              } else {
-
-                showMessage(
-                  "Session save হয়নি। আবার চেষ্টা করো।"
-                );
-
-                loginButton.disabled =
-                  false;
-
-                loginButton.textContent =
-                  "Login";
-              }
-
-            },
-            1200
-          );
-
-
-        } catch (error) {
-
-          console.error(
-            "Unexpected login error:",
-            error
-          );
-
-          showMessage(
-            "Something went wrong: " +
-            error.message
-          );
-
-          loginButton.disabled =
-            false;
-
-          loginButton.textContent =
-            "Login";
-        }
+        password:password
 
       });
 
-  </script>
+
+    const data =
+      response.data;
+
+    const error =
+      response.error;
+
+
+    /* LOGIN ERROR */
+
+    if(error){
+
+      console.error(
+        "Login error:",
+        error
+      );
+
+      showMessage(
+        error.message ||
+        "Login failed.",
+        "error"
+      );
+
+      loginButton.disabled =
+        false;
+
+      loginButton.textContent =
+        "Login";
+
+      return;
+
+    }
+
+
+    /* SESSION CHECK */
+
+    if(
+      !data ||
+      !data.session ||
+      !data.user
+    ){
+
+      showMessage(
+        "Login failed. Session not created.",
+        "error"
+      );
+
+      loginButton.disabled =
+        false;
+
+      loginButton.textContent =
+        "Login";
+
+      return;
+
+    }
+
+
+    /* SUCCESS */
+
+    showMessage(
+      "Welcome back to SAHIL! 💰",
+      "success"
+    );
+
+    loginButton.textContent =
+      "Welcome!";
+
+
+    /* MONEY ANIMATION */
+
+    startMoneyRain();
+
+
+    /*
+      Supabase has already stored
+      the session in localStorage.
+
+      Redirect only once.
+    */
+
+    setTimeout(function(){
+
+      window.location.replace(
+        "index.html"
+      );
+
+    },1800);
+
+
+  }catch(error){
+
+    console.error(
+      "Unexpected login error:",
+      error
+    );
+
+    showMessage(
+      error.message ||
+      "Something went wrong.",
+      "error"
+    );
+
+    loginButton.disabled =
+      false;
+
+    loginButton.textContent =
+      "Login";
+
+  }
+
+}
+
+
+/* =========================================
+   BUTTON CLICK
+========================================= */
+
+loginButton.addEventListener(
+  "click",
+  function(event){
+
+    event.preventDefault();
+
+    event.stopPropagation();
+
+    doLogin();
+
+  }
+);
+
+
+/* =========================================
+   ENTER KEY
+========================================= */
+
+emailInput.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      event.preventDefault();
+
+      passwordInput.focus();
+
+    }
+
+  }
+);
+
+
+passwordInput.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      event.preventDefault();
+
+      doLogin();
+
+    }
+
+  }
+);
+
+</script>
 
 </body>
 </html>
