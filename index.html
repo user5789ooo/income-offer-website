@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
 
-<title>Nexum - Income Offers</title>
+<title>SAHIL - Income Offers</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -108,18 +108,6 @@ button,input{
   align-items:center;
   justify-content:space-between;
   padding:20px;
-  animation:navDrop .8s ease both;
-}
-
-@keyframes navDrop{
-  from{
-    opacity:0;
-    transform:translateY(-20px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
 }
 
 .brand{
@@ -185,7 +173,22 @@ button,input{
   box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
 
-/* MOBILE MENU */
+/* PROFILE BUTTON */
+
+.profile-button{
+  display:none;
+  align-items:center;
+  gap:7px;
+  padding:10px 15px;
+  border-radius:999px;
+  background:rgba(0,0,0,.28);
+  color:white;
+  border:1px solid rgba(255,255,255,.15);
+  cursor:pointer;
+  font-size:13px;
+}
+
+/* MOBILE */
 
 .menu-button{
   display:flex;
@@ -377,6 +380,124 @@ h1{
   width:100%;
 }
 
+/* PROFILE */
+
+.profile-panel{
+  display:none;
+  position:fixed;
+  top:75px;
+  right:20px;
+  z-index:100;
+  width:min(340px,calc(100% - 40px));
+  padding:20px;
+  border-radius:20px;
+  background:rgba(10,10,10,.94);
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter:blur(25px);
+  box-shadow:0 25px 70px rgba(0,0,0,.5);
+}
+
+.profile-panel.show{
+  display:block;
+  animation:profileIn .3s ease;
+}
+
+@keyframes profileIn{
+  from{
+    opacity:0;
+    transform:translateY(-10px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.profile-title{
+  font-size:18px;
+  font-weight:700;
+}
+
+.profile-email{
+  margin-top:6px;
+  color:rgba(255,255,255,.5);
+  font-size:12px;
+  word-break:break-all;
+}
+
+.profile-actions{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  margin-top:18px;
+}
+
+.profile-action{
+  display:block;
+  width:100%;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.06);
+  color:white;
+  text-align:left;
+  cursor:pointer;
+}
+
+.profile-action:hover{
+  background:rgba(255,255,255,.12);
+}
+
+.telegram-banner{
+  margin-top:12px;
+  background:linear-gradient(135deg,#229ed9,#147bb0);
+  border:0;
+}
+
+.logout{
+  color:#ff8f8f;
+}
+
+/* TELEGRAM */
+
+.telegram-card{
+  display:none;
+  max-width:430px;
+  margin-top:14px;
+  padding:14px 16px;
+  border-radius:15px;
+  background:rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.15);
+  backdrop-filter:blur(15px);
+}
+
+.telegram-card.show{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.telegram-text{
+  font-size:13px;
+}
+
+.telegram-text small{
+  display:block;
+  margin-top:3px;
+  color:rgba(255,255,255,.55);
+}
+
+.telegram-button{
+  flex-shrink:0;
+  padding:9px 13px;
+  border-radius:999px;
+  background:#229ed9;
+  color:white;
+  font-size:12px;
+  font-weight:700;
+}
+
 /* CARDS */
 
 .cards{
@@ -544,6 +665,10 @@ h1{
   .person-role{
     color:rgba(255,255,255,.6);
   }
+
+  .profile-button{
+    display:inline-flex;
+  }
 }
 
 @media(min-width:1024px){
@@ -569,6 +694,13 @@ h1{
   }
 }
 
+@media(max-width:767px){
+
+  .profile-button{
+    display:none;
+  }
+}
+
 @media(max-width:420px){
 
   .hero{
@@ -581,16 +713,6 @@ h1{
 
   .glass-card{
     padding:18px;
-  }
-}
-
-@media(prefers-reduced-motion:reduce){
-
-  *,
-  *::before,
-  *::after{
-    animation-duration:.01ms!important;
-    transition-duration:.01ms!important;
   }
 }
 </style>
@@ -635,7 +757,7 @@ C256 70.692 198.692 128 128 128
 C128 57.308 185.308 0 256 0Z"/>
 </svg>
 
-<span>nexum</span>
+<span>SAHIL</span>
 
 </a>
 
@@ -644,15 +766,7 @@ C128 57.308 185.308 0 256 0Z"/>
 <div class="nav-pill">
 
 <a class="nav-link" href="offer.html">
-Modules
-</a>
-
-<a class="nav-link" href="offer.html">
-Clientele
-</a>
-
-<a class="nav-link" href="offer.html">
-Solutions
+Offers
 </a>
 
 <a class="nav-link" href="history.html">
@@ -661,7 +775,19 @@ My History
 
 </div>
 
-<a class="cta" href="login.html">
+<button
+class="profile-button"
+id="profileButton"
+type="button"
+>
+👤 My Profile
+</button>
+
+<a
+class="cta"
+id="loginLink"
+href="login.html"
+>
 Login / Sign up
 </a>
 
@@ -698,10 +824,12 @@ stroke-width="2"
 
 </nav>
 
+
 <div
 class="mobile-backdrop"
 id="mobileBackdrop"
 ></div>
+
 
 <div
 class="mobile-drawer"
@@ -722,7 +850,19 @@ id="mobileDrawer"
 ❓ Help
 </a>
 
-<a class="mobile-link" href="login.html">
+<a
+class="mobile-link"
+id="mobileProfile"
+href="history.html"
+>
+👤 My Profile
+</a>
+
+<a
+class="mobile-link"
+id="mobileLogin"
+href="login.html"
+>
 🔐 Login / Sign up
 </a>
 
@@ -738,13 +878,66 @@ View Offers
 
 </div>
 
+
+<!-- PROFILE PANEL -->
+
+<div
+class="profile-panel"
+id="profilePanel"
+>
+
+<div class="profile-title">
+My Profile
+</div>
+
+<div
+class="profile-email"
+id="profileEmail"
+>
+Loading...
+</div>
+
+<div class="profile-actions">
+
+<a
+class="profile-action"
+href="history.html"
+>
+📜 View My History
+</a>
+
+<a
+class="profile-action telegram-banner"
+href="https://t.me/IncomeOffersOfficia"
+target="_blank"
+rel="noopener"
+>
+📢 Join My Telegram Channel
+</a>
+
+<button
+class="profile-action logout"
+id="logoutButton"
+type="button"
+>
+🚪 Logout
+</button>
+
+</div>
+
+</div>
+
+
 <main class="main">
 
 <div class="hero-left">
 
 <div class="eyebrow">
+
 <span class="eyebrow-dot"></span>
+
 <span>Live Income Offers</span>
+
 </div>
 
 <h1>
@@ -757,6 +950,7 @@ rewards and opportunities.
 Open an offer to see the complete details.
 </p>
 
+
 <div class="email-cta">
 
 <input
@@ -764,6 +958,7 @@ class="email-input"
 id="emailInput"
 type="email"
 placeholder="Enter your email"
+autocomplete="email"
 >
 
 <button
@@ -776,7 +971,35 @@ Get Started
 
 </div>
 
+
+<div
+class="telegram-card"
+id="telegramCard"
+>
+
+<div class="telegram-text">
+
+📢 Join our Telegram
+
+<small>
+Get the latest offers and updates.
+</small>
+
 </div>
+
+<a
+class="telegram-button"
+href="https://t.me/IncomeOffersOfficia"
+target="_blank"
+rel="noopener"
+>
+Join
+</a>
+
+</div>
+
+</div>
+
 
 <div class="cards">
 
@@ -793,16 +1016,17 @@ are available whenever you need them.
 
 </div>
 
+
 <div class="glass-card">
 
 <div class="testimonial-header">
 
 <div class="stratify-icon">
-N
+S
 </div>
 
 <div class="stratify-name">
-Nexum
+SAHIL
 </div>
 
 </div>
@@ -819,7 +1043,7 @@ the latest opportunities."
 <div>
 
 <div class="person-name">
-Nexum User
+SAHIL User
 </div>
 
 <div class="person-role">
@@ -840,7 +1064,26 @@ Community Member
 
 </section>
 
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
+
+
 <script>
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+
+/* =========================
+   ELEMENTS
+========================= */
 
 const menuButton =
 document.getElementById("menuButton");
@@ -851,80 +1094,362 @@ document.getElementById("mobileDrawer");
 const mobileBackdrop =
 document.getElementById("mobileBackdrop");
 
+const profileButton =
+document.getElementById("profileButton");
+
+const profilePanel =
+document.getElementById("profilePanel");
+
+const profileEmail =
+document.getElementById("profileEmail");
+
+const logoutButton =
+document.getElementById("logoutButton");
+
+const loginLink =
+document.getElementById("loginLink");
+
+const startButton =
+document.getElementById("startButton");
+
+const emailInput =
+document.getElementById("emailInput");
+
+const telegramCard =
+document.getElementById("telegramCard");
+
+const mobileLogin =
+document.getElementById("mobileLogin");
+
+const mobileProfile =
+document.getElementById("mobileProfile");
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
 function toggleMenu(){
 
-menuButton.classList.toggle("open");
+  menuButton.classList.toggle("open");
 
-mobileDrawer.classList.toggle("open");
+  mobileDrawer.classList.toggle("open");
 
-mobileBackdrop.classList.toggle("open");
+  mobileBackdrop.classList.toggle("open");
 
 }
 
 menuButton.addEventListener(
-"click",
-toggleMenu
+  "click",
+  toggleMenu
 );
 
 mobileBackdrop.addEventListener(
-"click",
-toggleMenu
+  "click",
+  toggleMenu
 );
 
-document.querySelectorAll(
-".mobile-link"
-).forEach(function(link){
 
-link.addEventListener(
-"click",
-function(){
+/* =========================
+   PROFILE
+========================= */
 
-menuButton.classList.remove("open");
+profileButton.addEventListener(
+  "click",
+  function(){
 
-mobileDrawer.classList.remove("open");
+    profilePanel.classList.toggle(
+      "show"
+    );
 
-mobileBackdrop.classList.remove("open");
-
-}
+  }
 );
 
-});
+
+/* =========================
+   CHECK SESSION
+========================= */
+
+async function checkSession(){
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .auth
+    .getSession();
+
+  if(error){
+
+    console.error(error);
+
+    return;
+
+  }
+
+  const session =
+    data.session;
 
 
-document.getElementById(
-"startButton"
-).addEventListener(
-"click",
-function(){
+  if(session){
 
-const email =
-document.getElementById(
-"emailInput"
-).value.trim();
+    const user =
+      session.user;
 
-if(!email){
 
-alert("Please enter your email.");
+    /* LOGGED IN */
 
-return;
+    emailInput.style.display =
+      "none";
+
+    startButton.textContent =
+      "View Offers";
+
+    loginLink.style.display =
+      "none";
+
+    profileButton.style.display =
+      "inline-flex";
+
+    profileEmail.textContent =
+      user.email || "Logged in user";
+
+    telegramCard.classList.add(
+      "show"
+    );
+
+    mobileLogin.style.display =
+      "none";
+
+    mobileProfile.style.display =
+      "block";
+
+  }else{
+
+    /* LOGGED OUT */
+
+    emailInput.style.display =
+      "block";
+
+    startButton.textContent =
+      "Get Started";
+
+    loginLink.style.display =
+      "inline-flex";
+
+    profileButton.style.display =
+      "none";
+
+    telegramCard.classList.remove(
+      "show"
+    );
+
+    mobileLogin.style.display =
+      "block";
+
+    mobileProfile.style.display =
+      "none";
+
+  }
 
 }
 
-if(!email.includes("@")){
 
-alert("Please enter a valid email.");
+/* =========================
+   SESSION LISTENER
+========================= */
 
-return;
+supabaseClient
+  .auth
+  .onAuthStateChange(
+    function(
+      event,
+      session
+    ){
 
-}
+      if(session){
 
-window.location.href =
-"offer.html";
+        emailInput.style.display =
+          "none";
 
-}
+        startButton.textContent =
+          "View Offers";
+
+        loginLink.style.display =
+          "none";
+
+        profileButton.style.display =
+          "inline-flex";
+
+        profileEmail.textContent =
+          session.user.email ||
+          "Logged in user";
+
+        telegramCard.classList.add(
+          "show"
+        );
+
+        mobileLogin.style.display =
+          "none";
+
+        mobileProfile.style.display =
+          "block";
+
+      }else{
+
+        emailInput.style.display =
+          "block";
+
+        startButton.textContent =
+          "Get Started";
+
+        loginLink.style.display =
+          "inline-flex";
+
+        profileButton.style.display =
+          "none";
+
+        telegramCard.classList.remove(
+          "show"
+        );
+
+        mobileLogin.style.display =
+          "block";
+
+        mobileProfile.style.display =
+          "none";
+
+      }
+
+    }
+  );
+
+
+/* =========================
+   GET STARTED
+========================= */
+
+startButton.addEventListener(
+  "click",
+  async function(){
+
+    const {
+      data
+    } =
+    await supabaseClient
+      .auth
+      .getSession();
+
+
+    /* Already logged in */
+
+    if(data.session){
+
+      window.location.href =
+        "offer.html";
+
+      return;
+
+    }
+
+
+    /* Not logged in */
+
+    const email =
+      emailInput.value.trim();
+
+
+    if(!email){
+
+      window.location.href =
+        "login.html";
+
+      return;
+
+    }
+
+
+    if(!email.includes("@")){
+
+      alert(
+        "Please enter a valid email."
+      );
+
+      return;
+
+    }
+
+
+    /*
+      Email is not used as authentication.
+      Send user to the real login page.
+    */
+
+    window.location.href =
+      "login.html?email=" +
+      encodeURIComponent(email);
+
+  }
 );
 
-</script>
 
-</body>
-</html>
+/* =========================
+   LOGOUT
+========================= */
+
+logoutButton.addEventListener(
+  "click",
+  async function(){
+
+    logoutButton.disabled =
+      true;
+
+    logoutButton.textContent =
+      "Logging out...";
+
+
+    const {
+      error
+    } =
+    await supabaseClient
+      .auth
+      .signOut();
+
+
+    if(error){
+
+      console.error(error);
+
+      alert(
+        "Logout failed. Please try again."
+      );
+
+      logoutButton.disabled =
+        false;
+
+      logoutButton.textContent =
+        "🚪 Logout";
+
+      return;
+
+    }
+
+
+    window.location.href =
+      "index.html";
+
+  }
+);
+
+
+/* =========================
+   CLOSE PROFILE
+========================= */
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    if(
+      profile
