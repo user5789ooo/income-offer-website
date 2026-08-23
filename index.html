@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050505">
 
-<title>SAHIL - Login</title>
+<title>BACK - Login</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link
-  href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
-  rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
+rel="stylesheet"
 >
 
 <style>
@@ -30,7 +31,9 @@ body{
 }
 
 body{
+
   min-height:100vh;
+
   display:flex;
   align-items:center;
   justify-content:center;
@@ -38,6 +41,7 @@ body{
   padding:20px;
 
   background:#050505;
+
   color:white;
 
   font-family:
@@ -46,80 +50,37 @@ body{
     sans-serif;
 
   overflow:hidden;
+
   -webkit-font-smoothing:antialiased;
 }
+
 
 /* =========================
    BACKGROUND
 ========================= */
 
 .background{
+
   position:fixed;
+
   inset:0;
+
   z-index:-10;
 
   background:
     radial-gradient(
-      circle at 15% 15%,
+      circle at 20% 20%,
       rgba(255,255,255,.10),
       transparent 32%
     ),
     radial-gradient(
-      circle at 85% 80%,
+      circle at 80% 80%,
       rgba(255,255,255,.07),
       transparent 32%
     ),
     #050505;
 }
 
-.background::before,
-.background::after{
-  content:"";
-
-  position:absolute;
-
-  width:400px;
-  height:400px;
-
-  border-radius:50%;
-
-  background:white;
-
-  filter:blur(120px);
-
-  opacity:.06;
-
-  animation:
-    glowMove
-    12s
-    ease-in-out
-    infinite
-    alternate;
-}
-
-.background::before{
-  left:-180px;
-  top:10%;
-}
-
-.background::after{
-  right:-180px;
-  bottom:0;
-
-  animation-delay:-5s;
-}
-
-@keyframes glowMove{
-
-  from{
-    transform:translate(0,0) scale(1);
-  }
-
-  to{
-    transform:translate(70px,-40px) scale(1.2);
-  }
-
-}
 
 /* =========================
    LOGIN BOX
@@ -127,7 +88,10 @@ body{
 
 .login-box{
 
+  position:relative;
+
   width:100%;
+
   max-width:410px;
 
   padding:30px 24px;
@@ -142,6 +106,7 @@ body{
     rgba(255,255,255,.07);
 
   backdrop-filter:blur(22px);
+
   -webkit-backdrop-filter:blur(22px);
 
   box-shadow:
@@ -157,22 +122,27 @@ body{
 @keyframes boxIn{
 
   from{
+
     opacity:0;
 
     transform:
       translateY(30px)
       scale(.96);
+
   }
 
   to{
+
     opacity:1;
 
     transform:
       translateY(0)
       scale(1);
+
   }
 
 }
+
 
 /* =========================
    LOGO
@@ -181,6 +151,7 @@ body{
 .logo{
 
   width:58px;
+
   height:58px;
 
   margin:
@@ -189,14 +160,17 @@ body{
   display:flex;
 
   align-items:center;
+
   justify-content:center;
 
   border-radius:18px;
 
   background:white;
+
   color:#050505;
 
   font-size:25px;
+
   font-weight:700;
 
   box-shadow:
@@ -204,14 +178,18 @@ body{
     rgba(255,255,255,.12);
 }
 
+
 h1{
 
   text-align:center;
 
   font-size:28px;
 
+  font-weight:700;
+
   letter-spacing:-.04em;
 }
+
 
 .subtitle{
 
@@ -225,6 +203,7 @@ h1{
 
   font-size:14px;
 }
+
 
 /* =========================
    FORM
@@ -243,6 +222,7 @@ label{
 
   font-weight:600;
 }
+
 
 input{
 
@@ -273,11 +253,13 @@ input{
     box-shadow .2s ease;
 }
 
+
 input::placeholder{
 
   color:
     rgba(255,255,255,.30);
 }
+
 
 input:focus{
 
@@ -291,6 +273,7 @@ input:focus{
     0 0 0 3px
     rgba(255,255,255,.05);
 }
+
 
 /* =========================
    LOGIN BUTTON
@@ -321,11 +304,13 @@ input:focus{
     opacity .2s ease;
 }
 
+
 .login-button:hover{
 
   transform:
     translateY(-2px);
 }
+
 
 .login-button:active{
 
@@ -333,12 +318,14 @@ input:focus{
     scale(.97);
 }
 
+
 .login-button:disabled{
 
   opacity:.55;
 
   cursor:not-allowed;
 }
+
 
 /* =========================
    MESSAGE
@@ -360,6 +347,7 @@ input:focus{
   line-height:1.5;
 }
 
+
 .success{
 
   color:#8dffa9 !important;
@@ -367,12 +355,14 @@ input:focus{
   font-weight:600;
 }
 
+
 .error{
 
   color:#ff8f8f !important;
 
   font-weight:600;
 }
+
 
 /* =========================
    BACK
@@ -390,12 +380,16 @@ input:focus{
     rgba(255,255,255,.50);
 
   font-size:13px;
+
+  text-decoration:none;
 }
+
 
 .back:hover{
 
   color:white;
 }
+
 
 /* =========================
    MONEY RAIN
@@ -416,10 +410,12 @@ input:focus{
   display:none;
 }
 
+
 #moneyRain.show{
 
   display:block;
 }
+
 
 .money{
 
@@ -433,10 +429,11 @@ input:focus{
 
   animation:
     moneyFall
-    2.8s
+    2.7s
     cubic-bezier(.2,.7,.3,1)
     forwards;
 }
+
 
 @keyframes moneyFall{
 
@@ -448,16 +445,19 @@ input:focus{
       translateY(-80px)
       rotate(0deg)
       scale(.7);
+
   }
 
   10%{
 
     opacity:1;
+
   }
 
   80%{
 
     opacity:1;
+
   }
 
   100%{
@@ -468,9 +468,11 @@ input:focus{
       translateY(115vh)
       rotate(720deg)
       scale(1);
+
   }
 
 }
+
 
 /* =========================
    MOBILE
@@ -482,42 +484,29 @@ input:focus{
 
     padding:
       26px 20px;
+
   }
 
   h1{
 
     font-size:25px;
-  }
 
-}
-
-/* =========================
-   REDUCED MOTION
-========================= */
-
-@media(prefers-reduced-motion:reduce){
-
-  *,
-  *::before,
-  *::after{
-
-    animation-duration:
-      .01ms !important;
-
-    transition-duration:
-      .01ms !important;
   }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="background"></div>
 
-<!-- MONEY -->
+
+<!-- MONEY ANIMATION -->
 
 <div id="moneyRain"></div>
 
@@ -526,13 +515,16 @@ input:focus{
 
 <div class="login-box">
 
+
   <div class="logo">
     S
   </div>
 
+
   <h1>
     Welcome to SAHIL
   </h1>
+
 
   <p class="subtitle">
     Login to continue
@@ -541,9 +533,11 @@ input:focus{
 
   <form id="loginForm">
 
+
     <label for="email">
       Email
     </label>
+
 
     <input
       type="email"
@@ -557,6 +551,7 @@ input:focus{
     <label for="password">
       Password
     </label>
+
 
     <input
       type="password"
@@ -575,6 +570,7 @@ input:focus{
       Login
     </button>
 
+
   </form>
 
 
@@ -588,41 +584,73 @@ input:focus{
     ← Back to Home
   </a>
 
+
 </div>
 
 
-<!-- SUPABASE -->
+<!-- SUPABASE CDN -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script src="supabase-config.js"></script>
-
 
 <script>
+
+/* =================================================
+   SUPABASE
+   আলাদা client নাম ব্যবহার করছি যাতে
+   supabase-config.js-এর সাথে conflict না হয়।
+================================================= */
+
+const LOGIN_SUPABASE_URL =
+  "https://ylquvyebfgsvipecljuu.supabase.co";
+
+
+const LOGIN_SUPABASE_KEY =
+  "sb_publishable_Ur8pHDUGsj8yTqo4cnEdmA_hoLwHYxT";
+
+
+const loginSupabase =
+  window.supabase.createClient(
+    LOGIN_SUPABASE_URL,
+    LOGIN_SUPABASE_KEY,
+    {
+      auth:{
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true,
+        storage:window.localStorage
+      }
+    }
+  );
+
 
 /* =========================
    ELEMENTS
 ========================= */
 
-const form =
+const loginForm =
   document.getElementById(
     "loginForm"
   );
+
 
 const emailInput =
   document.getElementById(
     "email"
   );
 
+
 const passwordInput =
   document.getElementById(
     "password"
   );
 
+
 const loginButton =
   document.getElementById(
     "loginButton"
   );
+
 
 const message =
   document.getElementById(
@@ -636,14 +664,45 @@ const message =
 
 function showMessage(
   text,
-  type = ""
+  type
 ){
 
   message.textContent =
     text;
 
   message.className =
-    type;
+    type || "";
+
+}
+
+
+/* =========================
+   EMAIL FROM URL
+========================= */
+
+try{
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const email =
+    params.get("email");
+
+
+  if(email){
+
+    emailInput.value =
+      email;
+
+  }
+
+}catch(error){
+
+  console.error(error);
+
 }
 
 
@@ -658,7 +717,9 @@ function startMoneyRain(){
       "moneyRain"
     );
 
+
   container.innerHTML = "";
+
 
   container.classList.add(
     "show"
@@ -666,11 +727,13 @@ function startMoneyRain(){
 
 
   const symbols = [
+
     "💰",
     "💵",
     "💸",
     "🪙",
     "💲"
+
   ];
 
 
@@ -688,8 +751,10 @@ function startMoneyRain(){
         "span"
       );
 
+
     money.className =
       "money";
+
 
     money.textContent =
       symbols[
@@ -706,19 +771,23 @@ function startMoneyRain(){
 
 
     money.style.fontSize =
-      (20 +
-       Math.random() * 22) +
+      (
+        20 +
+        Math.random() * 22
+      ) +
       "px";
 
 
     money.style.animationDelay =
-      Math.random() * 1.2 +
+      Math.random() * 1.1 +
       "s";
 
 
     money.style.animationDuration =
-      (2.3 +
-       Math.random() * 1.4) +
+      (
+        2.3 +
+        Math.random() * 1.2
+      ) +
       "s";
 
 
@@ -739,61 +808,8 @@ function startMoneyRain(){
       container.innerHTML = "";
 
     },
-    5000
+    4800
   );
-
-}
-
-
-/* =========================
-   CHECK EXISTING SESSION
-========================= */
-
-async function checkExistingSession(){
-
-  try{
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .auth
-        .getSession();
-
-
-    if(error){
-
-      console.error(
-        "Session error:",
-        error
-      );
-
-      return;
-    }
-
-
-    /*
-      Already logged in.
-      Don't show login again.
-    */
-
-    if(data && data.session){
-
-      window.location.replace(
-        "index.html"
-      );
-
-    }
-
-  }catch(error){
-
-    console.error(
-      "Session check failed:",
-      error
-    );
-
-  }
 
 }
 
@@ -802,7 +818,7 @@ async function checkExistingSession(){
    LOGIN
 ========================= */
 
-form.addEventListener(
+loginForm.addEventListener(
   "submit",
   async function(event){
 
@@ -811,6 +827,7 @@ form.addEventListener(
 
     const email =
       emailInput.value.trim();
+
 
     const password =
       passwordInput.value;
@@ -824,6 +841,7 @@ form.addEventListener(
       );
 
       return;
+
     }
 
 
@@ -835,11 +853,13 @@ form.addEventListener(
       );
 
       return;
+
     }
 
 
     loginButton.disabled =
       true;
+
 
     loginButton.textContent =
       "Logging in...";
@@ -852,17 +872,9 @@ form.addEventListener(
 
     try{
 
-      /*
-        IMPORTANT:
-        supabaseClient comes
-        from supabase-config.js
-      */
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
+      const result =
+        await loginSupabase
           .auth
           .signInWithPassword({
 
@@ -875,10 +887,22 @@ form.addEventListener(
           });
 
 
+      const data =
+        result.data;
+
+
+      const error =
+        result.error;
+
+
+      /* =========================
+         ERROR
+      ========================= */
+
       if(error){
 
         console.error(
-          "Login error:",
+          "Supabase login error:",
           error
         );
 
@@ -893,17 +917,24 @@ form.addEventListener(
         loginButton.disabled =
           false;
 
+
         loginButton.textContent =
           "Login";
 
+
         return;
+
       }
 
 
+      /* =========================
+         SUCCESS
+      ========================= */
+
       if(
         !data ||
-        !data.user ||
-        !data.session
+        !data.session ||
+        !data.user
       ){
 
         showMessage(
@@ -915,16 +946,15 @@ form.addEventListener(
         loginButton.disabled =
           false;
 
+
         loginButton.textContent =
           "Login";
 
+
         return;
+
       }
 
-
-      /*
-        SUCCESS
-      */
 
       showMessage(
         "Login successful! 💰",
@@ -937,24 +967,22 @@ form.addEventListener(
 
 
       /*
-        Supabase persistSession:true
-        will save the session locally.
+        Session is persisted by
+        Supabase automatically.
       */
 
       startMoneyRain();
 
 
       /*
-        Small delay so the
-        animation can be seen.
+        Go to home after animation.
       */
 
       setTimeout(
         function(){
 
-          window.location.replace(
-            "index.html"
-          );
+          window.location.href =
+            "index.html";
 
         },
         1800
@@ -964,7 +992,7 @@ form.addEventListener(
     }catch(error){
 
       console.error(
-        "Unexpected login error:",
+        "Unexpected error:",
         error
       );
 
@@ -979,6 +1007,7 @@ form.addEventListener(
       loginButton.disabled =
         false;
 
+
       loginButton.textContent =
         "Login";
 
@@ -986,34 +1015,6 @@ form.addEventListener(
 
   }
 );
-
-
-/* =========================
-   AUTH STATE
-========================= */
-
-supabaseClient
-  .auth
-  .onAuthStateChange(
-    function(
-      event,
-      session
-    ){
-
-      console.log(
-        "Auth event:",
-        event
-      );
-
-    }
-  );
-
-
-/* =========================
-   START
-========================= */
-
-checkExistingSession();
 
 </script>
 
