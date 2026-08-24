@@ -65,9 +65,14 @@ label{
   font-weight:bold;
 }
 
+.field{
+  position:relative;
+}
+
 input{
   width:100%;
   padding:15px;
+  padding-right:58px;
   border:1px solid rgba(255,255,255,.15);
   border-radius:13px;
   background:#181818;
@@ -76,12 +81,8 @@ input{
   outline:none;
 }
 
-.field{
-  position:relative;
-}
-
-.field input{
-  padding-right:58px;
+input:focus{
+  border-color:#aaa;
 }
 
 .eye{
@@ -91,8 +92,8 @@ input{
   transform:translateY(-50%);
   width:48px;
   height:48px;
-  padding:0;
   border:0;
+  padding:0;
   background:transparent;
   color:white;
   display:flex;
@@ -100,7 +101,7 @@ input{
   justify-content:center;
   font-size:20px;
   cursor:pointer;
-  z-index:5;
+  z-index:10;
 }
 
 .create{
@@ -155,167 +156,122 @@ input{
 
 <div class="box">
 
-  <div class="logo">S</div>
+<div class="logo">S</div>
 
-  <h1>Create Account</h1>
+<h1>Create Account</h1>
 
-  <p class="subtitle">
-    Join SAHIL to continue
-  </p>
+<p class="subtitle">
+Join SAHIL to continue
+</p>
 
+<form id="signupForm">
 
-  <form id="signupForm">
+<label>Email</label>
 
-    <label>
-      Email
-    </label>
+<input
+  type="email"
+  id="email"
+  placeholder="Enter your email"
+  autocomplete="email"
+  required
+>
 
-    <input
-      id="email"
-      type="email"
-      placeholder="Enter your email"
-      autocomplete="email"
-      required
-    >
+<label>Password</label>
 
+<div class="field">
 
-    <label>
-      Password
-    </label>
+<input
+  type="password"
+  id="password"
+  placeholder="Create password"
+  minlength="6"
+  autocomplete="new-password"
+  required
+>
 
-    <div class="field">
+<button
+  type="button"
+  class="eye"
+  id="passwordEye"
+>
+👁️
+</button>
 
-      <input
-        id="password"
-        type="password"
-        placeholder="Create password"
-        minlength="6"
-        autocomplete="new-password"
-        required
-      >
+</div>
 
-      <button
-        type="button"
-        class="eye"
-        id="eyePassword"
-      >
-        👁️
-      </button>
+<label>Confirm Password</label>
 
-    </div>
+<div class="field">
 
+<input
+  type="password"
+  id="confirmPassword"
+  placeholder="Confirm password"
+  minlength="6"
+  autocomplete="new-password"
+  required
+>
 
-    <label>
-      Confirm Password
-    </label>
+<button
+  type="button"
+  class="eye"
+  id="confirmEye"
+>
+👁️
+</button>
 
-    <div class="field">
+</div>
 
-      <input
-        id="confirmPassword"
-        type="password"
-        placeholder="Confirm password"
-        minlength="6"
-        autocomplete="new-password"
-        required
-      >
+<button
+  type="submit"
+  class="create"
+  id="createButton"
+>
+Create Account
+</button>
 
-      <button
-        type="button"
-        class="eye"
-        id="eyeConfirm"
-      >
-        👁️
-      </button>
+</form>
 
-    </div>
+<div
+  class="message"
+  id="message"
+></div>
 
+<div class="login">
 
-    <button
-      type="submit"
-      class="create"
-      id="createButton"
-    >
-      Create Account
-    </button>
+Already have an account?
 
-  </form>
+<a href="login.html">
+Login
+</a>
 
+</div>
 
-  <div
-    class="message"
-    id="message"
-  ></div>
-
-
-  <div class="login">
-
-    Already have an account?
-
-    <a href="login.html">
-      Login
-    </a>
-
-  </div>
-
-
-  <a
-    class="back"
-    href="index.html"
-  >
-    ← Back to Home
-  </a>
+<a
+  class="back"
+  href="index.html"
+>
+← Back to Home
+</a>
 
 </div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
 
+<script src="supabase-config.js"></script>
 
 <script>
 
-let supabaseClient = null;
-
-
 /* =========================
-   INIT SUPABASE
+   SUPABASE
 ========================= */
 
-function initSupabase(){
-
-  if(
-    !window.supabase ||
-    typeof SUPABASE_URL === "undefined" ||
-    typeof SUPABASE_ANON_KEY === "undefined"
-  ){
-
-    showMessage(
-      "Supabase configuration পাওয়া যায়নি।"
-    );
-
-    return false;
-
-  }
-
-
-  supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY,
-      {
-        auth:{
-          persistSession:true,
-          autoRefreshToken:true,
-          detectSessionInUrl:true
-        }
-      }
-    );
-
-
-  return true;
-
-}
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
 
 
 /* =========================
@@ -327,17 +283,17 @@ const form =
     "signupForm"
   );
 
-const emailInput =
+const email =
   document.getElementById(
     "email"
   );
 
-const passwordInput =
+const password =
   document.getElementById(
     "password"
   );
 
-const confirmInput =
+const confirmPassword =
   document.getElementById(
     "confirmPassword"
   );
@@ -354,69 +310,73 @@ const message =
 
 
 /* =========================
-   SHOW / HIDE PASSWORD
+   PASSWORD EYE
 ========================= */
 
 document
-  .getElementById("eyePassword")
-  .addEventListener(
-    "click",
-    function(){
+.getElementById("passwordEye")
+.addEventListener(
+  "click",
+  function(){
 
-      if(
-        passwordInput.type ===
-        "password"
-      ){
+    if(
+      password.type ===
+      "password"
+    ){
 
-        passwordInput.type =
-          "text";
+      password.type =
+        "text";
 
-        this.textContent =
-          "🙈";
+      this.textContent =
+        "🙈";
 
-      }else{
+    }else{
 
-        passwordInput.type =
-          "password";
+      password.type =
+        "password";
 
-        this.textContent =
-          "👁️";
-
-      }
+      this.textContent =
+        "👁️";
 
     }
-  );
 
+  }
+);
+
+
+/* =========================
+   CONFIRM PASSWORD EYE
+========================= */
 
 document
-  .getElementById("eyeConfirm")
-  .addEventListener(
-    "click",
-    function(){
+.getElementById("confirmEye")
+.addEventListener(
+  "click",
+  function(){
 
-      if(
-        confirmInput.type ===
-        "password"
-      ){
+    if(
+      confirmPassword.type ===
+      "password"
+    ){
 
-        confirmInput.type =
-          "text";
+      confirmPassword.type =
+        "text";
 
-        this.textContent =
-          "🙈";
+      this.textContent =
+        "🙈";
 
-      }else{
+    }else{
 
-        confirmInput.type =
-          "password";
+      confirmPassword.type =
+        "password";
 
-        this.textContent =
-          "👁️";
-
-      }
+      this.textContent =
+        "👁️";
 
     }
-  );
+
+  }
+);
 
 
 /* =========================
@@ -425,7 +385,7 @@ document
 
 function showMessage(
   text,
-  success = false
+  success=false
 ){
 
   message.textContent =
@@ -450,37 +410,21 @@ form.addEventListener(
     event.preventDefault();
 
 
-    if(!initSupabase()){
-
-      return;
-
-    }
-
-
-    const email =
-      emailInput.value
+    const emailValue =
+      email.value
         .trim()
         .toLowerCase();
 
-    const password =
-      passwordInput.value;
+    const passwordValue =
+      password.value;
 
-    const confirmPassword =
-      confirmInput.value;
-
-
-    if(!email){
-
-      showMessage(
-        "Please enter your email."
-      );
-
-      return;
-
-    }
+    const confirmValue =
+      confirmPassword.value;
 
 
-    if(password.length < 6){
+    if(
+      passwordValue.length < 6
+    ){
 
       showMessage(
         "Password must be at least 6 characters."
@@ -492,8 +436,8 @@ form.addEventListener(
 
 
     if(
-      password !==
-      confirmPassword
+      passwordValue !==
+      confirmValue
     ){
 
       showMessage(
@@ -513,7 +457,7 @@ form.addEventListener(
 
 
     showMessage(
-      "Creating your account...",
+      "Please wait...",
       true
     );
 
@@ -524,51 +468,29 @@ form.addEventListener(
         data,
         error
       } =
-        await supabaseClient.auth.signUp({
+        await supabaseClient
+          .auth
+          .signUp({
 
-          email:
-            email,
+            email:
+              emailValue,
 
-          password:
-            password
+            password:
+              passwordValue
 
-        });
+          });
 
 
       if(error){
 
         console.error(
-          "SIGNUP ERROR:",
           error
         );
 
-
-        const errorText =
-          error.message ||
-          "Signup failed.";
-
-
-        if(
-          errorText
-            .toLowerCase()
-            .includes(
-              "already registered"
-            )
-        ){
-
-          showMessage(
-            "This email is already registered. Please login."
-          );
-
-        }else{
-
-          showMessage(
-            "Signup failed: " +
-            errorText
-          );
-
-        }
-
+        showMessage(
+          "Signup failed: " +
+          error.message
+        );
 
         createButton.disabled =
           false;
@@ -581,36 +503,34 @@ form.addEventListener(
       }
 
 
-      /* =====================
-         SESSION CREATED
-      ===================== */
+      /*
+       IMPORTANT:
+       Do NOT call signOut().
+       Do NOT call getSession()
+       here.
+      */
+
 
       if(
         data &&
-        data.session &&
-        data.user
+        data.session
       ){
 
         showMessage(
-          "Account created successfully! Opening website...",
+          "Account created! Opening website...",
           true
         );
 
 
-        await new Promise(
-          function(resolve){
+        setTimeout(
+          function(){
 
-            setTimeout(
-              resolve,
-              500
+            window.location.replace(
+              "index.html"
             );
 
-          }
-        );
-
-
-        window.location.replace(
-          "index.html"
+          },
+          700
         );
 
 
@@ -619,12 +539,13 @@ form.addEventListener(
       }
 
 
-      /* =====================
-         EMAIL CONFIRMATION
-      ===================== */
+      /*
+       If Supabase requires
+       email confirmation.
+      */
 
       showMessage(
-        "Account created! Please verify your email, then login.",
+        "Account created successfully! Please verify your email, then login.",
         true
       );
 
@@ -644,23 +565,19 @@ form.addEventListener(
           );
 
         },
-        2500
+        2200
       );
 
 
     }catch(error){
 
       console.error(
-        "SIGNUP EXCEPTION:",
         error
       );
 
-
       showMessage(
-        "Something went wrong: " +
-        error.message
+        "Something went wrong. Please try again."
       );
-
 
       createButton.disabled =
         false;
@@ -671,58 +588,6 @@ form.addEventListener(
     }
 
   });
-
-
-/* =========================
-   CHECK EXISTING SESSION
-========================= */
-
-async function checkExistingSession(){
-
-  if(!initSupabase()){
-
-    return;
-
-  }
-
-
-  try{
-
-    const {
-      data
-    } =
-      await supabaseClient
-        .auth
-        .getSession();
-
-
-    if(
-      data &&
-      data.session
-    ){
-
-      window.location.replace(
-        "index.html"
-      );
-
-    }
-
-  }catch(error){
-
-    console.error(
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-checkExistingSession();
 
 </script>
 
