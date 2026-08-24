@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050505">
@@ -8,6 +9,7 @@
 <title>SAHIL - Create Account</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   font-family:Arial,sans-serif;
@@ -87,7 +89,7 @@ input:focus{
 
 .eye{
   position:absolute;
-  right:5px;
+  right:4px;
   top:50%;
   transform:translateY(-50%);
   width:48px;
@@ -102,6 +104,7 @@ input:focus{
   font-size:20px;
   cursor:pointer;
   z-index:10;
+  -webkit-tap-highlight-color:transparent;
 }
 
 .create{
@@ -149,110 +152,131 @@ input:focus{
   color:#777;
   text-decoration:none;
 }
+
 </style>
+
 </head>
 
 <body>
 
 <div class="box">
 
-<div class="logo">S</div>
+  <div class="logo">
+    S
+  </div>
 
-<h1>Create Account</h1>
+  <h1>
+    Create Account
+  </h1>
 
-<p class="subtitle">
-Join SAHIL to continue
-</p>
+  <p class="subtitle">
+    Join SAHIL to continue
+  </p>
 
-<form id="signupForm">
 
-<label>Email</label>
+  <form id="signupForm">
 
-<input
-  type="email"
-  id="email"
-  placeholder="Enter your email"
-  autocomplete="email"
-  required
->
+    <label for="email">
+      Email
+    </label>
 
-<label>Password</label>
+    <input
+      id="email"
+      type="email"
+      placeholder="Enter your email"
+      autocomplete="email"
+      required
+    >
 
-<div class="field">
 
-<input
-  type="password"
-  id="password"
-  placeholder="Create password"
-  minlength="6"
-  autocomplete="new-password"
-  required
->
+    <label for="password">
+      Password
+    </label>
 
-<button
-  type="button"
-  class="eye"
-  id="passwordEye"
->
-👁️
-</button>
+    <div class="field">
 
-</div>
+      <input
+        id="password"
+        type="password"
+        placeholder="Create password"
+        minlength="6"
+        autocomplete="new-password"
+        required
+      >
 
-<label>Confirm Password</label>
+      <button
+        type="button"
+        class="eye"
+        id="passwordEye"
+        aria-label="Show password"
+      >
+        👁️
+      </button>
 
-<div class="field">
+    </div>
 
-<input
-  type="password"
-  id="confirmPassword"
-  placeholder="Confirm password"
-  minlength="6"
-  autocomplete="new-password"
-  required
->
 
-<button
-  type="button"
-  class="eye"
-  id="confirmEye"
->
-👁️
-</button>
+    <label for="confirmPassword">
+      Confirm Password
+    </label>
 
-</div>
+    <div class="field">
 
-<button
-  type="submit"
-  class="create"
-  id="createButton"
->
-Create Account
-</button>
+      <input
+        id="confirmPassword"
+        type="password"
+        placeholder="Confirm password"
+        minlength="6"
+        autocomplete="new-password"
+        required
+      >
 
-</form>
+      <button
+        type="button"
+        class="eye"
+        id="confirmEye"
+        aria-label="Show confirm password"
+      >
+        👁️
+      </button>
 
-<div
-  class="message"
-  id="message"
-></div>
+    </div>
 
-<div class="login">
 
-Already have an account?
+    <button
+      type="submit"
+      class="create"
+      id="createButton"
+    >
+      Create Account
+    </button>
 
-<a href="login.html">
-Login
-</a>
+  </form>
 
-</div>
 
-<a
-  class="back"
-  href="index.html"
->
-← Back to Home
-</a>
+  <div
+    class="message"
+    id="message"
+  ></div>
+
+
+  <div class="login">
+
+    Already have an account?
+
+    <a href="login.html">
+      Login
+    </a>
+
+  </div>
+
+
+  <a
+    class="back"
+    href="index.html"
+  >
+    ← Back to Home
+  </a>
 
 </div>
 
@@ -283,17 +307,17 @@ const form =
     "signupForm"
   );
 
-const email =
+const emailInput =
   document.getElementById(
     "email"
   );
 
-const password =
+const passwordInput =
   document.getElementById(
     "password"
   );
 
-const confirmPassword =
+const confirmInput =
   document.getElementById(
     "confirmPassword"
   );
@@ -313,69 +337,60 @@ const message =
    PASSWORD EYE
 ========================= */
 
-document
-.getElementById("passwordEye")
-.addEventListener(
-  "click",
-  function(){
+function setupEye(
+  buttonId,
+  input
+){
 
-    if(
-      password.type ===
-      "password"
-    ){
+  const button =
+    document.getElementById(
+      buttonId
+    );
 
-      password.type =
-        "text";
+  button.addEventListener(
+    "click",
+    function(event){
 
-      this.textContent =
-        "🙈";
+      event.preventDefault();
 
-    }else{
+      event.stopPropagation();
 
-      password.type =
-        "password";
+      if(
+        input.type ===
+        "password"
+      ){
 
-      this.textContent =
-        "👁️";
+        input.type =
+          "text";
+
+        button.textContent =
+          "🙈";
+
+      }else{
+
+        input.type =
+          "password";
+
+        button.textContent =
+          "👁️";
+
+      }
 
     }
+  );
 
-  }
+}
+
+
+setupEye(
+  "passwordEye",
+  passwordInput
 );
 
 
-/* =========================
-   CONFIRM PASSWORD EYE
-========================= */
-
-document
-.getElementById("confirmEye")
-.addEventListener(
-  "click",
-  function(){
-
-    if(
-      confirmPassword.type ===
-      "password"
-    ){
-
-      confirmPassword.type =
-        "text";
-
-      this.textContent =
-        "🙈";
-
-    }else{
-
-      confirmPassword.type =
-        "password";
-
-      this.textContent =
-        "👁️";
-
-    }
-
-  }
+setupEye(
+  "confirmEye",
+  confirmInput
 );
 
 
@@ -385,7 +400,7 @@ document
 
 function showMessage(
   text,
-  success=false
+  success
 ){
 
   message.textContent =
@@ -400,7 +415,7 @@ function showMessage(
 
 
 /* =========================
-   CREATE ACCOUNT
+   SIGNUP
 ========================= */
 
 form.addEventListener(
@@ -410,24 +425,35 @@ form.addEventListener(
     event.preventDefault();
 
 
-    const emailValue =
-      email.value
+    const email =
+      emailInput.value
         .trim()
         .toLowerCase();
 
-    const passwordValue =
-      password.value;
+    const password =
+      passwordInput.value;
 
-    const confirmValue =
-      confirmPassword.value;
+    const confirmPassword =
+      confirmInput.value;
 
 
-    if(
-      passwordValue.length < 6
-    ){
+    if(!email){
 
       showMessage(
-        "Password must be at least 6 characters."
+        "Please enter your email.",
+        false
+      );
+
+      return;
+
+    }
+
+
+    if(password.length < 6){
+
+      showMessage(
+        "Password must be at least 6 characters.",
+        false
       );
 
       return;
@@ -436,12 +462,13 @@ form.addEventListener(
 
 
     if(
-      passwordValue !==
-      confirmValue
+      password !==
+      confirmPassword
     ){
 
       showMessage(
-        "Passwords do not match."
+        "Passwords do not match.",
+        false
       );
 
       return;
@@ -457,12 +484,14 @@ form.addEventListener(
 
 
     showMessage(
-      "Please wait...",
+      "Creating your account...",
       true
     );
 
 
     try{
+
+      /* CREATE ACCOUNT */
 
       const {
         data,
@@ -473,10 +502,10 @@ form.addEventListener(
           .signUp({
 
             email:
-              emailValue,
+              email,
 
             password:
-              passwordValue
+              password
 
           });
 
@@ -484,12 +513,14 @@ form.addEventListener(
       if(error){
 
         console.error(
+          "SIGNUP ERROR:",
           error
         );
 
         showMessage(
           "Signup failed: " +
-          error.message
+          error.message,
+          false
         );
 
         createButton.disabled =
@@ -503,13 +534,9 @@ form.addEventListener(
       }
 
 
-      /*
-       IMPORTANT:
-       Do NOT call signOut().
-       Do NOT call getSession()
-       here.
-      */
-
+      /* =====================
+         SESSION CREATED
+      ===================== */
 
       if(
         data &&
@@ -526,26 +553,91 @@ form.addEventListener(
           function(){
 
             window.location.replace(
-              "index.html"
+              "offer.html"
             );
 
           },
           700
         );
 
+        return;
+
+      }
+
+
+      /* =====================
+         NO SESSION
+      ===================== */
+
+      showMessage(
+        "Account created. Logging you in...",
+        true
+      );
+
+
+      /*
+        Try login manually.
+        This handles the case where
+        signup returned no session.
+      */
+
+      const {
+        data: loginData,
+        error: loginError
+      } =
+        await supabaseClient
+          .auth
+          .signInWithPassword({
+
+            email:
+              email,
+
+            password:
+              password
+
+          });
+
+
+      if(
+        !loginError &&
+        loginData &&
+        loginData.session
+      ){
+
+        showMessage(
+          "Login successful! Opening website...",
+          true
+        );
+
+
+        setTimeout(
+          function(){
+
+            window.location.replace(
+              "offer.html"
+            );
+
+          },
+          700
+        );
 
         return;
 
       }
 
 
-      /*
-       If Supabase requires
-       email confirmation.
-      */
+      /* =====================
+         LOGIN FAILED
+      ===================== */
+
+      console.error(
+        "AUTO LOGIN ERROR:",
+        loginError
+      );
+
 
       showMessage(
-        "Account created successfully! Please verify your email, then login.",
+        "Account created. Please login once to continue.",
         true
       );
 
@@ -565,19 +657,24 @@ form.addEventListener(
           );
 
         },
-        2200
+        1500
       );
 
 
     }catch(error){
 
       console.error(
+        "SIGNUP EXCEPTION:",
         error
       );
 
+
       showMessage(
-        "Something went wrong. Please try again."
+        "Something went wrong: " +
+        error.message,
+        false
       );
+
 
       createButton.disabled =
         false;
@@ -587,7 +684,8 @@ form.addEventListener(
 
     }
 
-  });
+  }
+);
 
 </script>
 
