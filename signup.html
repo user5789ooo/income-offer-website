@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
+<title>SAHIL - Create Account</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:#050505;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.signup-box{
+  width:100%;
+  max-width:430px;
+  padding:30px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:26px;
+  background:rgba(255,255,255,.06);
+  box-shadow:0 25px 80px rgba(0,0,0,.4);
+}
+
+.logo{
+  width:70px;
+  height:70px;
+  margin:0 auto 20px;
+  border-radius:20px;
+  background:white;
+  color:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  font-weight:bold;
+}
+
+h1{
+  text-align:center;
+  margin:0 0 8px;
+  font-size:32px;
+}
+
+.subtitle{
+  text-align:center;
+  color:rgba(255,255,255,.5);
+  margin:0 0 28px;
+}
+
+label{
+  display:block;
+  margin:15px 0 7px;
+  font-weight:bold;
+  color:rgba(255,255,255,.8);
+}
+
+input{
+  width:100%;
+  padding:15px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:13px;
+  background:rgba(255,255,255,.07);
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+
+input:focus{
+  border-color:rgba(255,255,255,.35);
+}
+
+.password-box{
+  position:relative;
+}
+
+.password-box input{
+  padding-right:55px;
+}
+
+.show-password{
+  position:absolute;
+  right:10px;
+  top:50%;
+  transform:translateY(-50%);
+  border:0;
+  background:transparent;
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.create-button{
+  width:100%;
+  margin-top:22px;
+  padding:15px;
+  border:0;
+  border-radius:999px;
+  background:white;
+  color:#111;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.create-button:disabled{
+  opacity:.5;
+}
+
+.message{
+  margin-top:16px;
+  text-align:center;
+  font-size:14px;
+  line-height:1.5;
+}
+
+.login-link{
+  margin-top:24px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.08);
+  text-align:center;
+  color:rgba(255,255,255,.55);
+}
+
+.login-link a{
+  color:white;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+.back{
+  display:block;
+  margin-top:20px;
+  text-align:center;
+  color:rgba(255,255,255,.45);
+  text-decoration:none;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="signup-box">
+
+  <div class="logo">S</div>
+
+  <h1>Create Account</h1>
+
+  <p class="subtitle">
+    Join SAHIL to continue
+  </p>
+
+  <form id="signupForm">
+
+    <label for="email">
+      Email
+    </label>
+
+    <input
+      type="email"
+      id="email"
+      placeholder="Enter your email"
+      autocomplete="email"
+      required
+    >
+
+    <label for="password">
+      Password
+    </label>
+
+    <div class="password-box">
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Create a password"
+        autocomplete="new-password"
+        minlength="6"
+        required
+      >
+
+      <button
+        type="button"
+        class="show-password"
+        id="showPassword"
+      >
+        👁️
+      </button>
+
+    </div>
+
+    <label for="confirmPassword">
+      Confirm Password
+    </label>
+
+    <div class="password-box">
+
+      <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm your password"
+        autocomplete="new-password"
+        minlength="6"
+        required
+      >
+
+      <button
+        type="button"
+        class="show-password"
+        id="showConfirmPassword"
+      >
+        👁️
+      </button>
+
+    </div>
+
+    <button
+      type="submit"
+      class="create-button"
+      id="createButton"
+    >
+      Create Account
+    </button>
+
+  </form>
+
+  <div
+    class="message"
+    id="message"
+  ></div>
+
+  <div class="login-link">
+
+    Already have an account?
+
+    <a href="login.html">
+      Login
+    </a>
+
+  </div>
+
+  <a
+    class="back"
+    href="index.html"
+  >
+    ← Back to Home
+  </a>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+
+<script>
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+
+const form =
+  document.getElementById(
+    "signupForm"
+  );
+
+const emailInput =
+  document.getElementById(
+    "email"
+  );
+
+const passwordInput =
+  document.getElementById(
+    "password"
+  );
+
+const confirmInput =
+  document.getElementById(
+    "confirmPassword"
+  );
+
+const createButton =
+  document.getElementById(
+    "createButton"
+  );
+
+const message =
+  document.getElementById(
+    "message"
+  );
+
+
+function showMessage(
+  text,
+  success=false
+){
+
+  message.textContent =
+    text;
+
+  message.style.color =
+    success
+      ? "#8dffa9"
+      : "#ff7777";
+
+}
+
+
+/* SHOW PASSWORD */
+
+document.getElementById(
+  "showPassword"
+).addEventListener(
+  "click",
+  function(){
+
+    if(
+      passwordInput.type ===
+      "password"
+    ){
+
+      passwordInput.type =
+        "text";
+
+      this.textContent =
+        "🙈";
+
+    }else{
+
+      passwordInput.type =
+        "password";
+
+      this.textContent =
+        "👁️";
+
+    }
+
+  }
+);
+
+
+/* SHOW CONFIRM PASSWORD */
+
+document.getElementById(
+  "showConfirmPassword"
+).addEventListener(
+  "click",
+  function(){
+
+    if(
+      confirmInput.type ===
+      "password"
+    ){
+
+      confirmInput.type =
+        "text";
+
+      this.textContent =
+        "🙈";
+
+    }else{
+
+      confirmInput.type =
+        "password";
+
+      this.textContent =
+        "👁️";
+
+    }
+
+  }
+);
+
+
+/* CREATE ACCOUNT */
+
+form.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+    const email =
+      emailInput.value.trim();
+
+    const password =
+      passwordInput.value;
+
+    const confirmPassword =
+      confirmInput.value;
+
+
+    if(password !== confirmPassword){
+
+      showMessage(
+        "Passwords do not match."
+      );
+
+      return;
+
+    }
+
+
+    if(password.length < 6){
+
+      showMessage(
+        "Password must be at least 6 characters."
+      );
+
+      return;
+
+    }
+
+
+    createButton.disabled =
+      true;
+
+    createButton.textContent =
+      "Creating account...";
+
+    showMessage(
+      "Please wait...",
+      true
+    );
+
+
+    try{
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+          .auth
+          .signUp({
+
+            email:
+              email,
+
+            password:
+              password
+
+          });
+
+
+      if(error){
+
+        console.error(error);
+
+        showMessage(
+          "Signup failed: " +
+          error.message
+        );
+
+        createButton.disabled =
+          false;
+
+        createButton.textContent =
+          "Create Account";
+
+        return;
+
+      }
+
+
+      if(
+        data.session
+      ){
+
+        showMessage(
+          "Account created successfully! Opening website...",
+          true
+        );
+
+        setTimeout(
+          function(){
+
+            window.location.replace(
+              "offer.html"
+            );
+
+          },
+          700
+        );
+
+        return;
+
+      }
+
+
+      showMessage(
+        "Account created! Please check your email to verify your account.",
+        true
+      );
+
+      createButton.disabled =
+        false;
+
+      createButton.textContent =
+        "Create Account";
+
+
+    }catch(error){
+
+      console.error(error);
+
+      showMessage(
+        "Something went wrong. Please try again."
+      );
+
+      createButton.disabled =
+        false;
+
+      createButton.textContent =
+        "Create Account";
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
