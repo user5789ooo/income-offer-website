@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#111827">
 
 <title>Admin Dashboard</title>
 
@@ -40,7 +38,7 @@ header p{
 }
 
 .container{
-  max-width:800px;
+  max-width:700px;
   margin:auto;
   padding:20px;
 }
@@ -89,11 +87,6 @@ button{
   cursor:pointer;
 }
 
-button:disabled{
-  opacity:.55;
-  cursor:not-allowed;
-}
-
 .primary{
   width:100%;
   margin-top:16px;
@@ -107,8 +100,8 @@ button:disabled{
 }
 
 .danger{
-  background:#fee2e2;
-  color:#991b1b;
+  background:#dc2626;
+  color:white;
 }
 
 .offer-item,
@@ -179,8 +172,8 @@ button:disabled{
 
 .logout{
   width:100%;
-  background:#fee2e2;
-  color:#991b1b;
+  background:#dc2626;
+  color:white;
   margin-bottom:30px;
 }
 
@@ -194,6 +187,7 @@ button:disabled{
   width:100%;
   margin-bottom:15px;
   background:#e5e7eb;
+  color:#111;
 }
 
 .activity-action{
@@ -213,62 +207,30 @@ button:disabled{
   margin-top:10px;
 }
 
-.user-email{
-  color:#111827;
-  font-weight:bold;
+.user-id{
+  font-family:monospace;
+  font-size:12px;
+  word-break:break-all;
 }
 
-.offer-name{
-  color:#111827;
-  font-weight:bold;
-}
-
-.top-actions{
-  display:flex;
-  gap:8px;
-  margin-top:12px;
-}
-
-.top-actions button{
-  flex:1;
-}
-
-@media(max-width:500px){
-
-  .container{
-    padding:12px;
-  }
-
-  .section{
-    padding:16px;
-  }
-
-  .actions{
-    flex-direction:column;
-  }
-
-  .actions button{
-    width:100%;
-  }
-
+.link{
+  color:#2563eb;
+  word-break:break-all;
 }
 
 </style>
 
 </head>
 
-
 <body>
 
 
 <header>
 
-<h1>
-🔐 Admin Dashboard
-</h1>
+<h1>🔐 Admin Dashboard</h1>
 
 <p>
-Manage Income Offers & User Activity
+Manage Offers & User Activity
 </p>
 
 </header>
@@ -277,40 +239,9 @@ Manage Income Offers & User Activity
 <main class="container">
 
 
-<!-- ADMIN STATUS -->
-
-<section class="section">
-
-<h2>
-👤 Admin Account
-</h2>
-
-<p id="adminEmail">
-Checking admin session...
-</p>
-
-<div class="top-actions">
-
-<button
-class="secondary"
-id="refreshAllButton"
->
-↻ Refresh All
-</button>
-
-<button
-class="secondary"
-id="homeButton"
->
-🏠 Website
-</button>
-
-</div>
-
-</section>
-
-
-<!-- ADD / EDIT OFFER -->
+<!-- =========================
+     ADD / EDIT OFFER
+========================= -->
 
 <section class="section">
 
@@ -330,7 +261,7 @@ Offer Name
 <input
 type="text"
 id="offerName"
-placeholder="Example: New User Offer"
+placeholder="Example: Welcome Offer"
 >
 
 <label>
@@ -378,27 +309,35 @@ Inactive
 
 </select>
 
+
 <button
 class="primary"
 id="saveButton"
+type="button"
 >
 Save Offer
 </button>
 
+
 <button
 class="primary secondary"
 id="cancelButton"
+type="button"
 style="display:none"
 >
 Cancel Edit
 </button>
+
 
 <div id="message"></div>
 
 </section>
 
 
-<!-- CURRENT OFFERS -->
+
+<!-- =========================
+     CURRENT OFFERS
+========================= -->
 
 <section class="section">
 
@@ -417,7 +356,10 @@ Loading offers...
 </section>
 
 
-<!-- USER ACTIVITY -->
+
+<!-- =========================
+     USER ACTIVITY
+========================= -->
 
 <section class="section">
 
@@ -427,7 +369,8 @@ Loading offers...
 
 <button
 class="refresh"
-id="refreshActivityButton"
+id="refreshActivity"
+type="button"
 >
 ↻ Refresh Activity
 </button>
@@ -443,88 +386,111 @@ Loading user activity...
 </section>
 
 
-<!-- LOGOUT -->
+
+<!-- =========================
+     TELEGRAM
+========================= -->
+
+<section class="section">
+
+<h2>
+📢 Telegram
+</h2>
+
+<p style="color:#666;font-size:14px;line-height:1.5">
+
+Current Telegram channel:
+
+</p>
+
+<br>
+
+<a
+class="link"
+href="https://t.me/IncomeOffersOfficia"
+target="_blank"
+rel="noopener"
+>
+https://t.me/IncomeOffersOfficia
+</a>
+
+</section>
+
+
 
 <button
 class="logout"
 id="logoutButton"
+type="button"
 >
-🚪 Logout
+Logout
 </button>
 
 
 </main>
 
 
-<script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-</script>
 
-<script
-src="supabase-config.js">
-</script>
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase-config.js"></script>
 
 
 <script>
 
+/*
+====================================================
+IMPORTANT
 
-/* =========================
-   ADMIN
-========================= */
+supabase-config.js already creates:
+
+const supabaseClient = ...
+
+DO NOT create another supabaseClient here.
+====================================================
+*/
+
 
 const ADMIN_UUID =
 "8f49db4a-d528-49c1-b815-f6bc15e1c868";
 
 
-/*
- IMPORTANT:
-
- এখানে আর createClient()
- করা হয়নি।
-
- supabaseClient এসেছে
- supabase-config.js থেকে।
-*/
+let adminUser = null;
 
 
 /* =========================
    ELEMENTS
 ========================= */
 
-const adminEmail =
-document.getElementById(
-  "adminEmail"
-);
-
 const offerList =
-document.getElementById(
-  "offerList"
-);
+document.getElementById("offerList");
 
 const activityList =
-document.getElementById(
-  "activityList"
-);
+document.getElementById("activityList");
 
 const message =
-document.getElementById(
-  "message"
-);
+document.getElementById("message");
 
-const saveButton =
-document.getElementById(
-  "saveButton"
-);
 
-const cancelButton =
-document.getElementById(
-  "cancelButton"
-);
 
-const logoutButton =
-document.getElementById(
-  "logoutButton"
-);
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+const div =
+document.createElement("div");
+
+div.textContent =
+value ?? "";
+
+return div.innerHTML;
+
+}
+
 
 
 /* =========================
@@ -533,113 +499,99 @@ document.getElementById(
 
 function showMessage(text){
 
-  message.innerHTML =
-    `<div class="message">
-      ${escapeHtml(text)}
-    </div>`;
+message.innerHTML =
+`
+<div class="message">
+${escapeHtml(text)}
+</div>
+`;
 
 }
+
 
 
 /* =========================
-   HTML ESCAPE
+   ADMIN CHECK
 ========================= */
 
-function escapeHtml(value){
+async function checkAdmin(){
 
-  const div =
-    document.createElement(
-      "div"
-    );
+try{
 
-  div.textContent =
-    value ?? "";
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.getUser();
 
-  return div.innerHTML;
+
+if(error){
+
+console.error(
+"Auth error:",
+error
+);
+
+window.location.replace(
+"admin-login.html"
+);
+
+return false;
 
 }
 
 
-/* =========================
-   ADMIN SESSION
-========================= */
+if(!data.user){
 
-async function getAdminSession(){
+window.location.replace(
+"admin-login.html"
+);
 
-  try{
-
-    const {
-      data,
-      error
-    } =
-    await supabaseClient
-      .auth
-      .getSession();
-
-
-    if(error){
-
-      console.error(error);
-
-      return null;
-
-    }
-
-
-    const session =
-      data.session;
-
-
-    if(!session){
-
-      window.location.replace(
-        "admin-login.html"
-      );
-
-      return null;
-
-    }
-
-
-    if(
-      session.user.id !==
-      ADMIN_UUID
-    ){
-
-      await supabaseClient
-        .auth
-        .signOut();
-
-      window.location.replace(
-        "admin-login.html"
-      );
-
-      return null;
-
-    }
-
-
-    adminEmail.textContent =
-      "Logged in as: " +
-      (session.user.email ||
-       "Admin");
-
-
-    return session;
-
-  }catch(error){
-
-    console.error(error);
-
-    window.location.replace(
-      "admin-login.html"
-    );
-
-    return null;
-
-  }
+return false;
 
 }
+
+
+if(data.user.id !== ADMIN_UUID){
+
+alert(
+"Access denied."
+);
+
+await supabaseClient
+.auth
+.signOut();
+
+window.location.replace(
+"admin-login.html"
+);
+
+return false;
+
+}
+
+
+adminUser =
+data.user;
+
+return true;
+
+}catch(error){
+
+console.error(error);
+
+window.location.replace(
+"admin-login.html"
+);
+
+return false;
+
+}
+
+}
+
 
 
 /* =========================
@@ -648,259 +600,276 @@ async function getAdminSession(){
 
 async function loadOffers(){
 
-  const session =
-    await getAdminSession();
-
-  if(!session){
-    return;
-  }
-
-
-  offerList.innerHTML =
-    `<div class="loading">
-      Loading offers...
-    </div>`;
+offerList.innerHTML =
+`
+<div class="loading">
+Loading offers...
+</div>
+`;
 
 
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("offers")
-    .select("*")
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    );
+const {
+data,
+error
+} =
+await supabaseClient
+.from("offers")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
 
 
-  if(error){
+if(error){
 
-    console.error(error);
+console.error(
+"Offers error:",
+error
+);
 
-    offerList.innerHTML =
-      `<div class="loading">
-        Unable to load offers.
-        <br><br>
-        ${escapeHtml(
-          error.message
-        )}
-      </div>`;
+offerList.innerHTML =
+`
+<div class="message">
+Unable to load offers.
+<br><br>
+${escapeHtml(error.message)}
+</div>
+`;
 
-    return;
-
-  }
-
-
-  if(
-    !data ||
-    data.length === 0
-  ){
-
-    offerList.innerHTML =
-      `<div class="loading">
-        No offers found.
-      </div>`;
-
-    return;
-
-  }
-
-
-  offerList.innerHTML =
-    "";
-
-
-  data.forEach(
-    function(offer){
-
-      const item =
-        document.createElement(
-          "div"
-        );
-
-      item.className =
-        "offer-item";
-
-
-      item.innerHTML = `
-
-        ${
-          offer.image_url
-          ?
-          `
-          <img
-            class="offer-image"
-            src="${escapeHtml(
-              offer.image_url
-            )}"
-            alt="Offer"
-          >
-          `
-          :
-          ""
-        }
-
-        <h3>
-          ${escapeHtml(
-            offer.title ||
-            "Untitled Offer"
-          )}
-        </h3>
-
-        <p>
-          ${escapeHtml(
-            offer.description ||
-            ""
-          )}
-        </p>
-
-        <p>
-          🔗
-          ${escapeHtml(
-            offer.offer_url ||
-            "No offer link"
-          )}
-        </p>
-
-        <span
-          class="status ${
-            offer.status === "active"
-            ? "active"
-            : "inactive"
-          }"
-        >
-          ●
-          ${escapeHtml(
-            offer.status ||
-            "unknown"
-          )}
-        </span>
-
-        <div class="actions">
-
-          <button
-            class="secondary"
-            data-edit="${escapeHtml(
-              offer.id
-            )}"
-          >
-            ✏️ Edit
-          </button>
-
-          <button
-            class="secondary"
-            data-toggle="${escapeHtml(
-              offer.id
-            )}"
-            data-status="${escapeHtml(
-              offer.status
-            )}"
-          >
-            ${
-              offer.status === "active"
-              ? "⏸️ Turn OFF"
-              : "▶️ Turn ON"
-            }
-          </button>
-
-          <button
-            class="danger"
-            data-delete="${escapeHtml(
-              offer.id
-            )}"
-          >
-            🗑️ Delete
-          </button>
-
-        </div>
-      `;
-
-
-      offerList.appendChild(
-        item
-      );
-
-    }
-  );
-
-
-  /* EDIT */
-
-  offerList
-    .querySelectorAll(
-      "[data-edit]"
-    )
-    .forEach(
-      function(button){
-
-        button.addEventListener(
-          "click",
-          function(){
-
-            editOffer(
-              button.dataset.edit
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-  /* TOGGLE */
-
-  offerList
-    .querySelectorAll(
-      "[data-toggle]"
-    )
-    .forEach(
-      function(button){
-
-        button.addEventListener(
-          "click",
-          function(){
-
-            toggleOffer(
-              button.dataset.toggle,
-              button.dataset.status
-            );
-
-          }
-        );
-
-      }
-    );
-
-
-  /* DELETE */
-
-  offerList
-    .querySelectorAll(
-      "[data-delete]"
-    )
-    .forEach(
-      function(button){
-
-        button.addEventListener(
-          "click",
-          function(){
-
-            deleteOffer(
-              button.dataset.delete
-            );
-
-          }
-        );
-
-      }
-    );
+return;
 
 }
+
+
+if(!data || data.length === 0){
+
+offerList.innerHTML =
+`
+<div class="loading">
+No offers found.
+</div>
+`;
+
+return;
+
+}
+
+
+offerList.innerHTML = "";
+
+
+data.forEach(
+function(offer){
+
+const item =
+document.createElement("div");
+
+item.className =
+"offer-item";
+
+
+const title =
+offer.title ||
+"Untitled Offer";
+
+
+const description =
+offer.description ||
+"";
+
+
+const status =
+offer.status ||
+"unknown";
+
+
+item.innerHTML =
+`
+
+${
+offer.image_url
+?
+`
+<img
+class="offer-image"
+src="${escapeHtml(
+offer.image_url
+)}"
+alt="Offer"
+>
+`
+:
+""
+}
+
+
+<h3>
+${escapeHtml(title)}
+</h3>
+
+
+<p>
+${escapeHtml(description)}
+</p>
+
+
+${
+offer.offer_url
+?
+`
+<p>
+🔗
+<a
+class="link"
+href="${escapeHtml(
+offer.offer_url
+)}"
+target="_blank"
+rel="noopener"
+>
+Open Offer Link
+</a>
+</p>
+`
+:
+`
+<p>
+🔗 No offer link
+</p>
+`
+}
+
+
+<span
+class="status ${
+status === "active"
+?
+"active"
+:
+"inactive"
+}"
+>
+● ${escapeHtml(status)}
+</span>
+
+
+<div class="actions">
+
+
+<button
+class="secondary edit-btn"
+data-id="${escapeHtml(offer.id)}"
+type="button"
+>
+✏️ Edit
+</button>
+
+
+<button
+class="secondary toggle-btn"
+data-id="${escapeHtml(offer.id)}"
+data-status="${escapeHtml(status)}"
+type="button"
+>
+${
+status === "active"
+?
+"⏸️ Turn OFF"
+:
+"▶️ Turn ON"
+}
+</button>
+
+
+<button
+class="danger delete-btn"
+data-id="${escapeHtml(offer.id)}"
+type="button"
+>
+🗑️ Delete
+</button>
+
+
+</div>
+
+`;
+
+
+offerList.appendChild(item);
+
+}
+);
+
+
+/*
+Attach buttons after rendering.
+*/
+
+document
+.querySelectorAll(".edit-btn")
+.forEach(
+button => {
+
+button.addEventListener(
+"click",
+function(){
+
+editOffer(
+button.dataset.id
+);
+
+}
+);
+
+}
+);
+
+
+document
+.querySelectorAll(".toggle-btn")
+.forEach(
+button => {
+
+button.addEventListener(
+"click",
+function(){
+
+toggleOffer(
+button.dataset.id,
+button.dataset.status
+);
+
+}
+);
+
+}
+);
+
+
+document
+.querySelectorAll(".delete-btn")
+.forEach(
+button => {
+
+button.addEventListener(
+"click",
+function(){
+
+deleteOffer(
+button.dataset.id
+);
+
+}
+);
+
+}
+);
+
+}
+
 
 
 /* =========================
@@ -909,165 +878,130 @@ async function loadOffers(){
 
 async function saveOffer(){
 
-  const session =
-    await getAdminSession();
-
-  if(!session){
-    return;
-  }
-
-
-  const name =
-    document
-      .getElementById(
-        "offerName"
-      )
-      .value
-      .trim();
+const name =
+document
+.getElementById("offerName")
+.value
+.trim();
 
 
-  const description =
-    document
-      .getElementById(
-        "offerDescription"
-      )
-      .value
-      .trim();
+const description =
+document
+.getElementById("offerDescription")
+.value
+.trim();
 
 
-  const image =
-    document
-      .getElementById(
-        "offerImage"
-      )
-      .value
-      .trim();
+const image =
+document
+.getElementById("offerImage")
+.value
+.trim();
 
 
-  const link =
-    document
-      .getElementById(
-        "offerLink"
-      )
-      .value
-      .trim();
+const link =
+document
+.getElementById("offerLink")
+.value
+.trim();
 
 
-  const status =
-    document
-      .getElementById(
-        "offerStatus"
-      )
-      .value;
+const status =
+document
+.getElementById("offerStatus")
+.value;
 
 
-  const editId =
-    document
-      .getElementById(
-        "editId"
-      )
-      .value;
+const editId =
+document
+.getElementById("editId")
+.value;
 
 
-  if(!name){
+if(!name){
 
-    showMessage(
-      "Please enter an offer name."
-    );
+showMessage(
+"Please enter an offer name."
+);
 
-    return;
-
-  }
-
-
-  saveButton.disabled =
-    true;
-
-  saveButton.textContent =
-    editId
-    ? "Updating..."
-    : "Saving...";
-
-
-  const offerData = {
-
-    title:name,
-
-    description:description,
-
-    image_url:image,
-
-    offer_url:link,
-
-    status:status
-
-  };
-
-
-  let result;
-
-
-  if(editId){
-
-    result =
-      await supabaseClient
-        .from("offers")
-        .update(
-          offerData
-        )
-        .eq(
-          "id",
-          editId
-        );
-
-  }else{
-
-    result =
-      await supabaseClient
-        .from("offers")
-        .insert([
-          offerData
-        ]);
-
-  }
-
-
-  if(result.error){
-
-    console.error(
-      result.error
-    );
-
-    showMessage(
-      "Error: " +
-      result.error.message
-    );
-
-    saveButton.disabled =
-      false;
-
-    saveButton.textContent =
-      editId
-      ? "Update Offer"
-      : "Save Offer";
-
-    return;
-
-  }
-
-
-  showMessage(
-    editId
-    ? "Offer updated successfully! ✅"
-    : "Offer added successfully! ✅"
-  );
-
-
-  cancelEdit();
-
-  await loadOffers();
+return;
 
 }
+
+
+const offerData = {
+
+title:name,
+
+description:description,
+
+image_url:image || null,
+
+offer_url:link || null,
+
+status:status
+
+};
+
+
+let result;
+
+
+if(editId){
+
+result =
+await supabaseClient
+.from("offers")
+.update(offerData)
+.eq(
+"id",
+editId
+);
+
+}else{
+
+result =
+await supabaseClient
+.from("offers")
+.insert([
+offerData
+]);
+
+}
+
+
+if(result.error){
+
+console.error(
+"Save error:",
+result.error
+);
+
+showMessage(
+"Error: " +
+result.error.message
+);
+
+return;
+
+}
+
+
+showMessage(
+editId
+?
+"Offer updated successfully! ✅"
+:
+"Offer added successfully! ✅"
+);
+
+
+cancelEdit();
+
+await loadOffers();
+
+}
+
 
 
 /* =========================
@@ -1076,96 +1010,93 @@ async function saveOffer(){
 
 async function editOffer(id){
 
-  const session =
-    await getAdminSession();
-
-  if(!session){
-    return;
-  }
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("offers")
-    .select("*")
-    .eq(
-      "id",
-      id
-    )
-    .single();
+const {
+data,
+error
+} =
+await supabaseClient
+.from("offers")
+.select("*")
+.eq(
+"id",
+id
+)
+.single();
 
 
-  if(error){
+if(error){
 
-    alert(
-      "Unable to load offer: " +
-      error.message
-    );
+alert(
+"Unable to load offer: " +
+error.message
+);
 
-    return;
-
-  }
-
-
-  document.getElementById(
-    "editId"
-  ).value =
-    data.id;
-
-
-  document.getElementById(
-    "offerName"
-  ).value =
-    data.title || "";
-
-
-  document.getElementById(
-    "offerDescription"
-  ).value =
-    data.description || "";
-
-
-  document.getElementById(
-    "offerImage"
-  ).value =
-    data.image_url || "";
-
-
-  document.getElementById(
-    "offerLink"
-  ).value =
-    data.offer_url || "";
-
-
-  document.getElementById(
-    "offerStatus"
-  ).value =
-    data.status || "active";
-
-
-  document.getElementById(
-    "formTitle"
-  ).textContent =
-    "✏️ Edit Offer";
-
-
-  saveButton.textContent =
-    "Update Offer";
-
-
-  cancelButton.style.display =
-    "block";
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+return;
 
 }
+
+
+document.getElementById(
+"editId"
+).value =
+data.id;
+
+
+document.getElementById(
+"offerName"
+).value =
+data.title || "";
+
+
+document.getElementById(
+"offerDescription"
+).value =
+data.description || "";
+
+
+document.getElementById(
+"offerImage"
+).value =
+data.image_url || "";
+
+
+document.getElementById(
+"offerLink"
+).value =
+data.offer_url || "";
+
+
+document.getElementById(
+"offerStatus"
+).value =
+data.status || "active";
+
+
+document.getElementById(
+"formTitle"
+).textContent =
+"✏️ Edit Offer";
+
+
+document.getElementById(
+"saveButton"
+).textContent =
+"Update Offer";
+
+
+document.getElementById(
+"cancelButton"
+).style.display =
+"block";
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
 
 
 /* =========================
@@ -1174,60 +1105,61 @@ async function editOffer(id){
 
 function cancelEdit(){
 
-  document.getElementById(
-    "editId"
-  ).value =
-    "";
+document.getElementById(
+"editId"
+).value =
+"";
 
 
-  document.getElementById(
-    "offerName"
-  ).value =
-    "";
+document.getElementById(
+"offerName"
+).value =
+"";
 
 
-  document.getElementById(
-    "offerDescription"
-  ).value =
-    "";
+document.getElementById(
+"offerDescription"
+).value =
+"";
 
 
-  document.getElementById(
-    "offerImage"
-  ).value =
-    "";
+document.getElementById(
+"offerImage"
+).value =
+"";
 
 
-  document.getElementById(
-    "offerLink"
-  ).value =
-    "";
+document.getElementById(
+"offerLink"
+).value =
+"";
 
 
-  document.getElementById(
-    "offerStatus"
-  ).value =
-    "active";
+document.getElementById(
+"offerStatus"
+).value =
+"active";
 
 
-  document.getElementById(
-    "formTitle"
-  ).textContent =
-    "➕ Add New Offer";
+document.getElementById(
+"formTitle"
+).textContent =
+"➕ Add New Offer";
 
 
-  saveButton.textContent =
-    "Save Offer";
+document.getElementById(
+"saveButton"
+).textContent =
+"Save Offer";
 
 
-  saveButton.disabled =
-    false;
-
-
-  cancelButton.style.display =
-    "none";
+document.getElementById(
+"cancelButton"
+).style.display =
+"none";
 
 }
+
 
 
 /* =========================
@@ -1235,53 +1167,48 @@ function cancelEdit(){
 ========================= */
 
 async function toggleOffer(
-  id,
-  currentStatus
+id,
+currentStatus
 ){
 
-  const session =
-    await getAdminSession();
-
-  if(!session){
-    return;
-  }
-
-
-  const newStatus =
-    currentStatus === "active"
-    ? "inactive"
-    : "active";
+const newStatus =
+currentStatus === "active"
+?
+"inactive"
+:
+"active";
 
 
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("offers")
-    .update({
-      status:newStatus
-    })
-    .eq(
-      "id",
-      id
-    );
+const {
+error
+} =
+await supabaseClient
+.from("offers")
+.update({
+status:newStatus
+})
+.eq(
+"id",
+id
+);
 
 
-  if(error){
+if(error){
 
-    alert(
-      "Unable to change offer status:\n" +
-      error.message
-    );
+alert(
+"Unable to change status:\n" +
+error.message
+);
 
-    return;
-
-  }
-
-
-  await loadOffers();
+return;
 
 }
+
+
+await loadOffers();
+
+}
+
 
 
 /* =========================
@@ -1290,52 +1217,45 @@ async function toggleOffer(
 
 async function deleteOffer(id){
 
-  const session =
-    await getAdminSession();
-
-  if(!session){
-    return;
-  }
+const confirmed =
+confirm(
+"Are you sure you want to delete this offer?"
+);
 
 
-  const confirmed =
-    confirm(
-      "Are you sure you want to delete this offer?"
-    );
+if(!confirmed){
+return;
+}
 
 
-  if(!confirmed){
-    return;
-  }
+const {
+error
+} =
+await supabaseClient
+.from("offers")
+.delete()
+.eq(
+"id",
+id
+);
 
 
-  const {
-    error
-  } =
-  await supabaseClient
-    .from("offers")
-    .delete()
-    .eq(
-      "id",
-      id
-    );
+if(error){
 
+alert(
+"Unable to delete offer:\n" +
+error.message
+);
 
-  if(error){
-
-    alert(
-      "Unable to delete offer:\n" +
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  await loadOffers();
+return;
 
 }
+
+
+await loadOffers();
+
+}
+
 
 
 /* =========================
@@ -1344,284 +1264,328 @@ async function deleteOffer(id){
 
 async function loadUserActivity(){
 
-  const session =
-    await getAdminSession();
-
-  if(!session){
-    return;
-  }
-
-
-  activityList.innerHTML =
-    `<div class="loading">
-      Loading user activity...
-    </div>`;
-
-
-  const {
-    data,
-    error
-  } =
-  await supabaseClient
-    .from("activity_logs")
-    .select(`
-      id,
-      user_id,
-      action,
-      offer_id,
-      page,
-      metadata,
-      created_at
-    `)
-    .order(
-      "created_at",
-      {
-        ascending:false
-      }
-    )
-    .limit(100);
+activityList.innerHTML =
+`
+<div class="loading">
+Loading user activity...
+</div>
+`;
 
 
-  if(error){
+const {
+data,
+error
+} =
+await supabaseClient
+.from("activity_logs")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+)
+.limit(100);
 
-    console.error(error);
 
-    activityList.innerHTML =
-      `<div class="loading">
-        Unable to load activity.
-        <br><br>
-        ${escapeHtml(
-          error.message
-        )}
-      </div>`;
+if(error){
 
-    return;
+console.error(
+"Activity error:",
+error
+);
 
-  }
+activityList.innerHTML =
+`
+<div class="message">
 
+Unable to load activity.
 
-  if(
-    !data ||
-    data.length === 0
-  ){
+<br><br>
 
-    activityList.innerHTML =
-      `<div class="loading">
-        No user activity yet.
-        <br><br>
-        Login from the website or open an offer,
-        then refresh this section.
-      </div>`;
+${escapeHtml(
+error.message
+)}
 
-    return;
+</div>
+`;
 
-  }
+return;
 
+}
 
-  activityList.innerHTML =
-    "";
 
+if(!data || data.length === 0){
 
-  /*
-    We load profile/offer information
-    separately so activity does not
-    disappear just because a foreign
-    table relationship is unavailable.
-  */
+activityList.innerHTML =
+`
+<div class="loading">
+No user activity yet.
+</div>
+`;
 
-  const userIds = [
-    ...new Set(
-      data
-        .map(
-          item => item.user_id
-        )
-        .filter(Boolean)
-    )
-  ];
+return;
 
+}
 
-  const offerIds = [
-    ...new Set(
-      data
-        .map(
-          item => item.offer_id
-        )
-        .filter(Boolean)
-    )
-  ];
 
+activityList.innerHTML = "";
 
-  let profiles = [];
-  let offers = [];
 
+/*
+Get offer titles separately.
+This avoids depending on
+Supabase relationship configuration.
+*/
 
-  if(userIds.length){
+const offerIds =
+[
+...new Set(
+data
+.map(item => item.offer_id)
+.filter(Boolean)
+)
+];
 
-    const profileResult =
-      await supabaseClient
-        .from("profiles")
-        .select(
-          "id,email"
-        )
-        .in(
-          "id",
-          userIds
-        );
 
+let offerMap = {};
 
-    if(!profileResult.error){
 
-      profiles =
-        profileResult.data || [];
+if(offerIds.length){
 
-    }
+const {
+data:offers
+} =
+await supabaseClient
+.from("offers")
+.select(
+"id,title"
+)
+.in(
+"id",
+offerIds
+);
 
-  }
 
+if(offers){
 
-  if(offerIds.length){
+offers.forEach(
+offer => {
 
-    const offerResult =
-      await supabaseClient
-        .from("offers")
-        .select(
-          "id,title"
-        )
-        .in(
-          "id",
-          offerIds
-        );
+offerMap[
+offer.id
+] =
+offer.title;
 
+}
+);
 
-    if(!offerResult.error){
+}
 
-      offers =
-        offerResult.data || [];
+}
 
-    }
 
-  }
+data.forEach(
+function(activity){
 
+const item =
+document.createElement("div");
 
-  data.forEach(
-    function(activity){
+item.className =
+"activity-item";
 
-      const profile =
-        profiles.find(
-          item =>
-            item.id ===
-            activity.user_id
-        );
 
+const action =
+activity.action ||
+"Unknown action";
 
-      const offer =
-        offers.find(
-          item =>
-            item.id ===
-            activity.offer_id
-        );
 
+const userId =
+activity.user_id ||
+"Unknown user";
 
-      const email =
-        profile?.email ||
-        "User ID: " +
-        (activity.user_id || "Unknown");
 
+const offerTitle =
+activity.offer_id
+?
+(
+offerMap[
+activity.offer_id
+]
+||
+"Offer deleted / unavailable"
+)
+:
+"—";
 
-      const offerName =
-        offer?.title ||
-        (activity.offer_id
-          ? "Offer ID: " +
-            activity.offer_id
-          : "—");
 
+const page =
+activity.page ||
+"—";
 
-      const date =
-        activity.created_at
-        ? new Date(
-            activity.created_at
-          ).toLocaleString()
-        : "Unknown";
 
+const time =
+activity.created_at
+?
+new Date(
+activity.created_at
+).toLocaleString()
+:
+"Unknown";
 
-      const item =
-        document.createElement(
-          "div"
-        );
 
+item.innerHTML =
+`
 
-      item.className =
-        "activity-item";
+<div class="activity-action">
 
+⚡
+${escapeHtml(action)}
 
-      item.innerHTML = `
+</div>
 
-        <div class="activity-action">
 
-          ⚡
-          ${escapeHtml(
-            activity.action ||
-            "Unknown Action"
-          )}
+<h3>
+👤 User Activity
+</h3>
 
-        </div>
 
+<p>
+🎁
+<strong>Offer:</strong>
+${escapeHtml(offerTitle)}
+</p>
 
-        <h3>
 
-          👤
+<p>
+📄
+<strong>Page:</strong>
+${escapeHtml(page)}
+</p>
 
-          <span class="user-email">
 
-            ${escapeHtml(
-              email
-            )}
+<p>
+🆔
+<strong>User ID:</strong>
+</p>
 
-          </span>
 
-        </h3>
+<p class="user-id">
+${escapeHtml(userId)}
+</p>
 
 
-        <p>
+<div class="activity-time">
+🕒 ${escapeHtml(time)}
+</div>
 
-          🎁
-          <strong>Offer:</strong>
+`;
 
-          <span class="offer-name">
 
-            ${escapeHtml(
-              offerName
-            )}
+activityList.appendChild(item);
 
-          </span>
+}
+);
 
-        </p>
+}
 
 
-        <p>
 
-          📄
-          <strong>Page:</strong>
+/* =========================
+   LOGOUT
+========================= */
 
-          ${escapeHtml(
-            activity.page ||
-            "—"
-          )}
+async function logout(){
 
-        </p>
+const {
+error
+} =
+await supabaseClient
+.auth
+.signOut();
 
 
-        <p>
+if(error){
 
-          🆔
-          <strong>User ID:</strong>
+alert(
+"Logout error:\n" +
+error.message
+);
 
-          ${escapeHtml(
-            activity.user_id ||
-            "—"
-          )}
+return;
 
-        </p>
+}
 
 
-      
+window.location.replace(
+"admin-login.html"
+);
+
+}
+
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+document
+.getElementById("saveButton")
+.addEventListener(
+"click",
+saveOffer
+);
+
+
+document
+.getElementById("cancelButton")
+.addEventListener(
+"click",
+cancelEdit
+);
+
+
+document
+.getElementById("refreshActivity")
+.addEventListener(
+"click",
+loadUserActivity
+);
+
+
+document
+.getElementById("logoutButton")
+.addEventListener(
+"click",
+logout
+);
+
+
+
+/* =========================
+   START
+========================= */
+
+async function startAdmin(){
+
+const allowed =
+await checkAdmin();
+
+if(!allowed){
+return;
+}
+
+
+await loadOffers();
+
+await loadUserActivity();
+
+}
+
+
+startAdmin();
+
+</script>
+
+</body>
+</html>
