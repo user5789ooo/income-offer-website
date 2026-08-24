@@ -92,12 +92,14 @@ input:focus{
 
 .show-password{
   position:absolute;
-  right:10px;
+  right:8px;
   top:50%;
   transform:translateY(-50%);
+  width:45px;
+  height:45px;
   border:0;
   background:transparent;
-  color:rgba(255,255,255,.6);
+  color:white;
   font-size:20px;
   cursor:pointer;
 }
@@ -117,6 +119,7 @@ button.login{
 
 button.login:disabled{
   opacity:.5;
+  cursor:not-allowed;
 }
 
 .message{
@@ -195,10 +198,7 @@ button.login:disabled{
         type="button"
         class="show-password"
         id="showPassword"
-        aria-label="Show password"
-      >
-        👁️
-      </button>
+      >👁️</button>
 
     </div>
 
@@ -238,47 +238,77 @@ button.login:disabled{
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="supabase-config.js"></script>
 
 <script>
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
+let supabaseClient = null;
 
+
+/* =========================
+   SUPABASE
+========================= */
+
+function setupSupabase(){
+
+  if(
+    !window.supabase ||
+    typeof SUPABASE_URL === "undefined" ||
+    typeof SUPABASE_ANON_KEY === "undefined"
+  ){
+
+    showMessage(
+      "Supabase configuration পাওয়া যাচ্ছে না."
+    );
+
+    return false;
+  }
+
+  supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY,
+      {
+        auth:{
+          persistSession:true,
+          autoRefreshToken:true,
+          detectSessionInUrl:true
+        }
+      }
+    );
+
+  return true;
+}
+
+
+/* =========================
+   ELEMENTS
+========================= */
 
 const form =
   document.getElementById(
     "loginForm"
   );
 
-
 const emailInput =
   document.getElementById(
     "email"
   );
-
 
 const passwordInput =
   document.getElementById(
     "password"
   );
 
-
 const loginButton =
   document.getElementById(
     "loginButton"
   );
 
-
 const message =
   document.getElementById(
     "message"
   );
-
 
 const showPassword =
   document.getElementById(
@@ -287,7 +317,27 @@ const showPassword =
 
 
 /* =========================
-   SHOW / HIDE PASSWORD
+   MESSAGE
+========================= */
+
+function showMessage(
+  text,
+  success=false
+){
+
+  message.textContent =
+    text;
+
+  message.style.color =
+    success
+      ? "#8dffa9"
+      : "#ff7777";
+
+}
+
+
+/* =========================
+   PASSWORD
 ========================= */
 
 showPassword.addEventListener(
@@ -320,21 +370,22 @@ showPassword.addEventListener(
 
 
 /* =========================
-   MESSAGE
+   EMAIL FROM URL
 ========================= */
 
-function showMessage(
-  text,
-  success = false
-){
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
 
-  message.textContent =
-    text;
+const emailFromUrl =
+  params.get("email");
 
-  message.style.color =
-    success
-      ? "#8dffa9"
-      : "#ff7777";
+
+if(emailFromUrl){
+
+  emailInput.value =
+    emailFromUrl;
 
 }
 
@@ -349,11 +400,15 @@ form.addEventListener(
 
     event.preventDefault();
 
+
     const email =
-      emailInput.value.trim();
+      emailInput.value
+        .trim()
+        .toLowerCase();
 
     const password =
       passwordInput.value;
+
 
     if(!email || !password){
 
@@ -366,26 +421,30 @@ form.addEventListener(
     }
 
 
+    if(!setupSupabase()){
+
+      return;
+
+    }
+
+
     loginButton.disabled =
       true;
 
     loginButton.textContent =
       "Logging in...";
 
+
     showMessage(
-      "Please wait...",
+      "Logging in...",
       true
     );
 
 
     try{
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .auth
+      const result =
+        await supabaseClient.auth
           .signInWithPassword({
 
             email:
@@ -397,9 +456,19 @@ form.addEventListener(
           });
 
 
+      const data =
+        result.data;
+
+      const error =
+        result.error;
+
+
       if(error){
 
-        console.error(error);
+        console.error(
+          "LOGIN ERROR:",
+          error
+        );
 
         showMessage(
           "Login failed: " +
@@ -417,10 +486,41 @@ form.addEventListener(
       }
 
 
-      if(!data.user){
+      if(
+        !data ||
+        !data.user
+      ){
 
         showMessage(
           "Login failed. User not found."
+        );
+
+        loginButton.disabled =
+          false;
+
+        loginButton.textContent =
+          "Login";
+
+        return;
+
+      }
+
+
+      /* =====================
+         VERIFY SESSION
+      ===================== */
+
+      const sessionResult =
+        await supabaseClient.auth
+          .getSession();
+
+
+      if(
+        !sessionResult.data.session
+      ){
+
+        showMessage(
+          "Login succeeded but session was not saved. Please try again."
         );
 
         loginButton.disabled =
@@ -440,24 +540,41 @@ form.addEventListener(
       );
 
 
-      setTimeout(
-        function(){
+      /*
+        Give Supabase time to
+        persist the session.
+      */
 
-          window.location.replace(
-            "offer.html"
+      await new Promise(
+        function(resolve){
+
+          setTimeout(
+            resolve,
+            500
           );
 
-        },
-        500
+        }
+      );
+
+
+      /* =====================
+         MAIN WEBSITE
+      ===================== */
+
+      window.location.replace(
+        "index.html"
       );
 
 
     }catch(error){
 
-      console.error(error);
+      console.error(
+        error
+      );
 
       showMessage(
-        "Something went wrong. Please try again."
+        "Something went wrong: " +
+        error.message
       );
 
       loginButton.disabled =
@@ -473,37 +590,50 @@ form.addEventListener(
 
 
 /* =========================
-   CHECK EXISTING SESSION
+   EXISTING SESSION
 ========================= */
 
 async function checkExistingSession(){
 
+  if(!setupSupabase()){
+
+    return;
+
+  }
+
+
   try{
 
-    const {
-      data
-    } =
-      await supabaseClient
-        .auth
+    const result =
+      await supabaseClient.auth
         .getSession();
 
 
-    if(data.session){
+    if(
+      result.data &&
+      result.data.session
+    ){
 
       window.location.replace(
-        "offer.html"
+        "index.html"
       );
 
     }
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
 
   }
 
 }
 
+
+/* =========================
+   START
+========================= */
 
 checkExistingSession();
 
