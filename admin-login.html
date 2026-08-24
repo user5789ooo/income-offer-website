@@ -1,283 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
 
-  <title>Admin Login</title>
+<title>Admin Login</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #f5f6fa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+body{
+  margin:0;
+  min-height:100vh;
+  background:#f5f6fa;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
 
-    .login-box {
-      width: 100%;
-      max-width: 400px;
-      background: white;
-      padding: 28px;
-      border-radius: 18px;
-      box-shadow: 0 5px 20px rgba(0,0,0,.1);
-    }
+.login-box{
+  width:100%;
+  max-width:400px;
+  background:white;
+  padding:28px;
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
 
-    .icon {
-      text-align: center;
-      font-size: 50px;
-      margin-bottom: 10px;
-    }
+.icon{
+  text-align:center;
+  font-size:50px;
+  margin-bottom:10px;
+}
 
-    h1 {
-      text-align: center;
-      margin-bottom: 8px;
-    }
+h1{
+  text-align:center;
+  margin:0 0 8px;
+}
 
-    .subtitle {
-      text-align: center;
-      color: #777;
-      margin-bottom: 25px;
-    }
+.subtitle{
+  text-align:center;
+  color:#777;
+  margin-bottom:25px;
+}
 
-    label {
-      display: block;
-      margin-bottom: 7px;
-      font-weight: bold;
-    }
+label{
+  display:block;
+  margin-bottom:7px;
+  font-weight:bold;
+}
 
-    input {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      margin-bottom: 16px;
-      font-size: 16px;
-    }
+input{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  margin-bottom:16px;
+  font-size:16px;
+  outline:none;
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      border: 0;
-      border-radius: 10px;
-      background: #111827;
-      color: white;
-      font-size: 16px;
-    }
+input:focus{
+  border-color:#111827;
+}
 
-    button:disabled {
-      opacity: .6;
-    }
+button{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:10px;
+  background:#111827;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
 
-    #message {
-      margin-top: 15px;
-      text-align: center;
-      line-height: 1.5;
-      font-size: 14px;
-    }
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
 
-    .back {
-      display: block;
-      text-align: center;
-      margin-top: 18px;
-      color: #222;
-      text-decoration: none;
-    }
-  </style>
+#message{
+  margin-top:15px;
+  text-align:center;
+  line-height:1.5;
+  font-size:14px;
+}
+
+.success{
+  color:#16803a;
+}
+
+.error{
+  color:#d11;
+}
+
+.back{
+  display:block;
+  text-align:center;
+  margin-top:18px;
+  color:#222;
+  text-decoration:none;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="login-box">
+<div class="login-box">
 
-    <div class="icon">🔐</div>
+  <div class="icon">🔐</div>
 
-    <h1>Admin Login</h1>
+  <h1>Admin Login</h1>
 
-    <p class="subtitle">
-      Login to manage your website
-    </p>
+  <p class="subtitle">
+    Login to manage your website
+  </p>
 
-    <form id="loginForm" onsubmit="loginAdmin(event)">
+  <form id="loginForm">
 
-      <label for="email">Admin Email</label>
+    <label for="email">
+      Admin Email
+    </label>
 
-      <input
-        type="email"
-        id="email"
-        placeholder="Enter admin email"
-        required>
+    <input
+      type="email"
+      id="email"
+      placeholder="Enter admin email"
+      autocomplete="username"
+      required
+    >
 
-      <label for="password">Password</label>
+    <label for="password">
+      Password
+    </label>
 
-      <input
-        type="password"
-        id="password"
-        placeholder="Enter password"
-        required>
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter password"
+      autocomplete="current-password"
+      required
+    >
 
-      <button type="submit" id="loginButton">
-        Login
-      </button>
+    <button
+      type="submit"
+      id="loginButton"
+    >
+      Login
+    </button>
 
-    </form>
+  </form>
 
-    <div id="message"></div>
+  <div id="message"></div>
 
-    <a class="back" href="index.html">
-      ← Back to Home
-    </a>
+  <a class="back" href="index.html">
+    ← Back to Home
+  </a>
 
-  </div>
+</div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script src="supabase-config.js"></script>
+<script src="supabase-config.js"></script>
 
 
-  <script>
+<script>
 
-    const ADMIN_UUID =
-      "8f49db4a-d528-49c1-b815-f6bc15e1c868";
+const ADMIN_UUID =
+"8f49db4a-d528-49c1-b815-f6bc15e1c868";
 
+const form =
+document.getElementById("loginForm");
 
-    let supabaseClient = null;
+const button =
+document.getElementById("loginButton");
 
+const message =
+document.getElementById("message");
 
-    function showMessage(text) {
-      document.getElementById("message").textContent = text;
-    }
 
+function showMessage(text,type=""){
 
-    function setupSupabase() {
+  message.textContent=text;
+  message.className=type;
 
-      if (!window.supabase) {
-        showMessage("Supabase library load হয়নি।");
-        return false;
-      }
+}
 
-      if (
-        typeof SUPABASE_URL === "undefined" ||
-        typeof SUPABASE_ANON_KEY === "undefined"
-      ) {
-        showMessage("Supabase configuration পাওয়া যাচ্ছে না।");
-        return false;
-      }
 
-      supabaseClient =
-        window.supabase.createClient(
-          SUPABASE_URL,
-          SUPABASE_ANON_KEY
-        );
+/* =========================
+   CHECK EXISTING ADMIN SESSION
+========================= */
 
-      return true;
-    }
+async function checkExistingAdmin(){
 
+  try{
 
-    async function loginAdmin(event) {
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+      .auth
+      .getSession();
 
-      event.preventDefault();
+    if(error){
 
-      const button =
-        document.getElementById("loginButton");
-
-      const email =
-        document.getElementById("email").value.trim();
-
-      const password =
-        document.getElementById("password").value;
-
-      button.disabled = true;
-
-      showMessage("Logging in...");
-
-
-      if (!setupSupabase()) {
-        button.disabled = false;
-        return;
-      }
-
-
-      try {
-
-        const { data, error } =
-          await supabaseClient.auth.signInWithPassword({
-            email: email,
-            password: password
-          });
-
-
-        if (error) {
-
-          showMessage(
-            "Login failed: " + error.message
-          );
-
-          button.disabled = false;
-          return;
-        }
-
-
-        if (!data.user) {
-
-          showMessage(
-            "Login failed: User পাওয়া যায়নি।"
-          );
-
-          button.disabled = false;
-          return;
-        }
-
-
-        if (data.user.id !== ADMIN_UUID) {
-
-          await supabaseClient.auth.signOut();
-
-          showMessage(
-            "এই account-টি Admin account নয়।"
-          );
-
-          button.disabled = false;
-          return;
-        }
-
-
-        showMessage(
-          "Login successful! Admin Panel খুলছে..."
-        );
-
-
-        setTimeout(function() {
-
-          window.location.href =
-            "admin.html";
-
-        }, 500);
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        showMessage(
-          "Error: " + error.message
-        );
-
-        button.disabled = false;
-      }
+      console.error(error);
+      return;
 
     }
 
-  </script>
+    const session=data.session;
+
+    if(!session){
+      return;
+    }
+
+    if(session.user.id === ADMIN_UUID){
+
+      showMessage(
+        "Welcome back, Admin! Opening panel...",
+        "success"
+      );
+
+      window.location.replace("admin.html");
+
+      return;
+    }
+
+    /*
+      A normal user session is not
+      an admin session.
+    */
+
+    await supabaseClient
+      .auth
+      .signOut();
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* =========================
+   ADMIN LOGIN
+========================= */
+
+form.addEventListener(
+"submit",
+async function(event){
+
+  event.preventDefault();
+
+  const email =
+  document
+    .getElementById("email")
+    .value
+    .trim();
+
+  const password =
+  document
+    .getElementById("password")
+    .value;
+
+  button.disabled=true;
+  button.textContent="Logging in...";
+
+  showMessage(
+    "Checking admin account..."
+  );
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+      .auth
+      .signInWithPassword({
+
+        email:email,
+        password:password
+
+      });
+
+
+    if(error){
+
+      console.error(error);
+
+      showMessage(
+        "Login failed: " +
+        error.message,
+        "error"
+      );
+
+      button.disabled=false;
+      button.textContent="Login";
+
+      return;
+    }
+
+
+    if(
+      !data ||
+      !data.user
+    ){
+
+      showMessage(
+        "User account পাওয়া যায়নি।",
+        "error"
+      );
+
+      button.disabled=false;
+      button.textContent="Login";
+
+      return;
+    }
+
+
+    /* ADMIN CHECK */
+
+    if(
+      data.user.id !==
+      ADMIN_UUID
+    ){
+
+      await supabaseClient
+        .auth
+        .signOut();
+
+      showMessage(
+        "এই account-টি Admin account নয়।",
+        "error"
+      );
+
+      button.disabled=false;
+      button.textContent="Login";
+
+      return;
+    }
+
+
+    /*
+      Session is persisted automatically
+      by supabase-config.js.
+    */
+
+    showMessage(
+      "Welcome back, Admin! Admin Panel খুলছে...",
+      "success"
+    );
+
+    button.textContent="Welcome Back!";
+
+
+    setTimeout(
+    function(){
+
+      window.location.replace(
+        "admin.html"
+      );
+
+    },
+    700
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Something went wrong: " +
+      error.message,
+      "error"
+    );
+
+    button.disabled=false;
+    button.textContent="Login";
+
+  }
+
+});
+
+
+/* =========================
+   START
+========================= */
+
+checkExistingAdmin();
+
+</script>
 
 </body>
 </html>
