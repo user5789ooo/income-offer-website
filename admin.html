@@ -1,386 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-  <title>Admin Dashboard</title>
+<title>Admin Dashboard</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
 
-    body {
-      background: #f5f6fa;
-      color: #222;
-    }
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-    header {
-      background: #111827;
-      color: white;
-      padding: 18px 20px;
-    }
+body{
+  background:#f5f6fa;
+  color:#222;
+}
 
-    header h1 {
-      font-size: 22px;
-    }
+header{
+  background:#111827;
+  color:white;
+  padding:18px 20px;
+}
 
-    header p {
-      margin-top: 5px;
-      font-size: 13px;
-      opacity: .8;
-    }
+header h1{
+  font-size:22px;
+}
 
-    .container {
-      max-width: 700px;
-      margin: auto;
-      padding: 20px;
-    }
+header p{
+  margin-top:5px;
+  font-size:13px;
+  opacity:.8;
+}
 
-    .section {
-      background: white;
-      padding: 20px;
-      border-radius: 16px;
-      margin-bottom: 18px;
-      box-shadow: 0 3px 12px rgba(0,0,0,.08);
-    }
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:20px;
+}
 
-    .section h2 {
-      margin-bottom: 15px;
-      font-size: 19px;
-    }
+.section{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  margin-bottom:18px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
 
-    label {
-      display: block;
-      margin: 12px 0 6px;
-      font-weight: bold;
-      font-size: 14px;
-    }
+.section h2{
+  margin-bottom:15px;
+  font-size:19px;
+}
 
-    input,
-    textarea,
-    select {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      font-size: 15px;
-      outline: none;
-    }
+label{
+  display:block;
+  margin:12px 0 6px;
+  font-weight:bold;
+  font-size:14px;
+}
 
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
+input,
+textarea,
+select{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:15px;
+  outline:none;
+}
 
-    button {
-      border: none;
-      border-radius: 10px;
-      padding: 12px 15px;
-      font-size: 15px;
-      cursor: pointer;
-    }
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
 
-    .primary {
-      width: 100%;
-      margin-top: 16px;
-      background: #111827;
-      color: white;
-    }
+button{
+  border:0;
+  border-radius:10px;
+  padding:12px 15px;
+  font-size:15px;
+  cursor:pointer;
+}
 
-    .secondary {
-      background: #e5e7eb;
-      color: #111;
-    }
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
 
-    .danger {
-      background: #111827;
-      color: white;
-    }
+.primary{
+  width:100%;
+  margin-top:16px;
+  background:#111827;
+  color:white;
+}
 
-    .offer-item,
-    .activity-item {
-      border: 1px solid #e5e7eb;
-      padding: 15px;
-      border-radius: 12px;
-      margin-bottom: 12px;
-    }
+.secondary{
+  background:#e5e7eb;
+  color:#111;
+}
 
-    .offer-item h3,
-    .activity-item h3 {
-      margin-bottom: 7px;
-    }
+.danger{
+  background:#dc2626;
+  color:white;
+}
 
-    .offer-item p,
-    .activity-item p {
-      color: #666;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 5px;
-      word-break: break-word;
-    }
+.logout{
+  width:100%;
+  background:#dc2626;
+  color:white;
+  margin-bottom:30px;
+}
 
-    .offer-image {
-      width: 100%;
-      max-height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
+.offer-item,
+.activity-item{
+  border:1px solid #e5e7eb;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:12px;
+}
 
-    .status {
-      display: inline-block;
-      margin-top: 9px;
-      font-size: 13px;
-      font-weight: bold;
-    }
+.offer-item h3,
+.activity-item h3{
+  margin-bottom:7px;
+}
 
-    .active {
-      color: #16803a;
-    }
+.offer-item p,
+.activity-item p{
+  color:#666;
+  font-size:14px;
+  line-height:1.5;
+  margin-bottom:5px;
+  word-break:break-word;
+}
 
-    .inactive {
-      color: #777;
-    }
+.offer-image{
+  width:100%;
+  max-height:180px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:10px;
+}
 
-    .actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
+.status{
+  display:inline-block;
+  margin-top:9px;
+  font-size:13px;
+  font-weight:bold;
+}
 
-    .actions button {
-      flex: 1;
-      min-width: 100px;
-    }
+.active{
+  color:#16803a;
+}
 
-    .message {
-      margin-top: 12px;
-      padding: 10px;
-      border-radius: 10px;
-      background: #f5f6fa;
-      font-size: 14px;
-      line-height: 1.5;
-    }
+.inactive{
+  color:#777;
+}
 
-    .logout {
-      width: 100%;
-      background: #e5e7eb;
-      margin-bottom: 30px;
-    }
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
 
-    .loading {
-      text-align: center;
-      color: #777;
-      padding: 15px;
-    }
+.actions button{
+  flex:1;
+  min-width:100px;
+}
 
-    .refresh-activity {
-      width: 100%;
-      margin-bottom: 15px;
-      background: #e5e7eb;
-      color: #111;
-    }
+.message{
+  margin-top:12px;
+  padding:10px;
+  border-radius:10px;
+  background:#f5f6fa;
+  font-size:14px;
+  line-height:1.5;
+}
 
-    .activity-action {
-      display: inline-block;
-      margin-bottom: 10px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #111827;
-      color: white;
-      font-size: 12px;
-      font-weight: bold;
-    }
+.success{
+  background:#ecfdf3;
+  color:#16803a;
+}
 
-    .activity-time {
-      color: #777;
-      font-size: 12px;
-      margin-top: 10px;
-    }
+.error{
+  background:#fef2f2;
+  color:#b91c1c;
+}
 
-    .user-email {
-      color: #111827;
-      font-weight: bold;
-    }
+.loading{
+  text-align:center;
+  color:#777;
+  padding:15px;
+}
 
-    .offer-name {
-      color: #111827;
-      font-weight: bold;
-    }
-  </style>
+.refresh{
+  width:100%;
+  margin-bottom:15px;
+  background:#e5e7eb;
+  color:#111;
+}
+
+.offer-link{
+  display:block;
+  margin-top:10px;
+  color:#2563eb;
+  font-size:13px;
+  word-break:break-all;
+}
+
+.activity-action{
+  display:inline-block;
+  margin-bottom:10px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:#111827;
+  color:white;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.activity-time{
+  color:#777;
+  font-size:12px;
+  margin-top:10px;
+}
+
+.user-email{
+  color:#111827;
+  font-weight:bold;
+}
+
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>🔐 Admin Dashboard</h1>
-  <p>Manage Income Offers & User Activity</p>
+
+<h1>🔐 Admin Dashboard</h1>
+
+<p>
+Manage Income Offers & User Activity
+</p>
+
 </header>
+
 
 <main class="container">
 
-  <!-- ADD / EDIT OFFER -->
 
-  <section class="section">
+<!-- ADD / EDIT OFFER -->
 
-    <h2 id="formTitle">
-      ➕ Add New Offer
-    </h2>
+<section class="section">
 
-    <input
-      type="hidden"
-      id="editId">
+<h2 id="formTitle">
+➕ Add New Offer
+</h2>
 
-    <label>Offer Name</label>
+<input
+type="hidden"
+id="editId"
+>
 
-    <input
-      type="text"
-      id="offerName"
-      placeholder="Example: New User Offer">
+<label>
+Offer Name
+</label>
 
-    <label>Description</label>
+<input
+type="text"
+id="offerName"
+placeholder="Example: New User Offer"
+>
 
-    <textarea
-      id="offerDescription"
-      placeholder="Write offer details..."></textarea>
+<label>
+Description
+</label>
 
-    <label>Image URL</label>
+<textarea
+id="offerDescription"
+placeholder="Write offer details..."
+></textarea>
 
-    <input
-      type="url"
-      id="offerImage"
-      placeholder="https://example.com/image.jpg">
+<label>
+Image URL
+</label>
 
-    <label>Offer Link</label>
+<input
+type="url"
+id="offerImage"
+placeholder="https://example.com/image.jpg"
+>
 
-    <input
-      type="url"
-      id="offerLink"
-      placeholder="https://example.com/offer">
+<label>
+Offer Link
+</label>
 
-    <label>Status</label>
+<input
+type="url"
+id="offerLink"
+placeholder="https://example.com/offer"
+>
 
-    <select id="offerStatus">
+<label>
+Status
+</label>
 
-      <option value="active">
-        Active
-      </option>
+<select id="offerStatus">
 
-      <option value="inactive">
-        Inactive
-      </option>
+<option value="active">
+Active
+</option>
 
-    </select>
+<option value="inactive">
+Inactive
+</option>
 
-    <button
-      class="primary"
-      id="saveButton"
-      onclick="saveOffer()">
-
-      Save Offer
-
-    </button>
-
-    <button
-      class="primary secondary"
-      id="cancelButton"
-      onclick="cancelEdit()"
-      style="display:none;">
-
-      Cancel Edit
-
-    </button>
-
-    <div id="message"></div>
-
-  </section>
+</select>
 
 
-  <!-- CURRENT OFFERS -->
-
-  <section class="section">
-
-    <h2>🎁 Current Offers</h2>
-
-    <div id="offerList">
-
-      <div class="loading">
-        Loading offers...
-      </div>
-
-    </div>
-
-  </section>
+<button
+class="primary"
+id="saveButton"
+type="button"
+>
+Save Offer
+</button>
 
 
-  <!-- USER ACTIVITY -->
-
-  <section class="section">
-
-    <h2>📊 User Activity</h2>
-
-    <button
-      class="refresh-activity"
-      onclick="loadUserActivity()">
-
-      ↻ Refresh Activity
-
-    </button>
-
-    <div id="activityList">
-
-      <div class="loading">
-        Loading user activity...
-      </div>
-
-    </div>
-
-  </section>
+<button
+class="primary secondary"
+id="cancelButton"
+type="button"
+style="display:none"
+>
+Cancel Edit
+</button>
 
 
-  <!-- TELEGRAM -->
+<div id="message"></div>
 
-  <section class="section">
-
-    <h2>❓ Help / Telegram</h2>
-
-    <label>
-      Telegram Help Link
-    </label>
-
-    <input
-      type="url"
-      id="telegramLink"
-      placeholder="https://t.me/yourusername">
-
-    <button
-      class="primary"
-      onclick="saveTelegram()">
-
-      Save Telegram Link
-
-    </button>
-
-    <div id="telegramMessage"></div>
-
-  </section>
+</section>
 
 
-  <button
-    class="logout"
-    onclick="logout()">
 
-    Logout
+<!-- OFFERS -->
 
-  </button>
+<section class="section">
+
+<h2>
+🎁 Current Offers
+</h2>
+
+<div id="offerList">
+
+<div class="loading">
+Loading offers...
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ACTIVITY -->
+
+<section class="section">
+
+<h2>
+📊 User Activity
+</h2>
+
+<button
+class="refresh"
+id="refreshActivity"
+type="button"
+>
+↻ Refresh Activity
+</button>
+
+<div id="activityList">
+
+<div class="loading">
+Loading user activity...
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- TELEGRAM -->
+
+<section class="section">
+
+<h2>
+📢 Telegram
+</h2>
+
+<p style="font-size:14px;color:#666;line-height:1.5">
+
+Current Telegram channel:
+
+<br><br>
+
+<a
+href="https://t.me/IncomeOffersOfficia"
+target="_blank"
+style="color:#229ed9;font-weight:bold"
+>
+https://t.me/IncomeOffersOfficia
+</a>
+
+</p>
+
+</section>
+
+
+
+<!-- LOGOUT -->
+
+<button
+class="logout"
+id="logoutButton"
+type="button"
+>
+Logout
+</button>
+
 
 </main>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -390,898 +445,1131 @@
 
 <script>
 
+/* =========================================
+   ADMIN ID
+========================================= */
+
 const ADMIN_UUID =
-  "8f49db4a-d528-49c1-b815-f6bc15e1c868";
+"8f49db4a-d528-49c1-b815-f6bc15e1c868";
 
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
+/*
+ IMPORTANT:
+ Do NOT create another supabaseClient here.
+
+ supabase-config.js already created it.
+*/
 
 
-/* =========================
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const offerList =
+document.getElementById("offerList");
+
+const activityList =
+document.getElementById("activityList");
+
+const message =
+document.getElementById("message");
+
+const saveButton =
+document.getElementById("saveButton");
+
+const cancelButton =
+document.getElementById("cancelButton");
+
+const logoutButton =
+document.getElementById("logoutButton");
+
+const refreshActivity =
+document.getElementById("refreshActivity");
+
+
+/* =========================================
    ADMIN CHECK
-========================= */
+========================================= */
 
-async function checkAdmin() {
+async function checkAdmin(){
 
-  const {
-    data: {
-      user
-    }
-  } =
-    await supabaseClient.auth.getUser();
+try{
 
-
-  if (!user) {
-
-    window.location.href =
-      "admin-login.html";
-
-    return false;
-  }
+const {
+data,
+error
+} =
+await supabaseClient.auth.getSession();
 
 
-  if (user.id !== ADMIN_UUID) {
+if(error){
 
-    alert("Access denied.");
+console.error(error);
 
-    await supabaseClient.auth.signOut();
+return false;
 
-    window.location.href =
-      "admin-login.html";
-
-    return false;
-  }
-
-
-  return true;
 }
 
 
-/* =========================
+const session =
+data.session;
+
+
+if(!session){
+
+window.location.replace(
+"admin-login.html"
+);
+
+return false;
+
+}
+
+
+const user =
+session.user;
+
+
+if(
+!user ||
+user.id !== ADMIN_UUID
+){
+
+alert("Access denied.");
+
+await supabaseClient.auth.signOut();
+
+window.location.replace(
+"admin-login.html"
+);
+
+return false;
+
+}
+
+
+return true;
+
+
+}catch(error){
+
+console.error(
+"Admin check error:",
+error
+);
+
+return false;
+
+}
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(
+text,
+type="success"
+){
+
+message.textContent =
+text;
+
+message.className =
+"message " + type;
+
+}
+
+
+/* =========================================
+   ESCAPE
+========================================= */
+
+function escapeHtml(value){
+
+const div =
+document.createElement("div");
+
+div.textContent =
+value == null
+? ""
+: String(value);
+
+return div.innerHTML;
+
+}
+
+
+/* =========================================
    LOAD OFFERS
-========================= */
+========================================= */
 
-async function loadOffers() {
+async function loadOffers(){
 
-  const allowed =
-    await checkAdmin();
-
-  if (!allowed) return;
-
-
-  const offerList =
-    document.getElementById(
-      "offerList"
-    );
+offerList.innerHTML = `
+<div class="loading">
+Loading offers...
+</div>
+`;
 
 
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("offers")
-      .select("*")
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
-      );
+const allowed =
+await checkAdmin();
+
+if(!allowed) return;
 
 
-  if (error) {
+try{
 
-    console.error(error);
-
-    offerList.innerHTML =
-      "<div class='loading'>Unable to load offers.</div>";
-
-    return;
-  }
-
-
-  if (!data || data.length === 0) {
-
-    offerList.innerHTML =
-      "<div class='loading'>No offers found.</div>";
-
-    return;
-  }
+const {
+data,
+error
+} =
+await supabaseClient
+.from("offers")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+);
 
 
-  offerList.innerHTML = "";
+if(error){
 
+console.error(
+"Offers error:",
+error
+);
 
-  data.forEach(function(offer) {
+offerList.innerHTML = `
 
-    const item =
-      document.createElement(
-        "div"
-      );
+<div class="message error">
 
+Unable to load offers.
 
-    item.className =
-      "offer-item";
+<br><br>
 
+${escapeHtml(
+error.message
+)}
 
-    item.innerHTML = `
+</div>
 
-      ${
-        offer.image_url
-          ? `
-            <img
-              class="offer-image"
-              src="${escapeHtml(
-                offer.image_url
-              )}"
-              alt="Offer">
-          `
-          : ""
-      }
+`;
 
-
-      <h3>
-        ${escapeHtml(
-          offer.title ||
-          "Untitled Offer"
-        )}
-      </h3>
-
-
-      <p>
-        ${escapeHtml(
-          offer.description ||
-          ""
-        )}
-      </p>
-
-
-      <span class="status ${
-        offer.status === "active"
-          ? "active"
-          : "inactive"
-      }">
-
-        ● ${escapeHtml(
-          offer.status ||
-          "unknown"
-        )}
-
-      </span>
-
-
-      <div class="actions">
-
-        <button
-          class="secondary"
-          onclick="editOffer(
-            '${offer.id}'
-          )">
-
-          ✏️ Edit
-
-        </button>
-
-
-        <button
-          class="secondary"
-          onclick="toggleOffer(
-            '${offer.id}',
-            '${offer.status}'
-          )">
-
-          ${
-            offer.status === "active"
-              ? "⏸️ Turn OFF"
-              : "▶️ Turn ON"
-          }
-
-        </button>
-
-
-        <button
-          class="danger"
-          onclick="deleteOffer(
-            '${offer.id}'
-          )">
-
-          🗑️ Delete
-
-        </button>
-
-      </div>
-
-    `;
-
-
-    offerList.appendChild(item);
-
-  });
+return;
 
 }
 
 
-/* =========================
+if(!data || data.length === 0){
+
+offerList.innerHTML = `
+
+<div class="loading">
+No offers found.
+</div>
+
+`;
+
+return;
+
+}
+
+
+offerList.innerHTML = "";
+
+
+data.forEach(
+function(offer){
+
+const item =
+document.createElement("div");
+
+item.className =
+"offer-item";
+
+
+const image =
+offer.image_url
+? `
+
+<img
+class="offer-image"
+src="${escapeHtml(
+offer.image_url
+)}"
+alt="Offer image"
+loading="lazy"
+onerror="this.style.display='none'"
+>
+
+`
+: "";
+
+
+const offerUrl =
+offer.offer_url || "";
+
+
+item.innerHTML = `
+
+${image}
+
+<h3>
+${escapeHtml(
+offer.title ||
+"Untitled Offer"
+)}
+</h3>
+
+<p>
+${escapeHtml(
+offer.description ||
+"No description"
+)}
+</p>
+
+<span class="status ${
+offer.status === "active"
+? "active"
+: "inactive"
+}">
+
+● ${escapeHtml(
+offer.status ||
+"unknown"
+)}
+
+</span>
+
+${
+offerUrl
+? `
+
+<a
+class="offer-link"
+href="${escapeHtml(
+offerUrl
+)}"
+target="_blank"
+rel="noopener"
+>
+
+🔗 Open Offer Link
+
+</a>
+
+`
+: ""
+}
+
+
+<div class="actions">
+
+<button
+class="secondary edit-btn"
+type="button"
+>
+✏️ Edit
+</button>
+
+<button
+class="secondary toggle-btn"
+type="button"
+>
+${
+offer.status === "active"
+? "⏸️ Turn OFF"
+: "▶️ Turn ON"
+}
+</button>
+
+<button
+class="danger delete-btn"
+type="button"
+>
+🗑️ Delete
+</button>
+
+</div>
+
+`;
+
+
+const editBtn =
+item.querySelector(
+".edit-btn"
+);
+
+const toggleBtn =
+item.querySelector(
+".toggle-btn"
+);
+
+const deleteBtn =
+item.querySelector(
+".delete-btn"
+);
+
+
+editBtn.addEventListener(
+"click",
+function(){
+
+editOffer(offer);
+
+}
+);
+
+
+toggleBtn.addEventListener(
+"click",
+function(){
+
+toggleOffer(
+offer.id,
+offer.status
+);
+
+}
+);
+
+
+deleteBtn.addEventListener(
+"click",
+function(){
+
+deleteOffer(
+offer.id
+);
+
+}
+);
+
+
+offerList.appendChild(
+item
+);
+
+});
+
+
+}catch(error){
+
+console.error(error);
+
+offerList.innerHTML = `
+
+<div class="message error">
+
+${escapeHtml(
+error.message
+)}
+
+</div>
+
+`;
+
+}
+
+}
+
+
+/* =========================================
    SAVE OFFER
-========================= */
+========================================= */
 
-async function saveOffer() {
+async function saveOffer(){
 
-  const allowed =
-    await checkAdmin();
+const allowed =
+await checkAdmin();
 
-  if (!allowed) return;
-
-
-  const name =
-    document
-      .getElementById("offerName")
-      .value
-      .trim();
+if(!allowed) return;
 
 
-  const description =
-    document
-      .getElementById("offerDescription")
-      .value
-      .trim();
+const name =
+document
+.getElementById("offerName")
+.value
+.trim();
 
 
-  const image =
-    document
-      .getElementById("offerImage")
-      .value
-      .trim();
+const description =
+document
+.getElementById("offerDescription")
+.value
+.trim();
 
 
-  const link =
-    document
-      .getElementById("offerLink")
-      .value
-      .trim();
+const image =
+document
+.getElementById("offerImage")
+.value
+.trim();
 
 
-  const status =
-    document
-      .getElementById("offerStatus")
-      .value;
+const link =
+document
+.getElementById("offerLink")
+.value
+.trim();
 
 
-  const editId =
-    document
-      .getElementById("editId")
-      .value;
+const status =
+document
+.getElementById("offerStatus")
+.value;
 
 
-  if (!name) {
-
-    showMessage(
-      "Please enter an offer name."
-    );
-
-    return;
-  }
+const editId =
+document
+.getElementById("editId")
+.value;
 
 
-  const offerData = {
+if(!name){
 
-    title:
-      name,
+showMessage(
+"Please enter an offer name.",
+"error"
+);
 
-    description:
-      description,
-
-    image_url:
-      image,
-
-    offer_url:
-      link,
-
-    status:
-      status
-
-  };
-
-
-  let result;
-
-
-  if (editId) {
-
-    result =
-      await supabaseClient
-        .from("offers")
-        .update(offerData)
-        .eq(
-          "id",
-          editId
-        );
-
-  } else {
-
-    result =
-      await supabaseClient
-        .from("offers")
-        .insert([
-          offerData
-        ]);
-
-  }
-
-
-  if (result.error) {
-
-    console.error(
-      result.error
-    );
-
-    showMessage(
-      "Error: " +
-      result.error.message
-    );
-
-    return;
-  }
-
-
-  showMessage(
-    editId
-      ? "Offer updated successfully! ✅"
-      : "Offer added successfully! ✅"
-  );
-
-
-  cancelEdit();
-
-  await loadOffers();
+return;
 
 }
 
 
-/* =========================
-   EDIT OFFER
-========================= */
+saveButton.disabled =
+true;
 
-async function editOffer(id) {
-
-  const allowed =
-    await checkAdmin();
-
-  if (!allowed) return;
+saveButton.textContent =
+editId
+? "Updating..."
+: "Saving...";
 
 
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("offers")
-      .select("*")
-      .eq(
-        "id",
-        id
-      )
-      .single();
+const offerData = {
+
+title:name,
+
+description:description,
+
+image_url:image,
+
+offer_url:link,
+
+status:status
+
+};
 
 
-  if (error) {
+try{
 
-    alert(
-      "Unable to load offer."
-    );
-
-    return;
-  }
+let result;
 
 
-  document.getElementById(
-    "editId"
-  ).value =
-    data.id;
+if(editId){
 
+result =
+await supabaseClient
+.from("offers")
+.update(offerData)
+.eq(
+"id",
+editId
+);
 
-  document.getElementById(
-    "offerName"
-  ).value =
-    data.title || "";
+}else{
 
-
-  document.getElementById(
-    "offerDescription"
-  ).value =
-    data.description || "";
-
-
-  document.getElementById(
-    "offerImage"
-  ).value =
-    data.image_url || "";
-
-
-  document.getElementById(
-    "offerLink"
-  ).value =
-    data.offer_url || "";
-
-
-  document.getElementById(
-    "offerStatus"
-  ).value =
-    data.status || "active";
-
-
-  document.getElementById(
-    "formTitle"
-  ).textContent =
-    "✏️ Edit Offer";
-
-
-  document.getElementById(
-    "saveButton"
-  ).textContent =
-    "Update Offer";
-
-
-  document.getElementById(
-    "cancelButton"
-  ).style.display =
-    "block";
-
-
-  window.scrollTo({
-
-    top: 0,
-
-    behavior:
-      "smooth"
-
-  });
+result =
+await supabaseClient
+.from("offers")
+.insert([
+offerData
+]);
 
 }
 
 
-/* =========================
-   CANCEL EDIT
-========================= */
+if(result.error){
 
-function cancelEdit() {
+console.error(
+result.error
+);
 
-  document.getElementById(
-    "editId"
-  ).value = "";
+showMessage(
+result.error.message,
+"error"
+);
 
-
-  document.getElementById(
-    "offerName"
-  ).value = "";
-
-
-  document.getElementById(
-    "offerDescription"
-  ).value = "";
-
-
-  document.getElementById(
-    "offerImage"
-  ).value = "";
-
-
-  document.getElementById(
-    "offerLink"
-  ).value = "";
-
-
-  document.getElementById(
-    "offerStatus"
-  ).value =
-    "active";
-
-
-  document.getElementById(
-    "formTitle"
-  ).textContent =
-    "➕ Add New Offer";
-
-
-  document.getElementById(
-    "saveButton"
-  ).textContent =
-    "Save Offer";
-
-
-  document.getElementById(
-    "cancelButton"
-  ).style.display =
-    "none";
+return;
 
 }
 
 
-/* =========================
-   TOGGLE OFFER
-========================= */
+showMessage(
+editId
+? "Offer updated successfully! ✅"
+: "Offer added successfully! ✅"
+);
+
+
+clearForm();
+
+await loadOffers();
+
+
+}catch(error){
+
+console.error(error);
+
+showMessage(
+error.message,
+"error"
+);
+
+}finally{
+
+saveButton.disabled =
+false;
+
+saveButton.textContent =
+"Save Offer";
+
+}
+
+}
+
+
+/* =========================================
+   EDIT
+========================================= */
+
+function editOffer(offer){
+
+document.getElementById(
+"editId"
+).value =
+offer.id;
+
+
+document.getElementById(
+"offerName"
+).value =
+offer.title || "";
+
+
+document.getElementById(
+"offerDescription"
+).value =
+offer.description || "";
+
+
+document.getElementById(
+"offerImage"
+).value =
+offer.image_url || "";
+
+
+document.getElementById(
+"offerLink"
+).value =
+offer.offer_url || "";
+
+
+document.getElementById(
+"offerStatus"
+).value =
+offer.status || "active";
+
+
+document.getElementById(
+"formTitle"
+).textContent =
+"✏️ Edit Offer";
+
+
+saveButton.textContent =
+"Update Offer";
+
+
+cancelButton.style.display =
+"block";
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================================
+   CLEAR FORM
+========================================= */
+
+function clearForm(){
+
+document.getElementById(
+"editId"
+).value = "";
+
+
+document.getElementById(
+"offerName"
+).value = "";
+
+
+document.getElementById(
+"offerDescription"
+).value = "";
+
+
+document.getElementById(
+"offerImage"
+).value = "";
+
+
+document.getElementById(
+"offerLink"
+).value = "";
+
+
+document.getElementById(
+"offerStatus"
+).value =
+"active";
+
+
+document.getElementById(
+"formTitle"
+).textContent =
+"➕ Add New Offer";
+
+
+saveButton.textContent =
+"Save Offer";
+
+
+cancelButton.style.display =
+"none";
+
+}
+
+
+/* =========================================
+   TOGGLE
+========================================= */
 
 async function toggleOffer(
-  id,
-  currentStatus
-) {
+id,
+currentStatus
+){
 
-  const allowed =
-    await checkAdmin();
+const allowed =
+await checkAdmin();
 
-  if (!allowed) return;
-
-
-  const newStatus =
-    currentStatus === "active"
-      ? "inactive"
-      : "active";
+if(!allowed) return;
 
 
-  const {
-    error
-  } =
-    await supabaseClient
-      .from("offers")
-      .update({
-        status:
-          newStatus
-      })
-      .eq(
-        "id",
-        id
-      );
+const newStatus =
+currentStatus === "active"
+? "inactive"
+: "active";
 
 
-  if (error) {
+const {
+error
+} =
+await supabaseClient
+.from("offers")
+.update({
+status:newStatus
+})
+.eq(
+"id",
+id
+);
 
-    alert(
-      "Unable to change offer status."
-    );
 
-    return;
-  }
+if(error){
 
+alert(
+error.message
+);
 
-  await loadOffers();
+return;
 
 }
 
 
-/* =========================
-   DELETE OFFER
-========================= */
-
-async function deleteOffer(id) {
-
-  const allowed =
-    await checkAdmin();
-
-  if (!allowed) return;
-
-
-  const confirmed =
-    confirm(
-      "Are you sure you want to delete this offer?"
-    );
-
-
-  if (!confirmed) return;
-
-
-  const {
-    error
-  } =
-    await supabaseClient
-      .from("offers")
-      .delete()
-      .eq(
-        "id",
-        id
-      );
-
-
-  if (error) {
-
-    alert(
-      "Unable to delete offer."
-    );
-
-    return;
-  }
-
-
-  await loadOffers();
+await loadOffers();
 
 }
 
 
-/* =========================
-   USER ACTIVITY
-========================= */
+/* =========================================
+   DELETE
+========================================= */
 
-async function loadUserActivity() {
+async function deleteOffer(id){
 
-  const allowed =
-    await checkAdmin();
+const allowed =
+await checkAdmin();
 
-  if (!allowed) return;
+if(!allowed) return;
 
 
-  const activityList =
-    document.getElementById(
-      "activityList"
-    );
+if(
+!confirm(
+"Delete this offer permanently?"
+)
+){
 
-
-  activityList.innerHTML = `
-    <div class="loading">
-      Loading user activity...
-    </div>
-  `;
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("activity_logs")
-      .select(`
-        id,
-        user_id,
-        action,
-        offer_id,
-        page,
-        metadata,
-        created_at,
-        profiles:user_id (
-          email
-        ),
-        offers:offer_id (
-          title
-        )
-      `)
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
-      )
-      .limit(100);
-
-
-  if (error) {
-
-    console.error(error);
-
-    activityList.innerHTML = `
-      <div class="loading">
-
-        Unable to load activity.
-
-        <br><br>
-
-        ${escapeHtml(
-          error.message
-        )}
-
-      </div>
-    `;
-
-    return;
-  }
-
-
-  if (!data || data.length === 0) {
-
-    activityList.innerHTML = `
-      <div class="loading">
-        No user activity yet.
-      </div>
-    `;
-
-    return;
-  }
-
-
-  activityList.innerHTML = "";
-
-
-  data.forEach(function(activity) {
-
-    const item =
-      document.createElement(
-        "div"
-      );
-
-
-    item.className =
-      "activity-item";
-
-
-    const email =
-      activity.profiles?.email ||
-      "Unknown user";
-
-
-    const offerName =
-      activity.offers?.title ||
-      "Unknown offer";
-
-
-    const date =
-      activity.created_at
-        ? new Date(
-            activity.created_at
-          ).toLocaleString()
-        : "Unknown";
-
-
-    item.innerHTML = `
-
-      <div class="activity-action">
-
-        ⚡ ${escapeHtml(
-          activity.action ||
-          "Unknown Action"
-        )}
-
-      </div>
-
-
-      <h3>
-        👤
-        <span class="user-email">
-          ${escapeHtml(email)}
-        </span>
-      </h3>
-
-
-      <p>
-
-        🎁 <strong>Offer:</strong>
-
-        <span class="offer-name">
-          ${escapeHtml(
-            offerName
-          )}
-        </span>
-
-      </p>
-
-
-      <p>
-
-        📄 <strong>Page:</strong>
-
-        ${escapeHtml(
-          activity.page ||
-          "—"
-        )}
-
-      </p>
-
-
-      <p>
-
-        🆔 <strong>User ID:</strong>
-
-        ${escapeHtml(
-          activity.user_id ||
-          "—"
-        )}
-
-      </p>
-
-
-      <div class="activity-time">
-
-        🕒 ${escapeHtml(date)}
-
-      </div>
-
-    `;
-
-
-    activityList.appendChild(
-      item
-    );
-
-  });
+return;
 
 }
 
 
-/* =========================
-   TELEGRAM
-========================= */
+const {
+error
+} =
+await supabaseClient
+.from("offers")
+.delete()
+.eq(
+"id",
+id
+);
 
-async function saveTelegram() {
 
-  alert(
-    "Telegram settings will be connected to a settings table in the next step."
-  );
+if(error){
+
+alert(
+error.message
+);
+
+return;
 
 }
 
 
-/* =========================
+await loadOffers();
+
+}
+
+
+/* =========================================
+   ACTIVITY
+========================================= */
+
+async function loadUserActivity(){
+
+const allowed =
+await checkAdmin();
+
+if(!allowed) return;
+
+
+activityList.innerHTML = `
+
+<div class="loading">
+Loading activity...
+</div>
+
+`;
+
+
+try{
+
+const {
+data,
+error
+} =
+await supabaseClient
+.from("activity_logs")
+.select("*")
+.order(
+"created_at",
+{
+ascending:false
+}
+)
+.limit(100);
+
+
+if(error){
+
+console.error(
+"Activity error:",
+error
+);
+
+activityList.innerHTML = `
+
+<div class="message error">
+
+Activity unavailable.
+
+<br><br>
+
+${escapeHtml(
+error.message
+)}
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+if(!data || data.length === 0){
+
+activityList.innerHTML = `
+
+<div class="loading">
+No user activity yet.
+</div>
+
+`;
+
+return;
+
+}
+
+
+activityList.innerHTML = "";
+
+
+data.forEach(
+function(activity){
+
+const item =
+document.createElement("div");
+
+item.className =
+"activity-item";
+
+
+const date =
+activity.created_at
+? new Date(
+activity.created_at
+).toLocaleString()
+: "Unknown";
+
+
+item.innerHTML = `
+
+<div class="activity-action">
+
+⚡ ${escapeHtml(
+activity.action ||
+"Activity"
+)}
+
+</div>
+
+<p>
+👤 User ID:
+${escapeHtml(
+activity.user_id ||
+"Unknown"
+)}
+</p>
+
+<p>
+🎁 Offer ID:
+${escapeHtml(
+activity.offer_id ||
+"—"
+)}
+</p>
+
+<p>
+📄 Page:
+${escapeHtml(
+activity.page ||
+"—"
+)}
+</p>
+
+<div class="activity-time">
+
+🕒 ${escapeHtml(date)}
+
+</div>
+
+`;
+
+
+activityList.appendChild(
+item
+);
+
+});
+
+
+}catch(error){
+
+console.error(error);
+
+activityList.innerHTML = `
+
+<div class="message error">
+
+${escapeHtml(
+error.message
+)}
+
+</div>
+
+`;
+
+}
+
+}
+
+
+/* =========================================
    LOGOUT
-========================= */
+========================================= */
 
-async function logout() {
+async function logout(){
 
-  await supabaseClient
-    .auth
-    .signOut();
+logoutButton.disabled =
+true;
 
-
-  window.location.href =
-    "admin-login.html";
-
-}
+logoutButton.textContent =
+"Logging out...";
 
 
-/* =========================
-   MESSAGE
-========================= */
+try{
 
-function showMessage(text) {
-
-  document.getElementById(
-    "message"
-  ).innerHTML =
-    `<div class="message">${
-      escapeHtml(text)
-    }</div>`;
-
-}
+const {
+error
+} =
+await supabaseClient.auth.signOut();
 
 
-/* =========================
-   HTML ESCAPE
-========================= */
+if(error){
 
-function escapeHtml(text) {
+console.error(error);
 
-  const div =
-    document.createElement(
-      "div"
-    );
+alert(
+"Logout failed: " +
+error.message
+);
 
-  div.textContent =
-    text ?? "";
+logoutButton.disabled =
+false;
 
-  return div.innerHTML;
+logoutButton.textContent =
+"Logout";
+
+return;
 
 }
 
 
-/* =========================
+window.location.replace(
+"admin-login.html"
+);
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Logout failed."
+);
+
+logoutButton.disabled =
+false;
+
+logoutButton.textContent =
+"Logout";
+
+}
+
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+saveButton.addEventListener(
+"click",
+saveOffer
+);
+
+
+cancelButton.addEventListener(
+"click",
+clearForm
+);
+
+
+logoutButton.addEventListener(
+"click",
+logout
+);
+
+
+refreshActivity.addEventListener(
+"click",
+loadUserActivity
+);
+
+
+/* =========================================
+   SESSION CHANGE
+========================================= */
+
+supabaseClient.auth.onAuthStateChange(
+function(event,session){
+
+if(
+event === "SIGNED_OUT" ||
+!session
+){
+
+window.location.replace(
+"admin-login.html"
+);
+
+}
+
+});
+
+
+/* =========================================
    START
-========================= */
+========================================= */
 
-async function startAdmin() {
+(async function(){
 
-  const allowed =
-    await checkAdmin();
+const allowed =
+await checkAdmin();
 
-  if (!allowed) return;
+if(!allowed) return;
 
-  await loadOffers();
+await loadOffers();
 
-  await loadUserActivity();
+await loadUserActivity();
 
-}
-
-
-startAdmin();
+})();
 
 </script>
 
