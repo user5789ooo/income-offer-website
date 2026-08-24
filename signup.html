@@ -24,7 +24,7 @@ body{
   padding:20px;
 }
 
-.signup-box{
+.box{
   width:100%;
   max-width:430px;
   padding:30px;
@@ -51,58 +51,56 @@ body{
 h1{
   text-align:center;
   margin:0 0 8px;
-  font-size:32px;
 }
 
 .subtitle{
   text-align:center;
-  color:rgba(255,255,255,.5);
-  margin:0 0 28px;
+  color:#888;
+  margin-bottom:28px;
 }
 
 label{
   display:block;
   margin:15px 0 7px;
   font-weight:bold;
-  color:rgba(255,255,255,.8);
+}
+
+.field{
+  position:relative;
 }
 
 input{
   width:100%;
   padding:15px;
-  border:1px solid rgba(255,255,255,.12);
+  padding-right:55px;
+  border:1px solid rgba(255,255,255,.15);
   border-radius:13px;
-  background:rgba(255,255,255,.07);
+  background:#181818;
   color:white;
   font-size:16px;
   outline:none;
 }
 
 input:focus{
-  border-color:rgba(255,255,255,.35);
+  border-color:#aaa;
 }
 
-.password-box{
-  position:relative;
-}
-
-.password-box input{
-  padding-right:55px;
-}
-
-.show-password{
+.eye{
   position:absolute;
-  right:10px;
+  right:8px;
   top:50%;
   transform:translateY(-50%);
+  width:44px;
+  height:44px;
   border:0;
   background:transparent;
   color:white;
   font-size:20px;
   cursor:pointer;
+  z-index:5;
 }
 
-.create-button{
+.create{
   width:100%;
   margin-top:22px;
   padding:15px;
@@ -115,7 +113,7 @@ input:focus{
   cursor:pointer;
 }
 
-.create-button:disabled{
+.create:disabled{
   opacity:.5;
 }
 
@@ -126,15 +124,15 @@ input:focus{
   line-height:1.5;
 }
 
-.login-link{
+.login{
   margin-top:24px;
   padding-top:20px;
-  border-top:1px solid rgba(255,255,255,.08);
+  border-top:1px solid rgba(255,255,255,.1);
   text-align:center;
-  color:rgba(255,255,255,.55);
+  color:#888;
 }
 
-.login-link a{
+.login a{
   color:white;
   font-weight:bold;
   text-decoration:none;
@@ -144,16 +142,15 @@ input:focus{
   display:block;
   margin-top:20px;
   text-align:center;
-  color:rgba(255,255,255,.45);
+  color:#777;
   text-decoration:none;
-  font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="signup-box">
+<div class="box">
 
   <div class="logo">S</div>
 
@@ -163,73 +160,63 @@ input:focus{
     Join SAHIL to continue
   </p>
 
-  <form id="signupForm">
+  <form onsubmit="createAccount(event)">
 
-    <label for="email">
-      Email
-    </label>
+    <label>Email</label>
 
     <input
-      type="email"
       id="email"
+      type="email"
       placeholder="Enter your email"
       autocomplete="email"
       required
     >
 
-    <label for="password">
-      Password
-    </label>
+    <label>Password</label>
 
-    <div class="password-box">
+    <div class="field">
 
       <input
-        type="password"
         id="password"
-        placeholder="Create a password"
-        autocomplete="new-password"
+        type="password"
+        placeholder="Create password"
         minlength="6"
+        autocomplete="new-password"
         required
       >
 
       <button
         type="button"
-        class="show-password"
-        id="showPassword"
-      >
-        👁️
-      </button>
+        class="eye"
+        onclick="togglePassword('password',this)"
+      >👁️</button>
 
     </div>
 
-    <label for="confirmPassword">
-      Confirm Password
-    </label>
+    <label>Confirm Password</label>
 
-    <div class="password-box">
+    <div class="field">
 
       <input
-        type="password"
         id="confirmPassword"
-        placeholder="Confirm your password"
-        autocomplete="new-password"
+        type="password"
+        placeholder="Confirm password"
         minlength="6"
+        autocomplete="new-password"
         required
       >
 
       <button
         type="button"
-        class="show-password"
-        id="showConfirmPassword"
-      >
-        👁️
-      </button>
+        class="eye"
+        onclick="togglePassword('confirmPassword',this)"
+      >👁️</button>
 
     </div>
 
     <button
       type="submit"
-      class="create-button"
+      class="create"
       id="createButton"
     >
       Create Account
@@ -242,14 +229,9 @@ input:focus{
     id="message"
   ></div>
 
-  <div class="login-link">
-
+  <div class="login">
     Already have an account?
-
-    <a href="login.html">
-      Login
-    </a>
-
+    <a href="login.html">Login</a>
   </div>
 
   <a
@@ -260,7 +242,6 @@ input:focus{
   </a>
 
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
@@ -274,35 +255,29 @@ const supabaseClient =
   );
 
 
-const form =
-  document.getElementById(
-    "signupForm"
-  );
+function togglePassword(
+  id,
+  button
+){
 
-const emailInput =
-  document.getElementById(
-    "email"
-  );
+  const input =
+    document.getElementById(id);
 
-const passwordInput =
-  document.getElementById(
-    "password"
-  );
+  if(input.type === "password"){
 
-const confirmInput =
-  document.getElementById(
-    "confirmPassword"
-  );
+    input.type = "text";
 
-const createButton =
-  document.getElementById(
-    "createButton"
-  );
+    button.textContent = "🙈";
 
-const message =
-  document.getElementById(
-    "message"
-  );
+  }else{
+
+    input.type = "password";
+
+    button.textContent = "👁️";
+
+  }
+
+}
 
 
 function showMessage(
@@ -310,10 +285,12 @@ function showMessage(
   success=false
 ){
 
-  message.textContent =
-    text;
+  const box =
+    document.getElementById("message");
 
-  message.style.color =
+  box.textContent = text;
+
+  box.style.color =
     success
       ? "#8dffa9"
       : "#ff7777";
@@ -321,218 +298,159 @@ function showMessage(
 }
 
 
-/* SHOW PASSWORD */
+async function createAccount(event){
 
-document.getElementById(
-  "showPassword"
-).addEventListener(
-  "click",
-  function(){
+  event.preventDefault();
 
-    if(
-      passwordInput.type ===
-      "password"
-    ){
+  const email =
+    document.getElementById("email")
+      .value
+      .trim();
 
-      passwordInput.type =
-        "text";
+  const password =
+    document.getElementById("password")
+      .value;
 
-      this.textContent =
-        "🙈";
+  const confirmPassword =
+    document.getElementById("confirmPassword")
+      .value;
 
-    }else{
-
-      passwordInput.type =
-        "password";
-
-      this.textContent =
-        "👁️";
-
-    }
-
-  }
-);
+  const button =
+    document.getElementById("createButton");
 
 
-/* SHOW CONFIRM PASSWORD */
-
-document.getElementById(
-  "showConfirmPassword"
-).addEventListener(
-  "click",
-  function(){
-
-    if(
-      confirmInput.type ===
-      "password"
-    ){
-
-      confirmInput.type =
-        "text";
-
-      this.textContent =
-        "🙈";
-
-    }else{
-
-      confirmInput.type =
-        "password";
-
-      this.textContent =
-        "👁️";
-
-    }
-
-  }
-);
-
-
-/* CREATE ACCOUNT */
-
-form.addEventListener(
-  "submit",
-  async function(event){
-
-    event.preventDefault();
-
-    const email =
-      emailInput.value.trim();
-
-    const password =
-      passwordInput.value;
-
-    const confirmPassword =
-      confirmInput.value;
-
-
-    if(password !== confirmPassword){
-
-      showMessage(
-        "Passwords do not match."
-      );
-
-      return;
-
-    }
-
-
-    if(password.length < 6){
-
-      showMessage(
-        "Password must be at least 6 characters."
-      );
-
-      return;
-
-    }
-
-
-    createButton.disabled =
-      true;
-
-    createButton.textContent =
-      "Creating account...";
+  if(password !== confirmPassword){
 
     showMessage(
-      "Please wait...",
-      true
+      "Passwords do not match."
     );
 
+    return;
 
-    try{
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .auth
-          .signUp({
-
-            email:
-              email,
-
-            password:
-              password
-
-          });
+  }
 
 
-      if(error){
+  if(password.length < 6){
 
-        console.error(error);
+    showMessage(
+      "Password must be at least 6 characters."
+    );
 
-        showMessage(
-          "Signup failed: " +
-          error.message
-        );
+    return;
 
-        createButton.disabled =
-          false;
-
-        createButton.textContent =
-          "Create Account";
-
-        return;
-
-      }
+  }
 
 
-      if(
-        data.session
-      ){
+  button.disabled = true;
 
-        showMessage(
-          "Account created successfully! Opening website...",
-          true
-        );
+  button.textContent =
+    "Creating Account...";
 
-        setTimeout(
-          function(){
-
-            window.location.replace(
-              "offer.html"
-            );
-
-          },
-          700
-        );
-
-        return;
-
-      }
+  showMessage(
+    "Please wait...",
+    true
+  );
 
 
-      showMessage(
-        "Account created! Please check your email to verify your account.",
-        true
-      );
+  try{
 
-      createButton.disabled =
-        false;
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.auth.signUp({
 
-      createButton.textContent =
-        "Create Account";
+        email: email,
+
+        password: password
+
+      });
 
 
-    }catch(error){
+    if(error){
 
       console.error(error);
 
       showMessage(
-        "Something went wrong. Please try again."
+        "Signup failed: " +
+        error.message
       );
 
-      createButton.disabled =
-        false;
+      button.disabled = false;
 
-      createButton.textContent =
+      button.textContent =
         "Create Account";
+
+      return;
 
     }
 
+
+    /*
+      If Supabase email confirmation
+      is enabled, session will be null.
+    */
+
+    if(!data.session){
+
+      showMessage(
+        "Account created successfully! Please verify your email, then login.",
+        true
+      );
+
+      button.disabled = false;
+
+      button.textContent =
+        "Create Account";
+
+      setTimeout(
+        function(){
+
+          window.location.href =
+            "login.html";
+
+        },
+        1800
+      );
+
+      return;
+
+    }
+
+
+    showMessage(
+      "Account created! Opening website...",
+      true
+    );
+
+
+    setTimeout(
+      function(){
+
+        window.location.href =
+          "offer.html";
+
+      },
+      700
+    );
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Something went wrong. Please try again."
+    );
+
+    button.disabled = false;
+
+    button.textContent =
+      "Create Account";
+
   }
-);
+
+}
 
 </script>
 
