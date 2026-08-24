@@ -115,6 +115,7 @@ input:focus{
 
 .create:disabled{
   opacity:.5;
+  cursor:not-allowed;
 }
 
 .message{
@@ -160,9 +161,11 @@ input:focus{
     Join SAHIL to continue
   </p>
 
-  <form onsubmit="createAccount(event)">
+  <form id="signupForm">
 
-    <label>Email</label>
+    <label for="email">
+      Email
+    </label>
 
     <input
       id="email"
@@ -172,7 +175,9 @@ input:focus{
       required
     >
 
-    <label>Password</label>
+    <label for="password">
+      Password
+    </label>
 
     <div class="field">
 
@@ -188,12 +193,14 @@ input:focus{
       <button
         type="button"
         class="eye"
-        onclick="togglePassword('password',this)"
+        id="passwordEye"
       >👁️</button>
 
     </div>
 
-    <label>Confirm Password</label>
+    <label for="confirmPassword">
+      Confirm Password
+    </label>
 
     <div class="field">
 
@@ -209,7 +216,7 @@ input:focus{
       <button
         type="button"
         class="eye"
-        onclick="togglePassword('confirmPassword',this)"
+        id="confirmEye"
       >👁️</button>
 
     </div>
@@ -231,7 +238,9 @@ input:focus{
 
   <div class="login">
     Already have an account?
-    <a href="login.html">Login</a>
+    <a href="login.html">
+      Login
+    </a>
   </div>
 
   <a
@@ -243,90 +252,186 @@ input:focus{
 
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase-config.js"></script>
 
 <script>
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
+let supabaseClient = null;
 
+
+/* =========================
+   SUPABASE
+========================= */
+
+function setupSupabase(){
+
+  if(
+    !window.supabase ||
+    typeof SUPABASE_URL === "undefined" ||
+    typeof SUPABASE_ANON_KEY === "undefined"
+  ){
+
+    showMessage(
+      "Supabase configuration পাওয়া যাচ্ছে না."
+    );
+
+    return false;
+  }
+
+  supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY,
+      {
+        auth:{
+          persistSession:true,
+          autoRefreshToken:true,
+          detectSessionInUrl:true
+        }
+      }
+    );
+
+  return true;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(
+  text,
+  success = false
+){
+
+  const message =
+    document.getElementById(
+      "message"
+    );
+
+  message.textContent =
+    text;
+
+  message.style.color =
+    success
+      ? "#8dffa9"
+      : "#ff7777";
+}
+
+
+/* =========================
+   PASSWORD SHOW/HIDE
+========================= */
 
 function togglePassword(
-  id,
+  inputId,
   button
 ){
 
   const input =
-    document.getElementById(id);
+    document.getElementById(
+      inputId
+    );
 
-  if(input.type === "password"){
+  if(
+    input.type === "password"
+  ){
 
     input.type = "text";
 
-    button.textContent = "🙈";
+    button.textContent =
+      "🙈";
 
   }else{
 
     input.type = "password";
 
-    button.textContent = "👁️";
+    button.textContent =
+      "👁️";
 
   }
 
 }
 
 
-function showMessage(
-  text,
-  success=false
-){
+document.getElementById(
+  "passwordEye"
+).addEventListener(
+  "click",
+  function(){
 
-  const box =
-    document.getElementById("message");
+    togglePassword(
+      "password",
+      this
+    );
 
-  box.textContent = text;
+  }
+);
 
-  box.style.color =
-    success
-      ? "#8dffa9"
-      : "#ff7777";
 
-}
+document.getElementById(
+  "confirmEye"
+).addEventListener(
+  "click",
+  function(){
 
+    togglePassword(
+      "confirmPassword",
+      this
+    );
+
+  }
+);
+
+
+/* =========================
+   CREATE ACCOUNT
+========================= */
 
 async function createAccount(event){
 
   event.preventDefault();
 
+
   const email =
-    document.getElementById("email")
-      .value
-      .trim();
+    document.getElementById(
+      "email"
+    ).value
+     .trim()
+     .toLowerCase();
+
 
   const password =
-    document.getElementById("password")
-      .value;
+    document.getElementById(
+      "password"
+    ).value;
+
 
   const confirmPassword =
-    document.getElementById("confirmPassword")
-      .value;
+    document.getElementById(
+      "confirmPassword"
+    ).value;
+
 
   const button =
-    document.getElementById("createButton");
+    document.getElementById(
+      "createButton"
+    );
 
 
-  if(password !== confirmPassword){
+  /* =====================
+     BASIC VALIDATION
+  ===================== */
+
+  if(!email){
 
     showMessage(
-      "Passwords do not match."
+      "Email দিন."
     );
 
     return;
-
   }
 
 
@@ -337,7 +442,26 @@ async function createAccount(event){
     );
 
     return;
+  }
 
+
+  if(password !== confirmPassword){
+
+    showMessage(
+      "Passwords do not match."
+    );
+
+    return;
+  }
+
+
+  /* =====================
+     SUPABASE SETUP
+  ===================== */
+
+  if(!setupSupabase()){
+
+    return;
   }
 
 
@@ -346,18 +470,20 @@ async function createAccount(event){
   button.textContent =
     "Creating Account...";
 
+
   showMessage(
-    "Please wait...",
+    "Creating your account...",
     true
   );
 
 
   try{
 
-    const {
-      data,
-      error
-    } =
+    /* =====================
+       SIGN UP
+    ===================== */
+
+    const result =
       await supabaseClient.auth.signUp({
 
         email: email,
@@ -367,9 +493,19 @@ async function createAccount(event){
       });
 
 
+    const data =
+      result.data;
+
+    const error =
+      result.error;
+
+
     if(error){
 
-      console.error(error);
+      console.error(
+        "SIGNUP ERROR:",
+        error
+      );
 
       showMessage(
         "Signup failed: " +
@@ -382,20 +518,17 @@ async function createAccount(event){
         "Create Account";
 
       return;
-
     }
 
 
-    /*
-      If Supabase email confirmation
-      is enabled, session will be null.
-    */
+    /* =====================
+       USER CHECK
+    ===================== */
 
-    if(!data.session){
+    if(!data || !data.user){
 
       showMessage(
-        "Account created successfully! Please verify your email, then login.",
-        true
+        "Account তৈরি হয়নি. আবার চেষ্টা কর."
       );
 
       button.disabled = false;
@@ -403,44 +536,114 @@ async function createAccount(event){
       button.textContent =
         "Create Account";
 
-      setTimeout(
-        function(){
-
-          window.location.href =
-            "login.html";
-
-        },
-        1800
-      );
-
       return;
-
     }
 
 
+    /* =====================
+       SESSION CHECK
+    ===================== */
+
+    let session =
+      data.session;
+
+
+    /*
+      Supabase যদি একই মুহূর্তে
+      session না দেয়, আবার getSession()
+      দিয়ে check করা হচ্ছে।
+    */
+
+    if(!session){
+
+      const sessionResult =
+        await supabaseClient.auth.getSession();
+
+      session =
+        sessionResult.data.session;
+    }
+
+
+    /* =====================
+       SESSION FOUND
+    ===================== */
+
+    if(session){
+
+      showMessage(
+        "Account created successfully! Opening website...",
+        true
+      );
+
+
+      /*
+        একটু সময় দিয়ে session
+        localStorage-এ persist হতে দিচ্ছি।
+      */
+
+      await new Promise(
+        function(resolve){
+
+          setTimeout(
+            resolve,
+            500
+          );
+
+        }
+      );
+
+
+      window.location.replace(
+        "index.html"
+      );
+
+      return;
+    }
+
+
+    /* =====================
+       NO SESSION
+    ===================== */
+
+    /*
+      এখানে সাধারণত email confirmation
+      enabled থাকলে আসবে।
+    */
+
     showMessage(
-      "Account created! Opening website...",
+      "Account created. Please login with your new account.",
       true
     );
+
+
+    button.disabled = false;
+
+    button.textContent =
+      "Create Account";
 
 
     setTimeout(
       function(){
 
-        window.location.href =
-          "offer.html";
+        window.location.replace(
+          "login.html"
+        );
 
       },
-      700
+      1500
     );
 
 
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "CREATE ACCOUNT ERROR:",
+      error
+    );
 
     showMessage(
-      "Something went wrong. Please try again."
+      "Something went wrong: " +
+      error.message
     );
 
     button.disabled = false;
@@ -451,6 +654,25 @@ async function createAccount(event){
   }
 
 }
+
+
+/* =========================
+   FORM
+========================= */
+
+document.getElementById(
+  "signupForm"
+).addEventListener(
+  "submit",
+  createAccount
+);
+
+
+/* =========================
+   START
+========================= */
+
+setupSupabase();
 
 </script>
 
