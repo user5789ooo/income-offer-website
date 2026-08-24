@@ -1,1355 +1,791 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050505">
-
-  <title>Offer Details - Nexum</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
-    }
-
-    body {
-      background: #050505;
-      color: white;
-
-      font-family:
-        'Geist',
-        -apple-system,
-        BlinkMacSystemFont,
-        sans-serif;
-
-      -webkit-font-smoothing: antialiased;
-
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    /* =========================
-       BACKGROUND
-    ========================= */
-
-    .background {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-
-      background:
-        radial-gradient(
-          circle at 15% 10%,
-          rgba(255,255,255,.08),
-          transparent 35%
-        ),
-        radial-gradient(
-          circle at 90% 85%,
-          rgba(255,255,255,.05),
-          transparent 35%
-        ),
-        #050505;
-
-      overflow: hidden;
-    }
-
-    .background::before {
-      content: "";
-
-      position: absolute;
-
-      width: 450px;
-      height: 450px;
-
-      left: -200px;
-      top: 20%;
-
-      border-radius: 50%;
-
-      background: white;
-
-      filter: blur(130px);
-
-      opacity: .08;
-
-      animation:
-        glowMove
-        12s
-        ease-in-out
-        infinite alternate;
-    }
-
-    @keyframes glowMove {
-
-      from {
-        transform:
-          translate(0,0)
-          scale(1);
-      }
-
-      to {
-        transform:
-          translate(130px,-50px)
-          scale(1.2);
-      }
-
-    }
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    header {
-
-      position: sticky;
-
-      top: 0;
-
-      z-index: 20;
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,.08);
-
-      background:
-        rgba(5,5,5,.72);
-
-      backdrop-filter:
-        blur(20px);
-
-      -webkit-backdrop-filter:
-        blur(20px);
-    }
-
-    .nav {
-
-      max-width: 1000px;
-
-      margin: auto;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      padding:
-        17px 20px;
-    }
-
-    .brand {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 8px;
-
-      font-size: 18px;
-
-      font-weight: 700;
-    }
-
-    .brand svg {
-
-      width: 24px;
-      height: 24px;
-
-      fill: white;
-
-      transition:
-        transform .5s ease;
-    }
-
-    .brand:hover svg {
-
-      transform:
-        rotate(180deg);
-    }
-
-    .back-button {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 6px;
-
-      padding:
-        9px 14px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-
-      border-radius: 999px;
-
-      background:
-        rgba(255,255,255,.06);
-
-      color:
-        rgba(255,255,255,.75);
-
-      font-size: 13px;
-
-      transition:
-        background .2s ease,
-        transform .2s ease;
-    }
-
-    .back-button:hover {
-
-      background:
-        rgba(255,255,255,.12);
-
-      color: white;
-
-      transform:
-        translateX(-2px);
-    }
-
-    /* =========================
-       MAIN
-    ========================= */
-
-    .container {
-
-      width: 100%;
-
-      max-width: 820px;
-
-      margin: auto;
-
-      padding:
-        50px 20px 100px;
-    }
-
-    .offer-card {
-
-      overflow: hidden;
-
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-
-      border-radius: 26px;
-
-      background:
-        rgba(255,255,255,.065);
-
-      backdrop-filter:
-        blur(20px);
-
-      -webkit-backdrop-filter:
-        blur(20px);
-
-      box-shadow:
-        0 25px 90px
-        rgba(0,0,0,.35);
-
-      animation:
-        cardIn
-        .8s
-        cubic-bezier(.16,1,.3,1);
-    }
-
-    @keyframes cardIn {
-
-      from {
-
-        opacity: 0;
-
-        transform:
-          translateY(30px)
-          scale(.97);
-      }
-
-      to {
-
-        opacity: 1;
-
-        transform:
-          translateY(0)
-          scale(1);
-      }
-
-    }
-
-    /* =========================
-       IMAGE
-    ========================= */
-
-    .image-wrap {
-
-      position: relative;
-
-      width: 100%;
-
-      aspect-ratio:
-        16 / 8;
-
-      overflow: hidden;
-
-      background:
-        rgba(255,255,255,.05);
-    }
-
-    .offer-image {
-
-      width: 100%;
-      height: 100%;
-
-      display: block;
-
-      object-fit: cover;
-
-      animation:
-        imageIn
-        1s
-        cubic-bezier(.16,1,.3,1);
-    }
-
-    @keyframes imageIn {
-
-      from {
-
-        opacity: 0;
-
-        transform:
-          scale(1.06);
-      }
-
-      to {
-
-        opacity: 1;
-
-        transform:
-          scale(1);
-      }
-
-    }
-
-    .image-placeholder {
-
-      width: 100%;
-      height: 100%;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      font-size: 60px;
-
-      color:
-        rgba(255,255,255,.25);
-    }
-
-    .status {
-
-      position: absolute;
-
-      top: 15px;
-      left: 15px;
-
-      padding:
-        7px 11px;
-
-      border-radius: 999px;
-
-      background:
-        rgba(0,0,0,.65);
-
-      border:
-        1px solid
-        rgba(255,255,255,.12);
-
-      backdrop-filter:
-        blur(10px);
-
-      color:
-        #8dffa9;
-
-      font-size: 11px;
-
-      font-weight: 600;
-
-      text-transform:
-        uppercase;
-    }
-
-    /* =========================
-       CONTENT
-    ========================= */
-
-    .content {
-
-      padding:
-        27px;
-    }
-
-    .eyebrow {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 8px;
-
-      margin-bottom: 12px;
-
-      color:
-        rgba(255,255,255,.45);
-
-      font-size: 11px;
-
-      font-weight: 600;
-
-      letter-spacing:
-        .08em;
-
-      text-transform:
-        uppercase;
-    }
-
-    .dot {
-
-      width: 7px;
-      height: 7px;
-
-      border-radius: 50%;
-
-      background:
-        #8dffa9;
-
-      box-shadow:
-        0 0 12px
-        rgba(141,255,169,.7);
-    }
-
-    h1 {
-
-      margin: 0;
-
-      font-size:
-        clamp(
-          2rem,
-          6vw,
-          3.4rem
-        );
-
-      line-height: 1.05;
-
-      letter-spacing:
-        -.05em;
-    }
-
-    .description {
-
-      margin:
-        17px 0 0;
-
-      color:
-        rgba(255,255,255,.58);
-
-      font-size: 15px;
-
-      line-height: 1.7;
-
-      white-space:
-        pre-line;
-    }
-
-    /* =========================
-       INFO
-    ========================= */
-
-    .info {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(
-          2,
-          1fr
-        );
-
-      gap: 10px;
-
-      margin-top: 25px;
-    }
-
-    .info-box {
-
-      padding:
-        15px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.07);
-
-      border-radius: 15px;
-
-      background:
-        rgba(255,255,255,.045);
-    }
-
-    .info-label {
-
-      color:
-        rgba(255,255,255,.35);
-
-      font-size: 11px;
-
-      margin-bottom: 5px;
-
-      text-transform:
-        uppercase;
-    }
-
-    .info-value {
-
-      color:
-        rgba(255,255,255,.85);
-
-      font-size: 13px;
-
-      font-weight: 500;
-    }
-
-    /* =========================
-       OPEN BUTTON
-    ========================= */
-
-    .open-button {
-
-      width: 100%;
-
-      margin-top: 25px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 8px;
-
-      padding:
-        15px 20px;
-
-      border: 0;
-
-      border-radius: 999px;
-
-      background:
-        linear-gradient(
-          to bottom,
-          #ffffff,
-          #dedede
-        );
-
-      color: #111;
-
-      font-size: 15px;
-
-      font-weight: 700;
-
-      cursor: pointer;
-
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        opacity .25s ease;
-    }
-
-    .open-button:hover {
-
-      transform:
-        translateY(-3px);
-
-      box-shadow:
-        0 15px 40px
-        rgba(255,255,255,.12);
-    }
-
-    .open-button:active {
-
-      transform:
-        scale(.97);
-    }
-
-    .open-button:disabled {
-
-      opacity: .5;
-
-      cursor:
-        not-allowed;
-
-      transform: none;
-    }
-
-    /* =========================
-       MESSAGE
-    ========================= */
-
-    .message {
-
-      margin-top: 15px;
-
-      padding:
-        12px 14px;
-
-      border-radius: 12px;
-
-      background:
-        rgba(255,255,255,.05);
-
-      color:
-        rgba(255,255,255,.55);
-
-      font-size: 12px;
-
-      line-height: 1.5;
-
-      text-align: center;
-    }
-
-    /* =========================
-       ERROR
-    ========================= */
-
-    .error {
-
-      max-width: 600px;
-
-      margin: 80px auto;
-
-      padding:
-        35px 20px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.08);
-
-      border-radius: 22px;
-
-      background:
-        rgba(255,255,255,.05);
-
-      text-align: center;
-
-      animation:
-        cardIn
-        .7s
-        ease;
-    }
-
-    .error-icon {
-
-      font-size: 45px;
-
-      margin-bottom: 12px;
-    }
-
-    .error h2 {
-
-      margin:
-        0 0 8px;
-
-      font-size: 22px;
-    }
-
-    .error p {
-
-      margin: 0;
-
-      color:
-        rgba(255,255,255,.45);
-
-      font-size: 13px;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 520px) {
-
-      .container {
-
-        padding:
-          30px 14px 100px;
-      }
-
-      .content {
-
-        padding:
-          21px;
-      }
-
-      .info {
-
-        grid-template-columns:
-          1fr;
-      }
-
-      .image-wrap {
-
-        aspect-ratio:
-          16 / 10;
-      }
-
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-
-        animation-duration:
-          .01ms !important;
-
-        animation-iteration-count:
-          1 !important;
-
-        transition-duration:
-          .01ms !important;
-      }
-
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
+<title>Offer Details</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  min-height:100%;
+}
+
+body{
+  background:#050505;
+  color:white;
+  font-family:'Geist',Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.background{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(255,255,255,.08),transparent 35%),
+    radial-gradient(circle at 90% 85%,rgba(255,255,255,.05),transparent 35%),
+    #050505;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(5,5,5,.75);
+  backdrop-filter:blur(20px);
+}
+
+.nav{
+  max-width:1000px;
+  margin:auto;
+  padding:17px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:19px;
+  font-weight:700;
+}
+
+.brand svg{
+  width:25px;
+  height:25px;
+  fill:white;
+}
+
+.back{
+  padding:10px 15px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  background:rgba(255,255,255,.07);
+  color:rgba(255,255,255,.8);
+  font-size:13px;
+}
+
+.container{
+  max-width:820px;
+  margin:auto;
+  padding:45px 20px 100px;
+}
+
+.card{
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:25px;
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(20px);
+}
+
+.image{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  display:block;
+}
+
+.placeholder{
+  width:100%;
+  aspect-ratio:16/9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#111;
+  font-size:55px;
+}
+
+.content{
+  padding:26px;
+}
+
+.eyebrow{
+  color:rgba(255,255,255,.45);
+  font-size:11px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:12px;
+}
+
+h1{
+  margin:0;
+  font-size:clamp(2rem,6vw,3.4rem);
+  line-height:1.05;
+  letter-spacing:-.05em;
+}
+
+.description{
+  margin:17px 0 0;
+  color:rgba(255,255,255,.58);
+  font-size:15px;
+  line-height:1.7;
+  white-space:pre-line;
+}
+
+.info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:25px;
+}
+
+.info-box{
+  padding:15px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:15px;
+  background:rgba(255,255,255,.04);
+}
+
+.label{
+  color:rgba(255,255,255,.35);
+  font-size:11px;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+
+.value{
+  font-size:14px;
+  font-weight:500;
+}
+
+.open{
+  width:100%;
+  margin-top:25px;
+  padding:15px;
+  border:0;
+  border-radius:999px;
+  background:white;
+  color:#111;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.open:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.message{
+  margin-top:14px;
+  padding:12px;
+  border-radius:12px;
+  background:rgba(255,255,255,.05);
+  color:rgba(255,255,255,.55);
+  font-size:12px;
+  text-align:center;
+  line-height:1.5;
+}
+
+.error{
+  padding:50px 20px;
+  text-align:center;
+}
+
+.error h2{
+  margin:10px 0;
+}
+
+.error p{
+  color:rgba(255,255,255,.5);
+  font-size:13px;
+}
+
+@media(max-width:520px){
+  .container{
+    padding:30px 14px 100px;
+  }
+
+  .content{
+    padding:21px;
+  }
+
+  .info{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="background"></div>
+<div class="background"></div>
 
-  <!-- HEADER -->
+<header>
+<nav class="nav">
 
-  <header>
+<a class="brand" href="index.html">
 
-    <nav class="nav">
+<svg viewBox="0 0 256 256">
+<path d="
+M128 128
+C128 198.692 70.692 256 0 256
+C0 185.308 57.308 128 128 128Z
+M128 128
+C198.692 128 256 185.308 256 256
+C185.308 256 128 198.692 128 128Z
+M0 0
+C70.692 0 128 57.308 128 128
+C57.308 128 0 70.692 0 0Z
+M256 0
+C256 70.692 198.692 128 128 128
+C128 57.308 185.308 0 256 0Z"/>
+</svg>
 
-      <a
-        class="brand"
-        href="index.html"
-      >
+<span>Offers</span>
 
-        <svg
-          viewBox="0 0 256 256"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="
-            M128 128
-            C128 198.692 70.692 256 0 256
-            C0 185.308 57.308 128 128 128Z
+</a>
 
-            M128 128
-            C198.692 128 256 185.308 256 256
-            C185.308 256 128 198.692 128 128Z
+<a class="back" href="offer.html">
+← Back to Offers
+</a>
 
-            M0 0
-            C70.692 0 128 57.308 128 128
-            C57.308 128 0 70.692 0 0Z
+</nav>
+</header>
 
-            M256 0
-            C256 70.692 198.692 128 128 128
-            C128 57.308 185.308 0 256 0Z
-          "/>
-        </svg>
 
-        <span>Nexum</span>
+<main class="container">
 
-      </a>
+<div class="card" id="card">
 
-      <a
-        class="back-button"
-        href="offer.html"
-      >
-        ← Back to Offers
-      </a>
+<div id="imageArea">
+<div class="placeholder">🎁</div>
+</div>
 
-    </nav>
+<div class="content">
 
-  </header>
+<div class="eyebrow">
+● OFFER DETAILS
+</div>
 
+<h1 id="title">
+Loading offer...
+</h1>
 
-  <!-- MAIN -->
+<p class="description" id="description">
+Please wait while the offer details are loaded.
+</p>
 
-  <main
-    class="container"
-    id="mainContent"
-  >
+<div class="info">
 
-    <div class="offer-card">
+<div class="info-box">
+<div class="label">Status</div>
+<div class="value" id="status">
+Loading...
+</div>
+</div>
 
-      <div
-        class="image-wrap"
-        id="imageWrap"
-      >
+<div class="info-box">
+<div class="label">Added</div>
+<div class="value" id="date">
+Loading...
+</div>
+</div>
 
-        <div
-          class="image-placeholder"
-        >
-          🎁
-        </div>
+</div>
 
-        <span class="status">
-          Loading
-        </span>
+<button
+class="open"
+id="openButton"
+disabled
+>
+🚀 Open Offer
+</button>
 
-      </div>
+<div class="message" id="message">
+Loading offer information...
+</div>
 
+</div>
 
-      <div class="content">
+</div>
 
-        <div class="eyebrow">
+</main>
 
-          <span class="dot"></span>
 
-          <span id="category">
-            Offer Details
-          </span>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        </div>
+<script src="supabase-config.js"></script>
 
-        <h1 id="offerTitle">
-          Loading offer...
-        </h1>
+<script>
 
-        <p
-          class="description"
-          id="offerDescription"
-        >
-          Please wait while the offer details are loaded.
-        </p>
+/*
+IMPORTANT:
+supabase-config.js already creates:
 
+const supabaseClient = ...
 
-        <div class="info">
+So DO NOT create another client here.
+*/
 
-          <div class="info-box">
 
-            <div class="info-label">
-              Status
-            </div>
+const params =
+new URLSearchParams(
+window.location.search
+);
 
-            <div
-              class="info-value"
-              id="offerStatus"
-            >
-              Loading...
-            </div>
+const offerId =
+params.get("id");
 
-          </div>
 
+const title =
+document.getElementById("title");
 
-          <div class="info-box">
+const description =
+document.getElementById("description");
 
-            <div class="info-label">
-              Added
-            </div>
+const status =
+document.getElementById("status");
 
-            <div
-              class="info-value"
-              id="offerDate"
-            >
-              Loading...
-            </div>
+const date =
+document.getElementById("date");
 
-          </div>
+const imageArea =
+document.getElementById("imageArea");
 
-        </div>
+const openButton =
+document.getElementById("openButton");
 
+const message =
+document.getElementById("message");
 
-        <button
-          class="open-button"
-          id="openButton"
-          type="button"
-          disabled
-        >
-          🚀 Open Offer
-        </button>
 
-        <div
-          class="message"
-          id="message"
-        >
-          Loading offer information...
-        </div>
+let currentOffer = null;
 
-      </div>
 
-    </div>
+/* =========================
+   ESCAPE
+========================= */
 
-  </main>
+function escapeHtml(value){
 
+const div =
+document.createElement("div");
 
-  <!-- SUPABASE -->
+div.textContent =
+value ?? "";
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+return div.innerHTML;
 
-  <script src="supabase-config.js"></script>
+}
 
 
-  <script>
+/* =========================
+   DATE
+========================= */
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-      );
+function formatDate(value){
 
+if(!value){
+return "Recently added";
+}
 
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
+const d =
+new Date(value);
 
-    const offerId =
-      params.get("id");
+if(Number.isNaN(d.getTime())){
+return "Recently added";
+}
 
+return d.toLocaleDateString(
+undefined,
+{
+day:"numeric",
+month:"short",
+year:"numeric"
+}
+);
 
-    const imageWrap =
-      document.getElementById(
-        "imageWrap"
-      );
+}
 
-    const offerTitle =
-      document.getElementById(
-        "offerTitle"
-      );
 
-    const offerDescription =
-      document.getElementById(
-        "offerDescription"
-      );
+/* =========================
+   ACTIVITY
+========================= */
 
-    const offerStatus =
-      document.getElementById(
-        "offerStatus"
-      );
+async function logActivity(
+action,
+offerIdValue=null
+){
 
-    const offerDate =
-      document.getElementById(
-        "offerDate"
-      );
+try{
 
-    const openButton =
-      document.getElementById(
-        "openButton"
-      );
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.getUser();
 
-    const message =
-      document.getElementById(
-        "message"
-      );
+if(error || !data.user){
 
+console.log(
+"Activity user unavailable",
+error
+);
 
-    let currentOffer = null;
+return;
 
+}
 
-    /* =========================
-       DATE
-    ========================= */
+const result =
+await supabaseClient
+.from("activity_logs")
+.insert({
+user_id:data.user.id,
+action:action,
+offer_id:offerIdValue,
+page:"offer-details.html",
+metadata:{}
+});
 
-    function formatDate(
-      value
-    ) {
+if(result.error){
 
-      if (!value) {
-        return "Recently added";
-      }
+console.error(
+"Activity insert error:",
+result.error
+);
 
-      const date =
-        new Date(value);
+}
 
-      if (
-        Number.isNaN(
-          date.getTime()
-        )
-      ) {
-        return "Recently added";
-      }
+}catch(error){
 
-      return date.toLocaleDateString(
-        undefined,
-        {
-          day: "numeric",
-          month: "short",
-          year: "numeric"
-        }
-      );
+console.error(
+"Activity error:",
+error
+);
 
-    }
+}
 
+}
 
-    /* =========================
-       ACTIVITY
-    ========================= */
 
-    async function logActivity(
-      action,
-      offerId
-    ) {
+/* =========================
+   ERROR
+========================= */
 
-      try {
+function showError(
+heading,
+text
+){
 
-        const {
-          data: {
-            user
-          }
-        } =
-          await supabaseClient
-            .auth
-            .getUser();
+document.getElementById(
+"card"
+).innerHTML = `
 
-        if (!user) return;
+<div class="error">
 
-        await supabaseClient
-          .from("activity_logs")
-          .insert({
+<div style="font-size:45px">
+⚠️
+</div>
 
-            user_id:
-              user.id,
+<h2>
+${escapeHtml(heading)}
+</h2>
 
-            action:
-              action,
+<p>
+${escapeHtml(text)}
+</p>
 
-            offer_id:
-              offerId,
+<br>
 
-            page:
-              "offer-details.html",
+<a
+class="back"
+href="offer.html"
+>
+← Back to Offers
+</a>
 
-            metadata:
-              {}
+</div>
 
-          });
+`;
 
-      } catch (error) {
+}
 
-        console.log(
-          "Activity logging skipped"
-        );
 
-      }
+/* =========================
+   LOAD OFFER
+========================= */
 
-    }
+async function loadOffer(){
 
+if(!offerId){
 
-    /* =========================
-       ERROR PAGE
-    ========================= */
+showError(
+"Offer not found",
+"No offer ID was provided."
+);
 
-    function showError(
-      title,
-      text
-    ) {
+return;
 
-      document.getElementById(
-        "mainContent"
-      ).innerHTML = `
+}
 
-        <div class="error">
 
-          <div class="error-icon">
-            ⚠️
-          </div>
+/*
+Check login first.
+*/
 
-          <h2>
-            ${title}
-          </h2>
+const {
+data:sessionData,
+error:sessionError
+} =
+await supabaseClient
+.auth
+.getSession();
 
-          <p>
-            ${text}
-          </p>
+if(sessionError){
 
-          <br>
+console.error(
+sessionError
+);
 
-          <a
-            class="back-button"
-            href="offer.html"
-          >
-            ← Back to Offers
-          </a>
+showError(
+"Session error",
+"Please login again."
+);
 
-        </div>
+return;
 
-      `;
+}
 
-    }
+if(!sessionData.session){
 
+window.location.replace(
+"login.html"
+);
 
-    /* =========================
-       LOAD OFFER
-    ========================= */
+return;
 
-    async function loadOffer() {
+}
 
-      if (!offerId) {
 
-        showError(
-          "Offer not found",
-          "No offer ID was provided."
-        );
+/*
+Load exact offer.
+*/
 
-        return;
+const {
+data,
+error
+} =
+await supabaseClient
+.from("offers")
+.select("*")
+.eq("id",offerId)
+.single();
 
-      }
 
+if(error){
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .from("offers")
-          .select("*")
-          .eq("id", offerId)
-          .eq("status", "active")
-          .single();
+console.error(
+"Offer load error:",
+error
+);
 
+showError(
+"Unable to load offer",
+error.message ||
+"Please try again."
+);
 
-      if (error || !data) {
+return;
 
-        console.error(error);
+}
 
-        showError(
-          "Offer unavailable",
-          "This offer may have been removed or is no longer active."
-        );
 
-        return;
+if(!data){
 
-      }
+showError(
+"Offer not found",
+"This offer does not exist."
+);
 
+return;
 
-      currentOffer =
-        data;
+}
 
 
-      /* =====================
-         IMAGE
-      ===================== */
+/*
+Only active offers can be opened.
+*/
 
-      if (data.image_url) {
+if(data.status !== "active"){
 
-        imageWrap.innerHTML = `
+showError(
+"Offer unavailable",
+"This offer is currently inactive."
+);
 
-          <img
-            class="offer-image"
-            src="${escapeHtml(
-              data.image_url
-            )}"
-            alt="${escapeHtml(
-              data.title ||
-              "Offer"
-            )}"
-          >
+return;
 
-          <span class="status">
-            ● Active
-          </span>
+}
 
-        `;
 
-      } else {
+currentOffer =
+data;
 
-        imageWrap.innerHTML = `
 
-          <div class="image-placeholder">
-            🎁
-          </div>
+/* IMAGE */
 
-          <span class="status">
-            ● Active
-          </span>
+if(data.image_url){
 
-        `;
+imageArea.innerHTML = `
 
-      }
+<img
+class="image"
+src="${escapeHtml(data.image_url)}"
+alt="${escapeHtml(data.title || "Offer")}"
+>
 
+`;
 
-      /* =====================
-         CONTENT
-      ===================== */
+}else{
 
-      offerTitle.textContent =
-        data.title ||
-        "Untitled Offer";
+imageArea.innerHTML = `
 
+<div class="placeholder">
+🎁
+</div>
 
-      offerDescription.textContent =
-        data.description ||
-        "No description available.";
+`;
 
+}
 
-      offerStatus.textContent =
-        data.status === "active"
-          ? "Active"
-          : "Inactive";
 
+/* CONTENT */
 
-      offerDate.textContent =
-        formatDate(
-          data.created_at
-        );
+title.textContent =
+data.title ||
+"Untitled Offer";
 
+description.textContent =
+data.description ||
+"No description available.";
 
-      openButton.disabled =
-        !data.offer_url;
+status.textContent =
+"Active";
 
+date.textContent =
+formatDate(data.created_at);
 
-      if (data.offer_url) {
 
-        message.textContent =
-          "Tap the button below to continue to the offer.";
+/* LINK */
 
-      } else {
+if(data.offer_url){
 
-        message.textContent =
-          "The offer link has not been added yet.";
+openButton.disabled =
+false;
 
-      }
+message.textContent =
+"Tap the button below to continue to the offer.";
 
+}else{
 
-      /* =====================
-         PAGE TITLE
-      ===================== */
+openButton.disabled =
+true;
 
-      document.title =
-        (data.title ||
-          "Offer Details") +
-        " - Nexum";
+message.textContent =
+"This offer does not have an offer link yet.";
 
+}
 
-      /* =====================
-         ACTIVITY
-      ===================== */
 
-      logActivity(
-        "offer_view",
-        data.id
-      );
+/* PAGE TITLE */
 
-    }
+document.title =
+(data.title || "Offer Details") +
+" - Offers";
 
 
-    /* =========================
-       OPEN OFFER
-    ========================= */
+/*
+Record page view.
+Don't wait for it.
+*/
 
-    openButton.addEventListener(
-      "click",
-      async function() {
+logActivity(
+"offer_view",
+data.id
+);
 
-        if (
-          !currentOffer ||
-          !currentOffer.offer_url
-        ) {
+}
 
-          message.textContent =
-            "Offer link is not available.";
 
-          return;
+/* =========================
+   OPEN OFFER
+========================= */
 
-        }
+openButton.addEventListener(
+"click",
+async function(){
 
+if(
+!currentOffer ||
+!currentOffer.offer_url
+){
 
-        openButton.disabled =
-          true;
+message.textContent =
+"Offer link is not available.";
 
-        message.textContent =
-          "Opening offer...";
+return;
 
+}
 
-        await logActivity(
-          "offer_click",
-          currentOffer.id
-        );
 
+const url =
+currentOffer.offer_url;
 
-        /*
-          Small delay so the activity
-          request can start before
-          navigation.
-        */
 
-        setTimeout(
-          function() {
+/*
+Log click.
+*/
 
-            window.open(
-              currentOffer.offer_url,
-              "_blank",
-              "noopener,noreferrer"
-            );
+logActivity(
+"offer_click",
+currentOffer.id
+);
 
-            openButton.disabled =
-              false;
 
-            message.textContent =
-              "Offer opened in a new tab.";
+/*
+Use direct navigation.
+This avoids popup blocking.
+*/
 
-          },
-          180
-        );
+message.textContent =
+"Opening offer...";
 
-      }
-    );
+window.location.href =
+url;
 
+}
+);
 
-    /* =========================
-       ESCAPE HTML
-    ========================= */
 
-    function escapeHtml(
-      value
-    ) {
+/* =========================
+   START
+========================= */
 
-      const div =
-        document.createElement(
-          "div"
-        );
+loadOffer();
 
-      div.textContent =
-        value ?? "";
-
-      return div.innerHTML;
-
-    }
-
-
-    /* =========================
-       START
-    ========================= */
-
-    loadOffer();
-
-  </script>
+</script>
 
 </body>
 </html>
