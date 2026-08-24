@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#111827">
 
 <title>Admin Dashboard</title>
 
@@ -37,7 +40,7 @@ header p{
 }
 
 .container{
-  max-width:700px;
+  max-width:800px;
   margin:auto;
   padding:20px;
 }
@@ -104,15 +107,8 @@ button:disabled{
 }
 
 .danger{
-  background:#dc2626;
-  color:white;
-}
-
-.logout{
-  width:100%;
-  background:#dc2626;
-  color:white;
-  margin-bottom:30px;
+  background:#fee2e2;
+  color:#991b1b;
 }
 
 .offer-item,
@@ -181,14 +177,11 @@ button:disabled{
   line-height:1.5;
 }
 
-.success{
-  background:#ecfdf3;
-  color:#16803a;
-}
-
-.error{
-  background:#fef2f2;
-  color:#b91c1c;
+.logout{
+  width:100%;
+  background:#fee2e2;
+  color:#991b1b;
+  margin-bottom:30px;
 }
 
 .loading{
@@ -201,15 +194,6 @@ button:disabled{
   width:100%;
   margin-bottom:15px;
   background:#e5e7eb;
-  color:#111;
-}
-
-.offer-link{
-  display:block;
-  margin-top:10px;
-  color:#2563eb;
-  font-size:13px;
-  word-break:break-all;
 }
 
 .activity-action{
@@ -234,14 +218,54 @@ button:disabled{
   font-weight:bold;
 }
 
+.offer-name{
+  color:#111827;
+  font-weight:bold;
+}
+
+.top-actions{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.top-actions button{
+  flex:1;
+}
+
+@media(max-width:500px){
+
+  .container{
+    padding:12px;
+  }
+
+  .section{
+    padding:16px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .actions button{
+    width:100%;
+  }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
 
-<h1>🔐 Admin Dashboard</h1>
+<h1>
+🔐 Admin Dashboard
+</h1>
 
 <p>
 Manage Income Offers & User Activity
@@ -251,6 +275,39 @@ Manage Income Offers & User Activity
 
 
 <main class="container">
+
+
+<!-- ADMIN STATUS -->
+
+<section class="section">
+
+<h2>
+👤 Admin Account
+</h2>
+
+<p id="adminEmail">
+Checking admin session...
+</p>
+
+<div class="top-actions">
+
+<button
+class="secondary"
+id="refreshAllButton"
+>
+↻ Refresh All
+</button>
+
+<button
+class="secondary"
+id="homeButton"
+>
+🏠 Website
+</button>
+
+</div>
+
+</section>
 
 
 <!-- ADD / EDIT OFFER -->
@@ -321,33 +378,27 @@ Inactive
 
 </select>
 
-
 <button
 class="primary"
 id="saveButton"
-type="button"
 >
 Save Offer
 </button>
 
-
 <button
 class="primary secondary"
 id="cancelButton"
-type="button"
 style="display:none"
 >
 Cancel Edit
 </button>
-
 
 <div id="message"></div>
 
 </section>
 
 
-
-<!-- OFFERS -->
+<!-- CURRENT OFFERS -->
 
 <section class="section">
 
@@ -366,8 +417,7 @@ Loading offers...
 </section>
 
 
-
-<!-- ACTIVITY -->
+<!-- USER ACTIVITY -->
 
 <section class="section">
 
@@ -377,8 +427,7 @@ Loading offers...
 
 <button
 class="refresh"
-id="refreshActivity"
-type="button"
+id="refreshActivityButton"
 >
 ↻ Refresh Activity
 </button>
@@ -394,60 +443,34 @@ Loading user activity...
 </section>
 
 
-
-<!-- TELEGRAM -->
-
-<section class="section">
-
-<h2>
-📢 Telegram
-</h2>
-
-<p style="font-size:14px;color:#666;line-height:1.5">
-
-Current Telegram channel:
-
-<br><br>
-
-<a
-href="https://t.me/IncomeOffersOfficia"
-target="_blank"
-style="color:#229ed9;font-weight:bold"
->
-https://t.me/IncomeOffersOfficia
-</a>
-
-</p>
-
-</section>
-
-
-
 <!-- LOGOUT -->
 
 <button
 class="logout"
 id="logoutButton"
-type="button"
 >
-Logout
+🚪 Logout
 </button>
 
 
 </main>
 
 
+<script
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="supabase-config.js"></script>
+<script
+src="supabase-config.js">
+</script>
 
 
 <script>
 
-/* =========================================
-   ADMIN ID
-========================================= */
+
+/* =========================
+   ADMIN
+========================= */
 
 const ADMIN_UUID =
 "8f49db4a-d528-49c1-b815-f6bc15e1c868";
@@ -455,1123 +478,1150 @@ const ADMIN_UUID =
 
 /*
  IMPORTANT:
- Do NOT create another supabaseClient here.
 
- supabase-config.js already created it.
+ এখানে আর createClient()
+ করা হয়নি।
+
+ supabaseClient এসেছে
+ supabase-config.js থেকে।
 */
 
 
-/* =========================================
+/* =========================
    ELEMENTS
-========================================= */
+========================= */
+
+const adminEmail =
+document.getElementById(
+  "adminEmail"
+);
 
 const offerList =
-document.getElementById("offerList");
+document.getElementById(
+  "offerList"
+);
 
 const activityList =
-document.getElementById("activityList");
+document.getElementById(
+  "activityList"
+);
 
 const message =
-document.getElementById("message");
+document.getElementById(
+  "message"
+);
 
 const saveButton =
-document.getElementById("saveButton");
+document.getElementById(
+  "saveButton"
+);
 
 const cancelButton =
-document.getElementById("cancelButton");
+document.getElementById(
+  "cancelButton"
+);
 
 const logoutButton =
-document.getElementById("logoutButton");
-
-const refreshActivity =
-document.getElementById("refreshActivity");
-
-
-/* =========================================
-   ADMIN CHECK
-========================================= */
-
-async function checkAdmin(){
-
-try{
-
-const {
-data,
-error
-} =
-await supabaseClient.auth.getSession();
-
-
-if(error){
-
-console.error(error);
-
-return false;
-
-}
-
-
-const session =
-data.session;
-
-
-if(!session){
-
-window.location.replace(
-"admin-login.html"
+document.getElementById(
+  "logoutButton"
 );
 
-return false;
 
-}
-
-
-const user =
-session.user;
-
-
-if(
-!user ||
-user.id !== ADMIN_UUID
-){
-
-alert("Access denied.");
-
-await supabaseClient.auth.signOut();
-
-window.location.replace(
-"admin-login.html"
-);
-
-return false;
-
-}
-
-
-return true;
-
-
-}catch(error){
-
-console.error(
-"Admin check error:",
-error
-);
-
-return false;
-
-}
-
-}
-
-
-/* =========================================
+/* =========================
    MESSAGE
-========================================= */
+========================= */
 
-function showMessage(
-text,
-type="success"
-){
+function showMessage(text){
 
-message.textContent =
-text;
-
-message.className =
-"message " + type;
+  message.innerHTML =
+    `<div class="message">
+      ${escapeHtml(text)}
+    </div>`;
 
 }
 
 
-/* =========================================
-   ESCAPE
-========================================= */
+/* =========================
+   HTML ESCAPE
+========================= */
 
 function escapeHtml(value){
 
-const div =
-document.createElement("div");
+  const div =
+    document.createElement(
+      "div"
+    );
 
-div.textContent =
-value == null
-? ""
-: String(value);
+  div.textContent =
+    value ?? "";
 
-return div.innerHTML;
+  return div.innerHTML;
 
 }
 
 
-/* =========================================
+/* =========================
+   ADMIN SESSION
+========================= */
+
+async function getAdminSession(){
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+    await supabaseClient
+      .auth
+      .getSession();
+
+
+    if(error){
+
+      console.error(error);
+
+      return null;
+
+    }
+
+
+    const session =
+      data.session;
+
+
+    if(!session){
+
+      window.location.replace(
+        "admin-login.html"
+      );
+
+      return null;
+
+    }
+
+
+    if(
+      session.user.id !==
+      ADMIN_UUID
+    ){
+
+      await supabaseClient
+        .auth
+        .signOut();
+
+      window.location.replace(
+        "admin-login.html"
+      );
+
+      return null;
+
+    }
+
+
+    adminEmail.textContent =
+      "Logged in as: " +
+      (session.user.email ||
+       "Admin");
+
+
+    return session;
+
+  }catch(error){
+
+    console.error(error);
+
+    window.location.replace(
+      "admin-login.html"
+    );
+
+    return null;
+
+  }
+
+}
+
+
+/* =========================
    LOAD OFFERS
-========================================= */
+========================= */
 
 async function loadOffers(){
 
-offerList.innerHTML = `
-<div class="loading">
-Loading offers...
-</div>
-`;
+  const session =
+    await getAdminSession();
 
+  if(!session){
+    return;
+  }
 
-const allowed =
-await checkAdmin();
 
-if(!allowed) return;
+  offerList.innerHTML =
+    `<div class="loading">
+      Loading offers...
+    </div>`;
 
-
-try{
-
-const {
-data,
-error
-} =
-await supabaseClient
-.from("offers")
-.select("*")
-.order(
-"created_at",
-{
-ascending:false
-}
-);
-
-
-if(error){
-
-console.error(
-"Offers error:",
-error
-);
-
-offerList.innerHTML = `
-
-<div class="message error">
-
-Unable to load offers.
-
-<br><br>
-
-${escapeHtml(
-error.message
-)}
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-if(!data || data.length === 0){
-
-offerList.innerHTML = `
-
-<div class="loading">
-No offers found.
-</div>
-
-`;
-
-return;
-
-}
-
-
-offerList.innerHTML = "";
-
-
-data.forEach(
-function(offer){
-
-const item =
-document.createElement("div");
-
-item.className =
-"offer-item";
-
-
-const image =
-offer.image_url
-? `
-
-<img
-class="offer-image"
-src="${escapeHtml(
-offer.image_url
-)}"
-alt="Offer image"
-loading="lazy"
-onerror="this.style.display='none'"
->
-
-`
-: "";
-
-
-const offerUrl =
-offer.offer_url || "";
-
-
-item.innerHTML = `
-
-${image}
-
-<h3>
-${escapeHtml(
-offer.title ||
-"Untitled Offer"
-)}
-</h3>
-
-<p>
-${escapeHtml(
-offer.description ||
-"No description"
-)}
-</p>
-
-<span class="status ${
-offer.status === "active"
-? "active"
-: "inactive"
-}">
-
-● ${escapeHtml(
-offer.status ||
-"unknown"
-)}
-
-</span>
-
-${
-offerUrl
-? `
-
-<a
-class="offer-link"
-href="${escapeHtml(
-offerUrl
-)}"
-target="_blank"
-rel="noopener"
->
-
-🔗 Open Offer Link
-
-</a>
-
-`
-: ""
-}
-
-
-<div class="actions">
-
-<button
-class="secondary edit-btn"
-type="button"
->
-✏️ Edit
-</button>
-
-<button
-class="secondary toggle-btn"
-type="button"
->
-${
-offer.status === "active"
-? "⏸️ Turn OFF"
-: "▶️ Turn ON"
-}
-</button>
-
-<button
-class="danger delete-btn"
-type="button"
->
-🗑️ Delete
-</button>
-
-</div>
-
-`;
-
-
-const editBtn =
-item.querySelector(
-".edit-btn"
-);
-
-const toggleBtn =
-item.querySelector(
-".toggle-btn"
-);
-
-const deleteBtn =
-item.querySelector(
-".delete-btn"
-);
-
-
-editBtn.addEventListener(
-"click",
-function(){
-
-editOffer(offer);
-
-}
-);
-
-
-toggleBtn.addEventListener(
-"click",
-function(){
-
-toggleOffer(
-offer.id,
-offer.status
-);
-
-}
-);
-
-
-deleteBtn.addEventListener(
-"click",
-function(){
-
-deleteOffer(
-offer.id
-);
-
-}
-);
-
-
-offerList.appendChild(
-item
-);
-
-});
-
-
-}catch(error){
-
-console.error(error);
-
-offerList.innerHTML = `
-
-<div class="message error">
-
-${escapeHtml(
-error.message
-)}
-
-</div>
-
-`;
-
-}
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("offers")
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
+
+
+  if(error){
+
+    console.error(error);
+
+    offerList.innerHTML =
+      `<div class="loading">
+        Unable to load offers.
+        <br><br>
+        ${escapeHtml(
+          error.message
+        )}
+      </div>`;
+
+    return;
+
+  }
+
+
+  if(
+    !data ||
+    data.length === 0
+  ){
+
+    offerList.innerHTML =
+      `<div class="loading">
+        No offers found.
+      </div>`;
+
+    return;
+
+  }
+
+
+  offerList.innerHTML =
+    "";
+
+
+  data.forEach(
+    function(offer){
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+      item.className =
+        "offer-item";
+
+
+      item.innerHTML = `
+
+        ${
+          offer.image_url
+          ?
+          `
+          <img
+            class="offer-image"
+            src="${escapeHtml(
+              offer.image_url
+            )}"
+            alt="Offer"
+          >
+          `
+          :
+          ""
+        }
+
+        <h3>
+          ${escapeHtml(
+            offer.title ||
+            "Untitled Offer"
+          )}
+        </h3>
+
+        <p>
+          ${escapeHtml(
+            offer.description ||
+            ""
+          )}
+        </p>
+
+        <p>
+          🔗
+          ${escapeHtml(
+            offer.offer_url ||
+            "No offer link"
+          )}
+        </p>
+
+        <span
+          class="status ${
+            offer.status === "active"
+            ? "active"
+            : "inactive"
+          }"
+        >
+          ●
+          ${escapeHtml(
+            offer.status ||
+            "unknown"
+          )}
+        </span>
+
+        <div class="actions">
+
+          <button
+            class="secondary"
+            data-edit="${escapeHtml(
+              offer.id
+            )}"
+          >
+            ✏️ Edit
+          </button>
+
+          <button
+            class="secondary"
+            data-toggle="${escapeHtml(
+              offer.id
+            )}"
+            data-status="${escapeHtml(
+              offer.status
+            )}"
+          >
+            ${
+              offer.status === "active"
+              ? "⏸️ Turn OFF"
+              : "▶️ Turn ON"
+            }
+          </button>
+
+          <button
+            class="danger"
+            data-delete="${escapeHtml(
+              offer.id
+            )}"
+          >
+            🗑️ Delete
+          </button>
+
+        </div>
+      `;
+
+
+      offerList.appendChild(
+        item
+      );
+
+    }
+  );
+
+
+  /* EDIT */
+
+  offerList
+    .querySelectorAll(
+      "[data-edit]"
+    )
+    .forEach(
+      function(button){
+
+        button.addEventListener(
+          "click",
+          function(){
+
+            editOffer(
+              button.dataset.edit
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+  /* TOGGLE */
+
+  offerList
+    .querySelectorAll(
+      "[data-toggle]"
+    )
+    .forEach(
+      function(button){
+
+        button.addEventListener(
+          "click",
+          function(){
+
+            toggleOffer(
+              button.dataset.toggle,
+              button.dataset.status
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+  /* DELETE */
+
+  offerList
+    .querySelectorAll(
+      "[data-delete]"
+    )
+    .forEach(
+      function(button){
+
+        button.addEventListener(
+          "click",
+          function(){
+
+            deleteOffer(
+              button.dataset.delete
+            );
+
+          }
+        );
+
+      }
+    );
 
 }
 
 
-/* =========================================
+/* =========================
    SAVE OFFER
-========================================= */
+========================= */
 
 async function saveOffer(){
 
-const allowed =
-await checkAdmin();
+  const session =
+    await getAdminSession();
 
-if(!allowed) return;
-
-
-const name =
-document
-.getElementById("offerName")
-.value
-.trim();
+  if(!session){
+    return;
+  }
 
 
-const description =
-document
-.getElementById("offerDescription")
-.value
-.trim();
+  const name =
+    document
+      .getElementById(
+        "offerName"
+      )
+      .value
+      .trim();
 
 
-const image =
-document
-.getElementById("offerImage")
-.value
-.trim();
+  const description =
+    document
+      .getElementById(
+        "offerDescription"
+      )
+      .value
+      .trim();
 
 
-const link =
-document
-.getElementById("offerLink")
-.value
-.trim();
+  const image =
+    document
+      .getElementById(
+        "offerImage"
+      )
+      .value
+      .trim();
 
 
-const status =
-document
-.getElementById("offerStatus")
-.value;
+  const link =
+    document
+      .getElementById(
+        "offerLink"
+      )
+      .value
+      .trim();
 
 
-const editId =
-document
-.getElementById("editId")
-.value;
+  const status =
+    document
+      .getElementById(
+        "offerStatus"
+      )
+      .value;
 
 
-if(!name){
+  const editId =
+    document
+      .getElementById(
+        "editId"
+      )
+      .value;
 
-showMessage(
-"Please enter an offer name.",
-"error"
-);
 
-return;
+  if(!name){
+
+    showMessage(
+      "Please enter an offer name."
+    );
+
+    return;
+
+  }
+
+
+  saveButton.disabled =
+    true;
+
+  saveButton.textContent =
+    editId
+    ? "Updating..."
+    : "Saving...";
+
+
+  const offerData = {
+
+    title:name,
+
+    description:description,
+
+    image_url:image,
+
+    offer_url:link,
+
+    status:status
+
+  };
+
+
+  let result;
+
+
+  if(editId){
+
+    result =
+      await supabaseClient
+        .from("offers")
+        .update(
+          offerData
+        )
+        .eq(
+          "id",
+          editId
+        );
+
+  }else{
+
+    result =
+      await supabaseClient
+        .from("offers")
+        .insert([
+          offerData
+        ]);
+
+  }
+
+
+  if(result.error){
+
+    console.error(
+      result.error
+    );
+
+    showMessage(
+      "Error: " +
+      result.error.message
+    );
+
+    saveButton.disabled =
+      false;
+
+    saveButton.textContent =
+      editId
+      ? "Update Offer"
+      : "Save Offer";
+
+    return;
+
+  }
+
+
+  showMessage(
+    editId
+    ? "Offer updated successfully! ✅"
+    : "Offer added successfully! ✅"
+  );
+
+
+  cancelEdit();
+
+  await loadOffers();
 
 }
 
 
-saveButton.disabled =
-true;
+/* =========================
+   EDIT OFFER
+========================= */
 
-saveButton.textContent =
-editId
-? "Updating..."
-: "Saving...";
+async function editOffer(id){
 
+  const session =
+    await getAdminSession();
 
-const offerData = {
-
-title:name,
-
-description:description,
-
-image_url:image,
-
-offer_url:link,
-
-status:status
-
-};
+  if(!session){
+    return;
+  }
 
 
-try{
-
-let result;
-
-
-if(editId){
-
-result =
-await supabaseClient
-.from("offers")
-.update(offerData)
-.eq(
-"id",
-editId
-);
-
-}else{
-
-result =
-await supabaseClient
-.from("offers")
-.insert([
-offerData
-]);
-
-}
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("offers")
+    .select("*")
+    .eq(
+      "id",
+      id
+    )
+    .single();
 
 
-if(result.error){
+  if(error){
 
-console.error(
-result.error
-);
+    alert(
+      "Unable to load offer: " +
+      error.message
+    );
 
-showMessage(
-result.error.message,
-"error"
-);
+    return;
 
-return;
-
-}
+  }
 
 
-showMessage(
-editId
-? "Offer updated successfully! ✅"
-: "Offer added successfully! ✅"
-);
+  document.getElementById(
+    "editId"
+  ).value =
+    data.id;
 
 
-clearForm();
+  document.getElementById(
+    "offerName"
+  ).value =
+    data.title || "";
 
-await loadOffers();
+
+  document.getElementById(
+    "offerDescription"
+  ).value =
+    data.description || "";
 
 
-}catch(error){
+  document.getElementById(
+    "offerImage"
+  ).value =
+    data.image_url || "";
 
-console.error(error);
 
-showMessage(
-error.message,
-"error"
-);
+  document.getElementById(
+    "offerLink"
+  ).value =
+    data.offer_url || "";
 
-}finally{
 
-saveButton.disabled =
-false;
+  document.getElementById(
+    "offerStatus"
+  ).value =
+    data.status || "active";
 
-saveButton.textContent =
-"Save Offer";
 
-}
+  document.getElementById(
+    "formTitle"
+  ).textContent =
+    "✏️ Edit Offer";
+
+
+  saveButton.textContent =
+    "Update Offer";
+
+
+  cancelButton.style.display =
+    "block";
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
 }
 
 
-/* =========================================
-   EDIT
-========================================= */
+/* =========================
+   CANCEL EDIT
+========================= */
 
-function editOffer(offer){
+function cancelEdit(){
 
-document.getElementById(
-"editId"
-).value =
-offer.id;
-
-
-document.getElementById(
-"offerName"
-).value =
-offer.title || "";
+  document.getElementById(
+    "editId"
+  ).value =
+    "";
 
 
-document.getElementById(
-"offerDescription"
-).value =
-offer.description || "";
+  document.getElementById(
+    "offerName"
+  ).value =
+    "";
 
 
-document.getElementById(
-"offerImage"
-).value =
-offer.image_url || "";
+  document.getElementById(
+    "offerDescription"
+  ).value =
+    "";
 
 
-document.getElementById(
-"offerLink"
-).value =
-offer.offer_url || "";
+  document.getElementById(
+    "offerImage"
+  ).value =
+    "";
 
 
-document.getElementById(
-"offerStatus"
-).value =
-offer.status || "active";
+  document.getElementById(
+    "offerLink"
+  ).value =
+    "";
 
 
-document.getElementById(
-"formTitle"
-).textContent =
-"✏️ Edit Offer";
+  document.getElementById(
+    "offerStatus"
+  ).value =
+    "active";
 
 
-saveButton.textContent =
-"Update Offer";
+  document.getElementById(
+    "formTitle"
+  ).textContent =
+    "➕ Add New Offer";
 
 
-cancelButton.style.display =
-"block";
+  saveButton.textContent =
+    "Save Offer";
 
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+  saveButton.disabled =
+    false;
+
+
+  cancelButton.style.display =
+    "none";
 
 }
 
 
-/* =========================================
-   CLEAR FORM
-========================================= */
-
-function clearForm(){
-
-document.getElementById(
-"editId"
-).value = "";
-
-
-document.getElementById(
-"offerName"
-).value = "";
-
-
-document.getElementById(
-"offerDescription"
-).value = "";
-
-
-document.getElementById(
-"offerImage"
-).value = "";
-
-
-document.getElementById(
-"offerLink"
-).value = "";
-
-
-document.getElementById(
-"offerStatus"
-).value =
-"active";
-
-
-document.getElementById(
-"formTitle"
-).textContent =
-"➕ Add New Offer";
-
-
-saveButton.textContent =
-"Save Offer";
-
-
-cancelButton.style.display =
-"none";
-
-}
-
-
-/* =========================================
-   TOGGLE
-========================================= */
+/* =========================
+   TOGGLE OFFER
+========================= */
 
 async function toggleOffer(
-id,
-currentStatus
+  id,
+  currentStatus
 ){
 
-const allowed =
-await checkAdmin();
+  const session =
+    await getAdminSession();
 
-if(!allowed) return;
-
-
-const newStatus =
-currentStatus === "active"
-? "inactive"
-: "active";
+  if(!session){
+    return;
+  }
 
 
-const {
-error
-} =
-await supabaseClient
-.from("offers")
-.update({
-status:newStatus
-})
-.eq(
-"id",
-id
-);
+  const newStatus =
+    currentStatus === "active"
+    ? "inactive"
+    : "active";
 
 
-if(error){
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("offers")
+    .update({
+      status:newStatus
+    })
+    .eq(
+      "id",
+      id
+    );
 
-alert(
-error.message
-);
 
-return;
+  if(error){
+
+    alert(
+      "Unable to change offer status:\n" +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  await loadOffers();
 
 }
 
 
-await loadOffers();
-
-}
-
-
-/* =========================================
-   DELETE
-========================================= */
+/* =========================
+   DELETE OFFER
+========================= */
 
 async function deleteOffer(id){
 
-const allowed =
-await checkAdmin();
+  const session =
+    await getAdminSession();
 
-if(!allowed) return;
+  if(!session){
+    return;
+  }
 
 
-if(
-!confirm(
-"Delete this offer permanently?"
-)
-){
+  const confirmed =
+    confirm(
+      "Are you sure you want to delete this offer?"
+    );
 
-return;
+
+  if(!confirmed){
+    return;
+  }
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("offers")
+    .delete()
+    .eq(
+      "id",
+      id
+    );
+
+
+  if(error){
+
+    alert(
+      "Unable to delete offer:\n" +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  await loadOffers();
 
 }
 
 
-const {
-error
-} =
-await supabaseClient
-.from("offers")
-.delete()
-.eq(
-"id",
-id
-);
-
-
-if(error){
-
-alert(
-error.message
-);
-
-return;
-
-}
-
-
-await loadOffers();
-
-}
-
-
-/* =========================================
-   ACTIVITY
-========================================= */
+/* =========================
+   USER ACTIVITY
+========================= */
 
 async function loadUserActivity(){
 
-const allowed =
-await checkAdmin();
+  const session =
+    await getAdminSession();
+
+  if(!session){
+    return;
+  }
+
+
+  activityList.innerHTML =
+    `<div class="loading">
+      Loading user activity...
+    </div>`;
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("activity_logs")
+    .select(`
+      id,
+      user_id,
+      action,
+      offer_id,
+      page,
+      metadata,
+      created_at
+    `)
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    )
+    .limit(100);
 
-if(!allowed) return;
 
+  if(error){
 
-activityList.innerHTML = `
+    console.error(error);
 
-<div class="loading">
-Loading activity...
-</div>
+    activityList.innerHTML =
+      `<div class="loading">
+        Unable to load activity.
+        <br><br>
+        ${escapeHtml(
+          error.message
+        )}
+      </div>`;
 
-`;
+    return;
 
+  }
 
-try{
 
-const {
-data,
-error
-} =
-await supabaseClient
-.from("activity_logs")
-.select("*")
-.order(
-"created_at",
-{
-ascending:false
-}
-)
-.limit(100);
+  if(
+    !data ||
+    data.length === 0
+  ){
 
+    activityList.innerHTML =
+      `<div class="loading">
+        No user activity yet.
+        <br><br>
+        Login from the website or open an offer,
+        then refresh this section.
+      </div>`;
 
-if(error){
+    return;
 
-console.error(
-"Activity error:",
-error
-);
+  }
 
-activityList.innerHTML = `
 
-<div class="message error">
+  activityList.innerHTML =
+    "";
 
-Activity unavailable.
 
-<br><br>
+  /*
+    We load profile/offer information
+    separately so activity does not
+    disappear just because a foreign
+    table relationship is unavailable.
+  */
 
-${escapeHtml(
-error.message
-)}
+  const userIds = [
+    ...new Set(
+      data
+        .map(
+          item => item.user_id
+        )
+        .filter(Boolean)
+    )
+  ];
 
-</div>
 
-`;
+  const offerIds = [
+    ...new Set(
+      data
+        .map(
+          item => item.offer_id
+        )
+        .filter(Boolean)
+    )
+  ];
 
-return;
 
-}
+  let profiles = [];
+  let offers = [];
 
 
-if(!data || data.length === 0){
+  if(userIds.length){
 
-activityList.innerHTML = `
+    const profileResult =
+      await supabaseClient
+        .from("profiles")
+        .select(
+          "id,email"
+        )
+        .in(
+          "id",
+          userIds
+        );
 
-<div class="loading">
-No user activity yet.
-</div>
 
-`;
+    if(!profileResult.error){
 
-return;
+      profiles =
+        profileResult.data || [];
 
-}
+    }
 
+  }
 
-activityList.innerHTML = "";
 
+  if(offerIds.length){
 
-data.forEach(
-function(activity){
+    const offerResult =
+      await supabaseClient
+        .from("offers")
+        .select(
+          "id,title"
+        )
+        .in(
+          "id",
+          offerIds
+        );
 
-const item =
-document.createElement("div");
 
-item.className =
-"activity-item";
+    if(!offerResult.error){
 
+      offers =
+        offerResult.data || [];
 
-const date =
-activity.created_at
-? new Date(
-activity.created_at
-).toLocaleString()
-: "Unknown";
+    }
 
+  }
 
-item.innerHTML = `
 
-<div class="activity-action">
+  data.forEach(
+    function(activity){
 
-⚡ ${escapeHtml(
-activity.action ||
-"Activity"
-)}
+      const profile =
+        profiles.find(
+          item =>
+            item.id ===
+            activity.user_id
+        );
 
-</div>
 
-<p>
-👤 User ID:
-${escapeHtml(
-activity.user_id ||
-"Unknown"
-)}
-</p>
+      const offer =
+        offers.find(
+          item =>
+            item.id ===
+            activity.offer_id
+        );
 
-<p>
-🎁 Offer ID:
-${escapeHtml(
-activity.offer_id ||
-"—"
-)}
-</p>
 
-<p>
-📄 Page:
-${escapeHtml(
-activity.page ||
-"—"
-)}
-</p>
+      const email =
+        profile?.email ||
+        "User ID: " +
+        (activity.user_id || "Unknown");
 
-<div class="activity-time">
 
-🕒 ${escapeHtml(date)}
+      const offerName =
+        offer?.title ||
+        (activity.offer_id
+          ? "Offer ID: " +
+            activity.offer_id
+          : "—");
 
-</div>
 
-`;
+      const date =
+        activity.created_at
+        ? new Date(
+            activity.created_at
+          ).toLocaleString()
+        : "Unknown";
 
 
-activityList.appendChild(
-item
-);
+      const item =
+        document.createElement(
+          "div"
+        );
 
-});
 
+      item.className =
+        "activity-item";
 
-}catch(error){
 
-console.error(error);
+      item.innerHTML = `
 
-activityList.innerHTML = `
+        <div class="activity-action">
 
-<div class="message error">
+          ⚡
+          ${escapeHtml(
+            activity.action ||
+            "Unknown Action"
+          )}
 
-${escapeHtml(
-error.message
-)}
+        </div>
 
-</div>
 
-`;
+        <h3>
 
-}
+          👤
 
-}
+          <span class="user-email">
 
+            ${escapeHtml(
+              email
+            )}
 
-/* =========================================
-   LOGOUT
-========================================= */
+          </span>
 
-async function logout(){
+        </h3>
 
-logoutButton.disabled =
-true;
 
-logoutButton.textContent =
-"Logging out...";
+        <p>
 
+          🎁
+          <strong>Offer:</strong>
 
-try{
+          <span class="offer-name">
 
-const {
-error
-} =
-await supabaseClient.auth.signOut();
+            ${escapeHtml(
+              offerName
+            )}
 
+          </span>
 
-if(error){
+        </p>
 
-console.error(error);
 
-alert(
-"Logout failed: " +
-error.message
-);
+        <p>
 
-logoutButton.disabled =
-false;
+          📄
+          <strong>Page:</strong>
 
-logoutButton.textContent =
-"Logout";
+          ${escapeHtml(
+            activity.page ||
+            "—"
+          )}
 
-return;
+        </p>
 
-}
 
+        <p>
 
-window.location.replace(
-"admin-login.html"
-);
+          🆔
+          <strong>User ID:</strong>
 
+          ${escapeHtml(
+            activity.user_id ||
+            "—"
+          )}
 
-}catch(error){
+        </p>
 
-console.error(error);
 
-alert(
-"Logout failed."
-);
-
-logoutButton.disabled =
-false;
-
-logoutButton.textContent =
-"Logout";
-
-}
-
-}
-
-
-/* =========================================
-   BUTTONS
-========================================= */
-
-saveButton.addEventListener(
-"click",
-saveOffer
-);
-
-
-cancelButton.addEventListener(
-"click",
-clearForm
-);
-
-
-logoutButton.addEventListener(
-"click",
-logout
-);
-
-
-refreshActivity.addEventListener(
-"click",
-loadUserActivity
-);
-
-
-/* =========================================
-   SESSION CHANGE
-========================================= */
-
-supabaseClient.auth.onAuthStateChange(
-function(event,session){
-
-if(
-event === "SIGNED_OUT" ||
-!session
-){
-
-window.location.replace(
-"admin-login.html"
-);
-
-}
-
-});
-
-
-/* =========================================
-   START
-========================================= */
-
-(async function(){
-
-const allowed =
-await checkAdmin();
-
-if(!allowed) return;
-
-await loadOffers();
-
-await loadUserActivity();
-
-})();
-
-</script>
-
-</body>
-</html>
+      
