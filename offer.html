@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050505">
@@ -75,15 +76,12 @@ animation:bgMove 12s ease-in-out infinite alternate;
 }
 
 @keyframes bgMove{
-
 from{
 transform:translate(-3%,-2%) scale(1);
 }
-
 to{
 transform:translate(3%,2%) scale(1.08);
 }
-
 }
 
 
@@ -96,6 +94,7 @@ z-index:50;
 border-bottom:1px solid rgba(255,255,255,.08);
 background:rgba(5,5,5,.76);
 backdrop-filter:blur(22px);
+-webkit-backdrop-filter:blur(22px);
 }
 
 .nav{
@@ -169,6 +168,7 @@ border-radius:50%;
 background:rgba(255,255,255,.07);
 color:#fff;
 cursor:pointer;
+font-size:20px;
 }
 
 
@@ -180,6 +180,7 @@ inset:0;
 z-index:80;
 background:rgba(0,0,0,.68);
 backdrop-filter:blur(7px);
+-webkit-backdrop-filter:blur(7px);
 opacity:0;
 pointer-events:none;
 transition:.3s;
@@ -358,11 +359,7 @@ transform:scale(1.15);
 h1{
 margin-top:12px;
 max-width:750px;
-font-size:clamp(
-2.5rem,
-7vw,
-5rem
-);
+font-size:clamp(2.5rem,7vw,5rem);
 line-height:1;
 letter-spacing:-.06em;
 }
@@ -432,6 +429,7 @@ border:1px solid rgba(255,255,255,.1);
 border-radius:22px;
 background:rgba(255,255,255,.055);
 backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
 opacity:0;
 animation:cardIn .6s ease forwards;
 transition:.3s ease;
@@ -536,6 +534,17 @@ font-size:20px;
 .state p{
 color:rgba(255,255,255,.43);
 font-size:12px;
+line-height:1.6;
+}
+
+
+/* ERROR */
+
+.error-detail{
+margin-top:10px;
+font-size:11px;
+color:rgba(255,120,120,.7);
+word-break:break-word;
 }
 
 
@@ -557,6 +566,7 @@ border:1px solid rgba(255,255,255,.1);
 border-radius:999px;
 background:rgba(10,10,10,.84);
 backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
 box-shadow:0 15px 50px rgba(0,0,0,.4);
 }
 
@@ -582,7 +592,7 @@ background:rgba(255,255,255,.1);
 }
 
 
-/* TOUCH RIPPLE */
+/* RIPPLE */
 
 .ripple{
 position:fixed;
@@ -655,6 +665,7 @@ href="index.html"
 class="brand-logo"
 src="assets/income-offers-logo.jpg"
 alt="Income Offers"
+onerror="this.style.display='none';"
 >
 
 <div class="brand-text">
@@ -738,10 +749,8 @@ type="button"
 My Account
 </strong>
 
-<span
-id="profileEmail"
->
-Loading...
+<span id="profileEmail">
+Guest
 </span>
 
 </div>
@@ -784,7 +793,7 @@ Get new offers and important updates.
 <a
 href="https://t.me/IncomeOffersOfficia"
 target="_blank"
-rel="noopener"
+rel="noopener noreferrer"
 >
 Join Telegram Channel
 </a>
@@ -918,7 +927,9 @@ Profile
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase-config.js"></script>
+
 
 <script>
 
@@ -927,49 +938,31 @@ Profile
 ========================= */
 
 const menuButton =
-document.getElementById(
-"menuButton"
-);
+document.getElementById("menuButton");
 
 const sideMenu =
-document.getElementById(
-"sideMenu"
-);
+document.getElementById("sideMenu");
 
 const menuBackdrop =
-document.getElementById(
-"menuBackdrop"
-);
+document.getElementById("menuBackdrop");
 
 const closeMenu =
-document.getElementById(
-"closeMenu"
-);
+document.getElementById("closeMenu");
 
 const logoutButton =
-document.getElementById(
-"logoutButton"
-);
+document.getElementById("logoutButton");
 
 const profileEmail =
-document.getElementById(
-"profileEmail"
-);
+document.getElementById("profileEmail");
 
 const offerGrid =
-document.getElementById(
-"offerGrid"
-);
+document.getElementById("offerGrid");
 
 const offerCount =
-document.getElementById(
-"offerCount"
-);
+document.getElementById("offerCount");
 
 const refreshButton =
-document.getElementById(
-"refreshButton"
-);
+document.getElementById("refreshButton");
 
 
 /* =========================
@@ -978,25 +971,15 @@ document.getElementById(
 
 function openMenu(){
 
-sideMenu.classList.add(
-"open"
-);
-
-menuBackdrop.classList.add(
-"open"
-);
+sideMenu.classList.add("open");
+menuBackdrop.classList.add("open");
 
 }
 
 function closeSideMenu(){
 
-sideMenu.classList.remove(
-"open"
-);
-
-menuBackdrop.classList.remove(
-"open"
-);
+sideMenu.classList.remove("open");
+menuBackdrop.classList.remove("open");
 
 }
 
@@ -1017,20 +1000,16 @@ closeSideMenu
 
 
 /* =========================
-   HTML ESCAPE
+   ESCAPE HTML
 ========================= */
 
 function escapeHtml(value){
 
 const div =
-document.createElement(
-"div"
-);
+document.createElement("div");
 
 div.textContent =
-value == null
-? ""
-: String(value);
+value == null ? "" : String(value);
 
 return div.innerHTML;
 
@@ -1050,11 +1029,7 @@ return "Recently added";
 const date =
 new Date(value);
 
-if(
-Number.isNaN(
-date.getTime()
-)
-){
+if(Number.isNaN(date.getTime())){
 return "Recently added";
 }
 
@@ -1071,7 +1046,47 @@ year:"numeric"
 
 
 /* =========================
-   ACTIVITY
+   GET SESSION
+========================= */
+
+async function getSession(){
+
+try{
+
+const result =
+await supabaseClient
+.auth
+.getSession();
+
+if(
+result.error ||
+!result.data ||
+!result.data.session
+){
+
+return null;
+
+}
+
+return result.data.session;
+
+}catch(error){
+
+console.error(
+"Session error:",
+error
+);
+
+return null;
+
+}
+
+}
+
+
+/* =========================
+   ACTIVITY LOG
+   NEVER BLOCK OFFERS
 ========================= */
 
 async function logActivity(
@@ -1083,26 +1098,20 @@ metadata = {}
 
 try{
 
-const {
-data
-} =
-await supabaseClient
-.auth
-.getSession();
+const session =
+await getSession();
 
-if(
-!data ||
-!data.session
-){
+if(!session){
 return;
 }
 
+const result =
 await supabaseClient
 .from("activity_logs")
 .insert({
 
 user_id:
-data.session.user.id,
+session.user.id,
 
 offer_id:
 offerId,
@@ -1121,10 +1130,19 @@ action
 
 });
 
+if(result.error){
+
+console.warn(
+"Activity log skipped:",
+result.error.message
+);
+
+}
+
 }catch(error){
 
-console.error(
-"Activity log error:",
+console.warn(
+"Activity logging failed:",
 error
 );
 
@@ -1135,6 +1153,7 @@ error
 
 /* =========================
    OFFER PROGRESS
+   NEVER BLOCK OFFER OPEN
 ========================= */
 
 async function updateOfferProgress(
@@ -1143,26 +1162,19 @@ offerId
 
 try{
 
-const {
-data
-} =
-await supabaseClient
-.auth
-.getSession();
+const session =
+await getSession();
 
-if(
-!data ||
-!data.session
-){
+if(!session){
 return;
 }
 
 const userId =
-data.session.user.id;
+session.user.id;
 
 
 /*
-  Check existing progress
+Check existing progress
 */
 
 const {
@@ -1172,21 +1184,16 @@ error:selectError
 await supabaseClient
 .from("offer_progress")
 .select("*")
-.eq(
-"user_id",
-userId
-)
-.eq(
-"offer_id",
-offerId
-)
+.eq("user_id",userId)
+.eq("offer_id",offerId)
 .maybeSingle();
+
 
 if(selectError){
 
-console.error(
-"Progress lookup error:",
-selectError
+console.warn(
+"Progress lookup skipped:",
+selectError.message
 );
 
 return;
@@ -1195,47 +1202,46 @@ return;
 
 
 const now =
-new Date()
-.toISOString();
+new Date().toISOString();
 
 
 if(!existing){
 
+const {
+error
+} =
 await supabaseClient
 .from("offer_progress")
 .insert({
 
-user_id:
-userId,
-
-offer_id:
-offerId,
-
-click_count:
-1,
-
-view_count:
-0,
-
-started:
-false,
-
-completed:
-false,
-
-first_clicked_at:
-now,
-
-last_clicked_at:
-now
+user_id:userId,
+offer_id:offerId,
+click_count:1,
+view_count:0,
+started:false,
+completed:false,
+first_clicked_at:now,
+last_clicked_at:now
 
 });
+
+if(error){
+
+console.warn(
+"Progress insert skipped:",
+error.message
+);
+
+}
 
 return;
 
 }
 
 
+const {
+error
+} =
 await supabaseClient
 .from("offer_progress")
 .update({
@@ -1243,17 +1249,21 @@ await supabaseClient
 click_count:
 (existing.click_count || 0) + 1,
 
-last_clicked_at:
-now,
-
-updated_at:
-now
+last_clicked_at:now,
+updated_at:now
 
 })
-.eq(
-"id",
-existing.id
+.eq("id",existing.id);
+
+
+if(error){
+
+console.warn(
+"Progress update skipped:",
+error.message
 );
+
+}
 
 }
 
@@ -1266,6 +1276,7 @@ async function loadOffers(){
 
 offerCount.textContent =
 "Loading offers...";
+
 
 offerGrid.innerHTML = `
 
@@ -1288,6 +1299,16 @@ Please wait...
 `;
 
 
+try{
+
+/*
+IMPORTANT:
+Offers are loaded FIRST.
+No login check.
+No activity tracking.
+No progress tracking.
+*/
+
 const {
 data,
 error
@@ -1297,10 +1318,7 @@ await supabaseClient
 .select(
 "id,created_at,title,description,image_url,offer_url,status"
 )
-.eq(
-"status",
-"active"
-)
+.eq("status","active")
 .order(
 "created_at",
 {
@@ -1328,12 +1346,16 @@ offerGrid.innerHTML = `
 </div>
 
 <h2>
-Something went wrong
+Unable to load offers
 </h2>
 
 <p>
-Please refresh and try again.
+Please refresh the page and try again.
 </p>
+
+<div class="error-detail">
+${escapeHtml(error.message)}
+</div>
 
 </div>
 
@@ -1344,10 +1366,7 @@ return;
 }
 
 
-if(
-!data ||
-data.length === 0
-){
+if(!data || data.length === 0){
 
 offerCount.textContent =
 "0 active offers";
@@ -1380,8 +1399,7 @@ return;
 offerCount.textContent =
 data.length === 1
 ? "1 active offer"
-: data.length +
-" active offers";
+: data.length + " active offers";
 
 
 offerGrid.innerHTML = "";
@@ -1391,9 +1409,7 @@ data.forEach(
 function(offer,index){
 
 const card =
-document.createElement(
-"article"
-);
+document.createElement("article");
 
 card.className =
 "offer-card";
@@ -1407,20 +1423,17 @@ index * 80,
 
 let imageHtml = "";
 
+
 if(offer.image_url){
 
 imageHtml = `
 
 <img
 class="offer-image"
-src="${escapeHtml(
-offer.image_url
-)}"
-alt="${escapeHtml(
-offer.title ||
-"Offer"
-)}"
+src="${escapeHtml(offer.image_url)}"
+alt="${escapeHtml(offer.title || "Offer")}"
 loading="lazy"
+onerror="this.style.display='none';"
 >
 
 `;
@@ -1454,8 +1467,7 @@ ${imageHtml}
 
 <h2 class="offer-title">
 ${escapeHtml(
-offer.title ||
-"Untitled Offer"
+offer.title || "Untitled Offer"
 )}
 </h2>
 
@@ -1469,19 +1481,13 @@ offer.description ||
 <div class="offer-footer">
 
 <span class="date">
-${formatDate(
-offer.created_at
-)}
+${formatDate(offer.created_at)}
 </span>
 
 <a
 class="open-btn"
-href="offer-details.html?id=${encodeURIComponent(
-offer.id
-)}"
-data-offer-id="${escapeHtml(
-offer.id
-)}"
+href="offer-details.html?id=${encodeURIComponent(offer.id)}"
+data-offer-id="${escapeHtml(offer.id)}"
 >
 Open Offer →
 </a>
@@ -1494,14 +1500,12 @@ Open Offer →
 
 
 const openButton =
-card.querySelector(
-".open-btn"
-);
+card.querySelector(".open-btn");
 
 
 openButton.addEventListener(
 "click",
-async function(){
+function(){
 
 const offerId =
 Number(
@@ -1510,22 +1514,20 @@ this.dataset.offerId
 
 
 /*
-  Valid event_type:
-  view | click | start | complete
+Do NOT await these.
+The offer must open immediately.
 */
 
-await logActivity(
+logActivity(
 "click",
 offerId,
 "offer_click",
 {
-source:
-"offer.html"
+source:"offer.html"
 }
 );
 
-
-await updateOfferProgress(
+updateOfferProgress(
 offerId
 );
 
@@ -1533,12 +1535,93 @@ offerId
 );
 
 
-offerGrid.appendChild(
-card
-);
+offerGrid.appendChild(card);
 
 }
 );
+
+
+}catch(error){
+
+console.error(
+"Unexpected offer error:",
+error
+);
+
+offerCount.textContent =
+"Unable to load offers";
+
+offerGrid.innerHTML = `
+
+<div class="state">
+
+<div class="state-icon">
+⚠️
+</div>
+
+<h2>
+Something went wrong
+</h2>
+
+<p>
+Please refresh and try again.
+</p>
+
+<div class="error-detail">
+${escapeHtml(error.message)}
+</div>
+
+</div>
+
+`;
+
+}
+
+}
+
+
+/* =========================
+   LOGIN STATUS
+   OPTIONAL
+========================= */
+
+async function loadLoginStatus(){
+
+try{
+
+const session =
+await getSession();
+
+if(session && session.user){
+
+profileEmail.textContent =
+session.user.email ||
+"Authenticated User";
+
+logoutButton.style.display =
+"flex";
+
+}else{
+
+profileEmail.textContent =
+"Guest";
+
+logoutButton.style.display =
+"none";
+
+}
+
+}catch(error){
+
+console.warn(error);
+
+profileEmail.textContent =
+"Guest";
+
+logoutButton.style.display =
+"none";
+
+}
 
 }
 
@@ -1551,16 +1634,23 @@ logoutButton.addEventListener(
 "click",
 async function(){
 
-logoutButton.disabled =
-true;
+logoutButton.disabled = true;
 
 logoutButton.textContent =
-"Logging out...";
+"🚪 Logging out...";
 
+
+try{
 
 await supabaseClient
 .auth
 .signOut();
+
+}catch(error){
+
+console.error(error);
+
+}
 
 
 window.location.replace(
@@ -1613,9 +1703,7 @@ return;
 }
 
 const ripple =
-document.createElement(
-"span"
-);
+document.createElement("span");
 
 ripple.className =
 "ripple";
@@ -1626,15 +1714,11 @@ event.clientX + "px";
 ripple.style.top =
 event.clientY + "px";
 
-document.body.appendChild(
-ripple
-);
+document.body.appendChild(ripple);
 
 setTimeout(
 function(){
-
 ripple.remove();
-
 },
 600
 );
@@ -1644,103 +1728,18 @@ ripple.remove();
 
 
 /* =========================
-   LOGIN CHECK
-========================= */
-
-async function checkLogin(){
-
-const {
-data,
-error
-} =
-await supabaseClient
-.auth
-.getSession();
-
-
-if(error){
-
-console.error(
-"Session error:",
-error
-);
-
-window.location.replace(
-"login.html"
-);
-
-return false;
-
-}
-
-
-if(
-!data ||
-!data.session ||
-!data.session.user
-){
-
-window.location.replace(
-"login.html"
-);
-
-return false;
-
-}
-
-
-const user =
-data.session.user;
-
-
-profileEmail.textContent =
-user.email ||
-"Authenticated User";
-
-
-return true;
-
-}
-
-
-/* =========================
-   PAGE VIEW
+   START
 ========================= */
 
 async function start(){
 
-const loggedIn =
-await checkLogin();
-
-if(!loggedIn){
-return;
-}
-
-
 /*
-  Valid event_type:
-  view
+Offers are the FIRST priority.
 */
-
-await logActivity(
-"view",
-null,
-"offers_page_view",
-{
-page:
-"offer.html"
-}
-);
-
 
 await loadOffers();
 
-}
 
-
-start();
-
-</script>
-
-</body>
-</html>
+/*
+Login status runs separately.
+It can
