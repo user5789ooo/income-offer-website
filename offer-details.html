@@ -23,19 +23,15 @@ margin:0;
 padding:0;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 min-height:100vh;
 background:
-radial-gradient(
-circle at 15% 10%,
-rgba(105,75,255,.16),
-transparent 35%
-),
-radial-gradient(
-circle at 90% 85%,
-rgba(0,180,255,.09),
-transparent 35%
-),
+radial-gradient(circle at 15% 10%,rgba(105,75,255,.16),transparent 35%),
+radial-gradient(circle at 90% 85%,rgba(0,180,255,.09),transparent 35%),
 #050505;
 color:#fff;
 font-family:'Geist',Arial,sans-serif;
@@ -56,11 +52,7 @@ position:fixed;
 inset:0;
 z-index:-2;
 background:
-radial-gradient(
-circle at 50% 40%,
-rgba(255,255,255,.025),
-transparent 40%
-);
+radial-gradient(circle at 50% 40%,rgba(255,255,255,.025),transparent 40%);
 }
 
 header{
@@ -68,8 +60,9 @@ position:sticky;
 top:0;
 z-index:30;
 border-bottom:1px solid rgba(255,255,255,.08);
-background:rgba(5,5,5,.76);
+background:rgba(5,5,5,.78);
 backdrop-filter:blur(22px);
+-webkit-backdrop-filter:blur(22px);
 }
 
 .nav{
@@ -94,6 +87,7 @@ height:42px;
 object-fit:cover;
 border-radius:50%;
 border:1px solid rgba(255,255,255,.35);
+box-shadow:0 0 22px rgba(105,75,255,.22);
 }
 
 .brand-text{
@@ -140,22 +134,20 @@ border:1px solid rgba(255,255,255,.1);
 border-radius:25px;
 background:rgba(255,255,255,.055);
 backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
 box-shadow:0 25px 80px rgba(0,0,0,.3);
-animation:cardIn .65s ease both;
+animation:cardIn .65s cubic-bezier(.16,1,.3,1) both;
 }
 
 @keyframes cardIn{
-
 from{
 opacity:0;
 transform:translateY(25px) scale(.98);
 }
-
 to{
 opacity:1;
 transform:translateY(0) scale(1);
 }
-
 }
 
 .image{
@@ -196,14 +188,22 @@ height:7px;
 border-radius:50%;
 background:#65ff9b;
 box-shadow:0 0 14px #65ff9b;
+animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+0%,100%{
+opacity:.4;
+transform:scale(.8);
+}
+50%{
+opacity:1;
+transform:scale(1.15);
+}
 }
 
 h1{
-font-size:clamp(
-2rem,
-6vw,
-3.5rem
-);
+font-size:clamp(2rem,6vw,3.5rem);
 line-height:1.02;
 letter-spacing:-.06em;
 }
@@ -257,6 +257,11 @@ cursor:pointer;
 transition:.2s;
 }
 
+.open:hover{
+transform:translateY(-2px);
+box-shadow:0 12px 35px rgba(255,255,255,.12);
+}
+
 .open:active{
 transform:scale(.97);
 }
@@ -264,6 +269,8 @@ transform:scale(.97);
 .open:disabled{
 opacity:.4;
 cursor:not-allowed;
+transform:none;
+box-shadow:none;
 }
 
 .message{
@@ -276,6 +283,35 @@ color:rgba(255,255,255,.5);
 font-size:11px;
 line-height:1.5;
 text-align:center;
+}
+
+.loading{
+padding:55px 20px;
+text-align:center;
+}
+
+.loading-icon{
+font-size:45px;
+animation:hourglass 1.2s infinite ease-in-out;
+}
+
+@keyframes hourglass{
+0%,100%{
+transform:rotate(0deg);
+}
+50%{
+transform:rotate(180deg);
+}
+}
+
+.loading h2{
+margin:12px 0 7px;
+font-size:20px;
+}
+
+.loading p{
+color:rgba(255,255,255,.45);
+font-size:12px;
 }
 
 .error{
@@ -322,14 +358,10 @@ animation:ripple .55s ease-out forwards;
 }
 
 @keyframes ripple{
-
 to{
 opacity:0;
-transform:
-translate(-50%,-50%)
-scale(12);
+transform:translate(-50%,-50%) scale(12);
 }
-
 }
 
 @media(max-width:520px){
@@ -344,6 +376,19 @@ padding:21px;
 
 .info{
 grid-template-columns:1fr;
+}
+
+.back{
+padding:9px 11px;
+}
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+*{
+animation-duration:.01ms!important;
+transition-duration:.01ms!important;
 }
 
 }
@@ -368,6 +413,7 @@ href="index.html"
 class="brand-logo"
 src="assets/income-offers-logo.jpg"
 alt="Income Offers"
+onerror="this.style.display='none'"
 >
 
 <div class="brand-text">
@@ -383,7 +429,6 @@ OWNER: SAHIL
 </div>
 
 </a>
-
 
 <a
 class="back"
@@ -404,91 +449,19 @@ class="card"
 id="card"
 >
 
-<div id="imageArea">
+<div class="loading">
 
-<div class="placeholder">
-🎁
+<div class="loading-icon">
+⏳
 </div>
 
-</div>
+<h2>
+Loading offer
+</h2>
 
-
-<div class="content">
-
-<div class="eyebrow">
-
-<span class="live-dot"></span>
-
-OFFER DETAILS
-
-</div>
-
-
-<h1 id="title">
-Loading offer...
-</h1>
-
-
-<p
-class="description"
-id="description"
->
-Please wait while the offer details are loaded.
+<p>
+Please wait...
 </p>
-
-
-<div class="info">
-
-<div class="info-box">
-
-<div class="label">
-Status
-</div>
-
-<div
-class="value"
-id="status"
->
-Loading...
-</div>
-
-</div>
-
-
-<div class="info-box">
-
-<div class="label">
-Added
-</div>
-
-<div
-class="value"
-id="date"
->
-Loading...
-</div>
-
-</div>
-
-</div>
-
-
-<button
-class="open"
-id="openButton"
-type="button"
-disabled
->
-🚀 Open Offer
-</button>
-
-
-<div
-class="message"
-id="message"
->
-Loading offer information...
-</div>
 
 </div>
 
@@ -498,51 +471,44 @@ Loading offer information...
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase-config.js"></script>
+
 
 <script>
 
-/* =========================
-   ELEMENTS
-========================= */
+/*
+==================================================
+OFFER DETAILS
+==================================================
+supabase-config.js already creates:
+
+const supabaseClient = ...
+
+Do NOT create another client here.
+==================================================
+*/
+
 
 const params =
 new URLSearchParams(
 window.location.search
 );
 
+
 const offerId =
 params.get("id");
 
-const title =
-document.getElementById("title");
-
-const description =
-document.getElementById("description");
-
-const status =
-document.getElementById("status");
-
-const date =
-document.getElementById("date");
-
-const imageArea =
-document.getElementById("imageArea");
-
-const openButton =
-document.getElementById("openButton");
-
-const message =
-document.getElementById("message");
 
 const card =
 document.getElementById("card");
+
 
 let currentOffer = null;
 
 
 /* =========================
-   ESCAPE
+   ESCAPE HTML
 ========================= */
 
 function escapeHtml(value){
@@ -570,18 +536,20 @@ if(!value){
 return "Recently added";
 }
 
-const d =
+const date =
 new Date(value);
 
 if(
 Number.isNaN(
-d.getTime()
+date.getTime()
 )
 ){
+
 return "Recently added";
+
 }
 
-return d.toLocaleDateString(
+return date.toLocaleDateString(
 undefined,
 {
 day:"numeric",
@@ -633,14 +601,14 @@ href="offer.html"
 
 
 /* =========================
-   ACTIVITY LOG
+   ACTIVITY
 ========================= */
 
 async function logActivity(
 eventType,
-offerIdValue = null,
-action = null,
-metadata = {}
+offerIdValue,
+action,
+metadata={}
 ){
 
 try{
@@ -653,13 +621,22 @@ await supabaseClient
 .auth
 .getSession();
 
+
 if(
 error ||
 !data ||
-!data.session
+!data.session ||
+!data.session.user
 ){
+
 return;
+
 }
+
+
+const userId =
+data.session.user.id;
+
 
 const result =
 await supabaseClient
@@ -667,7 +644,7 @@ await supabaseClient
 .insert({
 
 user_id:
-data.session.user.id,
+userId,
 
 offer_id:
 offerIdValue,
@@ -686,10 +663,11 @@ action
 
 });
 
+
 if(result.error){
 
 console.error(
-"Activity insert error:",
+"Activity log error:",
 result.error
 );
 
@@ -698,7 +676,7 @@ result.error
 }catch(error){
 
 console.error(
-"Activity error:",
+"Activity exception:",
 error
 );
 
@@ -708,10 +686,10 @@ error
 
 
 /* =========================
-   UPDATE PROGRESS
+   VIEW PROGRESS
 ========================= */
 
-async function updateProgress(
+async function registerView(
 offerIdValue
 ){
 
@@ -725,19 +703,22 @@ await supabaseClient
 .auth
 .getSession();
 
+
 if(
 error ||
 !data ||
-!data.session
+!data.session ||
+!data.session.user
 ){
+
 return;
+
 }
+
 
 const userId =
 data.session.user.id;
 
-
-/* Find existing progress */
 
 const {
 data:existing,
@@ -745,7 +726,9 @@ error:selectError
 } =
 await supabaseClient
 .from("offer_progress")
-.select("*")
+.select(
+"id,view_count,click_count,started,completed"
+)
 .eq(
 "user_id",
 userId
@@ -756,10 +739,11 @@ offerIdValue
 )
 .maybeSingle();
 
+
 if(selectError){
 
 console.error(
-"Progress lookup error:",
+"Progress select error:",
 selectError
 );
 
@@ -787,11 +771,11 @@ userId,
 offer_id:
 offerIdValue,
 
-click_count:
-0,
-
 view_count:
 1,
+
+click_count:
+0,
 
 started:
 false,
@@ -807,6 +791,7 @@ now
 
 });
 
+
 if(insertError){
 
 console.error(
@@ -821,8 +806,6 @@ return;
 }
 
 
-/* Update existing view count */
-
 const {
 error:updateError
 } =
@@ -831,7 +814,9 @@ await supabaseClient
 .update({
 
 view_count:
-(existing.view_count || 0) + 1,
+Number(
+existing.view_count || 0
+) + 1,
 
 updated_at:
 now
@@ -841,6 +826,7 @@ now
 "id",
 existing.id
 );
+
 
 if(updateError){
 
@@ -858,7 +844,7 @@ updateError
    REGISTER CLICK
 ========================= */
 
-async function registerOfferClick(
+async function registerClick(
 offerIdValue
 ){
 
@@ -872,19 +858,22 @@ await supabaseClient
 .auth
 .getSession();
 
+
 if(
 error ||
 !data ||
-!data.session
+!data.session ||
+!data.session.user
 ){
+
 return;
+
 }
+
 
 const userId =
 data.session.user.id;
 
-
-/* Log click */
 
 await logActivity(
 "click",
@@ -897,15 +886,15 @@ source:
 );
 
 
-/* Find progress */
-
 const {
 data:existing,
 error:selectError
 } =
 await supabaseClient
 .from("offer_progress")
-.select("*")
+.select(
+"id,view_count,click_count,started,completed,first_clicked_at"
+)
 .eq(
 "user_id",
 userId
@@ -916,9 +905,11 @@ offerIdValue
 )
 .maybeSingle();
 
+
 if(selectError){
 
 console.error(
+"Click progress select error:",
 selectError
 );
 
@@ -933,6 +924,9 @@ new Date().toISOString();
 
 if(!existing){
 
+const {
+error:insertError
+} =
 await supabaseClient
 .from("offer_progress")
 .insert({
@@ -943,10 +937,10 @@ userId,
 offer_id:
 offerIdValue,
 
-click_count:
+view_count:
 1,
 
-view_count:
+click_count:
 1,
 
 started:
@@ -969,12 +963,20 @@ now
 
 });
 
+
+if(insertError){
+
+console.error(
+"Click progress insert error:",
+insertError
+);
+
+}
+
 return;
 
 }
 
-
-/* Update click progress */
 
 const {
 error:updateError
@@ -984,14 +986,15 @@ await supabaseClient
 .update({
 
 click_count:
-(existing.click_count || 0) + 1,
+Number(
+existing.click_count || 0
+) + 1,
 
 started:
 true,
 
 first_clicked_at:
-existing.first_clicked_at ||
-now,
+existing.first_clicked_at || now,
 
 last_clicked_at:
 now,
@@ -1005,11 +1008,238 @@ now
 existing.id
 );
 
+
 if(updateError){
 
 console.error(
+"Click progress update error:",
 updateError
 );
+
+}
+
+}catch(error){
+
+console.error(
+"Click registration error:",
+error
+);
+
+}
+
+}
+
+
+/* =========================
+   RENDER OFFER
+========================= */
+
+function renderOffer(
+offer
+){
+
+currentOffer =
+offer;
+
+
+const imageHtml =
+offer.image_url
+?
+
+`
+
+<img
+class="image"
+src="${escapeHtml(
+offer.image_url
+)}"
+alt="${escapeHtml(
+offer.title ||
+"Offer"
+)}"
+onerror="this.outerHTML='<div class=&quot;placeholder&quot;>🎁</div>'"
+>
+
+`
+
+:
+
+`
+
+<div class="placeholder">
+🎁
+</div>
+
+`;
+
+
+card.innerHTML = `
+
+<div id="imageArea">
+
+${imageHtml}
+
+</div>
+
+
+<div class="content">
+
+<div class="eyebrow">
+
+<span class="live-dot"></span>
+
+OFFER DETAILS
+
+</div>
+
+
+<h1 id="offerTitle">
+
+${escapeHtml(
+offer.title ||
+"Untitled Offer"
+)}
+
+</h1>
+
+
+<p class="description">
+
+${escapeHtml(
+offer.description ||
+"No description available."
+)}
+
+</p>
+
+
+<div class="info">
+
+<div class="info-box">
+
+<div class="label">
+Status
+</div>
+
+<div class="value">
+🟢 Active
+</div>
+
+</div>
+
+
+<div class="info-box">
+
+<div class="label">
+Added
+</div>
+
+<div class="value">
+${escapeHtml(
+formatDate(
+offer.created_at
+)
+)}
+
+</div>
+
+</div>
+
+</div>
+
+
+<button
+class="open"
+id="openButton"
+type="button"
+${offer.offer_url ? "" : "disabled"}
+>
+
+🚀 Open Offer
+
+</button>
+
+
+<div
+class="message"
+id="message"
+>
+
+${
+offer.offer_url
+?
+"Tap Open Offer to continue."
+:
+"This offer does not have a destination link."
+}
+
+</div>
+
+</div>
+
+`;
+
+
+document.title =
+(
+offer.title ||
+"Offer Details"
+) +
+" - Income Offers";
+
+
+const openButton =
+document.getElementById(
+"openButton"
+);
+
+
+const message =
+document.getElementById(
+"message"
+);
+
+
+if(offer.offer_url){
+
+openButton.addEventListener(
+"click",
+async function(){
+
+if(
+!currentOffer ||
+!currentOffer.offer_url
+){
+
+return;
+
+}
+
+
+openButton.disabled =
+true;
+
+openButton.textContent =
+"Opening...";
+
+message.textContent =
+"Opening offer...";
+
+
+await registerClick(
+currentOffer.id
+);
+
+
+/*
+Open destination after
+activity registration.
+*/
+
+window.location.href =
+currentOffer.offer_url;
+
+});
 
 }
 
@@ -1034,7 +1264,17 @@ return;
 }
 
 
-/* Check session */
+/*
+Keep the ID exactly as
+received from the URL.
+
+Do NOT use Number().
+This supports both UUID
+and numeric IDs.
+*/
+
+
+try{
 
 const {
 data:sessionData,
@@ -1044,15 +1284,17 @@ await supabaseClient
 .auth
 .getSession();
 
+
 if(sessionError){
 
 console.error(
+"Session error:",
 sessionError
 );
 
 showError(
 "Session error",
-"Please login again."
+"Unable to verify your login session."
 );
 
 return;
@@ -1062,7 +1304,8 @@ return;
 
 if(
 !sessionData ||
-!sessionData.session
+!sessionData.session ||
+!sessionData.session.user
 ){
 
 window.location.replace(
@@ -1074,7 +1317,9 @@ return;
 }
 
 
-/* Load offer */
+/*
+Load only the requested offer.
+*/
 
 const {
 data,
@@ -1089,18 +1334,19 @@ await supabaseClient
 "id",
 offerId
 )
-.single();
+.maybeSingle();
 
 
 if(error){
 
 console.error(
-"Offer load error:",
+"Offer database error:",
 error
 );
 
 showError(
 "Unable to load offer",
+error.message ||
 "Please try again."
 );
 
@@ -1113,7 +1359,7 @@ if(!data){
 
 showError(
 "Offer not found",
-"This offer does not exist."
+"This offer could not be found."
 );
 
 return;
@@ -1121,10 +1367,13 @@ return;
 }
 
 
-/* Active check */
+/*
+Only active offers can be opened.
+*/
 
 if(
-data.status !== "active"
+String(data.status)
+.toLowerCase() !== "active"
 ){
 
 showError(
@@ -1137,92 +1386,14 @@ return;
 }
 
 
-currentOffer =
-data;
-
-
-/* Image */
-
-if(data.image_url){
-
-imageArea.innerHTML = `
-
-<img
-class="image"
-src="${escapeHtml(
-data.image_url
-)}"
-alt="${escapeHtml(
-data.title ||
-"Offer"
-)}"
->
-
-`;
-
-}else{
-
-imageArea.innerHTML = `
-
-<div class="placeholder">
-🎁
-</div>
-
-`;
-
-}
-
-
-/* Content */
-
-title.textContent =
-data.title ||
-"Untitled Offer";
-
-description.textContent =
-data.description ||
-"No description available.";
-
-status.textContent =
-"Active";
-
-date.textContent =
-formatDate(
-data.created_at
-);
-
-document.title =
-(data.title ||
-"Offer Details") +
-" - Income Offers";
-
-
-/* Button */
-
-if(data.offer_url){
-
-openButton.disabled =
-false;
-
-message.textContent =
-"Review the offer details before continuing.";
-
-}else{
-
-openButton.disabled =
-true;
-
-message.textContent =
-"This offer does not have an active destination link.";
-
-}
+renderOffer(data);
 
 
 /*
-  Record a page view.
-
-  event_type must be:
-  view, click, start, complete
+Activity is secondary.
+Even if activity/progress
+fails, the offer itself
+has already rendered.
 */
 
 await logActivity(
@@ -1232,62 +1403,33 @@ data.id,
 {
 source:
 "offer-details.html"
-});
+}
+);
 
 
-await updateProgress(
+await registerView(
 data.id
 );
 
-}
+}catch(error){
 
-
-/* =========================
-   OPEN OFFER
-========================= */
-
-openButton.addEventListener(
-"click",
-async function(){
-
-if(
-!currentOffer ||
-!currentOffer.offer_url
-){
-
-message.textContent =
-"Offer link is not available.";
-
-return;
-
-}
-
-
-openButton.disabled =
-true;
-
-openButton.textContent =
-"Opening...";
-
-
-await registerOfferClick(
-currentOffer.id
+console.error(
+"Load offer exception:",
+error
 );
 
+showError(
+"Something went wrong",
+"Please refresh the page and try again."
+);
 
-/*
-  Open the configured
-  offer destination.
-*/
+}
 
-window.location.href =
-currentOffer.offer_url;
-
-});
+}
 
 
 /* =========================
-   TOUCH EFFECT
+   RIPPLE EFFECT
 ========================= */
 
 document.addEventListener(
@@ -1303,8 +1445,11 @@ if(!target){
 return;
 }
 
+
 const ripple =
-document.createElement("span");
+document.createElement(
+"span"
+);
 
 ripple.className =
 "ripple";
@@ -1318,6 +1463,7 @@ event.clientY + "px";
 document.body.appendChild(
 ripple
 );
+
 
 setTimeout(
 function(){
