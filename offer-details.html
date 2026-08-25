@@ -1,228 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050505">
 
-<title>Offer Details</title>
+<title>Income Offers - Offer Details</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
 
-html,body{
-  margin:0;
-  min-height:100%;
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 body{
-  background:#050505;
-  color:white;
-  font-family:'Geist',Arial,sans-serif;
-  overflow-x:hidden;
+min-height:100vh;
+background:
+radial-gradient(
+circle at 15% 10%,
+rgba(105,75,255,.16),
+transparent 35%
+),
+radial-gradient(
+circle at 90% 85%,
+rgba(0,180,255,.09),
+transparent 35%
+),
+#050505;
+color:#fff;
+font-family:'Geist',Arial,sans-serif;
+overflow-x:hidden;
 }
 
 a{
-  color:inherit;
-  text-decoration:none;
+color:inherit;
+text-decoration:none;
+}
+
+button{
+font:inherit;
 }
 
 .background{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  background:
-    radial-gradient(circle at 15% 10%,rgba(255,255,255,.08),transparent 35%),
-    radial-gradient(circle at 90% 85%,rgba(255,255,255,.05),transparent 35%),
-    #050505;
+position:fixed;
+inset:0;
+z-index:-2;
+background:
+radial-gradient(
+circle at 50% 40%,
+rgba(255,255,255,.025),
+transparent 40%
+);
 }
 
 header{
-  position:sticky;
-  top:0;
-  z-index:20;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  background:rgba(5,5,5,.75);
-  backdrop-filter:blur(20px);
+position:sticky;
+top:0;
+z-index:30;
+border-bottom:1px solid rgba(255,255,255,.08);
+background:rgba(5,5,5,.76);
+backdrop-filter:blur(22px);
 }
 
 .nav{
-  max-width:1000px;
-  margin:auto;
-  padding:17px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+max-width:1000px;
+margin:auto;
+padding:15px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
 }
 
 .brand{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-size:19px;
-  font-weight:700;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
-.brand svg{
-  width:25px;
-  height:25px;
-  fill:white;
+.brand-logo{
+width:42px;
+height:42px;
+object-fit:cover;
+border-radius:50%;
+border:1px solid rgba(255,255,255,.35);
+}
+
+.brand-text{
+display:flex;
+flex-direction:column;
+}
+
+.brand-name{
+font-size:16px;
+font-weight:800;
+}
+
+.brand-owner{
+margin-top:2px;
+font-size:8px;
+font-weight:700;
+letter-spacing:.15em;
+color:rgba(255,255,255,.38);
 }
 
 .back{
-  padding:10px 15px;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:999px;
-  background:rgba(255,255,255,.07);
-  color:rgba(255,255,255,.8);
-  font-size:13px;
+padding:10px 14px;
+border:1px solid rgba(255,255,255,.1);
+border-radius:999px;
+background:rgba(255,255,255,.06);
+color:rgba(255,255,255,.8);
+font-size:12px;
+transition:.2s;
+}
+
+.back:active{
+transform:scale(.95);
 }
 
 .container{
-  max-width:820px;
-  margin:auto;
-  padding:45px 20px 100px;
+max-width:820px;
+margin:auto;
+padding:38px 16px 110px;
 }
 
 .card{
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:25px;
-  background:rgba(255,255,255,.06);
-  backdrop-filter:blur(20px);
+overflow:hidden;
+border:1px solid rgba(255,255,255,.1);
+border-radius:25px;
+background:rgba(255,255,255,.055);
+backdrop-filter:blur(20px);
+box-shadow:0 25px 80px rgba(0,0,0,.3);
+animation:cardIn .65s ease both;
+}
+
+@keyframes cardIn{
+
+from{
+opacity:0;
+transform:translateY(25px) scale(.98);
+}
+
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
 }
 
 .image{
-  width:100%;
-  aspect-ratio:16/9;
-  object-fit:cover;
-  display:block;
+width:100%;
+aspect-ratio:16/9;
+object-fit:cover;
+display:block;
 }
 
 .placeholder{
-  width:100%;
-  aspect-ratio:16/9;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#111;
-  font-size:55px;
+width:100%;
+aspect-ratio:16/9;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#111;
+font-size:55px;
 }
 
 .content{
-  padding:26px;
+padding:25px;
 }
 
 .eyebrow{
-  color:rgba(255,255,255,.45);
-  font-size:11px;
-  font-weight:600;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  margin-bottom:12px;
+display:flex;
+align-items:center;
+gap:7px;
+margin-bottom:12px;
+color:rgba(255,255,255,.43);
+font-size:10px;
+font-weight:700;
+letter-spacing:.1em;
+}
+
+.live-dot{
+width:7px;
+height:7px;
+border-radius:50%;
+background:#65ff9b;
+box-shadow:0 0 14px #65ff9b;
 }
 
 h1{
-  margin:0;
-  font-size:clamp(2rem,6vw,3.4rem);
-  line-height:1.05;
-  letter-spacing:-.05em;
+font-size:clamp(
+2rem,
+6vw,
+3.5rem
+);
+line-height:1.02;
+letter-spacing:-.06em;
 }
 
 .description{
-  margin:17px 0 0;
-  color:rgba(255,255,255,.58);
-  font-size:15px;
-  line-height:1.7;
-  white-space:pre-line;
+margin:17px 0 0;
+color:rgba(255,255,255,.56);
+font-size:14px;
+line-height:1.75;
+white-space:pre-line;
 }
 
 .info{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:25px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:25px;
 }
 
 .info-box{
-  padding:15px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:15px;
-  background:rgba(255,255,255,.04);
+padding:15px;
+border:1px solid rgba(255,255,255,.08);
+border-radius:15px;
+background:rgba(255,255,255,.04);
 }
 
 .label{
-  color:rgba(255,255,255,.35);
-  font-size:11px;
-  text-transform:uppercase;
-  margin-bottom:5px;
+margin-bottom:5px;
+color:rgba(255,255,255,.33);
+font-size:10px;
+text-transform:uppercase;
+letter-spacing:.08em;
 }
 
 .value{
-  font-size:14px;
-  font-weight:500;
+font-size:13px;
+font-weight:600;
 }
 
 .open{
-  width:100%;
-  margin-top:25px;
-  padding:15px;
-  border:0;
-  border-radius:999px;
-  background:white;
-  color:#111;
-  font-size:15px;
-  font-weight:700;
-  cursor:pointer;
+width:100%;
+height:54px;
+margin-top:25px;
+border:0;
+border-radius:16px;
+background:#fff;
+color:#111;
+font-size:14px;
+font-weight:800;
+cursor:pointer;
+transition:.2s;
+}
+
+.open:active{
+transform:scale(.97);
 }
 
 .open:disabled{
-  opacity:.45;
-  cursor:not-allowed;
+opacity:.4;
+cursor:not-allowed;
 }
 
 .message{
-  margin-top:14px;
-  padding:12px;
-  border-radius:12px;
-  background:rgba(255,255,255,.05);
-  color:rgba(255,255,255,.55);
-  font-size:12px;
-  text-align:center;
-  line-height:1.5;
+margin-top:13px;
+padding:12px;
+border:1px solid rgba(255,255,255,.07);
+border-radius:12px;
+background:rgba(255,255,255,.04);
+color:rgba(255,255,255,.5);
+font-size:11px;
+line-height:1.5;
+text-align:center;
 }
 
 .error{
-  padding:50px 20px;
-  text-align:center;
+padding:55px 20px;
+text-align:center;
+}
+
+.error-icon{
+font-size:45px;
 }
 
 .error h2{
-  margin:10px 0;
+margin:12px 0 7px;
+font-size:20px;
 }
 
 .error p{
-  color:rgba(255,255,255,.5);
-  font-size:13px;
+color:rgba(255,255,255,.45);
+font-size:12px;
+line-height:1.6;
+}
+
+.error-link{
+display:inline-flex;
+margin-top:18px;
+padding:11px 16px;
+border-radius:999px;
+background:#fff;
+color:#111;
+font-size:12px;
+font-weight:800;
+}
+
+.ripple{
+position:fixed;
+z-index:9999;
+width:8px;
+height:8px;
+border-radius:50%;
+background:rgba(255,255,255,.45);
+pointer-events:none;
+transform:translate(-50%,-50%);
+animation:ripple .55s ease-out forwards;
+}
+
+@keyframes ripple{
+
+to{
+opacity:0;
+transform:
+translate(-50%,-50%)
+scale(12);
+}
+
 }
 
 @media(max-width:520px){
-  .container{
-    padding:30px 14px 100px;
-  }
 
-  .content{
-    padding:21px;
-  }
-
-  .info{
-    grid-template-columns:1fr;
-  }
+.container{
+padding:25px 12px 100px;
 }
+
+.content{
+padding:21px;
+}
+
+.info{
+grid-template-columns:1fr;
+}
+
+}
+
 </style>
 </head>
 
@@ -231,87 +356,137 @@ h1{
 <div class="background"></div>
 
 <header>
+
 <nav class="nav">
 
-<a class="brand" href="index.html">
+<a
+class="brand"
+href="index.html"
+>
 
-<svg viewBox="0 0 256 256">
-<path d="
-M128 128
-C128 198.692 70.692 256 0 256
-C0 185.308 57.308 128 128 128Z
-M128 128
-C198.692 128 256 185.308 256 256
-C185.308 256 128 198.692 128 128Z
-M0 0
-C70.692 0 128 57.308 128 128
-C57.308 128 0 70.692 0 0Z
-M256 0
-C256 70.692 198.692 128 128 128
-C128 57.308 185.308 0 256 0Z"/>
-</svg>
+<img
+class="brand-logo"
+src="assets/income-offers-logo.jpg"
+alt="Income Offers"
+>
 
-<span>Offers</span>
+<div class="brand-text">
+
+<div class="brand-name">
+Income Offers
+</div>
+
+<div class="brand-owner">
+OWNER: SAHIL
+</div>
+
+</div>
 
 </a>
 
-<a class="back" href="offer.html">
+
+<a
+class="back"
+href="offer.html"
+>
 ← Back to Offers
 </a>
 
 </nav>
+
 </header>
 
 
 <main class="container">
 
-<div class="card" id="card">
+<div
+class="card"
+id="card"
+>
 
 <div id="imageArea">
-<div class="placeholder">🎁</div>
+
+<div class="placeholder">
+🎁
 </div>
+
+</div>
+
 
 <div class="content">
 
 <div class="eyebrow">
-● OFFER DETAILS
+
+<span class="live-dot"></span>
+
+OFFER DETAILS
+
 </div>
+
 
 <h1 id="title">
 Loading offer...
 </h1>
 
-<p class="description" id="description">
+
+<p
+class="description"
+id="description"
+>
 Please wait while the offer details are loaded.
 </p>
+
 
 <div class="info">
 
 <div class="info-box">
-<div class="label">Status</div>
-<div class="value" id="status">
+
+<div class="label">
+Status
+</div>
+
+<div
+class="value"
+id="status"
+>
 Loading...
 </div>
+
 </div>
+
 
 <div class="info-box">
-<div class="label">Added</div>
-<div class="value" id="date">
-Loading...
+
+<div class="label">
+Added
 </div>
+
+<div
+class="value"
+id="date"
+>
+Loading...
 </div>
 
 </div>
+
+</div>
+
 
 <button
 class="open"
 id="openButton"
+type="button"
 disabled
 >
 🚀 Open Offer
 </button>
 
-<div class="message" id="message">
+
+<div
+class="message"
+id="message"
+>
 Loading offer information...
 </div>
 
@@ -323,20 +498,13 @@ Loading offer information...
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="supabase-config.js"></script>
 
 <script>
 
-/*
-IMPORTANT:
-supabase-config.js already creates:
-
-const supabaseClient = ...
-
-So DO NOT create another client here.
-*/
-
+/* =========================
+   ELEMENTS
+========================= */
 
 const params =
 new URLSearchParams(
@@ -345,7 +513,6 @@ window.location.search
 
 const offerId =
 params.get("id");
-
 
 const title =
 document.getElementById("title");
@@ -368,6 +535,8 @@ document.getElementById("openButton");
 const message =
 document.getElementById("message");
 
+const card =
+document.getElementById("card");
 
 let currentOffer = null;
 
@@ -382,7 +551,9 @@ const div =
 document.createElement("div");
 
 div.textContent =
-value ?? "";
+value == null
+? ""
+: String(value);
 
 return div.innerHTML;
 
@@ -402,7 +573,11 @@ return "Recently added";
 const d =
 new Date(value);
 
-if(Number.isNaN(d.getTime())){
+if(
+Number.isNaN(
+d.getTime()
+)
+){
 return "Recently added";
 }
 
@@ -419,12 +594,53 @@ year:"numeric"
 
 
 /* =========================
-   ACTIVITY
+   ERROR
+========================= */
+
+function showError(
+heading,
+text
+){
+
+card.innerHTML = `
+
+<div class="error">
+
+<div class="error-icon">
+⚠️
+</div>
+
+<h2>
+${escapeHtml(heading)}
+</h2>
+
+<p>
+${escapeHtml(text)}
+</p>
+
+<a
+class="error-link"
+href="offer.html"
+>
+← Back to Offers
+</a>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   ACTIVITY LOG
 ========================= */
 
 async function logActivity(
-action,
-offerIdValue=null
+eventType,
+offerIdValue = null,
+action = null,
+metadata = {}
 ){
 
 try{
@@ -435,28 +651,39 @@ error
 } =
 await supabaseClient
 .auth
-.getUser();
+.getSession();
 
-if(error || !data.user){
-
-console.log(
-"Activity user unavailable",
-error
-);
-
+if(
+error ||
+!data ||
+!data.session
+){
 return;
-
 }
 
 const result =
 await supabaseClient
 .from("activity_logs")
 .insert({
-user_id:data.user.id,
-action:action,
-offer_id:offerIdValue,
-page:"offer-details.html",
-metadata:{}
+
+user_id:
+data.session.user.id,
+
+offer_id:
+offerIdValue,
+
+event_type:
+eventType,
+
+page:
+"offer-details.html",
+
+metadata:
+metadata,
+
+action:
+action
+
 });
 
 if(result.error){
@@ -481,44 +708,310 @@ error
 
 
 /* =========================
-   ERROR
+   UPDATE PROGRESS
 ========================= */
 
-function showError(
-heading,
-text
+async function updateProgress(
+offerIdValue
 ){
 
-document.getElementById(
-"card"
-).innerHTML = `
+try{
 
-<div class="error">
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.getSession();
 
-<div style="font-size:45px">
-⚠️
-</div>
+if(
+error ||
+!data ||
+!data.session
+){
+return;
+}
 
-<h2>
-${escapeHtml(heading)}
-</h2>
+const userId =
+data.session.user.id;
 
-<p>
-${escapeHtml(text)}
-</p>
 
-<br>
+/* Find existing progress */
 
-<a
-class="back"
-href="offer.html"
->
-← Back to Offers
-</a>
+const {
+data:existing,
+error:selectError
+} =
+await supabaseClient
+.from("offer_progress")
+.select("*")
+.eq(
+"user_id",
+userId
+)
+.eq(
+"offer_id",
+offerIdValue
+)
+.maybeSingle();
 
-</div>
+if(selectError){
 
-`;
+console.error(
+"Progress lookup error:",
+selectError
+);
+
+return;
+
+}
+
+
+const now =
+new Date().toISOString();
+
+
+if(!existing){
+
+const {
+error:insertError
+} =
+await supabaseClient
+.from("offer_progress")
+.insert({
+
+user_id:
+userId,
+
+offer_id:
+offerIdValue,
+
+click_count:
+0,
+
+view_count:
+1,
+
+started:
+false,
+
+completed:
+false,
+
+created_at:
+now,
+
+updated_at:
+now
+
+});
+
+if(insertError){
+
+console.error(
+"Progress insert error:",
+insertError
+);
+
+}
+
+return;
+
+}
+
+
+/* Update existing view count */
+
+const {
+error:updateError
+} =
+await supabaseClient
+.from("offer_progress")
+.update({
+
+view_count:
+(existing.view_count || 0) + 1,
+
+updated_at:
+now
+
+})
+.eq(
+"id",
+existing.id
+);
+
+if(updateError){
+
+console.error(
+"Progress update error:",
+updateError
+);
+
+}
+
+}
+
+
+/* =========================
+   REGISTER CLICK
+========================= */
+
+async function registerOfferClick(
+offerIdValue
+){
+
+try{
+
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.getSession();
+
+if(
+error ||
+!data ||
+!data.session
+){
+return;
+}
+
+const userId =
+data.session.user.id;
+
+
+/* Log click */
+
+await logActivity(
+"click",
+offerIdValue,
+"offer_click",
+{
+source:
+"offer-details.html"
+}
+);
+
+
+/* Find progress */
+
+const {
+data:existing,
+error:selectError
+} =
+await supabaseClient
+.from("offer_progress")
+.select("*")
+.eq(
+"user_id",
+userId
+)
+.eq(
+"offer_id",
+offerIdValue
+)
+.maybeSingle();
+
+if(selectError){
+
+console.error(
+selectError
+);
+
+return;
+
+}
+
+
+const now =
+new Date().toISOString();
+
+
+if(!existing){
+
+await supabaseClient
+.from("offer_progress")
+.insert({
+
+user_id:
+userId,
+
+offer_id:
+offerIdValue,
+
+click_count:
+1,
+
+view_count:
+1,
+
+started:
+true,
+
+completed:
+false,
+
+first_clicked_at:
+now,
+
+last_clicked_at:
+now,
+
+created_at:
+now,
+
+updated_at:
+now
+
+});
+
+return;
+
+}
+
+
+/* Update click progress */
+
+const {
+error:updateError
+} =
+await supabaseClient
+.from("offer_progress")
+.update({
+
+click_count:
+(existing.click_count || 0) + 1,
+
+started:
+true,
+
+first_clicked_at:
+existing.first_clicked_at ||
+now,
+
+last_clicked_at:
+now,
+
+updated_at:
+now
+
+})
+.eq(
+"id",
+existing.id
+);
+
+if(updateError){
+
+console.error(
+updateError
+);
+
+}
 
 }
 
@@ -541,9 +1034,7 @@ return;
 }
 
 
-/*
-Check login first.
-*/
+/* Check session */
 
 const {
 data:sessionData,
@@ -568,7 +1059,11 @@ return;
 
 }
 
-if(!sessionData.session){
+
+if(
+!sessionData ||
+!sessionData.session
+){
 
 window.location.replace(
 "login.html"
@@ -579,9 +1074,7 @@ return;
 }
 
 
-/*
-Load exact offer.
-*/
+/* Load offer */
 
 const {
 data,
@@ -589,8 +1082,13 @@ error
 } =
 await supabaseClient
 .from("offers")
-.select("*")
-.eq("id",offerId)
+.select(
+"id,created_at,title,description,image_url,offer_url,status"
+)
+.eq(
+"id",
+offerId
+)
 .single();
 
 
@@ -603,7 +1101,6 @@ error
 
 showError(
 "Unable to load offer",
-error.message ||
 "Please try again."
 );
 
@@ -624,11 +1121,11 @@ return;
 }
 
 
-/*
-Only active offers can be opened.
-*/
+/* Active check */
 
-if(data.status !== "active"){
+if(
+data.status !== "active"
+){
 
 showError(
 "Offer unavailable",
@@ -644,7 +1141,7 @@ currentOffer =
 data;
 
 
-/* IMAGE */
+/* Image */
 
 if(data.image_url){
 
@@ -652,8 +1149,13 @@ imageArea.innerHTML = `
 
 <img
 class="image"
-src="${escapeHtml(data.image_url)}"
-alt="${escapeHtml(data.title || "Offer")}"
+src="${escapeHtml(
+data.image_url
+)}"
+alt="${escapeHtml(
+data.title ||
+"Offer"
+)}"
 >
 
 `;
@@ -671,7 +1173,7 @@ imageArea.innerHTML = `
 }
 
 
-/* CONTENT */
+/* Content */
 
 title.textContent =
 data.title ||
@@ -685,10 +1187,17 @@ status.textContent =
 "Active";
 
 date.textContent =
-formatDate(data.created_at);
+formatDate(
+data.created_at
+);
+
+document.title =
+(data.title ||
+"Offer Details") +
+" - Income Offers";
 
 
-/* LINK */
+/* Button */
 
 if(data.offer_url){
 
@@ -696,7 +1205,7 @@ openButton.disabled =
 false;
 
 message.textContent =
-"Tap the button below to continue to the offer.";
+"Review the offer details before continuing.";
 
 }else{
 
@@ -704,25 +1213,29 @@ openButton.disabled =
 true;
 
 message.textContent =
-"This offer does not have an offer link yet.";
+"This offer does not have an active destination link.";
 
 }
 
 
-/* PAGE TITLE */
-
-document.title =
-(data.title || "Offer Details") +
-" - Offers";
-
-
 /*
-Record page view.
-Don't wait for it.
+  Record a page view.
+
+  event_type must be:
+  view, click, start, complete
 */
 
-logActivity(
+await logActivity(
+"view",
+data.id,
 "offer_view",
+{
+source:
+"offer-details.html"
+});
+
+
+await updateProgress(
 data.id
 );
 
@@ -750,33 +1263,72 @@ return;
 }
 
 
-const url =
-currentOffer.offer_url;
+openButton.disabled =
+true;
+
+openButton.textContent =
+"Opening...";
 
 
-/*
-Log click.
-*/
-
-logActivity(
-"offer_click",
+await registerOfferClick(
 currentOffer.id
 );
 
 
 /*
-Use direct navigation.
-This avoids popup blocking.
+  Open the configured
+  offer destination.
 */
 
-message.textContent =
-"Opening offer...";
-
 window.location.href =
-url;
+currentOffer.offer_url;
 
-}
+});
+
+
+/* =========================
+   TOUCH EFFECT
+========================= */
+
+document.addEventListener(
+"pointerdown",
+function(event){
+
+const target =
+event.target.closest(
+"button,a"
 );
+
+if(!target){
+return;
+}
+
+const ripple =
+document.createElement("span");
+
+ripple.className =
+"ripple";
+
+ripple.style.left =
+event.clientX + "px";
+
+ripple.style.top =
+event.clientY + "px";
+
+document.body.appendChild(
+ripple
+);
+
+setTimeout(
+function(){
+
+ripple.remove();
+
+},
+600
+);
+
+});
 
 
 /* =========================
