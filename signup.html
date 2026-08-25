@@ -12,218 +12,221 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link
-  href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap"
-  rel="stylesheet"
->
+href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 <style>
 
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 body{
-  min-height:100vh;
-  background:
-    radial-gradient(
-      circle at 20% 15%,
-      rgba(105,75,255,.20),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 85% 80%,
-      rgba(0,180,255,.10),
-      transparent 35%
-    ),
-    #050505;
-  color:#fff;
-  font-family:'Geist',Arial,sans-serif;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  overflow:hidden;
+min-height:100vh;
+background:
+radial-gradient(
+circle at 20% 15%,
+rgba(105,75,255,.20),
+transparent 35%
+),
+radial-gradient(
+circle at 85% 80%,
+rgba(0,180,255,.10),
+transparent 35%
+),
+#050505;
+color:#fff;
+font-family:'Geist',Arial,sans-serif;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
 }
 
 .box{
-  position:relative;
-  width:100%;
-  max-width:430px;
-  padding:30px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:28px;
-  background:rgba(255,255,255,.055);
-  backdrop-filter:blur(25px);
-  box-shadow:0 30px 90px rgba(0,0,0,.5);
-  animation:boxIn .7s ease both;
+width:100%;
+max-width:430px;
+padding:30px;
+border:1px solid rgba(255,255,255,.12);
+border-radius:28px;
+background:rgba(255,255,255,.055);
+backdrop-filter:blur(25px);
+box-shadow:0 30px 90px rgba(0,0,0,.5);
+animation:boxIn .7s ease both;
 }
 
 @keyframes boxIn{
-  from{
-    opacity:0;
-    transform:translateY(30px) scale(.96);
-  }
 
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
+from{
+opacity:0;
+transform:translateY(30px) scale(.96);
+}
+
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
 }
 
 .logo{
-  width:76px;
-  height:76px;
-  margin:0 auto 20px;
-  display:block;
-  object-fit:cover;
-  border-radius:50%;
-  border:2px solid rgba(255,255,255,.45);
-  box-shadow:0 0 30px rgba(105,75,255,.35);
-  animation:float 4s ease-in-out infinite;
+width:76px;
+height:76px;
+margin:0 auto 20px;
+display:block;
+object-fit:cover;
+border-radius:50%;
+border:2px solid rgba(255,255,255,.45);
+box-shadow:0 0 30px rgba(105,75,255,.35);
+animation:float 4s ease-in-out infinite;
 }
 
 @keyframes float{
-  0%,100%{
-    transform:translateY(0);
-  }
 
-  50%{
-    transform:translateY(-5px);
-  }
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-5px);
+}
+
 }
 
 h1{
-  text-align:center;
-  font-size:32px;
-  letter-spacing:-.05em;
+text-align:center;
+font-size:32px;
+letter-spacing:-.05em;
 }
 
 .subtitle{
-  margin:9px 0 28px;
-  text-align:center;
-  color:rgba(255,255,255,.5);
-  font-size:14px;
-  line-height:1.5;
+margin:9px 0 28px;
+text-align:center;
+color:rgba(255,255,255,.5);
+font-size:14px;
+line-height:1.5;
 }
 
 label{
-  display:block;
-  margin:0 0 8px;
-  color:rgba(255,255,255,.8);
-  font-size:13px;
-  font-weight:700;
+display:block;
+margin:0 0 8px;
+color:rgba(255,255,255,.8);
+font-size:13px;
+font-weight:700;
 }
 
 input{
-  width:100%;
-  height:54px;
-  padding:0 16px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:16px;
-  outline:none;
-  background:rgba(255,255,255,.065);
-  color:#fff;
-  font-size:16px;
-  transition:.2s ease;
+width:100%;
+height:54px;
+padding:0 16px;
+border:1px solid rgba(255,255,255,.12);
+border-radius:16px;
+outline:none;
+background:rgba(255,255,255,.065);
+color:#fff;
+font-size:16px;
+transition:.2s ease;
 }
 
 input::placeholder{
-  color:rgba(255,255,255,.3);
+color:rgba(255,255,255,.3);
 }
 
 input:focus{
-  border-color:rgba(150,130,255,.7);
-  box-shadow:0 0 0 4px rgba(105,75,255,.12);
+border-color:rgba(150,130,255,.7);
+box-shadow:0 0 0 4px rgba(105,75,255,.12);
 }
 
 .create{
-  width:100%;
-  height:54px;
-  margin-top:15px;
-  border:0;
-  border-radius:16px;
-  background:#fff;
-  color:#080808;
-  font-weight:800;
-  cursor:pointer;
-  transition:.2s ease;
+width:100%;
+height:54px;
+margin-top:15px;
+border:0;
+border-radius:16px;
+background:#fff;
+color:#080808;
+font-weight:800;
+cursor:pointer;
+transition:.2s ease;
 }
 
 .create:active{
-  transform:scale(.97);
+transform:scale(.97);
 }
 
 .create:disabled{
-  opacity:.5;
-  cursor:not-allowed;
+opacity:.5;
+cursor:not-allowed;
 }
 
 .message{
-  min-height:22px;
-  margin-top:16px;
-  text-align:center;
-  font-size:13px;
-  line-height:1.5;
+min-height:22px;
+margin-top:16px;
+text-align:center;
+font-size:13px;
+line-height:1.5;
 }
 
 .login{
-  margin-top:24px;
-  padding-top:20px;
-  border-top:1px solid rgba(255,255,255,.08);
-  text-align:center;
-  color:rgba(255,255,255,.5);
-  font-size:13px;
+margin-top:24px;
+padding-top:20px;
+border-top:1px solid rgba(255,255,255,.08);
+text-align:center;
+color:rgba(255,255,255,.5);
+font-size:13px;
 }
 
 .login a{
-  color:#fff;
-  font-weight:700;
-  text-decoration:none;
+color:#fff;
+font-weight:700;
+text-decoration:none;
 }
 
 .back{
-  display:block;
-  margin-top:20px;
-  text-align:center;
-  color:rgba(255,255,255,.4);
-  text-decoration:none;
-  font-size:13px;
+display:block;
+margin-top:20px;
+text-align:center;
+color:rgba(255,255,255,.4);
+text-decoration:none;
+font-size:13px;
 }
 
 .success-icon{
-  display:none;
-  width:65px;
-  height:65px;
-  margin:20px auto 5px;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  background:rgba(101,255,155,.12);
-  border:1px solid rgba(101,255,155,.35);
-  font-size:30px;
-  animation:successPop .5s ease both;
+display:none;
+width:65px;
+height:65px;
+margin:20px auto 5px;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:rgba(101,255,155,.12);
+border:1px solid rgba(101,255,155,.35);
+font-size:30px;
+animation:successPop .5s ease both;
 }
 
 .success-icon.show{
-  display:flex;
+display:flex;
 }
 
 @keyframes successPop{
-  from{
-    opacity:0;
-    transform:scale(.4);
-  }
 
-  70%{
-    transform:scale(1.12);
-  }
+from{
+opacity:0;
+transform:scale(.4);
+}
 
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
+70%{
+transform:scale(1.12);
+}
+
+to{
+opacity:1;
+transform:scale(1);
+}
+
 }
 
 </style>
@@ -234,145 +237,143 @@ input:focus{
 
 <div class="box">
 
-  <img
-    class="logo"
-    src="assets/income-offers-logo.jpg"
-    alt="Income Offers"
-  >
+<img
+class="logo"
+src="assets/income-offers-logo.jpg"
+alt="Income Offers"
+onerror="this.style.display='none'"
+>
 
 
-  <h1>
-    Create Account
-  </h1>
+<h1>
+Create Account
+</h1>
 
 
-  <p
-    class="subtitle"
-    id="subtitle"
-  >
-    Enter your email to create your account
-  </p>
+<p
+class="subtitle"
+id="subtitle"
+>
+Enter your email to create your account
+</p>
 
 
-  <form id="signupForm">
+<form id="signupForm">
 
-    <label for="email">
-      Email
-    </label>
+<label for="email">
+Email
+</label>
 
-    <input
-      id="email"
-      type="email"
-      placeholder="Enter your Gmail / email"
-      autocomplete="email"
-      required
-    >
-
-
-    <button
-      type="submit"
-      class="create"
-      id="createButton"
-    >
-      Create Account
-    </button>
-
-  </form>
+<input
+id="email"
+type="email"
+placeholder="Enter your Gmail / email"
+autocomplete="email"
+required
+>
 
 
-  <div
-    class="success-icon"
-    id="successIcon"
-  >
-    ✓
-  </div>
+<button
+type="submit"
+class="create"
+id="createButton"
+>
+Create Account
+</button>
+
+</form>
 
 
-  <div
-    class="message"
-    id="message"
-  ></div>
+<div
+class="success-icon"
+id="successIcon"
+>
+✓
+</div>
 
 
-  <div class="login">
-
-    Already have an account?
-
-    <a href="login.html">
-      Login
-    </a>
-
-  </div>
+<div
+class="message"
+id="message"
+></div>
 
 
-  <a
-    class="back"
-    href="index.html"
-  >
-    ← Back to Home
-  </a>
+<div class="login">
+
+Already have an account?
+
+<a href="login.html">
+Login
+</a>
 
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<a
+class="back"
+href="index.html"
+>
+← Back to Home
+</a>
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
 <script src="supabase-config.js"></script>
 
+
 <script>
 
-/* =========================
-   ELEMENTS
-========================= */
+/*
+====================================================
+IMPORTANT
+====================================================
+
+supabase-config.js already creates:
+
+supabaseClient
+
+DO NOT create another client here.
+
+====================================================
+*/
+
 
 const form =
-  document.getElementById(
-    "signupForm"
-  );
+document.getElementById(
+"signupForm"
+);
 
 const emailInput =
-  document.getElementById(
-    "email"
-  );
+document.getElementById(
+"email"
+);
 
 const createButton =
-  document.getElementById(
-    "createButton"
-  );
+document.getElementById(
+"createButton"
+);
 
 const message =
-  document.getElementById(
-    "message"
-  );
+document.getElementById(
+"message"
+);
 
 const subtitle =
-  document.getElementById(
-    "subtitle"
-  );
+document.getElementById(
+"subtitle"
+);
 
 const successIcon =
-  document.getElementById(
-    "successIcon"
-  );
-
-
-/* =========================
-   SUPABASE
-========================= */
-
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY,
-    {
-      auth:{
-        persistSession:true,
-        autoRefreshToken:true,
-        detectSessionInUrl:true,
-        storage:window.localStorage
-      }
-    }
-  );
+document.getElementById(
+"successIcon"
+);
 
 
 /* =========================
@@ -380,17 +381,70 @@ const supabaseClient =
 ========================= */
 
 function showMessage(
-  text,
-  success=false
+text,
+success = false
 ){
 
-  message.textContent =
-    text;
+message.textContent =
+text;
 
-  message.style.color =
-    success
-      ? "#8dffa9"
-      : "#ff7777";
+message.style.color =
+success
+? "#8dffa9"
+: "#ff7777";
+
+}
+
+
+/* =========================
+   CHECK SESSION
+========================= */
+
+async function checkExistingSession(){
+
+try{
+
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.getSession();
+
+
+if(error){
+
+console.warn(
+"Session check:",
+error.message
+);
+
+return;
+
+}
+
+
+if(
+data &&
+data.session &&
+data.session.user
+){
+
+window.location.replace(
+"offer.html"
+);
+
+}
+
+}catch(error){
+
+console.warn(
+"Session exception:",
+error
+);
+
+}
 
 }
 
@@ -400,194 +454,156 @@ function showMessage(
 ========================= */
 
 form.addEventListener(
-  "submit",
-  async function(event){
+"submit",
+async function(event){
 
-    event.preventDefault();
-
-
-    const email =
-      emailInput.value
-        .trim()
-        .toLowerCase();
+event.preventDefault();
 
 
-    if(!email){
-
-      showMessage(
-        "Please enter your email."
-      );
-
-      return;
-
-    }
+const email =
+emailInput.value
+.trim()
+.toLowerCase();
 
 
-    if(!email.includes("@")){
+if(!email){
 
-      showMessage(
-        "Please enter a valid email."
-      );
+showMessage(
+"Please enter your email."
+);
 
-      return;
+return;
 
-    }
-
-
-    createButton.disabled =
-      true;
-
-    createButton.textContent =
-      "Creating Account...";
+}
 
 
-    showMessage(
-      "Preparing your account...",
-      true
-    );
+if(
+!email.includes("@") ||
+!email.includes(".")
+){
+
+showMessage(
+"Please enter a valid email address."
+);
+
+return;
+
+}
 
 
-    try{
+createButton.disabled =
+true;
 
-      /*
-        Magic Link authentication.
-
-        This creates the user when
-        the email does not already
-        exist and sends a secure
-        authentication link.
-      */
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .auth
-          .signInWithOtp({
-
-            email:email,
-
-            options:{
-              shouldCreateUser:true,
-
-              emailRedirectTo:
-                window.location.origin +
-                "/index.html"
-            }
-
-          });
+createButton.textContent =
+"Sending Link...";
 
 
-      if(error){
-
-        console.error(
-          "SIGNUP ERROR:",
-          error
-        );
-
-        showMessage(
-          "Unable to create account: " +
-          error.message
-        );
-
-        createButton.disabled =
-          false;
-
-        createButton.textContent =
-          "Create Account";
-
-        return;
-
-      }
-
-
-      successIcon.classList.add(
-        "show"
-      );
-
-      subtitle.textContent =
-        "Check your email to continue";
-
-      showMessage(
-        "A secure sign-in link has been sent to your email.",
-        true
-      );
-
-      createButton.textContent =
-        "Email Sent";
-
-    }catch(error){
-
-      console.error(
-        "SIGNUP EXCEPTION:",
-        error
-      );
-
-      showMessage(
-        "Something went wrong. Please try again."
-      );
-
-      createButton.disabled =
-        false;
-
-      createButton.textContent =
-        "Create Account";
-
-    }
-
-  }
+showMessage(
+"Sending secure login link...",
+true
 );
 
 
-/* =========================
-   EXISTING SESSION
-========================= */
+try{
 
-async function checkExistingSession(){
+/*
+====================================================
+MAGIC LINK
+====================================================
 
-  try{
+This sends the verification/login email.
 
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .auth
-        .getSession();
+If the email is new, Supabase creates
+the user automatically when allowed.
 
+====================================================
+*/
 
-    if(error){
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.signInWithOtp({
 
-      console.error(
-        error
-      );
+email:email,
 
-      return;
+options:{
 
-    }
+shouldCreateUser:true,
 
-
-    if(
-      data &&
-      data.session
-    ){
-
-      window.location.replace(
-        "index.html"
-      );
-
-    }
-
-  }catch(error){
-
-    console.error(
-      error
-    );
-
-  }
+emailRedirectTo:
+window.location.origin +
+"/index.html"
 
 }
+
+});
+
+
+if(error){
+
+console.error(
+"CREATE ACCOUNT ERROR:",
+error
+);
+
+showMessage(
+error.message
+);
+
+createButton.disabled =
+false;
+
+createButton.textContent =
+"Create Account";
+
+return;
+
+}
+
+
+/*
+SUCCESS
+*/
+
+successIcon.classList.add(
+"show"
+);
+
+subtitle.textContent =
+"Check your email to continue";
+
+showMessage(
+"Secure login link sent. Check your email and tap the link to continue.",
+true
+);
+
+createButton.textContent =
+"Email Sent ✓";
+
+
+}catch(error){
+
+console.error(
+"CREATE ACCOUNT EXCEPTION:",
+error
+);
+
+showMessage(
+"Something went wrong. Please try again."
+);
+
+createButton.disabled =
+false;
+
+createButton.textContent =
+"Create Account";
+
+}
+
+});
 
 
 /* =========================
