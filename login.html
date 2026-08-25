@@ -11,154 +11,191 @@
 <style>
 
 *{
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
 }
 
 body{
-  margin:0;
-  min-height:100vh;
-  background:#050505;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+min-height:100vh;
+background:
+radial-gradient(
+circle at 20% 15%,
+rgba(105,75,255,.18),
+transparent 35%
+),
+radial-gradient(
+circle at 85% 80%,
+rgba(0,180,255,.10),
+transparent 35%
+),
+#050505;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
 }
 
 .login-box{
-  width:100%;
-  max-width:430px;
-  padding:30px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:26px;
-  background:rgba(255,255,255,.06);
-  box-shadow:0 25px 80px rgba(0,0,0,.4);
+width:100%;
+max-width:430px;
+padding:30px;
+border:1px solid rgba(255,255,255,.12);
+border-radius:26px;
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(25px);
+box-shadow:0 25px 80px rgba(0,0,0,.4);
+animation:boxIn .6s ease both;
+}
+
+@keyframes boxIn{
+
+from{
+opacity:0;
+transform:translateY(25px) scale(.97);
+}
+
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
 }
 
 .logo{
-  width:78px;
-  height:78px;
-  margin:0 auto 20px;
-  border-radius:22px;
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.18);
-  background:#111;
+width:78px;
+height:78px;
+margin:0 auto 20px;
+border-radius:50%;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.18);
+background:#111;
+box-shadow:0 0 28px rgba(105,75,255,.25);
 }
 
 .logo img{
-  width:100%;
-  height:100%;
-  display:block;
-  object-fit:cover;
+width:100%;
+height:100%;
+display:block;
+object-fit:cover;
 }
 
 h1{
-  text-align:center;
-  margin:0 0 8px;
-  font-size:34px;
+text-align:center;
+margin:0 0 8px;
+font-size:34px;
+letter-spacing:-.04em;
 }
 
 .subtitle{
-  text-align:center;
-  color:rgba(255,255,255,.5);
-  margin:0 0 28px;
+text-align:center;
+color:rgba(255,255,255,.5);
+margin:0 0 28px;
+font-size:14px;
+line-height:1.5;
 }
 
 label{
-  display:block;
-  margin:15px 0 7px;
-  font-weight:bold;
-  color:rgba(255,255,255,.8);
+display:block;
+margin:15px 0 7px;
+font-weight:bold;
+color:rgba(255,255,255,.8);
+font-size:13px;
 }
 
 input{
-  width:100%;
-  padding:15px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:13px;
-  background:rgba(255,255,255,.07);
-  color:white;
-  font-size:16px;
-  outline:none;
+width:100%;
+padding:15px;
+border:1px solid rgba(255,255,255,.12);
+border-radius:13px;
+background:rgba(255,255,255,.07);
+color:white;
+font-size:16px;
+outline:none;
+transition:.2s;
+}
+
+input::placeholder{
+color:rgba(255,255,255,.3);
 }
 
 input:focus{
-  border-color:rgba(255,255,255,.35);
-}
-
-.password-box{
-  position:relative;
-}
-
-.password-box input{
-  padding-right:58px;
-}
-
-.show-password{
-  position:absolute;
-  right:5px;
-  top:50%;
-  transform:translateY(-50%);
-  width:48px;
-  height:48px;
-  padding:0;
-  border:0;
-  background:transparent;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  cursor:pointer;
+border-color:rgba(150,130,255,.7);
+box-shadow:0 0 0 4px rgba(105,75,255,.10);
 }
 
 button.login{
-  width:100%;
-  margin-top:22px;
-  padding:15px;
-  border:0;
-  border-radius:999px;
-  background:white;
-  color:#111;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
+width:100%;
+margin-top:22px;
+padding:15px;
+border:0;
+border-radius:999px;
+background:white;
+color:#111;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:.2s;
+}
+
+button.login:active{
+transform:scale(.97);
 }
 
 button.login:disabled{
-  opacity:.5;
-  cursor:not-allowed;
+opacity:.5;
+cursor:not-allowed;
 }
 
 .message{
-  margin-top:16px;
-  text-align:center;
-  font-size:14px;
-  line-height:1.5;
+min-height:22px;
+margin-top:16px;
+text-align:center;
+font-size:13px;
+line-height:1.5;
 }
 
 .signup{
-  margin-top:24px;
-  padding-top:20px;
-  border-top:1px solid rgba(255,255,255,.08);
-  text-align:center;
-  color:rgba(255,255,255,.55);
+margin-top:24px;
+padding-top:20px;
+border-top:1px solid rgba(255,255,255,.08);
+text-align:center;
+color:rgba(255,255,255,.55);
+font-size:13px;
 }
 
 .signup a{
-  color:white;
-  font-weight:bold;
-  text-decoration:none;
+color:white;
+font-weight:bold;
+text-decoration:none;
 }
 
 .back{
-  display:block;
-  margin-top:20px;
-  text-align:center;
-  color:rgba(255,255,255,.45);
-  text-decoration:none;
-  font-size:14px;
+display:block;
+margin-top:20px;
+text-align:center;
+color:rgba(255,255,255,.45);
+text-decoration:none;
+font-size:14px;
+}
+
+.success-box{
+display:none;
+margin-top:20px;
+padding:15px;
+border:1px solid rgba(101,255,155,.18);
+border-radius:15px;
+background:rgba(101,255,155,.06);
+color:#8dffa9;
+text-align:center;
+font-size:13px;
+line-height:1.5;
+}
+
+.success-box.show{
+display:block;
 }
 
 </style>
@@ -169,194 +206,168 @@ button.login:disabled{
 
 <div class="login-box">
 
-  <div class="logo">
-    <img
-      src="income-offers-logo.jpg"
-      alt="Income Offers"
-    >
-  </div>
+<div class="logo">
 
-  <h1>
-    Welcome Back
-  </h1>
-
-  <p class="subtitle">
-    Login to continue
-  </p>
-
-
-  <form id="loginForm">
-
-    <label for="email">
-      Email
-    </label>
-
-    <input
-      type="email"
-      id="email"
-      placeholder="Enter your email"
-      autocomplete="email"
-      required
-    >
-
-
-    <label for="password">
-      Password
-    </label>
-
-    <div class="password-box">
-
-      <input
-        type="password"
-        id="password"
-        placeholder="Enter your password"
-        autocomplete="current-password"
-        required
-      >
-
-      <button
-        type="button"
-        class="show-password"
-        id="showPassword"
-        aria-label="Show password"
-      >
-        👁️
-      </button>
-
-    </div>
-
-
-    <button
-      type="submit"
-      class="login"
-      id="loginButton"
-    >
-      Login
-    </button>
-
-  </form>
-
-
-  <div
-    class="message"
-    id="message"
-  ></div>
-
-
-  <div class="signup">
-
-    Don't have an account?
-
-    <a href="signup.html">
-      Create Account
-    </a>
-
-  </div>
-
-
-  <a
-    class="back"
-    href="index.html"
-  >
-    ← Back to Home
-  </a>
+<img
+src="assets/income-offers-logo.jpg"
+alt="Income Offers"
+onerror="this.style.display='none'"
+>
 
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<h1>
+Welcome Back
+</h1>
+
+
+<p
+class="subtitle"
+id="subtitle"
+>
+Enter your email to receive a secure login link
+</p>
+
+
+<form id="loginForm">
+
+<label for="email">
+Email
+</label>
+
+
+<input
+type="email"
+id="email"
+placeholder="Enter your Gmail / email"
+autocomplete="email"
+required
+>
+
+
+<button
+type="submit"
+class="login"
+id="loginButton"
+>
+Send Login Link
+</button>
+
+</form>
+
+
+<div
+class="success-box"
+id="successBox"
+>
+✓ Login link sent successfully.<br>
+Check your email and tap the link to continue.
+</div>
+
+
+<div
+class="message"
+id="message"
+></div>
+
+
+<div class="signup">
+
+Don't have an account?
+
+<a href="signup.html">
+Create Account
+</a>
+
+</div>
+
+
+<a
+class="back"
+href="index.html"
+>
+← Back to Home
+</a>
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
 <script src="supabase-config.js"></script>
 
 
 <script>
 
-/* =========================
-   ELEMENTS
-========================= */
+/*
+====================================================
+IMPORTANT
+====================================================
+
+supabase-config.js already creates:
+
+supabaseClient
+
+DO NOT create another client here.
+
+====================================================
+*/
+
 
 const form =
 document.getElementById(
-  "loginForm"
+"loginForm"
 );
 
 const emailInput =
 document.getElementById(
-  "email"
-);
-
-const passwordInput =
-document.getElementById(
-  "password"
+"email"
 );
 
 const loginButton =
 document.getElementById(
-  "loginButton"
+"loginButton"
 );
 
 const message =
 document.getElementById(
-  "message"
+"message"
 );
 
-const showPassword =
+const subtitle =
 document.getElementById(
-  "showPassword"
+"subtitle"
+);
+
+const successBox =
+document.getElementById(
+"successBox"
 );
 
 
 /* =========================
-   SHOW MESSAGE
+   MESSAGE
 ========================= */
 
 function showMessage(
-  text,
-  success = false
+text,
+success = false
 ){
 
-  message.textContent =
-    text;
+message.textContent =
+text;
 
-  message.style.color =
-    success
-      ? "#8dffa9"
-      : "#ff7777";
+message.style.color =
+success
+? "#8dffa9"
+: "#ff7777";
 
 }
-
-
-/* =========================
-   PASSWORD TOGGLE
-========================= */
-
-showPassword.addEventListener(
-  "click",
-  function(){
-
-    if(
-      passwordInput.type ===
-      "password"
-    ){
-
-      passwordInput.type =
-        "text";
-
-      showPassword.textContent =
-        "🙈";
-
-    }else{
-
-      passwordInput.type =
-        "password";
-
-      showPassword.textContent =
-        "👁️";
-
-    }
-
-  }
-);
 
 
 /* =========================
@@ -365,16 +376,70 @@ showPassword.addEventListener(
 
 const params =
 new URLSearchParams(
-  window.location.search
+window.location.search
 );
 
 const emailFromUrl =
 params.get("email");
 
+
 if(emailFromUrl){
 
-  emailInput.value =
-    emailFromUrl;
+emailInput.value =
+emailFromUrl;
+
+}
+
+
+/* =========================
+   CHECK SESSION
+========================= */
+
+async function checkExistingSession(){
+
+try{
+
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.getSession();
+
+
+if(error){
+
+console.warn(
+"Session check:",
+error.message
+);
+
+return;
+
+}
+
+
+if(
+data &&
+data.session &&
+data.session.user
+){
+
+window.location.replace(
+"offer.html"
+);
+
+}
+
+}catch(error){
+
+console.warn(
+"Session exception:",
+error
+);
+
+}
 
 }
 
@@ -384,207 +449,191 @@ if(emailFromUrl){
 ========================= */
 
 form.addEventListener(
-  "submit",
-  async function(event){
+"submit",
+async function(event){
 
-    event.preventDefault();
-
-
-    const email =
-      emailInput.value
-        .trim()
-        .toLowerCase();
-
-    const password =
-      passwordInput.value;
+event.preventDefault();
 
 
-    if(!email){
-
-      showMessage(
-        "Please enter your email."
-      );
-
-      return;
-
-    }
+const email =
+emailInput.value
+.trim()
+.toLowerCase();
 
 
-    if(!password){
+if(!email){
 
-      showMessage(
-        "Please enter your password."
-      );
+showMessage(
+"Please enter your email."
+);
 
-      return;
+return;
 
-    }
-
-
-    loginButton.disabled =
-      true;
-
-    loginButton.textContent =
-      "Logging in...";
+}
 
 
-    showMessage(
-      "Checking your account...",
-      true
-    );
+if(
+!email.includes("@") ||
+!email.includes(".")
+){
+
+showMessage(
+"Please enter a valid email address."
+);
+
+return;
+
+}
 
 
-    try{
+loginButton.disabled =
+true;
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .auth
-          .signInWithPassword({
-
-            email:
-              email,
-
-            password:
-              password
-
-          });
+loginButton.textContent =
+"Sending...";
 
 
-      if(error){
-
-        console.error(
-          "LOGIN ERROR:",
-          error
-        );
-
-        showMessage(
-          error.message
-        );
-
-        loginButton.disabled =
-          false;
-
-        loginButton.textContent =
-          "Login";
-
-        return;
-
-      }
-
-
-      if(
-        !data ||
-        !data.session ||
-        !data.user
-      ){
-
-        showMessage(
-          "Login failed. Please try again."
-        );
-
-        loginButton.disabled =
-          false;
-
-        loginButton.textContent =
-          "Login";
-
-        return;
-
-      }
-
-
-      showMessage(
-        "Login successful. Opening website...",
-        true
-      );
-
-
-      await new Promise(
-        function(resolve){
-
-          setTimeout(
-            resolve,
-            500
-          );
-
-        }
-      );
-
-
-      window.location.replace(
-        "offer.html"
-      );
-
-
-    }catch(error){
-
-      console.error(
-        "LOGIN EXCEPTION:",
-        error
-      );
-
-      showMessage(
-        "Something went wrong. Please try again."
-      );
-
-      loginButton.disabled =
-        false;
-
-      loginButton.textContent =
-        "Login";
-
-    }
-
-  }
+showMessage(
+"Sending secure login link...",
+true
 );
 
 
-/* =========================
-   EXISTING SESSION
-========================= */
+try{
 
-async function checkExistingSession(){
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.signInWithOtp({
 
-  try{
+email:email,
 
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .auth
-        .getSession();
+options:{
 
+shouldCreateUser:false,
 
-    if(error){
-
-      console.error(error);
-      return;
-
-    }
-
-
-    if(
-      data &&
-      data.session
-    ){
-
-      window.location.replace(
-        "offer.html"
-      );
-
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-  }
+emailRedirectTo:
+window.location.origin +
+"/offer.html"
 
 }
+
+});
+
+
+if(error){
+
+console.error(
+"LOGIN ERROR:",
+error
+);
+
+
+/*
+  If user does not exist,
+  show a useful message.
+*/
+
+if(
+error.message &&
+error.message
+.toLowerCase()
+.includes("signups not allowed")
+){
+
+showMessage(
+"Account not found. Please create an account first."
+);
+
+}else{
+
+showMessage(
+error.message
+);
+
+}
+
+
+loginButton.disabled =
+false;
+
+loginButton.textContent =
+"Send Login Link";
+
+return;
+
+}
+
+
+/* SUCCESS */
+
+successBox.classList.add(
+"show"
+);
+
+subtitle.textContent =
+"Check your email to continue";
+
+showMessage(
+"Login link sent to " +
+email,
+true
+);
+
+loginButton.textContent =
+"Email Sent ✓";
+
+
+}catch(error){
+
+console.error(
+"LOGIN EXCEPTION:",
+error
+);
+
+showMessage(
+"Something went wrong. Please try again."
+);
+
+loginButton.disabled =
+false;
+
+loginButton.textContent =
+"Send Login Link";
+
+}
+
+});
+
+
+/* =========================
+   AUTH LISTENER
+========================= */
+
+supabaseClient
+.auth
+.onAuthStateChange(
+function(
+event,
+session
+){
+
+if(
+event === "SIGNED_IN" &&
+session &&
+session.user
+){
+
+window.location.replace(
+"offer.html"
+);
+
+}
+
+});
 
 
 /* =========================
