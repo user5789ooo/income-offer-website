@@ -12,878 +12,1289 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link
-href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Silkscreen:wght@400;700&display=swap"
-rel="stylesheet">
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
 
 <style>
 
+/* =========================
+   RESET
+========================= */
+
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html,body{
-width:100%;
-min-height:100%;
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-font-family:'Geist',Arial,sans-serif;
-background:#050505;
-color:white;
-overflow-x:hidden;
+  min-height:100vh;
+  background:#050505;
+  color:#fff;
+  font-family:'Geist',Arial,sans-serif;
+  overflow-x:hidden;
 }
 
 a{
-color:inherit;
-text-decoration:none;
+  color:inherit;
+  text-decoration:none;
 }
 
-button,input{
-font:inherit;
+button,
+input{
+  font:inherit;
 }
 
-.hero{
-position:relative;
-width:100%;
-min-height:100vh;
-min-height:100svh;
-overflow:hidden;
-isolation:isolate;
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.page{
+  position:relative;
+  min-height:100vh;
+  overflow:hidden;
+  background:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(108,72,255,.18),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 35%,
+      rgba(0,170,255,.12),
+      transparent 30%
+    ),
+    #050505;
 }
 
-.hero-video{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-3;
-transform:scale(1.02);
-animation:zoom 18s ease-in-out infinite alternate;
+.page::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,.025) 50%,
+      transparent 100%
+    );
+  animation:backgroundMove 10s ease-in-out infinite alternate;
 }
 
-@keyframes zoom{
-from{transform:scale(1.02)}
-to{transform:scale(1.08)}
+@keyframes backgroundMove{
+  from{
+    transform:translateX(-8%);
+  }
+  to{
+    transform:translateX(8%);
+  }
 }
 
-.hero::before{
-content:"";
-position:absolute;
-inset:0;
-z-index:-2;
-background:linear-gradient(
-to bottom,
-rgba(255,255,255,.12),
-rgba(255,255,255,.04) 40%,
-rgba(0,0,0,.4)
-);
+
+/* =========================
+   POLICY TICKER
+========================= */
+
+.policy-wrap{
+  position:relative;
+  z-index:50;
+  width:100%;
+  overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(18px);
 }
 
-.hero-content{
-position:relative;
-z-index:5;
-min-height:100vh;
-min-height:100svh;
-display:flex;
-flex-direction:column;
+.policy-track{
+  display:flex;
+  width:max-content;
+  animation:ticker 26s linear infinite;
 }
 
-.nav{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:20px;
+.policy-item{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:9px 24px;
+  white-space:nowrap;
+  color:rgba(255,255,255,.78);
+  font-size:11px;
+  font-weight:500;
+}
+
+.policy-item strong{
+  color:#fff;
+}
+
+.policy-item .warning{
+  color:#ffcc72;
+}
+
+@keyframes ticker{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(-50%);
+  }
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  position:relative;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 20px;
 }
 
 .brand{
-font-size:20px;
-font-weight:700;
-color:#050505;
+  display:flex;
+  align-items:center;
+  gap:11px;
 }
 
-.desktop-nav{
-display:none;
-align-items:center;
-gap:12px;
+.logo{
+  width:46px;
+  height:46px;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.5);
+  box-shadow:
+    0 0 20px rgba(112,75,255,.35);
+  animation:logoFloat 4s ease-in-out infinite;
 }
 
-.nav-pill{
-display:flex;
-gap:4px;
-padding:6px;
-border-radius:999px;
-background:rgba(0,0,0,.2);
-backdrop-filter:blur(16px);
+@keyframes logoFloat{
+  0%,100%{
+    transform:translateY(0) rotate(0deg);
+  }
+  50%{
+    transform:translateY(-4px) rotate(1deg);
+  }
 }
 
-.nav-link{
-padding:8px 15px;
-border-radius:999px;
-color:white;
-font-size:14px;
+.brand-text{
+  display:flex;
+  flex-direction:column;
 }
 
-.nav-link:hover{
-background:rgba(255,255,255,.15);
+.brand-name{
+  font-size:17px;
+  font-weight:800;
+  letter-spacing:-.03em;
 }
 
-.cta{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-padding:11px 20px;
-border:0;
-border-radius:999px;
-background:#111;
-color:white;
-font-size:14px;
-font-weight:600;
-cursor:pointer;
+.owner{
+  margin-top:2px;
+  color:rgba(255,255,255,.45);
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.16em;
 }
 
-.profile-button{
-display:none;
-padding:10px 15px;
-border:1px solid rgba(255,255,255,.15);
-border-radius:999px;
-background:rgba(0,0,0,.28);
-color:white;
-cursor:pointer;
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
-.main{
-width:100%;
-margin-top:auto;
-padding:0 20px 35px;
-display:flex;
-flex-direction:column;
-gap:25px;
+.header-button{
+  padding:10px 14px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  cursor:pointer;
+  backdrop-filter:blur(15px);
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    border-color .2s ease;
 }
 
-.hero-left{
-max-width:620px;
+.header-button:active{
+  transform:scale(.94);
 }
 
-.eyebrow{
-display:flex;
-align-items:center;
-gap:8px;
-margin-bottom:12px;
-color:#111;
-font-size:12px;
-font-weight:700;
-text-transform:uppercase;
+.header-button:hover{
+  background:rgba(255,255,255,.11);
 }
 
-.eyebrow-dot{
-width:7px;
-height:7px;
-border-radius:50%;
-background:#111;
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  position:relative;
+  z-index:5;
+  min-height:calc(100vh - 78px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:45px 20px 70px;
+}
+
+.hero-content{
+  width:100%;
+  max-width:900px;
+  text-align:center;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 13px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  background:rgba(255,255,255,.055);
+  color:rgba(255,255,255,.75);
+  font-size:11px;
+  font-weight:600;
+  backdrop-filter:blur(15px);
+  animation:fadeUp .8s ease both;
+}
+
+.badge-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#65ff9b;
+  box-shadow:0 0 14px #65ff9b;
+  animation:pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%,100%{
+    opacity:.45;
+    transform:scale(.8);
+  }
+  50%{
+    opacity:1;
+    transform:scale(1.15);
+  }
 }
 
 h1{
-margin:0;
-color:#050505;
-font-size:clamp(2.2rem,8vw,4rem);
-line-height:1.05;
-letter-spacing:-.05em;
+  margin-top:22px;
+  font-size:clamp(2.7rem,10vw,6rem);
+  line-height:.96;
+  letter-spacing:-.07em;
+  animation:fadeUp .8s .08s ease both;
+}
+
+.gradient-text{
+  background:
+    linear-gradient(
+      100deg,
+      #fff,
+      #bdb5ff 40%,
+      #78c8ff 75%,
+      #fff
+    );
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:gradientMove 5s linear infinite;
+}
+
+@keyframes gradientMove{
+  to{
+    background-position:200% center;
+  }
 }
 
 .hero-description{
-margin:15px 0 0;
-max-width:500px;
-color:rgba(0,0,0,.7);
-font-size:14px;
-line-height:1.6;
+  max-width:620px;
+  margin:20px auto 0;
+  color:rgba(255,255,255,.58);
+  font-size:14px;
+  line-height:1.7;
+  animation:fadeUp .8s .16s ease both;
 }
 
-.email-cta{
-display:flex;
-flex-direction:column;
-gap:10px;
-margin-top:22px;
-max-width:430px;
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta-area{
+  max-width:470px;
+  margin:30px auto 0;
+  animation:fadeUp .8s .24s ease both;
 }
 
 .email-input{
-width:100%;
-padding:14px 20px;
-border:0;
-outline:0;
-border-radius:999px;
-background:white;
-color:#111;
+  width:100%;
+  height:54px;
+  padding:0 20px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:18px;
+  outline:none;
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  backdrop-filter:blur(20px);
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
 }
 
-.telegram-card{
-display:none;
-max-width:430px;
-margin-top:14px;
-padding:14px 16px;
-border-radius:15px;
-background:rgba(0,0,0,.28);
-border:1px solid rgba(255,255,255,.15);
-backdrop-filter:blur(15px);
+.email-input::placeholder{
+  color:rgba(255,255,255,.35);
 }
 
-.telegram-card.show{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:12px;
+.email-input:focus{
+  border-color:rgba(153,133,255,.7);
+  box-shadow:0 0 0 4px rgba(111,81,255,.12);
+}
+
+.primary-button{
+  width:100%;
+  height:54px;
+  margin-top:10px;
+  border:0;
+  border-radius:18px;
+  background:#fff;
+  color:#080808;
+  font-weight:800;
+  cursor:pointer;
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.primary-button:hover{
+  box-shadow:0 12px 35px rgba(255,255,255,.12);
+}
+
+.primary-button:active{
+  transform:scale(.965);
+}
+
+
+/* =========================
+   FEATURE CARDS
+========================= */
+
+.features{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  margin-top:42px;
+  animation:fadeUp .8s .32s ease both;
+}
+
+.card{
+  padding:22px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:22px;
+  background:rgba(255,255,255,.055);
+  text-align:left;
+  backdrop-filter:blur(20px);
+  transition:
+    transform .35s ease,
+    border-color .35s ease,
+    background .35s ease;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);
+}
+
+.card-icon{
+  font-size:25px;
+}
+
+.card-number{
+  margin-top:14px;
+  font-size:30px;
+  font-weight:800;
+  letter-spacing:-.05em;
+}
+
+.card-title{
+  margin-top:5px;
+  font-size:14px;
+  font-weight:700;
+}
+
+.card-text{
+  margin-top:8px;
+  color:rgba(255,255,255,.48);
+  font-size:12px;
+  line-height:1.55;
+}
+
+
+/* =========================
+   TELEGRAM
+========================= */
+
+.telegram{
+  display:none;
+  max-width:470px;
+  margin:14px auto 0;
+  padding:15px;
+  border:1px solid rgba(34,158,217,.3);
+  border-radius:18px;
+  background:rgba(34,158,217,.1);
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.telegram.show{
+  display:flex;
+  animation:fadeUp .5s ease both;
+}
+
+.telegram-text{
+  font-size:12px;
+  text-align:left;
+}
+
+.telegram-text small{
+  display:block;
+  margin-top:4px;
+  color:rgba(255,255,255,.5);
 }
 
 .telegram-button{
-padding:9px 13px;
-border-radius:999px;
-background:#229ed9;
-color:white;
-font-size:12px;
-font-weight:700;
+  flex-shrink:0;
+  padding:9px 14px;
+  border-radius:999px;
+  background:#229ed9;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
 }
 
-.cards{
-display:flex;
-flex-direction:column;
-gap:14px;
-}
 
-.glass-card{
-width:100%;
-padding:20px;
-border-radius:18px;
-background:rgba(255,255,255,.16);
-border:1px solid rgba(255,255,255,.16);
-backdrop-filter:blur(18px);
-}
-
-.stats-number{
-font-family:'Silkscreen',cursive;
-font-size:32px;
-color:#050505;
-}
-
-.stats-body{
-margin-top:12px;
-color:rgba(0,0,0,.7);
-font-size:14px;
-line-height:1.5;
-}
+/* =========================
+   PROFILE PANEL
+========================= */
 
 .profile-panel{
-display:none;
-position:fixed;
-top:75px;
-right:20px;
-z-index:100;
-width:min(340px,calc(100% - 40px));
-padding:20px;
-border-radius:20px;
-background:rgba(10,10,10,.95);
-border:1px solid rgba(255,255,255,.12);
-backdrop-filter:blur(25px);
-box-shadow:0 25px 70px rgba(0,0,0,.5);
+  position:fixed;
+  top:78px;
+  right:16px;
+  z-index:100;
+  display:none;
+  width:min(340px,calc(100% - 32px));
+  padding:20px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:22px;
+  background:rgba(10,10,10,.94);
+  backdrop-filter:blur(30px);
+  box-shadow:0 25px 80px rgba(0,0,0,.55);
 }
 
 .profile-panel.show{
-display:block;
+  display:block;
+  animation:panelIn .25s ease both;
+}
+
+@keyframes panelIn{
+  from{
+    opacity:0;
+    transform:translateY(-10px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
 }
 
 .profile-title{
-font-size:18px;
-font-weight:700;
+  font-size:18px;
+  font-weight:800;
 }
 
 .profile-email{
-margin-top:6px;
-color:rgba(255,255,255,.5);
-font-size:12px;
-word-break:break-all;
+  margin-top:6px;
+  color:rgba(255,255,255,.5);
+  font-size:12px;
+  word-break:break-all;
 }
 
 .profile-actions{
-display:flex;
-flex-direction:column;
-gap:9px;
-margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  margin-top:18px;
 }
 
 .profile-action{
-display:block;
-width:100%;
-padding:12px 14px;
-border:1px solid rgba(255,255,255,.08);
-border-radius:12px;
-background:rgba(255,255,255,.06);
-color:white;
-text-align:left;
-cursor:pointer;
-}
-
-.telegram-banner{
-background:#229ed9;
-border:0;
+  width:100%;
+  padding:13px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:13px;
+  background:rgba(255,255,255,.055);
+  color:#fff;
+  text-align:left;
+  cursor:pointer;
 }
 
 .logout{
-color:#ff8f8f;
+  color:#ff9999;
 }
 
-@media(min-width:768px){
 
-.nav{
-padding:25px 40px;
+/* =========================
+   SOUND CONTROL
+========================= */
+
+.sound-button{
+  position:fixed;
+  right:16px;
+  bottom:18px;
+  z-index:90;
+  width:45px;
+  height:45px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:50%;
+  background:rgba(10,10,10,.75);
+  color:#fff;
+  cursor:pointer;
+  backdrop-filter:blur(18px);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
 
-.desktop-nav{
-display:flex;
+.sound-button:active{
+  transform:scale(.9);
 }
 
-.profile-button{
-display:inline-flex;
+
+/* =========================
+   MOBILE TOUCH RIPPLE
+========================= */
+
+.ripple{
+  position:fixed;
+  z-index:9999;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,.5);
+  pointer-events:none;
+  transform:translate(-50%,-50%) scale(1);
+  animation:ripple .55s ease-out forwards;
 }
 
-.main{
-padding:0 40px 50px;
+@keyframes ripple{
+  to{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(12);
+  }
 }
 
-.cards{
-flex-direction:row;
-}
 
-.glass-card{
-width:250px;
-}
+/* =========================
+   RESPONSIVE
+========================= */
 
-.brand,
-.eyebrow,
-h1,
-.stats-number{
-color:white;
-}
+@media(min-width:700px){
 
-.eyebrow-dot{
-background:white;
-}
+  .header{
+    padding:22px 40px;
+  }
 
-.stats-body{
-color:rgba(255,255,255,.7);
-}
+  .hero{
+    padding-left:40px;
+    padding-right:40px;
+  }
+
+  .features{
+    grid-template-columns:repeat(3,1fr);
+  }
 
 }
 
-@media(min-width:1024px){
+@media(min-width:1000px){
 
-.nav{
-padding-left:48px;
-padding-right:48px;
-}
+  .header{
+    padding-left:60px;
+    padding-right:60px;
+  }
 
-.main{
-flex-direction:row;
-align-items:flex-end;
-justify-content:space-between;
-padding:0 48px 65px;
-}
+  .hero{
+    padding-left:60px;
+    padding-right:60px;
+  }
 
-h1{
-font-size:3.6rem;
-}
+  .features{
+    gap:16px;
+  }
 
 }
 
 </style>
 </head>
 
+
 <body>
 
-<section class="hero">
-
-<video
-class="hero-video"
-autoplay
-loop
-muted
-playsinline
-preload="auto"
->
-
-<source
-src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260803_192301_9231ed6b-c55c-4a48-909c-4ebe11cf2e11.mp4"
-type="video/mp4">
-
-</video>
+<div class="page">
 
 
-<div class="hero-content">
+<!-- =========================
+     POLICY TICKER
+========================= -->
 
+<div class="policy-wrap">
 
-<nav class="nav">
+  <div class="policy-track">
 
-<a
-class="brand"
-href="index.html"
->
-Income Offers
-</a>
+    <div class="policy-item">
+      😍 <strong>Welcome to Offer Income</strong>
+      <span>•</span>
+      ✅ We Share Trusted Campaigns & Promotional Offers.
+      <span>•</span>
+      <span class="warning">
+        ⚠️ Disclaimer: Please do your own research before using any earning method.
+        We do not promise Guaranteed Earnings.
+      </span>
+    </div>
 
+    <div class="policy-item">
+      😍 <strong>Welcome to Offer Income</strong>
+      <span>•</span>
+      ✅ We Share Trusted Campaigns & Promotional Offers.
+      <span>•</span>
+      <span class="warning">
+        ⚠️ Disclaimer: Please do your own research before using any earning method.
+        We do not promise Guaranteed Earnings.
+      </span>
+    </div>
 
-<div class="desktop-nav">
-
-<div class="nav-pill">
-
-<a
-class="nav-link"
-href="offer.html"
->
-Offers
-</a>
-
-<a
-class="nav-link"
-href="history.html"
->
-My History
-</a>
+  </div>
 
 </div>
 
 
-<button
-class="profile-button"
-id="profileButton"
-type="button"
->
-👤 My Profile
-</button>
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <a
+    href="index.html"
+    class="brand"
+  >
+
+    <img
+      class="logo"
+      src="assets/income-offers-logo.jpg"
+      alt="Income Offers"
+    >
+
+    <div class="brand-text">
+
+      <div class="brand-name">
+        Income Offers
+      </div>
+
+      <div class="owner">
+        OWNER: SAHIL
+      </div>
+
+    </div>
+
+  </a>
 
 
-<a
-class="cta"
-id="loginLink"
-href="login.html"
->
-Login
-</a>
+  <div class="header-actions">
 
-</div>
+    <a
+      href="login.html"
+      class="header-button"
+      id="loginLink"
+    >
+      Login
+    </a>
 
-</nav>
+    <button
+      class="header-button"
+      id="profileButton"
+      type="button"
+      style="display:none"
+    >
+      👤 Profile
+    </button>
 
+  </div>
+
+</header>
+
+
+<!-- =========================
+     PROFILE PANEL
+========================= -->
 
 <div
-class="profile-panel"
-id="profilePanel"
+  class="profile-panel"
+  id="profilePanel"
 >
 
-<div class="profile-title">
-My Profile
-</div>
+  <div class="profile-title">
+    My Profile
+  </div>
 
-<div
-class="profile-email"
-id="profileEmail"
->
-Loading...
-</div>
+  <div
+    class="profile-email"
+    id="profileEmail"
+  >
+    Loading...
+  </div>
 
-<div class="profile-actions">
+  <div class="profile-actions">
 
-<a
-class="profile-action"
-href="history.html"
->
-📜 View My History
-</a>
+    <a
+      class="profile-action"
+      href="offer.html"
+    >
+      💼 Browse Offers
+    </a>
 
-<a
-class="profile-action telegram-banner"
-href="https://t.me/IncomeOffersOfficia"
-target="_blank"
-rel="noopener"
->
-📢 Join My Telegram Channel
-</a>
+    <a
+      class="profile-action"
+      href="history.html"
+    >
+      📜 My History
+    </a>
 
-<button
-class="profile-action logout"
-id="logoutButton"
-type="button"
->
-🚪 Logout
-</button>
+    <a
+      class="profile-action"
+      href="profile.html"
+    >
+      👤 My Profile / UID
+    </a>
 
-</div>
+    <a
+      class="profile-action"
+      href="https://t.me/IncomeOffersOfficia"
+      target="_blank"
+      rel="noopener"
+    >
+      📢 Join Telegram
+    </a>
 
-</div>
+    <button
+      class="profile-action logout"
+      id="logoutButton"
+      type="button"
+    >
+      🚪 Logout
+    </button>
 
-
-<main class="main">
-
-
-<div class="hero-left">
-
-<div class="eyebrow">
-
-<span class="eyebrow-dot"></span>
-
-<span>Live Income Offers</span>
-
-</div>
-
-
-<h1>
-Discover offers worth opening.
-</h1>
-
-
-<p class="hero-description">
-Browse the latest active offers,
-rewards and opportunities.
-Open an offer to see the complete details.
-</p>
-
-
-<div class="email-cta">
-
-<input
-class="email-input"
-id="emailInput"
-type="email"
-placeholder="Enter your email"
->
-
-<button
-class="cta"
-id="startButton"
-type="button"
->
-Get Started
-</button>
+  </div>
 
 </div>
 
 
-<div
-class="telegram-card"
-id="telegramCard"
->
+<!-- =========================
+     HERO
+========================= -->
 
-<div>
+<main class="hero">
 
-📢 Join our Telegram
-
-<small>
-Get the latest offers and updates.
-</small>
-
-</div>
-
-<a
-class="telegram-button"
-href="https://t.me/IncomeOffersOfficia"
-target="_blank"
-rel="noopener"
->
-Join
-</a>
-
-</div>
-
-</div>
+  <div class="hero-content">
 
 
-<div class="cards">
+    <div class="badge">
 
-<div class="glass-card">
+      <span class="badge-dot"></span>
 
-<div class="stats-number">
-24/7
-</div>
+      LIVE INCOME OFFERS
 
-<div class="stats-body">
-New opportunities and active offers
-are available whenever you need them.
-</div>
-
-</div>
+    </div>
 
 
-<div class="glass-card">
+    <h1>
 
-<div class="stats-body">
-Simple, fast and easy to explore
-the latest opportunities.
-</div>
+      Discover offers
+      <br>
 
-</div>
+      <span class="gradient-text">
+        worth opening.
+      </span>
 
-</div>
+    </h1>
 
+
+    <p class="hero-description">
+
+      Browse trusted campaigns, promotional offers
+      and opportunities. Open an offer to see its
+      complete details.
+
+    </p>
+
+
+    <!-- EMAIL CTA -->
+
+    <div class="cta-area">
+
+      <input
+        class="email-input"
+        id="emailInput"
+        type="email"
+        autocomplete="email"
+        placeholder="Enter your email"
+      >
+
+      <button
+        class="primary-button"
+        id="startButton"
+        type="button"
+      >
+        Get Started
+      </button>
+
+    </div>
+
+
+    <!-- TELEGRAM -->
+
+    <div
+      class="telegram"
+      id="telegramCard"
+    >
+
+      <div class="telegram-text">
+
+        📢 Latest Offers & Updates
+
+        <small>
+          Join our official Telegram channel.
+        </small>
+
+      </div>
+
+      <a
+        class="telegram-button"
+        href="https://t.me/IncomeOffersOfficia"
+        target="_blank"
+        rel="noopener"
+      >
+        Join
+      </a>
+
+    </div>
+
+
+    <!-- FEATURES -->
+
+    <section class="features">
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          ⚡
+        </div>
+
+        <div class="card-number">
+          24/7
+        </div>
+
+        <div class="card-title">
+          Active Opportunities
+        </div>
+
+        <div class="card-text">
+          Discover available offers whenever
+          you need them.
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          🛡️
+        </div>
+
+        <div class="card-number">
+          Safe
+        </div>
+
+        <div class="card-title">
+          Clear Information
+        </div>
+
+        <div class="card-text">
+          Review offer details before deciding
+          whether to participate.
+        </div>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          🚀
+        </div>
+
+        <div class="card-number">
+          Easy
+        </div>
+
+        <div class="card-title">
+          Simple Experience
+        </div>
+
+        <div class="card-text">
+          Browse, open and keep track of
+          the offers you interact with.
+        </div>
+
+      </div>
+
+
+    </section>
+
+  </div>
 
 </main>
 
+
+<!-- =========================
+     SOUND BUTTON
+========================= -->
+
+<button
+  class="sound-button"
+  id="soundButton"
+  type="button"
+  aria-label="Toggle sound"
+>
+  🔇
+</button>
+
+
 </div>
 
-</section>
 
+<!-- =========================
+     SUPABASE
+========================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase-config.js"></script>
 
 
 <script>
 
-/* ELEMENTS */
+/* =========================
+   ELEMENTS
+========================= */
 
 const loginLink =
-document.getElementById("loginLink");
+  document.getElementById("loginLink");
 
 const profileButton =
-document.getElementById("profileButton");
+  document.getElementById("profileButton");
 
 const profilePanel =
-document.getElementById("profilePanel");
+  document.getElementById("profilePanel");
 
 const profileEmail =
-document.getElementById("profileEmail");
+  document.getElementById("profileEmail");
 
 const logoutButton =
-document.getElementById("logoutButton");
+  document.getElementById("logoutButton");
 
 const emailInput =
-document.getElementById("emailInput");
+  document.getElementById("emailInput");
 
 const startButton =
-document.getElementById("startButton");
+  document.getElementById("startButton");
 
 const telegramCard =
-document.getElementById("telegramCard");
+  document.getElementById("telegramCard");
+
+const soundButton =
+  document.getElementById("soundButton");
 
 
-/* UPDATE UI */
+/* =========================
+   SOUND ENGINE
+========================= */
+
+let soundEnabled = false;
+
+let audioContext = null;
+
+
+function enableAudio(){
+
+  if(!audioContext){
+
+    audioContext =
+      new (
+        window.AudioContext ||
+        window.webkitAudioContext
+      )();
+
+  }
+
+  if(
+    audioContext.state ===
+    "suspended"
+  ){
+
+    audioContext.resume();
+
+  }
+
+}
+
+
+function playClick(){
+
+  if(!soundEnabled) return;
+
+  enableAudio();
+
+  const oscillator =
+    audioContext.createOscillator();
+
+  const gain =
+    audioContext.createGain();
+
+  oscillator.type = "sine";
+
+  oscillator.frequency.setValueAtTime(
+    520,
+    audioContext.currentTime
+  );
+
+  oscillator.frequency.exponentialRampToValueAtTime(
+    260,
+    audioContext.currentTime + .07
+  );
+
+  gain.gain.setValueAtTime(
+    .045,
+    audioContext.currentTime
+  );
+
+  gain.gain.exponentialRampToValueAtTime(
+    .001,
+    audioContext.currentTime + .08
+  );
+
+  oscillator.connect(gain);
+
+  gain.connect(
+    audioContext.destination
+  );
+
+  oscillator.start();
+
+  oscillator.stop(
+    audioContext.currentTime + .09
+  );
+
+}
+
+
+function playSuccess(){
+
+  if(!soundEnabled) return;
+
+  enableAudio();
+
+  const notes =
+    [523,659,784];
+
+  notes.forEach(
+    function(freq,index){
+
+      const oscillator =
+        audioContext.createOscillator();
+
+      const gain =
+        audioContext.createGain();
+
+      oscillator.type = "sine";
+
+      oscillator.frequency.value =
+        freq;
+
+      const start =
+        audioContext.currentTime +
+        index * .11;
+
+      gain.gain.setValueAtTime(
+        .001,
+        start
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        .06,
+        start + .025
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        .001,
+        start + .20
+      );
+
+      oscillator.connect(gain);
+
+      gain.connect(
+        audioContext.destination
+      );
+
+      oscillator.start(start);
+
+      oscillator.stop(
+        start + .22
+      );
+
+    }
+  );
+
+}
+
+
+/* =========================
+   SOUND TOGGLE
+========================= */
+
+soundButton.addEventListener(
+  "click",
+  function(){
+
+    enableAudio();
+
+    soundEnabled =
+      !soundEnabled;
+
+    soundButton.textContent =
+      soundEnabled
+        ? "🔊"
+        : "🔇";
+
+    if(soundEnabled){
+
+      playClick();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   TOUCH FEEDBACK
+========================= */
+
+document.addEventListener(
+  "pointerdown",
+  function(event){
+
+    const target =
+      event.target.closest(
+        "button,a"
+      );
+
+    if(!target) return;
+
+    playClick();
+
+    const ripple =
+      document.createElement("span");
+
+    ripple.className =
+      "ripple";
+
+    ripple.style.left =
+      event.clientX + "px";
+
+    ripple.style.top =
+      event.clientY + "px";
+
+    document.body.appendChild(
+      ripple
+    );
+
+    setTimeout(
+      function(){
+        ripple.remove();
+      },
+      600
+    );
+
+  }
+);
+
+
+/* =========================
+   UI SESSION
+========================= */
 
 function updateUI(session){
 
-if(session && session.user){
+  if(
+    session &&
+    session.user
+  ){
 
-emailInput.style.display="none";
+    emailInput.style.display =
+      "none";
 
-startButton.textContent="View Offers";
+    startButton.textContent =
+      "View Offers";
 
-loginLink.style.display="none";
+    loginLink.style.display =
+      "none";
 
-profileButton.style.display="inline-flex";
+    profileButton.style.display =
+      "block";
 
-profileEmail.textContent =
-session.user.email ||
-"Logged in user";
+    profileEmail.textContent =
+      session.user.email ||
+      "Logged in user";
 
-telegramCard.classList.add("show");
+    telegramCard.classList.add(
+      "show"
+    );
 
-}else{
+  }else{
 
-emailInput.style.display="block";
-
-startButton.textContent="Get Started";
-
-loginLink.style.display="inline-flex";
-
-profileButton.style.display="none";
-
-profilePanel.classList.remove("show");
-
-profileEmail.textContent="";
-
-telegramCard.classList.remove("show");
-
-}
-
-}
-
-
-/* CHECK SESSION */
-
-async function loadSession(){
-
-try{
-
-const {
-data,
-error
-} =
-await supabaseClient.auth.getSession();
-
-if(error){
-
-console.error(error);
-
-return;
-
-}
-
-updateUI(data.session);
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-
-/* AUTH LISTENER */
-
-supabaseClient.auth.onAuthStateChange(
-function(event,session){
-
-updateUI(session);
-
-}
-);
-
-
-/* PROFILE */
-
-profileButton.addEventListener(
-"click",
-function(event){
-
-event.stopPropagation();
-
-profilePanel.classList.toggle("show");
-
-}
-);
-
-
-/* CLOSE PROFILE */
-
-document.addEventListener(
-"click",
-function(event){
-
-if(
-profilePanel.classList.contains("show") &&
-!profilePanel.contains(event.target) &&
-event.target !== profileButton
-){
-
-profilePanel.classList.remove("show");
-
-}
-
-}
-);
-
-
-/* GET STARTED */
-
-startButton.addEventListener(
-"click",
-async function(){
-
-const {
-data
-} =
-await supabaseClient.auth.getSession();
-
-
-if(data.session){
-
-window.location.href="offer.html";
-
-return;
-
-}
-
-
-const email =
-emailInput.value.trim();
-
-
-if(!email){
-
-window.location.href="login.html";
-
-return;
-
-}
-
-
-if(!email.includes("@")){
-
-alert("Please enter a valid email.");
-
-return;
-
-}
-
-
-window.location.href =
-"login.html?email="+
-encodeURIComponent(email);
-
-}
-);
-
-
-/* LOGOUT */
-
-logoutButton.addEventListener(
-"click",
-async function(){
-
-logoutButton.disabled=true;
-
-logoutButton.textContent=
-"Logging out...";
-
-
-const {
-error
-} =
-await supabaseClient.auth.signOut();
-
-
-if(error){
-
-console.error(error);
-
-alert(
-"Logout failed. Please try again."
-);
-
-logoutButton.disabled=false;
-
-logoutButton.textContent=
-"🚪 Logout";
-
-return;
-
-}
-
-
-profilePanel.classList.remove("show");
-
-window.location.replace(
-"index.html"
-);
-
-}
-);
-
-
-/* START */
-
-loadSession();
-
-</script>
-
-</body>
-</html>
+  
