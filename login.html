@@ -1,27 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050505">
 
-<title>SAHIL - Login</title>
+<title>Income Offers - Login</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
 
 <style>
+
 *{
   box-sizing:border-box;
-  font-family:Arial,sans-serif;
+  margin:0;
+  padding:0;
 }
 
 body{
-  margin:0;
   min-height:100vh;
-  background:#050505;
-  color:white;
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(105,75,255,.20),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(0,180,255,.10),
+      transparent 35%
+    ),
+    #050505;
+  color:#fff;
+  font-family:'Geist',Arial,sans-serif;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:20px;
+  overflow:hidden;
 }
 
 .login-box{
@@ -29,107 +52,118 @@ body{
   max-width:430px;
   padding:30px;
   border:1px solid rgba(255,255,255,.12);
-  border-radius:26px;
-  background:rgba(255,255,255,.06);
-  box-shadow:0 25px 80px rgba(0,0,0,.4);
+  border-radius:28px;
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(25px);
+  box-shadow:0 30px 90px rgba(0,0,0,.5);
+  animation:boxIn .7s ease both;
+}
+
+@keyframes boxIn{
+  from{
+    opacity:0;
+    transform:translateY(30px) scale(.96);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
 }
 
 .logo{
-  width:70px;
-  height:70px;
+  width:76px;
+  height:76px;
   margin:0 auto 20px;
-  border-radius:20px;
-  background:white;
-  color:#111;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:38px;
-  font-weight:bold;
+  display:block;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.45);
+  box-shadow:0 0 30px rgba(105,75,255,.35);
+  animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-5px);
+  }
 }
 
 h1{
   text-align:center;
-  margin:0 0 8px;
-  font-size:34px;
+  font-size:32px;
+  letter-spacing:-.05em;
 }
 
 .subtitle{
+  margin:9px 0 28px;
   text-align:center;
   color:rgba(255,255,255,.5);
-  margin:0 0 28px;
+  font-size:14px;
+  line-height:1.5;
 }
 
 label{
   display:block;
-  margin:15px 0 7px;
-  font-weight:bold;
+  margin:0 0 8px;
   color:rgba(255,255,255,.8);
+  font-size:13px;
+  font-weight:700;
 }
 
 input{
   width:100%;
-  padding:15px;
+  height:54px;
+  padding:0 16px;
   border:1px solid rgba(255,255,255,.12);
-  border-radius:13px;
-  background:rgba(255,255,255,.07);
-  color:white;
-  font-size:16px;
+  border-radius:16px;
   outline:none;
+  background:rgba(255,255,255,.065);
+  color:#fff;
+  font-size:16px;
+  transition:.2s ease;
+}
+
+input::placeholder{
+  color:rgba(255,255,255,.3);
 }
 
 input:focus{
-  border-color:rgba(255,255,255,.35);
+  border-color:rgba(150,130,255,.7);
+  box-shadow:0 0 0 4px rgba(105,75,255,.12);
 }
 
-.password-box{
-  position:relative;
-}
-
-.password-box input{
-  padding-right:58px;
-}
-
-.show-password{
-  position:absolute;
-  right:5px;
-  top:50%;
-  transform:translateY(-50%);
-  width:48px;
-  height:48px;
-  padding:0;
-  border:0;
-  background:transparent;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  cursor:pointer;
-  z-index:5;
-}
-
-button.login{
+.login{
   width:100%;
-  margin-top:22px;
-  padding:15px;
+  height:54px;
+  margin-top:15px;
   border:0;
-  border-radius:999px;
-  background:white;
-  color:#111;
-  font-size:16px;
-  font-weight:bold;
+  border-radius:16px;
+  background:#fff;
+  color:#080808;
+  font-weight:800;
   cursor:pointer;
+  transition:.2s ease;
 }
 
-button.login:disabled{
+.login:active{
+  transform:scale(.97);
+}
+
+.login:disabled{
   opacity:.5;
+  cursor:not-allowed;
 }
 
 .message{
+  min-height:22px;
   margin-top:16px;
   text-align:center;
-  font-size:14px;
+  font-size:13px;
   line-height:1.5;
 }
 
@@ -138,12 +172,13 @@ button.login:disabled{
   padding-top:20px;
   border-top:1px solid rgba(255,255,255,.08);
   text-align:center;
-  color:rgba(255,255,255,.55);
+  color:rgba(255,255,255,.5);
+  font-size:13px;
 }
 
 .signup a{
-  color:white;
-  font-weight:bold;
+  color:#fff;
+  font-weight:700;
   text-decoration:none;
 }
 
@@ -151,24 +186,71 @@ button.login:disabled{
   display:block;
   margin-top:20px;
   text-align:center;
-  color:rgba(255,255,255,.45);
+  color:rgba(255,255,255,.4);
   text-decoration:none;
-  font-size:14px;
+  font-size:13px;
 }
+
+.success-icon{
+  display:none;
+  width:65px;
+  height:65px;
+  margin:20px auto 5px;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:rgba(101,255,155,.12);
+  border:1px solid rgba(101,255,155,.35);
+  color:#8dffa9;
+  font-size:30px;
+  animation:successPop .5s ease both;
+}
+
+.success-icon.show{
+  display:flex;
+}
+
+@keyframes successPop{
+  from{
+    opacity:0;
+    transform:scale(.4);
+  }
+
+  70%{
+    transform:scale(1.12);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="login-box">
 
-  <div class="logo">S</div>
+  <img
+    class="logo"
+    src="assets/income-offers-logo.jpg"
+    alt="Income Offers"
+  >
 
-  <h1>Welcome Back</h1>
+  <h1>
+    Welcome Back
+  </h1>
 
-  <p class="subtitle">
-    Login to continue
+  <p
+    class="subtitle"
+    id="subtitle"
+  >
+    Enter your email to continue
   </p>
+
 
   <form id="loginForm">
 
@@ -177,51 +259,37 @@ button.login:disabled{
     </label>
 
     <input
-      type="email"
       id="email"
-      placeholder="Enter your email"
+      type="email"
+      placeholder="Enter your Gmail / email"
       autocomplete="email"
       required
     >
-
-    <label for="password">
-      Password
-    </label>
-
-    <div class="password-box">
-
-      <input
-        type="password"
-        id="password"
-        placeholder="Enter your password"
-        autocomplete="current-password"
-        required
-      >
-
-      <button
-        type="button"
-        class="show-password"
-        id="showPassword"
-      >
-        👁️
-      </button>
-
-    </div>
 
     <button
       type="submit"
       class="login"
       id="loginButton"
     >
-      Login
+      Send Login Link
     </button>
 
   </form>
+
+
+  <div
+    class="success-icon"
+    id="successIcon"
+  >
+    ✓
+  </div>
+
 
   <div
     class="message"
     id="message"
   ></div>
+
 
   <div class="signup">
 
@@ -232,6 +300,7 @@ button.login:disabled{
     </a>
 
   </div>
+
 
   <a
     class="back"
@@ -244,48 +313,10 @@ button.login:disabled{
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase-config.js"></script>
 
 <script>
-
-let supabaseClient = null;
-
-
-/* =========================
-   INIT SUPABASE
-========================= */
-
-function initSupabase(){
-
-  if(
-    !window.supabase ||
-    typeof SUPABASE_URL === "undefined" ||
-    typeof SUPABASE_ANON_KEY === "undefined"
-  ){
-
-    showMessage(
-      "Supabase configuration পাওয়া যায়নি।"
-    );
-
-    return false;
-  }
-
-  supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_ANON_KEY,
-      {
-        auth:{
-          persistSession:true,
-          autoRefreshToken:true,
-          detectSessionInUrl:true
-        }
-      }
-    );
-
-  return true;
-}
-
 
 /* =========================
    ELEMENTS
@@ -301,11 +332,6 @@ const emailInput =
     "email"
   );
 
-const passwordInput =
-  document.getElementById(
-    "password"
-  );
-
 const loginButton =
   document.getElementById(
     "loginButton"
@@ -316,10 +342,35 @@ const message =
     "message"
   );
 
-const showPassword =
+const subtitle =
   document.getElementById(
-    "showPassword"
+    "subtitle"
   );
+
+const successIcon =
+  document.getElementById(
+    "successIcon"
+  );
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(
+  text,
+  success=false
+){
+
+  message.textContent =
+    text;
+
+  message.style.color =
+    success
+      ? "#8dffa9"
+      : "#ff7777";
+
+}
 
 
 /* =========================
@@ -334,65 +385,11 @@ const params =
 const emailFromUrl =
   params.get("email");
 
+
 if(emailFromUrl){
 
   emailInput.value =
     emailFromUrl;
-
-}
-
-
-/* =========================
-   SHOW / HIDE PASSWORD
-========================= */
-
-showPassword.addEventListener(
-  "click",
-  function(event){
-
-    event.preventDefault();
-
-    if(
-      passwordInput.type ===
-      "password"
-    ){
-
-      passwordInput.type =
-        "text";
-
-      showPassword.textContent =
-        "🙈";
-
-    }else{
-
-      passwordInput.type =
-        "password";
-
-      showPassword.textContent =
-        "👁️";
-
-    }
-
-  }
-);
-
-
-/* =========================
-   MESSAGE
-========================= */
-
-function showMessage(
-  text,
-  success = false
-){
-
-  message.textContent =
-    text;
-
-  message.style.color =
-    success
-      ? "#8dffa9"
-      : "#ff7777";
 
 }
 
@@ -408,26 +405,27 @@ form.addEventListener(
     event.preventDefault();
 
 
-    if(!initSupabase()){
+    const email =
+      emailInput.value
+        .trim()
+        .toLowerCase();
+
+
+    if(!email){
+
+      showMessage(
+        "Please enter your email."
+      );
 
       return;
 
     }
 
 
-    const email =
-      emailInput.value
-        .trim()
-        .toLowerCase();
-
-    const password =
-      passwordInput.value;
-
-
-    if(!email || !password){
+    if(!email.includes("@")){
 
       showMessage(
-        "Please enter email and password."
+        "Please enter a valid email."
       );
 
       return;
@@ -439,10 +437,11 @@ form.addEventListener(
       true;
 
     loginButton.textContent =
-      "Logging in...";
+      "Sending Link...";
+
 
     showMessage(
-      "Please wait...",
+      "Preparing secure login...",
       true
     );
 
@@ -450,18 +449,23 @@ form.addEventListener(
     try{
 
       const {
-        data,
         error
       } =
         await supabaseClient
           .auth
-          .signInWithPassword({
+          .signInWithOtp({
 
-            email:
-              email,
+            email:email,
 
-            password:
-              password
+            options:{
+
+              shouldCreateUser:false,
+
+              emailRedirectTo:
+                window.location.origin +
+                "/index.html"
+
+            }
 
           });
 
@@ -482,93 +486,27 @@ form.addEventListener(
           false;
 
         loginButton.textContent =
-          "Login";
+          "Send Login Link";
 
         return;
 
       }
 
 
-      if(
-        !data ||
-        !data.user ||
-        !data.session
-      ){
+      successIcon.classList.add(
+        "show"
+      );
 
-        showMessage(
-          "Login failed: Session তৈরি হয়নি।"
-        );
-
-        loginButton.disabled =
-          false;
-
-        loginButton.textContent =
-          "Login";
-
-        return;
-
-      }
-
-
-      /*
-        Confirm that Supabase has
-        actually stored the session.
-      */
-
-      const {
-        data: sessionData
-      } =
-        await supabaseClient
-          .auth
-          .getSession();
-
-
-      if(
-        !sessionData ||
-        !sessionData.session
-      ){
-
-        showMessage(
-          "Login হয়েছে, কিন্তু session পাওয়া যাচ্ছে না। আবার চেষ্টা করো।"
-        );
-
-        loginButton.disabled =
-          false;
-
-        loginButton.textContent =
-          "Login";
-
-        return;
-
-      }
-
+      subtitle.textContent =
+        "Check your email to continue";
 
       showMessage(
-        "Login successful! Opening website...",
+        "A secure login link has been sent to your email.",
         true
       );
 
-
-      /*
-        Give localStorage/session
-        a moment before navigation.
-      */
-
-      await new Promise(
-        function(resolve){
-
-          setTimeout(
-            resolve,
-            500
-          );
-
-        }
-      );
-
-
-      window.location.replace(
-        "index.html"
-      );
+      loginButton.textContent =
+        "Login Link Sent";
 
 
     }catch(error){
@@ -586,7 +524,7 @@ form.addEventListener(
         false;
 
       loginButton.textContent =
-        "Login";
+        "Send Login Link";
 
     }
 
@@ -600,21 +538,26 @@ form.addEventListener(
 
 async function checkExistingSession(){
 
-  if(!initSupabase()){
-
-    return;
-
-  }
-
-
   try{
 
     const {
-      data
+      data,
+      error
     } =
       await supabaseClient
         .auth
         .getSession();
+
+
+    if(error){
+
+      console.error(
+        error
+      );
+
+      return;
+
+    }
 
 
     if(
