@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050505">
@@ -17,10 +16,6 @@
 >
 
 <style>
-
-/* =========================
-   RESET
-========================= */
 
 *{
   box-sizing:border-box;
@@ -50,9 +45,8 @@ input{
   font:inherit;
 }
 
-
 /* =========================
-   BACKGROUND
+   MAIN BACKGROUND
 ========================= */
 
 .page{
@@ -61,13 +55,13 @@ input{
   overflow:hidden;
   background:
     radial-gradient(
-      circle at 20% 10%,
-      rgba(108,72,255,.18),
+      circle at 15% 10%,
+      rgba(105,75,255,.20),
       transparent 32%
     ),
     radial-gradient(
       circle at 85% 35%,
-      rgba(0,170,255,.12),
+      rgba(0,180,255,.12),
       transparent 30%
     ),
     #050505;
@@ -81,14 +75,14 @@ input{
   background:
     linear-gradient(
       120deg,
-      transparent 0%,
-      rgba(255,255,255,.025) 50%,
-      transparent 100%
+      transparent,
+      rgba(255,255,255,.025),
+      transparent
     );
-  animation:backgroundMove 10s ease-in-out infinite alternate;
+  animation:bgMove 10s ease-in-out infinite alternate;
 }
 
-@keyframes backgroundMove{
+@keyframes bgMove{
   from{
     transform:translateX(-8%);
   }
@@ -96,7 +90,6 @@ input{
     transform:translateX(8%);
   }
 }
-
 
 /* =========================
    POLICY TICKER
@@ -115,7 +108,7 @@ input{
 .policy-track{
   display:flex;
   width:max-content;
-  animation:ticker 26s linear infinite;
+  animation:ticker 30s linear infinite;
 }
 
 .policy-item{
@@ -124,7 +117,7 @@ input{
   gap:18px;
   padding:9px 24px;
   white-space:nowrap;
-  color:rgba(255,255,255,.78);
+  color:rgba(255,255,255,.75);
   font-size:11px;
   font-weight:500;
 }
@@ -133,8 +126,8 @@ input{
   color:#fff;
 }
 
-.policy-item .warning{
-  color:#ffcc72;
+.warning{
+  color:#ffca70;
 }
 
 @keyframes ticker{
@@ -145,7 +138,6 @@ input{
     transform:translateX(-50%);
   }
 }
-
 
 /* =========================
    HEADER
@@ -167,22 +159,22 @@ input{
 }
 
 .logo{
-  width:46px;
-  height:46px;
+  width:48px;
+  height:48px;
   object-fit:cover;
   border-radius:50%;
-  border:2px solid rgba(255,255,255,.5);
+  border:2px solid rgba(255,255,255,.45);
   box-shadow:
-    0 0 20px rgba(112,75,255,.35);
+    0 0 22px rgba(110,80,255,.35);
   animation:logoFloat 4s ease-in-out infinite;
 }
 
 @keyframes logoFloat{
   0%,100%{
-    transform:translateY(0) rotate(0deg);
+    transform:translateY(0);
   }
   50%{
-    transform:translateY(-4px) rotate(1deg);
+    transform:translateY(-4px);
   }
 }
 
@@ -198,11 +190,11 @@ input{
 }
 
 .owner{
-  margin-top:2px;
-  color:rgba(255,255,255,.45);
+  margin-top:3px;
+  color:rgba(255,255,255,.42);
   font-size:8px;
   font-weight:700;
-  letter-spacing:.16em;
+  letter-spacing:.17em;
 }
 
 .header-actions{
@@ -219,20 +211,16 @@ input{
   color:#fff;
   cursor:pointer;
   backdrop-filter:blur(15px);
-  transition:
-    transform .2s ease,
-    background .2s ease,
-    border-color .2s ease;
-}
-
-.header-button:active{
-  transform:scale(.94);
+  transition:.2s ease;
 }
 
 .header-button:hover{
   background:rgba(255,255,255,.11);
 }
 
+.header-button:active{
+  transform:scale(.94);
+}
 
 /* =========================
    HERO
@@ -339,9 +327,8 @@ h1{
   }
 }
 
-
 /* =========================
-   CTA
+   EMAIL CTA
 ========================= */
 
 .cta-area{
@@ -360,9 +347,7 @@ h1{
   background:rgba(255,255,255,.07);
   color:#fff;
   backdrop-filter:blur(20px);
-  transition:
-    border-color .2s ease,
-    box-shadow .2s ease;
+  transition:.2s ease;
 }
 
 .email-input::placeholder{
@@ -384,9 +369,7 @@ h1{
   color:#080808;
   font-weight:800;
   cursor:pointer;
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
+  transition:.2s ease;
 }
 
 .primary-button:hover{
@@ -397,9 +380,8 @@ h1{
   transform:scale(.965);
 }
 
-
 /* =========================
-   FEATURE CARDS
+   FEATURES
 ========================= */
 
 .features{
@@ -417,10 +399,7 @@ h1{
   background:rgba(255,255,255,.055);
   text-align:left;
   backdrop-filter:blur(20px);
-  transition:
-    transform .35s ease,
-    border-color .35s ease,
-    background .35s ease;
+  transition:.35s ease;
 }
 
 .card:hover{
@@ -452,7 +431,6 @@ h1{
   font-size:12px;
   line-height:1.55;
 }
-
 
 /* =========================
    TELEGRAM
@@ -488,7 +466,6 @@ h1{
 }
 
 .telegram-button{
-  flex-shrink:0;
   padding:9px 14px;
   border-radius:999px;
   background:#229ed9;
@@ -497,9 +474,8 @@ h1{
   font-weight:800;
 }
 
-
 /* =========================
-   PROFILE PANEL
+   PROFILE
 ========================= */
 
 .profile-panel{
@@ -567,9 +543,8 @@ h1{
   color:#ff9999;
 }
 
-
 /* =========================
-   SOUND CONTROL
+   SOUND
 ========================= */
 
 .sound-button{
@@ -592,9 +567,8 @@ h1{
   transform:scale(.9);
 }
 
-
 /* =========================
-   MOBILE TOUCH RIPPLE
+   TOUCH RIPPLE
 ========================= */
 
 .ripple{
@@ -605,7 +579,7 @@ h1{
   border-radius:50%;
   background:rgba(255,255,255,.5);
   pointer-events:none;
-  transform:translate(-50%,-50%) scale(1);
+  transform:translate(-50%,-50%);
   animation:ripple .55s ease-out forwards;
 }
 
@@ -615,7 +589,6 @@ h1{
     transform:translate(-50%,-50%) scale(12);
   }
 }
-
 
 /* =========================
    RESPONSIVE
@@ -659,15 +632,11 @@ h1{
 </style>
 </head>
 
-
 <body>
 
 <div class="page">
 
-
-<!-- =========================
-     POLICY TICKER
-========================= -->
+<!-- POLICY -->
 
 <div class="policy-wrap">
 
@@ -700,9 +669,7 @@ h1{
 </div>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
 <header class="header">
 
@@ -756,9 +723,7 @@ h1{
 </header>
 
 
-<!-- =========================
-     PROFILE PANEL
-========================= -->
+<!-- PROFILE PANEL -->
 
 <div
   class="profile-panel"
@@ -821,14 +786,11 @@ h1{
 </div>
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
 <main class="hero">
 
   <div class="hero-content">
-
 
     <div class="badge">
 
@@ -860,8 +822,6 @@ h1{
     </p>
 
 
-    <!-- EMAIL CTA -->
-
     <div class="cta-area">
 
       <input
@@ -882,8 +842,6 @@ h1{
 
     </div>
 
-
-    <!-- TELEGRAM -->
 
     <div
       class="telegram"
@@ -912,10 +870,7 @@ h1{
     </div>
 
 
-    <!-- FEATURES -->
-
     <section class="features">
-
 
       <div class="card">
 
@@ -982,7 +937,6 @@ h1{
 
       </div>
 
-
     </section>
 
   </div>
@@ -990,9 +944,7 @@ h1{
 </main>
 
 
-<!-- =========================
-     SOUND BUTTON
-========================= -->
+<!-- SOUND -->
 
 <button
   class="sound-button"
@@ -1003,24 +955,17 @@ h1{
   🔇
 </button>
 
-
 </div>
 
 
-<!-- =========================
-     SUPABASE
-========================= -->
+<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script src="supabase-config.js"></script>
-
 
 <script>
 
-/* =========================
-   ELEMENTS
-========================= */
+/* ELEMENTS */
 
 const loginLink =
   document.getElementById("loginLink");
@@ -1050,12 +995,9 @@ const soundButton =
   document.getElementById("soundButton");
 
 
-/* =========================
-   SOUND ENGINE
-========================= */
+/* SOUND */
 
 let soundEnabled = false;
-
 let audioContext = null;
 
 
@@ -1072,8 +1014,7 @@ function enableAudio(){
   }
 
   if(
-    audioContext.state ===
-    "suspended"
+    audioContext.state === "suspended"
   ){
 
     audioContext.resume();
@@ -1118,10 +1059,7 @@ function playClick(){
   );
 
   oscillator.connect(gain);
-
-  gain.connect(
-    audioContext.destination
-  );
+  gain.connect(audioContext.destination);
 
   oscillator.start();
 
@@ -1132,69 +1070,7 @@ function playClick(){
 }
 
 
-function playSuccess(){
-
-  if(!soundEnabled) return;
-
-  enableAudio();
-
-  const notes =
-    [523,659,784];
-
-  notes.forEach(
-    function(freq,index){
-
-      const oscillator =
-        audioContext.createOscillator();
-
-      const gain =
-        audioContext.createGain();
-
-      oscillator.type = "sine";
-
-      oscillator.frequency.value =
-        freq;
-
-      const start =
-        audioContext.currentTime +
-        index * .11;
-
-      gain.gain.setValueAtTime(
-        .001,
-        start
-      );
-
-      gain.gain.exponentialRampToValueAtTime(
-        .06,
-        start + .025
-      );
-
-      gain.gain.exponentialRampToValueAtTime(
-        .001,
-        start + .20
-      );
-
-      oscillator.connect(gain);
-
-      gain.connect(
-        audioContext.destination
-      );
-
-      oscillator.start(start);
-
-      oscillator.stop(
-        start + .22
-      );
-
-    }
-  );
-
-}
-
-
-/* =========================
-   SOUND TOGGLE
-========================= */
+/* SOUND TOGGLE */
 
 soundButton.addEventListener(
   "click",
@@ -1211,27 +1087,21 @@ soundButton.addEventListener(
         : "🔇";
 
     if(soundEnabled){
-
       playClick();
-
     }
 
   }
 );
 
 
-/* =========================
-   TOUCH FEEDBACK
-========================= */
+/* TOUCH RIPPLE */
 
 document.addEventListener(
   "pointerdown",
   function(event){
 
     const target =
-      event.target.closest(
-        "button,a"
-      );
+      event.target.closest("button,a");
 
     if(!target) return;
 
@@ -1249,9 +1119,7 @@ document.addEventListener(
     ripple.style.top =
       event.clientY + "px";
 
-    document.body.appendChild(
-      ripple
-    );
+    document.body.appendChild(ripple);
 
     setTimeout(
       function(){
@@ -1264,9 +1132,7 @@ document.addEventListener(
 );
 
 
-/* =========================
-   UI SESSION
-========================= */
+/* UI */
 
 function updateUI(session){
 
@@ -1297,4 +1163,187 @@ function updateUI(session){
 
   }else{
 
-  
+    emailInput.style.display =
+      "block";
+
+    startButton.textContent =
+      "Get Started";
+
+    loginLink.style.display =
+      "block";
+
+    profileButton.style.display =
+      "none";
+
+    profilePanel.classList.remove(
+      "show"
+    );
+
+    profileEmail.textContent =
+      "";
+
+    telegramCard.classList.remove(
+      "show"
+    );
+
+  }
+
+}
+
+
+/* SESSION */
+
+async function loadSession(){
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .auth
+        .getSession();
+
+    if(error){
+
+      console.error(error);
+
+      return;
+
+    }
+
+    updateUI(
+      data.session
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* AUTH LISTENER */
+
+supabaseClient
+  .auth
+  .onAuthStateChange(
+    function(
+      event,
+      session
+    ){
+
+      updateUI(session);
+
+    }
+  );
+
+
+/* PROFILE */
+
+profileButton.addEventListener(
+  "click",
+  function(event){
+
+    event.stopPropagation();
+
+    profilePanel.classList.toggle(
+      "show"
+    );
+
+    playClick();
+
+  }
+);
+
+
+/* CLOSE PROFILE */
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    if(
+      profilePanel.classList.contains(
+        "show"
+      ) &&
+      !profilePanel.contains(
+        event.target
+      ) &&
+      event.target !==
+        profileButton
+    ){
+
+      profilePanel.classList.remove(
+        "show"
+      );
+
+    }
+
+  }
+);
+
+
+/* GET STARTED */
+
+startButton.addEventListener(
+  "click",
+  async function(){
+
+    playClick();
+
+    try{
+
+      const {
+        data
+      } =
+        await supabaseClient
+          .auth
+          .getSession();
+
+      if(data.session){
+
+        window.location.href =
+          "offer.html";
+
+        return;
+
+      }
+
+    }catch(error){
+
+      console.error(error);
+
+    }
+
+
+    const email =
+      emailInput.value.trim();
+
+
+    if(!email){
+
+      window.location.href =
+        "login.html";
+
+      return;
+
+    }
+
+
+    if(!email.includes("@")){
+
+      alert(
+        "Please enter a valid email."
+      );
+
+      return;
+
+    }
+
+
+    window.location.href =
+      "login.html?e
