@@ -1,752 +1,676 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050505">
-
-  <title>Help - Nexum</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
-    }
-
-    body {
-      background: #050505;
-      color: white;
-      font-family:
-        'Geist',
-        -apple-system,
-        BlinkMacSystemFont,
-        sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* BACKGROUND */
-
-    .background {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-
-      background:
-        radial-gradient(
-          circle at 15% 15%,
-          rgba(255,255,255,.08),
-          transparent 35%
-        ),
-        radial-gradient(
-          circle at 85% 85%,
-          rgba(255,255,255,.05),
-          transparent 35%
-        ),
-        #050505;
-    }
-
-    /* HEADER */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,.08);
-
-      background:
-        rgba(5,5,5,.72);
-
-      backdrop-filter:
-        blur(20px);
-
-      -webkit-backdrop-filter:
-        blur(20px);
-    }
-
-    .nav {
-      max-width: 900px;
-      margin: auto;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      padding: 17px 20px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      font-size: 18px;
-      font-weight: 700;
-    }
 
-    .brand svg {
-      width: 24px;
-      height: 24px;
-      fill: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+
+<title>Income Offers - Help</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+min-height:100vh;
+background:
+radial-gradient(
+circle at 15% 10%,
+rgba(105,75,255,.16),
+transparent 35%
+),
+radial-gradient(
+circle at 90% 85%,
+rgba(0,180,255,.09),
+transparent 35%
+),
+#050505;
+color:#fff;
+font-family:'Geist',Arial,sans-serif;
+overflow-x:hidden;
+}
+
+a{
+color:inherit;
+text-decoration:none;
+}
+
+button{
+font:inherit;
+}
+
+.background{
+position:fixed;
+inset:0;
+z-index:-2;
+background:
+radial-gradient(
+circle at 50% 50%,
+rgba(255,255,255,.025),
+transparent 40%
+);
+}
+
+
+/* HEADER */
+
+header{
+position:sticky;
+top:0;
+z-index:30;
+border-bottom:1px solid rgba(255,255,255,.08);
+background:rgba(5,5,5,.76);
+backdrop-filter:blur(22px);
+-webkit-backdrop-filter:blur(22px);
+}
+
+.nav{
+max-width:900px;
+margin:auto;
+padding:15px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.brand-logo{
+width:42px;
+height:42px;
+object-fit:cover;
+border-radius:50%;
+border:1px solid rgba(255,255,255,.35);
+box-shadow:0 0 22px rgba(105,75,255,.22);
+}
+
+.brand-text{
+display:flex;
+flex-direction:column;
+}
+
+.brand-name{
+font-size:16px;
+font-weight:800;
+}
+
+.brand-owner{
+margin-top:2px;
+font-size:8px;
+font-weight:700;
+letter-spacing:.15em;
+color:rgba(255,255,255,.38);
+}
+
+.back{
+padding:10px 14px;
+border:1px solid rgba(255,255,255,.1);
+border-radius:999px;
+background:rgba(255,255,255,.06);
+color:rgba(255,255,255,.75);
+font-size:12px;
+transition:.2s;
+}
+
+.back:hover{
+background:rgba(255,255,255,.1);
+color:#fff;
+}
+
+.back:active{
+transform:scale(.95);
+}
+
+
+/* MAIN */
+
+.container{
+width:100%;
+max-width:700px;
+margin:auto;
+padding:45px 16px 110px;
+animation:pageIn .7s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes pageIn{
+
+from{
+opacity:0;
+transform:translateY(25px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+
+/* HELP CARD */
+
+.help-card{
+padding:30px 24px;
+border:1px solid rgba(255,255,255,.1);
+border-radius:26px;
+background:rgba(255,255,255,.055);
+backdrop-filter:blur(22px);
+-webkit-backdrop-filter:blur(22px);
+box-shadow:0 25px 80px rgba(0,0,0,.35);
+text-align:center;
+}
+
+.icon{
+width:76px;
+height:76px;
+margin:0 auto 20px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:23px;
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.1);
+font-size:34px;
+box-shadow:0 0 35px rgba(105,75,255,.15);
+animation:float 3.5s ease-in-out infinite;
+}
+
+@keyframes float{
+
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-5px);
+}
+
+}
+
+h1{
+margin:0;
+font-size:clamp(2.2rem,7vw,3.4rem);
+line-height:1;
+letter-spacing:-.06em;
+}
+
+.subtitle{
+max-width:500px;
+margin:16px auto 0;
+color:rgba(255,255,255,.5);
+font-size:14px;
+line-height:1.65;
+}
+
+
+/* TELEGRAM */
+
+.telegram-button{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:9px;
+width:100%;
+margin-top:25px;
+padding:15px 20px;
+border:0;
+border-radius:999px;
+background:#229ED9;
+color:#fff;
+font-size:15px;
+font-weight:700;
+box-shadow:0 10px 35px rgba(34,158,217,.15);
+transition:.25s;
+}
+
+.telegram-button:hover{
+transform:translateY(-3px);
+box-shadow:0 16px 45px rgba(34,158,217,.25);
+}
+
+.telegram-button:active{
+transform:scale(.97);
+}
+
+.telegram-button.disabled{
+opacity:.45;
+pointer-events:none;
+}
+
+
+/* MESSAGE */
+
+.message{
+min-height:20px;
+margin-top:14px;
+color:rgba(255,255,255,.38);
+font-size:11px;
+line-height:1.5;
+}
+
+
+/* INFO */
+
+.info{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:25px;
+text-align:left;
+}
+
+.info-box{
+padding:16px;
+border:1px solid rgba(255,255,255,.07);
+border-radius:15px;
+background:rgba(255,255,255,.035);
+}
+
+.info-title{
+margin-bottom:6px;
+color:rgba(255,255,255,.32);
+font-size:9px;
+font-weight:700;
+letter-spacing:.08em;
+text-transform:uppercase;
+}
+
+.info-text{
+color:rgba(255,255,255,.68);
+font-size:12px;
+line-height:1.5;
+}
+
+
+/* POLICY */
+
+.policy{
+margin-top:12px;
+padding:17px;
+border:1px solid rgba(255,255,255,.07);
+border-radius:15px;
+background:rgba(255,255,255,.035);
+text-align:left;
+}
+
+.policy-title{
+margin-bottom:8px;
+font-size:12px;
+font-weight:700;
+}
+
+.policy-text{
+color:rgba(255,255,255,.43);
+font-size:11px;
+line-height:1.65;
+}
+
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+position:fixed;
+left:50%;
+bottom:15px;
+z-index:40;
+width:min(
+calc(100% - 30px),
+460px
+);
+transform:translateX(-50%);
+display:flex;
+padding:7px;
+border:1px solid rgba(255,255,255,.1);
+border-radius:999px;
+background:rgba(10,10,10,.84);
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
+box-shadow:0 15px 50px rgba(0,0,0,.4);
+}
+
+.bottom-link{
+flex:1;
+padding:8px 4px;
+border-radius:999px;
+color:rgba(255,255,255,.42);
+text-align:center;
+font-size:10px;
+transition:.2s;
+}
+
+.bottom-link span{
+display:block;
+margin-bottom:3px;
+font-size:17px;
+}
+
+.bottom-link:hover,
+.bottom-link.active{
+color:#fff;
+background:rgba(255,255,255,.1);
+}
+
+
+@media(max-width:520px){
+
+.container{
+padding:30px 12px 110px;
+}
+
+.help-card{
+padding:25px 17px;
+}
+
+.info{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
 
-    .back {
-      padding: 9px 14px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-
-      border-radius: 999px;
-
-      background:
-        rgba(255,255,255,.06);
-
-      color:
-        rgba(255,255,255,.70);
-
-      font-size: 13px;
-    }
-
-    .back:hover {
-      background:
-        rgba(255,255,255,.12);
-
-      color: white;
-    }
-
-    /* MAIN */
-
-    .container {
-      width: 100%;
-      max-width: 700px;
-
-      margin: auto;
-
-      padding:
-        55px 20px 110px;
-
-      animation:
-        pageIn
-        .7s
-        cubic-bezier(.16,1,.3,1);
-    }
-
-    @keyframes pageIn {
-      from {
-        opacity: 0;
-        transform:
-          translateY(25px);
-      }
-
-      to {
-        opacity: 1;
-        transform:
-          translateY(0);
-      }
-    }
-
-    .help-card {
-      padding: 30px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-
-      border-radius: 25px;
-
-      background:
-        rgba(255,255,255,.065);
-
-      backdrop-filter:
-        blur(20px);
-
-      -webkit-backdrop-filter:
-        blur(20px);
-
-      text-align: center;
-
-      box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.30);
-    }
-
-    .icon {
-      width: 70px;
-      height: 70px;
-
-      margin:
-        0 auto 20px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 22px;
-
-      background:
-        rgba(255,255,255,.09);
-
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-
-      font-size: 32px;
-    }
-
-    h1 {
-      margin: 0;
-
-      font-size:
-        clamp(2rem, 7vw, 3.2rem);
-
-      line-height: 1;
-
-      letter-spacing:
-        -.05em;
-    }
-
-    .subtitle {
-      max-width: 480px;
-
-      margin:
-        16px auto 0;
-
-      color:
-        rgba(255,255,255,.52);
-
-      font-size: 14px;
-
-      line-height: 1.65;
-    }
-
-    /* TELEGRAM */
-
-    .telegram-button {
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      gap: 9px;
-
-      width: 100%;
-
-      margin-top: 25px;
-
-      padding: 15px 20px;
-
-      border-radius: 999px;
-
-      background:
-        #229ED9;
-
-      color: white;
-
-      font-size: 15px;
-      font-weight: 700;
-
-      transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        opacity .25s ease;
-    }
-
-    .telegram-button:hover {
-      transform:
-        translateY(-3px);
-
-      box-shadow:
-        0 15px 40px
-        rgba(34,158,217,.25);
-    }
-
-    .telegram-button:active {
-      transform:
-        scale(.97);
-    }
-
-    .telegram-button.disabled {
-      opacity: .45;
-      pointer-events: none;
-    }
-
-    /* STATUS */
-
-    .message {
-      margin-top: 14px;
-
-      color:
-        rgba(255,255,255,.35);
-
-      font-size: 12px;
-
-      line-height: 1.5;
-    }
-
-    /* INFO */
-
-    .info {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 10px;
-
-      margin-top: 25px;
-
-      text-align: left;
-    }
-
-    .info-box {
-      padding: 15px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.07);
-
-      border-radius: 14px;
-
-      background:
-        rgba(255,255,255,.04);
-    }
-
-    .info-title {
-      margin-bottom: 5px;
-
-      color:
-        rgba(255,255,255,.35);
-
-      font-size: 10px;
-
-      text-transform:
-        uppercase;
-
-      letter-spacing:
-        .06em;
-    }
-
-    .info-text {
-      color:
-        rgba(255,255,255,.72);
-
-      font-size: 12px;
-
-      line-height: 1.45;
-    }
-
-    /* BOTTOM NAV */
-
-    .bottom-nav {
-      position: fixed;
-
-      left: 50%;
-      bottom: 15px;
-
-      z-index: 30;
-
-      width:
-        min(
-          calc(100% - 30px),
-          460px
-        );
-
-      transform:
-        translateX(-50%);
-
-      display: flex;
-
-      align-items: center;
-      justify-content: space-around;
-
-      padding: 7px;
-
-      border:
-        1px solid
-        rgba(255,255,255,.10);
-
-      border-radius: 999px;
-
-      background:
-        rgba(10,10,10,.78);
-
-      backdrop-filter:
-        blur(20px);
-
-      -webkit-backdrop-filter:
-        blur(20px);
-
-      box-shadow:
-        0 15px 50px
-        rgba(0,0,0,.45);
-    }
-
-    .bottom-link {
-      flex: 1;
-
-      display: flex;
-      flex-direction: column;
-
-      align-items: center;
-
-      gap: 2px;
-
-      padding:
-        7px 5px;
-
-      border-radius: 999px;
-
-      color:
-        rgba(255,255,255,.45);
-
-      font-size: 10px;
-
-      transition:
-        background .2s ease,
-        color .2s ease;
-    }
-
-    .bottom-link span {
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    .bottom-link:hover,
-    .bottom-link.active {
-      background:
-        rgba(255,255,255,.10);
-
-      color: white;
-    }
-
-    @media (max-width: 520px) {
-
-      .container {
-        padding:
-          35px 14px 110px;
-      }
-
-      .help-card {
-        padding: 23px 18px;
-      }
-
-      .info {
-        grid-template-columns: 1fr;
-      }
-
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-
-        animation-duration:
-          .01ms !important;
-
-        animation-iteration-count:
-          1 !important;
-
-        transition-duration:
-          .01ms !important;
-      }
-
-    }
-  </style>
 </head>
 
 <body>
 
-  <div class="background"></div>
+<div class="background"></div>
 
 
-  <!-- HEADER -->
+<header>
 
-  <header>
+<nav class="nav">
 
-    <nav class="nav">
+<a
+class="brand"
+href="index.html"
+>
 
-      <a
-        class="brand"
-        href="index.html"
-      >
+<img
+class="brand-logo"
+src="assets/income-offers-logo.jpg"
+alt="Income Offers"
+>
 
-        <svg
-          viewBox="0 0 256 256"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="
-            M128 128
-            C128 198.692 70.692 256 0 256
-            C0 185.308 57.308 128 128 128Z
+<div class="brand-text">
 
-            M128 128
-            C198.692 128 256 185.308 256 256
-            C185.308 256 128 198.692 128 128Z
+<div class="brand-name">
+Income Offers
+</div>
 
-            M0 0
-            C70.692 0 128 57.308 128 128
-            C57.308 128 0 70.692 0 0Z
+<div class="brand-owner">
+OWNER: SAHIL
+</div>
 
-            M256 0
-            C256 70.692 198.692 128 128 128
-            C128 57.308 185.308 0 256 0Z
-          "/>
-        </svg>
+</div>
 
-        <span>Nexum</span>
+</a>
 
-      </a>
 
-      <a
-        class="back"
-        href="index.html"
-      >
-        ← Home
-      </a>
+<a
+class="back"
+href="index.html"
+>
+← Home
+</a>
 
-    </nav>
+</nav>
 
-  </header>
+</header>
 
 
-  <!-- MAIN -->
+<main class="container">
 
-  <main class="container">
+<section class="help-card">
 
-    <section class="help-card">
+<div class="icon">
+❓
+</div>
 
-      <div class="icon">
-        ❓
-      </div>
 
-      <h1>
-        Need Help?
-      </h1>
+<h1>
+Need Help?
+</h1>
 
-      <p class="subtitle">
-        If you have any questions about an offer,
-        need assistance, or face any problem,
-        contact our support team on Telegram.
-      </p>
 
+<p class="subtitle">
+If you have questions about an offer,
+need assistance, or face any problem,
+contact our support team on Telegram.
+</p>
 
-      <a
-        id="telegramButton"
-        class="telegram-button disabled"
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        💬 Contact us on Telegram
-      </a>
 
+<a
+id="telegramButton"
+class="telegram-button"
+href="https://t.me/IncomeOffersOfficia"
+target="_blank"
+rel="noopener noreferrer"
+>
+💬 Contact Support
+</a>
 
-      <div
-        class="message"
-        id="message"
-      >
-        Loading support information...
-      </div>
 
+<div
+class="message"
+id="message"
+>
+Tap the button to contact our support team.
+</div>
 
-      <div class="info">
 
-        <div class="info-box">
+<div class="info">
 
-          <div class="info-title">
-            Support
-          </div>
 
-          <div class="info-text">
-            Telegram support is available for offer-related help.
-          </div>
+<div class="info-box">
 
-        </div>
+<div class="info-title">
+Support
+</div>
 
+<div class="info-text">
+Contact support for offer-related questions and assistance.
+</div>
 
-        <div class="info-box">
+</div>
 
-          <div class="info-title">
-            Response
-          </div>
 
-          <div class="info-text">
-            Send your question clearly so our team can assist you.
-          </div>
+<div class="info-box">
 
-        </div>
+<div class="info-title">
+Offers
+</div>
 
-      </div>
+<div class="info-text">
+For offer issues, include the offer name when contacting support.
+</div>
 
-    </section>
+</div>
 
-  </main>
+</div>
 
 
-  <!-- BOTTOM NAV -->
+<div class="policy">
 
-  <nav class="bottom-nav">
+<div class="policy-title">
+😍 Welcome to Offer Income
+</div>
 
-    <a
-      class="bottom-link"
-      href="index.html"
-    >
-      <span>🏠</span>
-      Home
-    </a>
+<div class="policy-text">
 
-    <a
-      class="bottom-link"
-      href="offer.html"
-    >
-      <span>🎁</span>
-      Offers
-    </a>
+✅ We Share Trusted Campaigns & Promotional Offers.
 
-    <a
-      class="bottom-link"
-      href="history.html"
-    >
-      <span>📜</span>
-      History
-    </a>
+<br><br>
 
-    <a
-      class="bottom-link active"
-      href="help.html"
-    >
-      <span>❓</span>
-      Help
-    </a>
+⚠️ Disclaimer: Please do your own research before using any earning method. We do not promise Guaranteed Earnings.
 
-  </nav>
+</div>
 
+</div>
 
-  <!-- SUPABASE -->
+</section>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</main>
 
-  <script src="supabase-config.js"></script>
 
+<nav class="bottom-nav">
 
-  <script>
+<a
+class="bottom-link"
+href="index.html"
+>
+<span>🏠</span>
+Home
+</a>
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-      );
 
+<a
+class="bottom-link"
+href="offer.html"
+>
+<span>🎁</span>
+Offers
+</a>
 
-    const telegramButton =
-      document.getElementById(
-        "telegramButton"
-      );
 
-    const message =
-      document.getElementById(
-        "message"
-      );
+<a
+class="bottom-link"
+href="history.html"
+>
+<span>📜</span>
+History
+</a>
 
 
-    /* =========================
-       LOAD TELEGRAM
-    ========================= */
+<a
+class="bottom-link active"
+href="help.html"
+>
+<span>❓</span>
+Help
+</a>
 
-    async function loadTelegram() {
+</nav>
 
-      try {
 
-        const {
-          data,
-          error
-        } =
-          await supabaseClient
-            .from("settings")
-            .select("value")
-            .eq("key", "telegram_link")
-            .maybeSingle();
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script src="supabase-config.js"></script>
 
-        if (
-          error ||
-          !data ||
-          !data.value
-        ) {
+<script>
 
-          message.textContent =
-            "Telegram support link has not been configured yet.";
+/*
+  supabase-config.js already creates
+  supabaseClient.
 
-          return;
+  No second client is created here.
+*/
 
-        }
+const telegramButton =
+document.getElementById(
+"telegramButton"
+);
 
+const message =
+document.getElementById(
+"message"
+);
 
-        const link =
-          data.value;
 
+/* =========================
+   SUPPORT LINK
+========================= */
 
-        if (
-          typeof link !== "string" ||
-          !/^https?:\/\/t\.me\//i.test(link)
-        ) {
+async function loadSupport(){
 
-          message.textContent =
-            "Support link is currently unavailable.";
+try{
 
-          return;
+const {
+data,
+error
+} =
+await supabaseClient
+.from("settings")
+.select("value")
+.eq("key","telegram_link")
+.maybeSingle();
 
-        }
 
+if(
+!error &&
+data &&
+typeof data.value === "string" &&
+/^https?:\/\/t\.me\//i.test(
+data.value
+)
+){
 
-        telegramButton.href =
-          link;
+telegramButton.href =
+data.value;
 
-        telegramButton.classList.remove(
-          "disabled"
-        );
+message.textContent =
+"Tap the button to contact our support team.";
 
-        message.textContent =
-          "Tap the button to contact our support team.";
+return;
 
-      } catch (error) {
+}
 
-        console.error(error);
 
-        message.textContent =
-          "Unable to load support information.";
+/*
+  Fallback support link.
+*/
 
-      }
+telegramButton.href =
+"https://t.me/IncomeOffersOfficia";
 
-    }
+message.textContent =
+"Tap the button to contact our support team.";
 
+}catch(error){
 
-    loadTelegram();
+console.error(
+"Support settings error:",
+error
+);
 
-  </script>
+telegramButton.href =
+"https://t.me/IncomeOffersOfficia";
+
+message.textContent =
+"Tap the button to contact our support team.";
+
+}
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadSupport();
+
+</script>
 
 </body>
 </html>
