@@ -1,671 +1,1095 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#050505">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#050505"
+>
 
 <title>Income Offers - Offers</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+>
 
 <link
-href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap"
-rel="stylesheet">
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
+
 
 <style>
 
+/* =========================
+   RESET
+========================= */
+
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
-scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
-min-height:100vh;
-background:#050505;
-color:#fff;
-font-family:'Geist',Arial,sans-serif;
-overflow-x:hidden;
+  min-height:100vh;
+  background:#050505;
+  color:#fff;
+  font-family:'Geist',Arial,sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
 }
 
 a{
-color:inherit;
-text-decoration:none;
+  color:inherit;
+  text-decoration:none;
 }
 
 button{
-font:inherit;
+  font:inherit;
 }
 
+
+/* =========================
+   BACKGROUND
+========================= */
+
 .background{
-position:fixed;
-inset:0;
-z-index:-2;
-background:
-radial-gradient(
-circle at 10% 10%,
-rgba(105,75,255,.18),
-transparent 30%
-),
-radial-gradient(
-circle at 90% 80%,
-rgba(0,180,255,.10),
-transparent 35%
-),
-#050505;
+  position:fixed;
+  inset:0;
+  z-index:-2;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(105,75,255,.18),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(0,180,255,.10),
+      transparent 35%
+    ),
+
+    #050505;
 }
 
 .background::after{
-content:"";
-position:absolute;
-inset:-30%;
-background:
-radial-gradient(
-circle,
-rgba(255,255,255,.025),
-transparent 35%
-);
-animation:bgMove 12s ease-in-out infinite alternate;
+  content:"";
+  position:absolute;
+  inset:-30%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.025),
+      transparent 35%
+    );
+
+  animation:bgMove 12s ease-in-out infinite alternate;
 }
 
 @keyframes bgMove{
-from{
-transform:translate(-3%,-2%) scale(1);
-}
-to{
-transform:translate(3%,2%) scale(1.08);
-}
+
+  from{
+    transform:
+      translate(-3%,-2%)
+      scale(1);
+  }
+
+  to{
+    transform:
+      translate(3%,2%)
+      scale(1.08);
+  }
+
 }
 
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
-position:sticky;
-top:0;
-z-index:50;
-border-bottom:1px solid rgba(255,255,255,.08);
-background:rgba(5,5,5,.76);
-backdrop-filter:blur(22px);
--webkit-backdrop-filter:blur(22px);
+  position:sticky;
+  top:0;
+  z-index:50;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+
+  background:
+    rgba(5,5,5,.78);
+
+  backdrop-filter:
+    blur(22px);
+
+  -webkit-backdrop-filter:
+    blur(22px);
 }
 
 .nav{
-max-width:1200px;
-margin:auto;
-padding:15px 20px;
-display:flex;
-align-items:center;
-justify-content:space-between;
+  max-width:1200px;
+  margin:auto;
+
+  padding:
+    15px 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .brand{
-display:flex;
-align-items:center;
-gap:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .brand-logo{
-width:42px;
-height:42px;
-object-fit:cover;
-border-radius:50%;
-border:1px solid rgba(255,255,255,.35);
-box-shadow:0 0 22px rgba(105,75,255,.25);
+  width:42px;
+  height:42px;
+
+  object-fit:cover;
+
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(255,255,255,.35);
+
+  box-shadow:
+    0 0 22px
+    rgba(105,75,255,.25);
 }
 
 .brand-text{
-display:flex;
-flex-direction:column;
+  display:flex;
+  flex-direction:column;
 }
 
 .brand-name{
-font-size:17px;
-font-weight:800;
+  font-size:17px;
+  font-weight:800;
 }
 
 .brand-owner{
-margin-top:2px;
-font-size:8px;
-font-weight:700;
-letter-spacing:.16em;
-color:rgba(255,255,255,.38);
+  margin-top:2px;
+
+  font-size:8px;
+  font-weight:700;
+
+  letter-spacing:.16em;
+
+  color:
+    rgba(255,255,255,.38);
 }
 
+
+/* =========================
+   DESKTOP ACTIONS
+========================= */
+
 .desktop-actions{
-display:none;
-align-items:center;
-gap:8px;
+  display:none;
+  align-items:center;
+  gap:8px;
 }
 
 .nav-btn{
-padding:9px 14px;
-border:1px solid rgba(255,255,255,.1);
-border-radius:999px;
-background:rgba(255,255,255,.06);
-color:#fff;
-font-size:12px;
-cursor:pointer;
-transition:.2s;
+  padding:
+    9px 14px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.06);
+
+  color:#fff;
+
+  font-size:12px;
+
+  transition:
+    .2s ease;
 }
 
 .nav-btn:hover{
-background:rgba(255,255,255,.11);
+  background:
+    rgba(255,255,255,.12);
+
+  transform:
+    translateY(-1px);
 }
+
+
+/* =========================
+   MENU BUTTON
+========================= */
 
 .menu-button{
-width:42px;
-height:42px;
-border:1px solid rgba(255,255,255,.1);
-border-radius:50%;
-background:rgba(255,255,255,.07);
-color:#fff;
-cursor:pointer;
-font-size:20px;
+  width:42px;
+  height:42px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.07);
+
+  color:#fff;
+
+  cursor:pointer;
+
+  font-size:22px;
 }
 
 
-/* SIDE MENU */
+/* =========================
+   SIDE MENU
+========================= */
 
 .menu-backdrop{
-position:fixed;
-inset:0;
-z-index:80;
-background:rgba(0,0,0,.68);
-backdrop-filter:blur(7px);
--webkit-backdrop-filter:blur(7px);
-opacity:0;
-pointer-events:none;
-transition:.3s;
+  position:fixed;
+  inset:0;
+
+  z-index:80;
+
+  background:
+    rgba(0,0,0,.68);
+
+  backdrop-filter:
+    blur(7px);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.3s ease;
 }
 
 .menu-backdrop.open{
-opacity:1;
-pointer-events:auto;
+  opacity:1;
+  pointer-events:auto;
 }
 
 .side-menu{
-position:fixed;
-top:0;
-right:0;
-z-index:90;
-width:310px;
-max-width:88%;
-height:100%;
-padding:24px 20px;
-background:#0a0a0a;
-border-left:1px solid rgba(255,255,255,.1);
-transform:translateX(100%);
-transition:.4s cubic-bezier(.16,1,.3,1);
-overflow-y:auto;
+  position:fixed;
+
+  top:0;
+  right:0;
+
+  z-index:90;
+
+  width:310px;
+  max-width:88%;
+
+  height:100%;
+
+  padding:
+    24px 20px;
+
+  background:#0a0a0a;
+
+  border-left:
+    1px solid
+    rgba(255,255,255,.1);
+
+  transform:
+    translateX(100%);
+
+  transition:
+    .4s
+    cubic-bezier(.16,1,.3,1);
+
+  overflow-y:auto;
 }
 
 .side-menu.open{
-transform:translateX(0);
+  transform:
+    translateX(0);
 }
 
 .menu-head{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:22px;
 }
 
 .menu-head h2{
-font-size:20px;
+  font-size:20px;
 }
 
 .close-btn{
-width:38px;
-height:38px;
-border:0;
-border-radius:50%;
-background:rgba(255,255,255,.08);
-color:#fff;
-font-size:20px;
-cursor:pointer;
+  width:38px;
+  height:38px;
+
+  border:0;
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.08);
+
+  color:#fff;
+
+  font-size:20px;
+
+  cursor:pointer;
 }
 
 .profile-box{
-padding:16px;
-margin-bottom:14px;
-border:1px solid rgba(255,255,255,.1);
-border-radius:16px;
-background:rgba(255,255,255,.055);
+  padding:16px;
+
+  margin-bottom:14px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  border-radius:16px;
+
+  background:
+    rgba(255,255,255,.055);
 }
 
 .profile-box strong{
-display:block;
-font-size:14px;
+  display:block;
+
+  font-size:14px;
 }
 
 .profile-box span{
-display:block;
-margin-top:5px;
-color:rgba(255,255,255,.45);
-font-size:11px;
-word-break:break-all;
+  display:block;
+
+  margin-top:5px;
+
+  color:
+    rgba(255,255,255,.45);
+
+  font-size:11px;
+
+  word-break:break-all;
 }
 
 .menu-item{
-display:flex;
-align-items:center;
-gap:11px;
-width:100%;
-padding:14px;
-margin-bottom:8px;
-border:1px solid transparent;
-border-radius:13px;
-background:rgba(255,255,255,.05);
-color:#fff;
-font-size:14px;
-text-align:left;
-cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:11px;
+
+  width:100%;
+
+  padding:14px;
+
+  margin-bottom:8px;
+
+  border:
+    1px solid
+    transparent;
+
+  border-radius:13px;
+
+  background:
+    rgba(255,255,255,.05);
+
+  color:#fff;
+
+  font-size:14px;
+
+  text-align:left;
+
+  cursor:pointer;
 }
 
 .menu-item:hover{
-background:rgba(255,255,255,.09);
-border-color:rgba(255,255,255,.08);
+  background:
+    rgba(255,255,255,.09);
+
+  border-color:
+    rgba(255,255,255,.08);
 }
 
 .telegram{
-margin-top:15px;
-padding:17px;
-border-radius:17px;
-background:linear-gradient(
-135deg,
-#168bd0,
-#229ed9
-);
+  margin-top:15px;
+
+  padding:17px;
+
+  border-radius:17px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #168bd0,
+      #229ed9
+    );
 }
 
 .telegram strong{
-display:block;
-margin-bottom:6px;
+  display:block;
+  margin-bottom:6px;
 }
 
 .telegram p{
-margin:0 0 13px;
-color:rgba(255,255,255,.8);
-font-size:11px;
-line-height:1.5;
+  margin:
+    0 0 13px;
+
+  color:
+    rgba(255,255,255,.8);
+
+  font-size:11px;
+
+  line-height:1.5;
 }
 
 .telegram a{
-display:block;
-padding:11px;
-border-radius:10px;
-background:#fff;
-color:#111;
-text-align:center;
-font-size:12px;
-font-weight:800;
+  display:block;
+
+  padding:11px;
+
+  border-radius:10px;
+
+  background:#fff;
+
+  color:#111;
+
+  text-align:center;
+
+  font-size:12px;
+
+  font-weight:800;
 }
 
 .logout{
-margin-top:12px;
-color:#ff8d8d;
+  margin-top:12px;
+  color:#ff8d8d;
 }
 
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
-max-width:1200px;
-margin:auto;
-padding:48px 20px 28px;
+  max-width:1200px;
+
+  margin:auto;
+
+  padding:
+    48px 20px 28px;
 }
 
 .eyebrow{
-display:flex;
-align-items:center;
-gap:8px;
-color:rgba(255,255,255,.45);
-font-size:11px;
-font-weight:700;
-letter-spacing:.1em;
+  display:flex;
+  align-items:center;
+  gap:8px;
+
+  color:
+    rgba(255,255,255,.45);
+
+  font-size:11px;
+
+  font-weight:700;
+
+  letter-spacing:.1em;
 }
 
 .live-dot{
-width:7px;
-height:7px;
-border-radius:50%;
-background:#65ff9b;
-box-shadow:0 0 14px #65ff9b;
-animation:pulse 1.8s infinite;
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:#65ff9b;
+
+  box-shadow:
+    0 0 14px
+    #65ff9b;
+
+  animation:
+    pulse
+    1.8s
+    infinite;
 }
 
 @keyframes pulse{
 
-0%,100%{
-opacity:.4;
-transform:scale(.8);
-}
+  0%,100%{
+    opacity:.4;
+    transform:scale(.8);
+  }
 
-50%{
-opacity:1;
-transform:scale(1.15);
-}
+  50%{
+    opacity:1;
+    transform:scale(1.15);
+  }
 
 }
 
 h1{
-margin-top:12px;
-max-width:750px;
-font-size:clamp(2.5rem,7vw,5rem);
-line-height:1;
-letter-spacing:-.06em;
+  margin-top:12px;
+
+  max-width:750px;
+
+  font-size:
+    clamp(
+      2.5rem,
+      7vw,
+      5rem
+    );
+
+  line-height:1;
+
+  letter-spacing:-.06em;
 }
 
 .hero-description{
-max-width:620px;
-margin-top:17px;
-color:rgba(255,255,255,.48);
-font-size:14px;
-line-height:1.7;
+  max-width:620px;
+
+  margin-top:17px;
+
+  color:
+    rgba(255,255,255,.48);
+
+  font-size:14px;
+
+  line-height:1.7;
 }
 
 
-/* TOOLBAR */
+/* =========================
+   TOOLBAR
+========================= */
 
 .toolbar{
-max-width:1200px;
-margin:auto;
-padding:0 20px 20px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:12px;
+  max-width:1200px;
+
+  margin:auto;
+
+  padding:
+    0 20px 20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:12px;
 }
 
 .count{
-color:rgba(255,255,255,.42);
-font-size:12px;
+  color:
+    rgba(255,255,255,.42);
+
+  font-size:12px;
 }
 
 .refresh{
-padding:9px 14px;
-border:1px solid rgba(255,255,255,.1);
-border-radius:999px;
-background:rgba(255,255,255,.06);
-color:#fff;
-cursor:pointer;
-transition:.2s;
+  padding:
+    9px 14px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.06);
+
+  color:#fff;
+
+  cursor:pointer;
+
+  transition:.2s;
 }
 
-.refresh:active{
-transform:scale(.94);
+.refresh:hover{
+  background:
+    rgba(255,255,255,.12);
+}
+
+.refresh:disabled{
+  opacity:.5;
+  cursor:not-allowed;
 }
 
 
-/* OFFERS */
+/* =========================
+   OFFERS
+========================= */
 
 .container{
-max-width:1200px;
-margin:auto;
-padding:0 20px 110px;
+  max-width:1200px;
+
+  margin:auto;
+
+  padding:
+    0 20px 110px;
 }
 
 .offer-grid{
-display:grid;
-grid-template-columns:
-repeat(
-auto-fit,
-minmax(260px,1fr)
-);
-gap:18px;
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(260px,1fr)
+    );
+
+  gap:18px;
 }
 
 .offer-card{
-overflow:hidden;
-border:1px solid rgba(255,255,255,.1);
-border-radius:22px;
-background:rgba(255,255,255,.055);
-backdrop-filter:blur(18px);
--webkit-backdrop-filter:blur(18px);
-opacity:0;
-animation:cardIn .6s ease forwards;
-transition:.3s ease;
+  overflow:hidden;
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  border-radius:22px;
+
+  background:
+    rgba(255,255,255,.055);
+
+  backdrop-filter:
+    blur(18px);
+
+  opacity:0;
+
+  animation:
+    cardIn
+    .6s
+    cubic-bezier(.16,1,.3,1)
+    forwards;
+
+  transition:
+    .3s ease;
 }
 
 .offer-card:hover{
-transform:translateY(-6px);
-border-color:rgba(255,255,255,.2);
-background:rgba(255,255,255,.075);
+  transform:
+    translateY(-6px);
+
+  border-color:
+    rgba(255,255,255,.2);
+
+  background:
+    rgba(255,255,255,.075);
 }
 
 @keyframes cardIn{
 
-from{
-opacity:0;
-transform:translateY(25px);
-}
+  from{
+    opacity:0;
+    transform:
+      translateY(25px);
+  }
 
-to{
-opacity:1;
-transform:translateY(0);
-}
+  to{
+    opacity:1;
+    transform:
+      translateY(0);
+  }
 
 }
 
 .offer-image{
-width:100%;
-aspect-ratio:16/9;
-object-fit:cover;
-display:block;
-background:#111;
+  width:100%;
+
+  aspect-ratio:16/9;
+
+  object-fit:cover;
+
+  display:block;
+
+  background:#111;
 }
 
 .offer-body{
-padding:19px;
+  padding:19px;
 }
 
 .offer-title{
-margin:0 0 8px;
-font-size:19px;
-font-weight:700;
+  margin:
+    0 0 8px;
+
+  font-size:19px;
+
+  font-weight:700;
 }
 
 .offer-description{
-min-height:45px;
-color:rgba(255,255,255,.48);
-font-size:13px;
-line-height:1.6;
+  min-height:45px;
+
+  color:
+    rgba(255,255,255,.48);
+
+  font-size:13px;
+
+  line-height:1.6;
 }
 
 .offer-footer{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-margin-top:18px;
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-top:18px;
 }
 
 .date{
-color:rgba(255,255,255,.32);
-font-size:10px;
+  color:
+    rgba(255,255,255,.32);
+
+  font-size:10px;
 }
 
 .open-btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-padding:10px 15px;
-border-radius:999px;
-background:#fff;
-color:#111;
-font-size:12px;
-font-weight:800;
-transition:.2s;
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:
+    10px 15px;
+
+  border-radius:999px;
+
+  background:#fff;
+
+  color:#111;
+
+  font-size:12px;
+
+  font-weight:800;
+
+  transition:.2s;
+}
+
+.open-btn:hover{
+  transform:
+    translateY(-2px);
 }
 
 .open-btn:active{
-transform:scale(.94);
+  transform:
+    scale(.94);
 }
 
 
-/* STATE */
+/* =========================
+   STATE
+========================= */
 
 .state{
-grid-column:1/-1;
-padding:65px 20px;
-border:1px solid rgba(255,255,255,.08);
-border-radius:22px;
-background:rgba(255,255,255,.04);
-text-align:center;
+  grid-column:1/-1;
+
+  padding:
+    65px 20px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  border-radius:22px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  text-align:center;
 }
 
 .state-icon{
-font-size:38px;
+  font-size:38px;
 }
 
 .state h2{
-margin:12px 0 7px;
-font-size:20px;
+  margin:
+    12px 0 7px;
+
+  font-size:20px;
 }
 
 .state p{
-color:rgba(255,255,255,.43);
-font-size:12px;
-line-height:1.6;
+  color:
+    rgba(255,255,255,.43);
+
+  font-size:12px;
+
+  line-height:1.5;
+}
+
+.state.error-state{
+  border-color:
+    rgba(255,100,100,.2);
+}
+
+.state-error{
+  margin-top:12px;
+
+  color:
+    rgba(255,120,120,.8);
+
+  font-size:11px;
+
+  word-break:break-word;
 }
 
 
-/* ERROR */
-
-.error-detail{
-margin-top:10px;
-font-size:11px;
-color:rgba(255,120,120,.7);
-word-break:break-word;
-}
-
-
-/* BOTTOM NAV */
+/* =========================
+   BOTTOM NAV
+========================= */
 
 .bottom-nav{
-position:fixed;
-left:50%;
-bottom:15px;
-z-index:40;
-transform:translateX(-50%);
-width:min(
-calc(100% - 30px),
-460px
-);
-display:flex;
-padding:7px;
-border:1px solid rgba(255,255,255,.1);
-border-radius:999px;
-background:rgba(10,10,10,.84);
-backdrop-filter:blur(20px);
--webkit-backdrop-filter:blur(20px);
-box-shadow:0 15px 50px rgba(0,0,0,.4);
+  position:fixed;
+
+  left:50%;
+  bottom:15px;
+
+  z-index:40;
+
+  transform:
+    translateX(-50%);
+
+  width:
+    min(
+      calc(100% - 30px),
+      460px
+    );
+
+  display:flex;
+
+  padding:7px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
+
+  border-radius:999px;
+
+  background:
+    rgba(10,10,10,.84);
+
+  backdrop-filter:
+    blur(20px);
+
+  box-shadow:
+    0 15px 50px
+    rgba(0,0,0,.4);
 }
 
 .bottom-link{
-flex:1;
-padding:8px 4px;
-border-radius:999px;
-color:rgba(255,255,255,.42);
-text-align:center;
-font-size:10px;
-transition:.2s;
+  flex:1;
+
+  padding:
+    8px 4px;
+
+  border-radius:999px;
+
+  color:
+    rgba(255,255,255,.42);
+
+  text-align:center;
+
+  font-size:10px;
+
+  transition:.2s;
 }
 
 .bottom-link span{
-display:block;
-margin-bottom:3px;
-font-size:17px;
+  display:block;
+
+  margin-bottom:3px;
+
+  font-size:17px;
 }
 
 .bottom-link.active{
-color:#fff;
-background:rgba(255,255,255,.1);
+  color:#fff;
+
+  background:
+    rgba(255,255,255,.1);
 }
 
 
-/* RIPPLE */
+/* =========================
+   RIPPLE
+========================= */
 
 .ripple{
-position:fixed;
-z-index:9999;
-width:8px;
-height:8px;
-border-radius:50%;
-background:rgba(255,255,255,.45);
-pointer-events:none;
-transform:translate(-50%,-50%);
-animation:ripple .55s ease-out forwards;
+  position:fixed;
+
+  z-index:9999;
+
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.45);
+
+  pointer-events:none;
+
+  transform:
+    translate(-50%,-50%);
+
+  animation:
+    ripple
+    .55s
+    ease-out
+    forwards;
 }
 
 @keyframes ripple{
 
-to{
-opacity:0;
-transform:
-translate(-50%,-50%)
-scale(12);
-}
+  to{
+    opacity:0;
+
+    transform:
+      translate(-50%,-50%)
+      scale(12);
+  }
 
 }
 
 
-/* RESPONSIVE */
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media(min-width:700px){
 
-.menu-button{
-display:none;
+  .menu-button{
+    display:none;
+  }
+
+  .desktop-actions{
+    display:flex;
+  }
+
+  .nav{
+    padding-left:32px;
+    padding-right:32px;
+  }
+
+  .hero,
+  .toolbar,
+  .container{
+    padding-left:32px;
+    padding-right:32px;
+  }
+
 }
 
-.desktop-actions{
-display:flex;
+@media(max-width:520px){
+
+  .brand-logo{
+    width:40px;
+    height:40px;
+  }
+
+  .brand-name{
+    font-size:16px;
+  }
+
+  .hero{
+    padding-top:42px;
+  }
+
+  .offer-grid{
+    grid-template-columns:1fr;
+  }
+
 }
 
-.nav{
-padding-left:32px;
-padding-right:32px;
-}
 
-.hero,
-.toolbar,
-.container{
-padding-left:32px;
-padding-right:32px;
-}
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+
+    animation-duration:
+      .01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      .01ms !important;
+  }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="background"></div>
 
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
 <nav class="nav">
 
+
 <a
-class="brand"
-href="index.html"
+  class="brand"
+  href="index.html"
 >
 
 <img
-class="brand-logo"
-src="assets/income-offers-logo.jpg"
-alt="Income Offers"
-onerror="this.style.display='none';"
+  class="brand-logo"
+  src="assets/income-offers-logo.jpg"
+  alt="Income Offers"
+  onerror="this.style.display='none'"
 >
 
 <div class="brand-text">
@@ -686,15 +1110,15 @@ OWNER: SAHIL
 <div class="desktop-actions">
 
 <a
-class="nav-btn"
-href="history.html"
+  class="nav-btn"
+  href="history.html"
 >
 📜 History
 </a>
 
 <a
-class="nav-btn"
-href="profile.html"
+  class="nav-btn"
+  href="profile.html"
 >
 👤 Profile
 </a>
@@ -703,28 +1127,34 @@ href="profile.html"
 
 
 <button
-class="menu-button"
-id="menuButton"
-type="button"
+  class="menu-button"
+  id="menuButton"
+  type="button"
 >
 ☰
 </button>
+
 
 </nav>
 
 </header>
 
 
+<!-- =========================
+     SIDE MENU
+========================= -->
+
 <div
-class="menu-backdrop"
-id="menuBackdrop"
+  class="menu-backdrop"
+  id="menuBackdrop"
 ></div>
 
 
 <aside
-class="side-menu"
-id="sideMenu"
+  class="side-menu"
+  id="sideMenu"
 >
+
 
 <div class="menu-head">
 
@@ -733,9 +1163,9 @@ Income Offers
 </h2>
 
 <button
-class="close-btn"
-id="closeMenu"
-type="button"
+  class="close-btn"
+  id="closeMenu"
+  type="button"
 >
 ×
 </button>
@@ -750,33 +1180,41 @@ My Account
 </strong>
 
 <span id="profileEmail">
-Guest
+Checking login...
 </span>
 
 </div>
 
 
 <a
-class="menu-item"
-href="profile.html"
+  class="menu-item"
+  href="index.html"
 >
-👤 My Profile
+🏠 Home
 </a>
 
 
 <a
-class="menu-item"
-href="offer.html"
+  class="menu-item"
+  href="offer.html"
 >
 🎁 Offers
 </a>
 
 
 <a
-class="menu-item"
-href="history.html"
+  class="menu-item"
+  href="history.html"
 >
 📜 My History
+</a>
+
+
+<a
+  class="menu-item"
+  href="profile.html"
+>
+👤 My Profile
 </a>
 
 
@@ -791,9 +1229,9 @@ Get new offers and important updates.
 </p>
 
 <a
-href="https://t.me/IncomeOffersOfficia"
-target="_blank"
-rel="noopener noreferrer"
+  href="https://t.me/IncomeOffersOfficia"
+  target="_blank"
+  rel="noopener noreferrer"
 >
 Join Telegram Channel
 </a>
@@ -802,17 +1240,23 @@ Join Telegram Channel
 
 
 <button
-class="menu-item logout"
-id="logoutButton"
-type="button"
+  class="menu-item logout"
+  id="logoutButton"
+  type="button"
 >
 🚪 Logout
 </button>
 
+
 </aside>
 
 
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
+
 
 <div class="eyebrow">
 
@@ -834,36 +1278,49 @@ rewards and opportunities.
 Open an offer to see the complete details.
 </p>
 
+
 </section>
 
 
+<!-- =========================
+     TOOLBAR
+========================= -->
+
 <div class="toolbar">
 
+
 <div
-class="count"
-id="offerCount"
+  class="count"
+  id="offerCount"
 >
 Loading offers...
 </div>
 
 
 <button
-class="refresh"
-id="refreshButton"
-type="button"
+  class="refresh"
+  id="refreshButton"
+  type="button"
 >
 ↻ Refresh
 </button>
 
+
 </div>
 
 
+<!-- =========================
+     OFFERS
+========================= -->
+
 <main class="container">
 
+
 <div
-class="offer-grid"
-id="offerGrid"
+  class="offer-grid"
+  id="offerGrid"
 >
+
 
 <div class="state">
 
@@ -881,16 +1338,23 @@ Please wait...
 
 </div>
 
+
 </div>
+
 
 </main>
 
 
+<!-- =========================
+     BOTTOM NAV
+========================= -->
+
 <nav class="bottom-nav">
 
+
 <a
-class="bottom-link"
-href="index.html"
+  class="bottom-link"
+  href="index.html"
 >
 <span>🏠</span>
 Home
@@ -898,8 +1362,8 @@ Home
 
 
 <a
-class="bottom-link active"
-href="offer.html"
+  class="bottom-link active"
+  href="offer.html"
 >
 <span>🎁</span>
 Offers
@@ -907,8 +1371,8 @@ Offers
 
 
 <a
-class="bottom-link"
-href="history.html"
+  class="bottom-link"
+  href="history.html"
 >
 <span>📜</span>
 History
@@ -916,53 +1380,89 @@ History
 
 
 <a
-class="bottom-link"
-href="profile.html"
+  class="bottom-link"
+  href="profile.html"
 >
 <span>👤</span>
 Profile
 </a>
 
+
 </nav>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
 <script src="supabase-config.js"></script>
 
 
 <script>
 
+/*
+IMPORTANT:
+
+supabase-config.js already creates:
+
+const supabaseClient = ...
+
+DO NOT create another Supabase client here.
+*/
+
+
 /* =========================
    ELEMENTS
 ========================= */
 
 const menuButton =
-document.getElementById("menuButton");
+document.getElementById(
+  "menuButton"
+);
 
 const sideMenu =
-document.getElementById("sideMenu");
+document.getElementById(
+  "sideMenu"
+);
 
 const menuBackdrop =
-document.getElementById("menuBackdrop");
+document.getElementById(
+  "menuBackdrop"
+);
 
 const closeMenu =
-document.getElementById("closeMenu");
+document.getElementById(
+  "closeMenu"
+);
 
 const logoutButton =
-document.getElementById("logoutButton");
+document.getElementById(
+  "logoutButton"
+);
 
 const profileEmail =
-document.getElementById("profileEmail");
+document.getElementById(
+  "profileEmail"
+);
 
 const offerGrid =
-document.getElementById("offerGrid");
+document.getElementById(
+  "offerGrid"
+);
 
 const offerCount =
-document.getElementById("offerCount");
+document.getElementById(
+  "offerCount"
+);
 
 const refreshButton =
-document.getElementById("refreshButton");
+document.getElementById(
+  "refreshButton"
+);
 
 
 /* =========================
@@ -971,31 +1471,45 @@ document.getElementById("refreshButton");
 
 function openMenu(){
 
-sideMenu.classList.add("open");
-menuBackdrop.classList.add("open");
+  sideMenu.classList.add(
+    "open"
+  );
+
+  menuBackdrop.classList.add(
+    "open"
+  );
 
 }
+
 
 function closeSideMenu(){
 
-sideMenu.classList.remove("open");
-menuBackdrop.classList.remove("open");
+  sideMenu.classList.remove(
+    "open"
+  );
+
+  menuBackdrop.classList.remove(
+    "open"
+  );
 
 }
 
+
 menuButton.addEventListener(
-"click",
-openMenu
+  "click",
+  openMenu
 );
+
 
 closeMenu.addEventListener(
-"click",
-closeSideMenu
+  "click",
+  closeSideMenu
 );
 
+
 menuBackdrop.addEventListener(
-"click",
-closeSideMenu
+  "click",
+  closeSideMenu
 );
 
 
@@ -1005,13 +1519,17 @@ closeSideMenu
 
 function escapeHtml(value){
 
-const div =
-document.createElement("div");
+  const div =
+    document.createElement(
+      "div"
+    );
 
-div.textContent =
-value == null ? "" : String(value);
+  div.textContent =
+    value == null
+      ? ""
+      : String(value);
 
-return div.innerHTML;
+  return div.innerHTML;
 
 }
 
@@ -1022,724 +1540,265 @@ return div.innerHTML;
 
 function formatDate(value){
 
-if(!value){
-return "Recently added";
-}
+  if(!value){
 
-const date =
-new Date(value);
+    return "Recently added";
 
-if(Number.isNaN(date.getTime())){
-return "Recently added";
-}
+  }
 
-return date.toLocaleDateString(
-undefined,
-{
-day:"numeric",
-month:"short",
-year:"numeric"
-}
-);
+  const date =
+    new Date(value);
+
+  if(
+    Number.isNaN(
+      date.getTime()
+    )
+  ){
+
+    return "Recently added";
+
+  }
+
+  return date.toLocaleDateString(
+    undefined,
+    {
+      day:"numeric",
+      month:"short",
+      year:"numeric"
+    }
+  );
 
 }
 
 
 /* =========================
-   GET SESSION
+   SESSION
 ========================= */
 
 async function getSession(){
 
-try{
+  try{
 
-const result =
-await supabaseClient
-.auth
-.getSession();
+    const result =
+      await supabaseClient
+        .auth
+        .getSession();
 
-if(
-result.error ||
-!result.data ||
-!result.data.session
-){
+    if(result.error){
 
-return null;
+      console.error(
+        "Session error:",
+        result.error
+      );
+
+      return null;
+
+    }
+
+    return (
+      result.data &&
+      result.data.session
+    )
+      ? result.data.session
+      : null;
+
+  }catch(error){
+
+    console.error(
+      "Session exception:",
+      error
+    );
+
+    return null;
+
+  }
 
 }
 
-return result.data.session;
 
-}catch(error){
+/* =========================
+   PROFILE
+========================= */
 
-console.error(
-"Session error:",
-error
-);
+async function loadProfile(){
 
-return null;
+  const session =
+    await getSession();
 
-}
+  if(
+    session &&
+    session.user
+  ){
+
+    profileEmail.textContent =
+      session.user.email ||
+      "Logged in";
+
+    logoutButton.style.display =
+      "flex";
+
+  }else{
+
+    profileEmail.textContent =
+      "Not logged in";
+
+    logoutButton.style.display =
+      "none";
+
+  }
 
 }
 
 
 /* =========================
    ACTIVITY LOG
-   NEVER BLOCK OFFERS
 ========================= */
 
 async function logActivity(
-eventType,
-offerId = null,
-action = null,
-metadata = {}
+  eventType,
+  offerId = null,
+  action = null,
+  metadata = {}
 ){
 
-try{
+  try{
 
-const session =
-await getSession();
+    const session =
+      await getSession();
 
-if(!session){
-return;
-}
+    /*
+      Activity logging must NEVER
+      block the offers page.
+    */
 
-const result =
-await supabaseClient
-.from("activity_logs")
-.insert({
+    if(
+      !session ||
+      !session.user
+    ){
 
-user_id:
-session.user.id,
+      return;
 
-offer_id:
-offerId,
+    }
 
-event_type:
-eventType,
 
-page:
-"offer.html",
+    const result =
+      await supabaseClient
+        .from("activity_logs")
+        .insert({
 
-metadata:
-metadata,
+          user_id:
+            session.user.id,
 
-action:
-action
+          offer_id:
+            offerId,
 
-});
+          event_type:
+            eventType,
 
-if(result.error){
+          page:
+            "offer.html",
 
-console.warn(
-"Activity log skipped:",
-result.error.message
-);
+          metadata:
+            metadata,
 
-}
+          action:
+            action
 
-}catch(error){
+        });
 
-console.warn(
-"Activity logging failed:",
-error
-);
 
-}
+    if(result.error){
+
+      console.warn(
+        "Activity log skipped:",
+        result.error.message
+      );
+
+    }
+
+  }catch(error){
+
+    console.warn(
+      "Activity log exception:",
+      error
+    );
+
+  }
 
 }
 
 
 /* =========================
    OFFER PROGRESS
-   NEVER BLOCK OFFER OPEN
 ========================= */
 
 async function updateOfferProgress(
-offerId
+  offerId
 ){
 
-try{
+  try{
 
-const session =
-await getSession();
+    const session =
+      await getSession();
 
-if(!session){
-return;
-}
+    if(
+      !session ||
+      !session.user
+    ){
 
-const userId =
-session.user.id;
+      return;
 
+    }
 
-/*
-Check existing progress
-*/
 
-const {
-data:existing,
-error:selectError
-} =
-await supabaseClient
-.from("offer_progress")
-.select("*")
-.eq("user_id",userId)
-.eq("offer_id",offerId)
-.maybeSingle();
+    const userId =
+      session.user.id;
 
 
-if(selectError){
+    const result =
+      await supabaseClient
+        .from("offer_progress")
+        .select(
+          "id,click_count"
+        )
+        .eq(
+          "user_id",
+          userId
+        )
+        .eq(
+          "offer_id",
+          offerId
+        )
+        .maybeSingle();
 
-console.warn(
-"Progress lookup skipped:",
-selectError.message
-);
 
-return;
+    if(result.error){
 
-}
+      console.warn(
+        "Progress lookup skipped:",
+        result.error.message
+      );
 
+      return;
 
-const now =
-new Date().toISOString();
+    }
 
 
-if(!existing){
+    const now =
+      new Date().toISOString();
 
-const {
-error
-} =
-await supabaseClient
-.from("offer_progress")
-.insert({
 
-user_id:userId,
-offer_id:offerId,
-click_count:1,
-view_count:0,
-started:false,
-completed:false,
-first_clicked_at:now,
-last_clicked_at:now
+    if(!result.data){
 
-});
+      const insertResult =
+        await supabaseClient
+          .from("offer_progress")
+          .insert({
 
-if(error){
+            user_id:
+              userId,
 
-console.warn(
-"Progress insert skipped:",
-error.message
-);
+            offer_id:
+              offerId,
 
-}
-
-return;
-
-}
-
-
-const {
-error
-} =
-await supabaseClient
-.from("offer_progress")
-.update({
-
-click_count:
-(existing.click_count || 0) + 1,
-
-last_clicked_at:now,
-updated_at:now
-
-})
-.eq("id",existing.id);
-
-
-if(error){
-
-console.warn(
-"Progress update skipped:",
-error.message
-);
-
-}
-
-}
-
-
-/* =========================
-   LOAD OFFERS
-========================= */
-
-async function loadOffers(){
-
-offerCount.textContent =
-"Loading offers...";
-
-
-offerGrid.innerHTML = `
-
-<div class="state">
-
-<div class="state-icon">
-⏳
-</div>
-
-<h2>
-Loading offers
-</h2>
-
-<p>
-Please wait...
-</p>
-
-</div>
-
-`;
-
-
-try{
-
-/*
-IMPORTANT:
-Offers are loaded FIRST.
-No login check.
-No activity tracking.
-No progress tracking.
-*/
-
-const {
-data,
-error
-} =
-await supabaseClient
-.from("offers")
-.select(
-"id,created_at,title,description,image_url,offer_url,status"
-)
-.eq("status","active")
-.order(
-"created_at",
-{
-ascending:false
-}
-);
-
-
-if(error){
-
-console.error(
-"Offers error:",
-error
-);
-
-offerCount.textContent =
-"Unable to load offers";
-
-offerGrid.innerHTML = `
-
-<div class="state">
-
-<div class="state-icon">
-⚠️
-</div>
-
-<h2>
-Unable to load offers
-</h2>
-
-<p>
-Please refresh the page and try again.
-</p>
-
-<div class="error-detail">
-${escapeHtml(error.message)}
-</div>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-if(!data || data.length === 0){
-
-offerCount.textContent =
-"0 active offers";
-
-offerGrid.innerHTML = `
-
-<div class="state">
-
-<div class="state-icon">
-🎁
-</div>
-
-<h2>
-No active offers
-</h2>
-
-<p>
-New offers will appear here when available.
-</p>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-offerCount.textContent =
-data.length === 1
-? "1 active offer"
-: data.length + " active offers";
-
-
-offerGrid.innerHTML = "";
-
-
-data.forEach(
-function(offer,index){
-
-const card =
-document.createElement("article");
-
-card.className =
-"offer-card";
-
-card.style.animationDelay =
-Math.min(
-index * 80,
-500
-) + "ms";
-
-
-let imageHtml = "";
-
-
-if(offer.image_url){
-
-imageHtml = `
-
-<img
-class="offer-image"
-src="${escapeHtml(offer.image_url)}"
-alt="${escapeHtml(offer.title || "Offer")}"
-loading="lazy"
-onerror="this.style.display='none';"
->
-
-`;
-
-}else{
-
-imageHtml = `
-
-<div
-class="offer-image"
-style="
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:42px;
-"
->
-🎁
-</div>
-
-`;
-
-}
-
-
-card.innerHTML = `
-
-${imageHtml}
-
-<div class="offer-body">
-
-<h2 class="offer-title">
-${escapeHtml(
-offer.title || "Untitled Offer"
-)}
-</h2>
-
-<p class="offer-description">
-${escapeHtml(
-offer.description ||
-"View complete offer details."
-)}
-</p>
-
-<div class="offer-footer">
-
-<span class="date">
-${formatDate(offer.created_at)}
-</span>
-
-<a
-class="open-btn"
-href="offer-details.html?id=${encodeURIComponent(offer.id)}"
-data-offer-id="${escapeHtml(offer.id)}"
->
-Open Offer →
-</a>
-
-</div>
-
-</div>
-
-`;
-
-
-const openButton =
-card.querySelector(".open-btn");
-
-
-openButton.addEventListener(
-"click",
-function(){
-
-const offerId =
-Number(
-this.dataset.offerId
-);
-
-
-/*
-Do NOT await these.
-The offer must open immediately.
-*/
-
-logActivity(
-"click",
-offerId,
-"offer_click",
-{
-source:"offer.html"
-}
-);
-
-updateOfferProgress(
-offerId
-);
-
-}
-);
-
-
-offerGrid.appendChild(card);
-
-}
-);
-
-
-}catch(error){
-
-console.error(
-"Unexpected offer error:",
-error
-);
-
-offerCount.textContent =
-"Unable to load offers";
-
-offerGrid.innerHTML = `
-
-<div class="state">
-
-<div class="state-icon">
-⚠️
-</div>
-
-<h2>
-Something went wrong
-</h2>
-
-<p>
-Please refresh and try again.
-</p>
-
-<div class="error-detail">
-${escapeHtml(error.message)}
-</div>
-
-</div>
-
-`;
-
-}
-
-}
-
-
-/* =========================
-   LOGIN STATUS
-   OPTIONAL
-========================= */
-
-async function loadLoginStatus(){
-
-try{
-
-const session =
-await getSession();
-
-if(session && session.user){
-
-profileEmail.textContent =
-session.user.email ||
-"Authenticated User";
-
-logoutButton.style.display =
-"flex";
-
-}else{
-
-profileEmail.textContent =
-"Guest";
-
-logoutButton.style.display =
-"none";
-
-}
-
-}catch(error){
-
-console.warn(error);
-
-profileEmail.textContent =
-"Guest";
-
-logoutButton.style.display =
-"none";
-
-}
-
-}
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-logoutButton.addEventListener(
-"click",
-async function(){
-
-logoutButton.disabled = true;
-
-logoutButton.textContent =
-"🚪 Logging out...";
-
-
-try{
-
-await supabaseClient
-.auth
-.signOut();
-
-}catch(error){
-
-console.error(error);
-
-}
-
-
-window.location.replace(
-"login.html"
-);
-
-});
-
-
-/* =========================
-   REFRESH
-========================= */
-
-refreshButton.addEventListener(
-"click",
-async function(){
-
-refreshButton.disabled =
-true;
-
-refreshButton.textContent =
-"Refreshing...";
-
-await loadOffers();
-
-refreshButton.disabled =
-false;
-
-refreshButton.textContent =
-"↻ Refresh";
-
-});
-
-
-/* =========================
-   TOUCH EFFECT
-========================= */
-
-document.addEventListener(
-"pointerdown",
-function(event){
-
-const target =
-event.target.closest(
-"button,a"
-);
-
-if(!target){
-return;
-}
-
-const ripple =
-document.createElement("span");
-
-ripple.className =
-"ripple";
-
-ripple.style.left =
-event.clientX + "px";
-
-ripple.style.top =
-event.clientY + "px";
-
-document.body.appendChild(ripple);
-
-setTimeout(
-function(){
-ripple.remove();
-},
-600
-);
-
-}
-);
-
-
-/* =========================
-   START
-========================= */
-
-async function start(){
-
-/*
-Offers are the FIRST priority.
-*/
-
-await loadOffers();
-
-
-/*
-Login status runs separately.
-It can
+            click_count
