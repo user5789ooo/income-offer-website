@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#050505">
+<meta name="theme-color" content="#070611">
 
-<title>Income Offers</title>
+<title>Income Offers - SAHIL</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,15 +30,10 @@ html{
 
 body{
   min-height:100vh;
-  background:#050505;
-  color:#fff;
+  background:#06060b;
+  color:white;
   font-family:'Geist',Arial,sans-serif;
   overflow-x:hidden;
-}
-
-a{
-  color:inherit;
-  text-decoration:none;
 }
 
 button,
@@ -45,92 +41,123 @@ input{
   font:inherit;
 }
 
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+
 /* =========================
-   MAIN BACKGROUND
+   BACKGROUND
 ========================= */
 
-.page{
-  position:relative;
-  min-height:100vh;
+.background{
+  position:fixed;
+  inset:0;
+  z-index:-5;
   overflow:hidden;
   background:
     radial-gradient(
-      circle at 15% 10%,
-      rgba(105,75,255,.20),
+      circle at 15% 15%,
+      rgba(107,64,255,.18),
       transparent 32%
     ),
     radial-gradient(
-      circle at 85% 35%,
-      rgba(0,180,255,.12),
-      transparent 30%
+      circle at 85% 70%,
+      rgba(0,190,255,.12),
+      transparent 34%
     ),
-    #050505;
+    #06060b;
 }
 
-.page::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(
-      120deg,
-      transparent,
-      rgba(255,255,255,.025),
-      transparent
-    );
-  animation:bgMove 10s ease-in-out infinite alternate;
+.glow{
+  position:absolute;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  filter:blur(80px);
+  opacity:.5;
 }
 
-@keyframes bgMove{
+.glow-one{
+  top:-120px;
+  left:-100px;
+  background:#7c3cff;
+  animation:
+    glowOne 9s ease-in-out infinite alternate;
+}
+
+.glow-two{
+  right:-120px;
+  bottom:5%;
+  background:#00bfff;
+  animation:
+    glowTwo 11s ease-in-out infinite alternate;
+}
+
+@keyframes glowOne{
   from{
-    transform:translateX(-8%);
+    transform:translate(0,0) scale(1);
   }
   to{
-    transform:translateX(8%);
+    transform:translate(130px,100px) scale(1.25);
   }
 }
 
+@keyframes glowTwo{
+  from{
+    transform:translate(0,0) scale(1);
+  }
+  to{
+    transform:translate(-120px,-80px) scale(1.2);
+  }
+}
+
+
 /* =========================
-   POLICY TICKER
+   POLICY BAR
 ========================= */
 
 .policy-wrap{
-  position:relative;
-  z-index:50;
   width:100%;
   overflow:hidden;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(18px);
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+
+  background:#030305;
 }
 
 .policy-track{
-  display:flex;
   width:max-content;
-  animation:ticker 30s linear infinite;
+  display:flex;
+  align-items:center;
+  gap:70px;
+  padding:9px 0;
+  white-space:nowrap;
+
+  animation:
+    policyScroll
+    24s
+    linear
+    infinite;
 }
 
 .policy-item{
-  display:flex;
-  align-items:center;
-  gap:18px;
-  padding:9px 24px;
-  white-space:nowrap;
-  color:rgba(255,255,255,.75);
   font-size:11px;
-  font-weight:500;
+  font-weight:600;
+  letter-spacing:.02em;
 }
 
 .policy-item strong{
   color:#fff;
 }
 
-.warning{
-  color:#ffca70;
+.policy-item.warning{
+  color:#ffd36a;
 }
 
-@keyframes ticker{
+@keyframes policyScroll{
   from{
     transform:translateX(0);
   }
@@ -139,88 +166,6 @@ input{
   }
 }
 
-/* =========================
-   HEADER
-========================= */
-
-.header{
-  position:relative;
-  z-index:20;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:18px 20px;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:11px;
-}
-
-.logo{
-  width:48px;
-  height:48px;
-  object-fit:cover;
-  border-radius:50%;
-  border:2px solid rgba(255,255,255,.45);
-  box-shadow:
-    0 0 22px rgba(110,80,255,.35);
-  animation:logoFloat 4s ease-in-out infinite;
-}
-
-@keyframes logoFloat{
-  0%,100%{
-    transform:translateY(0);
-  }
-  50%{
-    transform:translateY(-4px);
-  }
-}
-
-.brand-text{
-  display:flex;
-  flex-direction:column;
-}
-
-.brand-name{
-  font-size:17px;
-  font-weight:800;
-  letter-spacing:-.03em;
-}
-
-.owner{
-  margin-top:3px;
-  color:rgba(255,255,255,.42);
-  font-size:8px;
-  font-weight:700;
-  letter-spacing:.17em;
-}
-
-.header-actions{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.header-button{
-  padding:10px 14px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:999px;
-  background:rgba(255,255,255,.06);
-  color:#fff;
-  cursor:pointer;
-  backdrop-filter:blur(15px);
-  transition:.2s ease;
-}
-
-.header-button:hover{
-  background:rgba(255,255,255,.11);
-}
-
-.header-button:active{
-  transform:scale(.94);
-}
 
 /* =========================
    HERO
@@ -228,98 +173,54 @@ input{
 
 .hero{
   position:relative;
-  z-index:5;
-  min-height:calc(100vh - 78px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:45px 20px 70px;
+  min-height:calc(100vh - 40px);
+  min-height:calc(100svh - 40px);
+  overflow:hidden;
 }
 
-.hero-content{
-  width:100%;
-  max-width:900px;
-  text-align:center;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 13px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:999px;
-  background:rgba(255,255,255,.055);
-  color:rgba(255,255,255,.75);
-  font-size:11px;
-  font-weight:600;
-  backdrop-filter:blur(15px);
-  animation:fadeUp .8s ease both;
-}
-
-.badge-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#65ff9b;
-  box-shadow:0 0 14px #65ff9b;
-  animation:pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes pulse{
-  0%,100%{
-    opacity:.45;
-    transform:scale(.8);
-  }
-  50%{
-    opacity:1;
-    transform:scale(1.15);
-  }
-}
-
-h1{
-  margin-top:22px;
-  font-size:clamp(2.7rem,10vw,6rem);
-  line-height:.96;
-  letter-spacing:-.07em;
-  animation:fadeUp .8s .08s ease both;
-}
-
-.gradient-text{
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
   background:
     linear-gradient(
-      100deg,
-      #fff,
-      #bdb5ff 40%,
-      #78c8ff 75%,
-      #fff
+      180deg,
+      rgba(6,6,11,.15),
+      rgba(6,6,11,.5)
     );
-  background-size:200% auto;
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-  animation:gradientMove 5s linear infinite;
+  pointer-events:none;
 }
 
-@keyframes gradientMove{
-  to{
-    background-position:200% center;
-  }
+
+/* =========================
+   NAV
+========================= */
+
+.nav{
+  position:relative;
+  z-index:10;
+
+  max-width:1250px;
+  margin:auto;
+
+  padding:
+    24px 24px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  animation:
+    navIn
+    .8s
+    cubic-bezier(.16,1,.3,1)
+    both;
 }
 
-.hero-description{
-  max-width:620px;
-  margin:20px auto 0;
-  color:rgba(255,255,255,.58);
-  font-size:14px;
-  line-height:1.7;
-  animation:fadeUp .8s .16s ease both;
-}
-
-@keyframes fadeUp{
+@keyframes navIn{
   from{
     opacity:0;
-    transform:translateY(25px);
+    transform:translateY(-18px);
   }
   to{
     opacity:1;
@@ -327,341 +228,680 @@ h1{
   }
 }
 
-/* =========================
-   EMAIL CTA
-========================= */
-
-.cta-area{
-  max-width:470px;
-  margin:30px auto 0;
-  animation:fadeUp .8s .24s ease both;
+.brand{
+  display:flex;
+  align-items:center;
+  gap:13px;
 }
 
-.email-input{
-  width:100%;
-  height:54px;
-  padding:0 20px;
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:18px;
-  outline:none;
-  background:rgba(255,255,255,.07);
-  color:#fff;
-  backdrop-filter:blur(20px);
-  transition:.2s ease;
+.logo{
+  width:62px;
+  height:62px;
+  border-radius:50%;
+
+  object-fit:cover;
+
+  border:
+    2px solid
+    rgba(255,255,255,.35);
+
+  box-shadow:
+    0 0 25px
+    rgba(120,80,255,.18);
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
 }
 
-.email-input::placeholder{
-  color:rgba(255,255,255,.35);
+.logo:hover{
+  transform:
+    rotate(-5deg)
+    scale(1.05);
+
+  box-shadow:
+    0 0 35px
+    rgba(120,80,255,.35);
 }
 
-.email-input:focus{
-  border-color:rgba(153,133,255,.7);
-  box-shadow:0 0 0 4px rgba(111,81,255,.12);
+.brand-text{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
 }
 
-.primary-button{
-  width:100%;
-  height:54px;
-  margin-top:10px;
-  border:0;
-  border-radius:18px;
-  background:#fff;
-  color:#080808;
+.brand-name{
+  font-size:22px;
   font-weight:800;
-  cursor:pointer;
-  transition:.2s ease;
+  letter-spacing:-.04em;
 }
 
-.primary-button:hover{
-  box-shadow:0 12px 35px rgba(255,255,255,.12);
+.owner{
+  color:rgba(255,255,255,.38);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.2em;
 }
 
-.primary-button:active{
-  transform:scale(.965);
+.login{
+  padding:
+    12px 23px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.14);
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.07);
+
+  color:white;
+
+  font-size:14px;
+  font-weight:600;
+
+  backdrop-filter:blur(15px);
+
+  transition:
+    transform .25s ease,
+    background .25s ease;
 }
+
+.login:hover{
+  transform:translateY(-2px);
+  background:
+    rgba(255,255,255,.13);
+}
+
 
 /* =========================
-   FEATURES
+   HERO CONTENT
 ========================= */
 
-.features{
-  display:grid;
-  grid-template-columns:1fr;
+.hero-content{
+  position:relative;
+  z-index:5;
+
+  max-width:900px;
+  margin:0 auto;
+
+  min-height:
+    calc(100vh - 125px);
+
+  min-height:
+    calc(100svh - 125px);
+
+  padding:
+    65px 24px
+    70px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+}
+
+
+/* =========================
+   BADGE
+========================= */
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+
+  padding:
+    10px 17px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.14);
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.055);
+
+  backdrop-filter:blur(18px);
+
+  color:
+    rgba(255,255,255,.75);
+
+  font-size:12px;
+  font-weight:700;
+
+  animation:
+    badgeIn
+    .9s
+    .15s
+    cubic-bezier(.16,1,.3,1)
+    both;
+}
+
+.badge-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#57ff9a;
+  box-shadow:
+    0 0 14px
+    rgba(87,255,154,.9);
+
+  animation:
+    livePulse
+    1.5s
+    ease-in-out
+    infinite;
+}
+
+@keyframes livePulse{
+  0%,100%{
+    transform:scale(1);
+    opacity:1;
+  }
+  50%{
+    transform:scale(1.45);
+    opacity:.6;
+  }
+}
+
+@keyframes badgeIn{
+  from{
+    opacity:0;
+    transform:
+      translateY(20px)
+      scale(.95);
+  }
+  to{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================
+   TITLE
+========================= */
+
+h1{
+  max-width:850px;
+
+  margin-top:28px;
+
+  font-size:
+    clamp(
+      3rem,
+      10vw,
+      6.7rem
+    );
+
+  line-height:.94;
+
+  letter-spacing:-.075em;
+
+  font-weight:800;
+
+  animation:
+    titleIn
+    .9s
+    .25s
+    cubic-bezier(.16,1,.3,1)
+    both;
+}
+
+@keyframes titleIn{
+  from{
+    opacity:0;
+    transform:
+      translateY(35px)
+      scale(.97);
+    filter:blur(8px);
+  }
+  to{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+    filter:blur(0);
+  }
+}
+
+.title-gradient{
+  display:block;
+
+  background:
+    linear-gradient(
+      100deg,
+      #ffffff 5%,
+      #78aaff 45%,
+      #b17aff 75%,
+      #63ddff 100%
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
+
+  background-size:200% auto;
+
+  animation:
+    gradientMove
+    5s
+    ease-in-out
+    infinite alternate;
+}
+
+@keyframes gradientMove{
+  from{
+    background-position:0% 50%;
+  }
+  to{
+    background-position:100% 50%;
+  }
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.description{
+  max-width:680px;
+
+  margin-top:27px;
+
+  color:
+    rgba(255,255,255,.55);
+
+  font-size:
+    clamp(14px,2vw,17px);
+
+  line-height:1.7;
+
+  animation:
+    fadeUp
+    .8s
+    .45s
+    cubic-bezier(.16,1,.3,1)
+    both;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(22px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta-box{
+  width:100%;
+  max-width:650px;
+
+  margin-top:32px;
+
+  display:flex;
+  flex-direction:column;
   gap:12px;
-  margin-top:42px;
-  animation:fadeUp .8s .32s ease both;
+
+  animation:
+    fadeUp
+    .8s
+    .58s
+    cubic-bezier(.16,1,.3,1)
+    both;
+}
+
+.email{
+  width:100%;
+
+  padding:
+    18px 22px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.13);
+
+  border-radius:22px;
+
+  outline:none;
+
+  background:
+    rgba(255,255,255,.06);
+
+  color:white;
+
+  font-size:16px;
+
+  backdrop-filter:blur(18px);
+
+  transition:
+    border-color .25s,
+    background .25s,
+    box-shadow .25s;
+}
+
+.email::placeholder{
+  color:
+    rgba(255,255,255,.35);
+}
+
+.email:focus{
+  border-color:
+    rgba(255,255,255,.35);
+
+  background:
+    rgba(255,255,255,.09);
+
+  box-shadow:
+    0 0 30px
+    rgba(110,130,255,.08);
+}
+
+.start{
+  width:100%;
+
+  padding:
+    18px;
+
+  border:0;
+
+  border-radius:22px;
+
+  background:white;
+
+  color:#080808;
+
+  font-size:16px;
+  font-weight:800;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 15px 45px
+    rgba(0,0,0,.25);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    opacity .2s ease;
+}
+
+.start:hover{
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 20px 55px
+    rgba(0,0,0,.4);
+}
+
+.start:active{
+  transform:
+    scale(.98);
+}
+
+.start:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+  width:100%;
+  max-width:850px;
+
+  margin-top:45px;
+
+  display:grid;
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:14px;
+
+  animation:
+    fadeUp
+    .8s
+    .72s
+    cubic-bezier(.16,1,.3,1)
+    both;
 }
 
 .card{
-  padding:22px;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:22px;
-  background:rgba(255,255,255,.055);
-  text-align:left;
+  min-height:155px;
+
+  padding:25px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.10);
+
+  border-radius:24px;
+
+  background:
+    rgba(255,255,255,.055);
+
   backdrop-filter:blur(20px);
-  transition:.35s ease;
+
+  text-align:left;
+
+  transition:
+    transform .35s ease,
+    background .35s ease,
+    border-color .35s ease;
 }
 
 .card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(255,255,255,.2);
-  background:rgba(255,255,255,.08);
-}
+  transform:
+    translateY(-7px);
 
-.card-icon{
-  font-size:25px;
+  background:
+    rgba(255,255,255,.08);
+
+  border-color:
+    rgba(255,255,255,.18);
 }
 
 .card-number{
-  margin-top:14px;
-  font-size:30px;
+  font-size:34px;
   font-weight:800;
   letter-spacing:-.05em;
 }
 
 .card-title{
-  margin-top:5px;
-  font-size:14px;
-  font-weight:700;
-}
+  margin-top:12px;
 
-.card-text{
-  margin-top:8px;
-  color:rgba(255,255,255,.48);
-  font-size:12px;
+  color:
+    rgba(255,255,255,.55);
+
+  font-size:13px;
+
   line-height:1.55;
 }
 
-/* =========================
-   TELEGRAM
-========================= */
-
-.telegram{
-  display:none;
-  max-width:470px;
-  margin:14px auto 0;
-  padding:15px;
-  border:1px solid rgba(34,158,217,.3);
-  border-radius:18px;
-  background:rgba(34,158,217,.1);
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.telegram.show{
-  display:flex;
-  animation:fadeUp .5s ease both;
-}
-
-.telegram-text{
-  font-size:12px;
-  text-align:left;
-}
-
-.telegram-text small{
-  display:block;
-  margin-top:4px;
-  color:rgba(255,255,255,.5);
-}
-
-.telegram-button{
-  padding:9px 14px;
-  border-radius:999px;
-  background:#229ed9;
-  color:#fff;
-  font-size:11px;
-  font-weight:800;
-}
 
 /* =========================
-   PROFILE
+   SCROLL INDICATOR
 ========================= */
 
-.profile-panel{
-  position:fixed;
-  top:78px;
-  right:16px;
-  z-index:100;
-  display:none;
-  width:min(340px,calc(100% - 32px));
-  padding:20px;
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:22px;
-  background:rgba(10,10,10,.94);
-  backdrop-filter:blur(30px);
-  box-shadow:0 25px 80px rgba(0,0,0,.55);
-}
+.scroll-indicator{
+  margin-top:35px;
 
-.profile-panel.show{
-  display:block;
-  animation:panelIn .25s ease both;
-}
-
-@keyframes panelIn{
-  from{
-    opacity:0;
-    transform:translateY(-10px) scale(.97);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-}
-
-.profile-title{
-  font-size:18px;
-  font-weight:800;
-}
-
-.profile-email{
-  margin-top:6px;
-  color:rgba(255,255,255,.5);
-  font-size:12px;
-  word-break:break-all;
-}
-
-.profile-actions{
   display:flex;
   flex-direction:column;
-  gap:9px;
-  margin-top:18px;
+  align-items:center;
+  gap:8px;
+
+  color:
+    rgba(255,255,255,.28);
+
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+
+  animation:
+    scrollFloat
+    2s
+    ease-in-out
+    infinite;
 }
 
-.profile-action{
-  width:100%;
-  padding:13px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:13px;
-  background:rgba(255,255,255,.055);
-  color:#fff;
-  text-align:left;
-  cursor:pointer;
+.scroll-arrow{
+  font-size:18px;
 }
 
-.logout{
-  color:#ff9999;
+@keyframes scrollFloat{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(6px);
+  }
 }
+
 
 /* =========================
-   SOUND
+   MOBILE
 ========================= */
 
-.sound-button{
-  position:fixed;
-  right:16px;
-  bottom:18px;
-  z-index:90;
-  width:45px;
-  height:45px;
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:50%;
-  background:rgba(10,10,10,.75);
-  color:#fff;
-  cursor:pointer;
-  backdrop-filter:blur(18px);
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
+@media(max-width:600px){
+
+  .nav{
+    padding:
+      18px 16px;
+  }
+
+  .logo{
+    width:54px;
+    height:54px;
+  }
+
+  .brand-name{
+    font-size:19px;
+  }
+
+  .owner{
+    font-size:8px;
+  }
+
+  .login{
+    padding:
+      11px 19px;
+  }
+
+  .hero-content{
+    padding:
+      45px 18px
+      55px;
+  }
+
+  h1{
+    margin-top:24px;
+    font-size:
+      clamp(
+        3rem,
+        14vw,
+        4.7rem
+      );
+  }
+
+  .description{
+    font-size:14px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .card{
+    min-height:auto;
+  }
+
 }
 
-.sound-button:active{
-  transform:scale(.9);
-}
 
 /* =========================
-   TOUCH RIPPLE
+   REDUCED MOTION
 ========================= */
 
-.ripple{
-  position:fixed;
-  z-index:9999;
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:rgba(255,255,255,.5);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  animation:ripple .55s ease-out forwards;
-}
+@media(prefers-reduced-motion:reduce){
 
-@keyframes ripple{
-  to{
-    opacity:0;
-    transform:translate(-50%,-50%) scale(12);
-  }
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(min-width:700px){
-
-  .header{
-    padding:22px 40px;
-  }
-
-  .hero{
-    padding-left:40px;
-    padding-right:40px;
-  }
-
-  .features{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-}
-
-@media(min-width:1000px){
-
-  .header{
-    padding-left:60px;
-    padding-right:60px;
-  }
-
-  .hero{
-    padding-left:60px;
-    padding-right:60px;
-  }
-
-  .features{
-    gap:16px;
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    scroll-behavior:auto !important;
   }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="page">
 
-<!-- POLICY -->
+<div class="background">
+
+  <div class="glow glow-one"></div>
+
+  <div class="glow glow-two"></div>
+
+</div>
+
+
+<!-- =========================
+     POLICY
+========================= -->
 
 <div class="policy-wrap">
 
   <div class="policy-track">
 
     <div class="policy-item">
-      😍 <strong>Welcome to Offer Income</strong>
-      <span>•</span>
-      ✅ We Share Trusted Campaigns & Promotional Offers.
-      <span>•</span>
-      <span class="warning">
-        ⚠️ Disclaimer: Please do your own research before using any earning method.
-        We do not promise Guaranteed Earnings.
-      </span>
+      😍 Welcome to Offer Income
     </div>
 
     <div class="policy-item">
-      😍 <strong>Welcome to Offer Income</strong>
-      <span>•</span>
       ✅ We Share Trusted Campaigns & Promotional Offers.
-      <span>•</span>
-      <span class="warning">
-        ⚠️ Disclaimer: Please do your own research before using any earning method.
-        We do not promise Guaranteed Earnings.
-      </span>
+    </div>
+
+    <div class="policy-item warning">
+      ⚠️ Disclaimer: Please do your own research before using any earning method. We do not promise Guaranteed Earnings.
+    </div>
+
+
+    <div class="policy-item">
+      😍 Welcome to Offer Income
+    </div>
+
+    <div class="policy-item">
+      ✅ We Share Trusted Campaigns & Promotional Offers.
+    </div>
+
+    <div class="policy-item warning">
+      ⚠️ Disclaimer: Please do your own research before using any earning method. We do not promise Guaranteed Earnings.
     </div>
 
   </div>
@@ -669,470 +909,193 @@ h1{
 </div>
 
 
-<!-- HEADER -->
+<section class="hero">
 
-<header class="header">
+
+<!-- =========================
+     NAV
+========================= -->
+
+<nav class="nav">
 
   <a
-    href="index.html"
     class="brand"
+    href="index.html"
   >
 
     <img
       class="logo"
-      src="assets/income-offers-logo.jpg"
+      src="income-offers-logo.jpg"
       alt="Income Offers"
+      onerror="this.style.display='none'"
     >
 
-    <div class="brand-text">
+    <span class="brand-text">
 
-      <div class="brand-name">
+      <span class="brand-name">
         Income Offers
-      </div>
+      </span>
 
-      <div class="owner">
+      <span class="owner">
         OWNER: SAHIL
-      </div>
+      </span>
 
-    </div>
+    </span>
 
   </a>
 
 
-  <div class="header-actions">
-
-    <a
-      href="login.html"
-      class="header-button"
-      id="loginLink"
-    >
-      Login
-    </a>
-
-    <button
-      class="header-button"
-      id="profileButton"
-      type="button"
-      style="display:none"
-    >
-      👤 Profile
-    </button>
-
-  </div>
-
-</header>
-
-
-<!-- PROFILE PANEL -->
-
-<div
-  class="profile-panel"
-  id="profilePanel"
->
-
-  <div class="profile-title">
-    My Profile
-  </div>
-
-  <div
-    class="profile-email"
-    id="profileEmail"
+  <a
+    class="login"
+    id="loginLink"
+    href="login.html"
   >
-    Loading...
+    Login
+  </a>
+
+</nav>
+
+
+<!-- =========================
+     HERO CONTENT
+========================= -->
+
+<div class="hero-content">
+
+
+  <div class="badge">
+
+    <span class="badge-dot"></span>
+
+    <span>
+      LIVE INCOME OFFERS
+    </span>
+
   </div>
 
-  <div class="profile-actions">
 
-    <a
-      class="profile-action"
-      href="offer.html"
-    >
-      💼 Browse Offers
-    </a>
+  <h1>
 
-    <a
-      class="profile-action"
-      href="history.html"
-    >
-      📜 My History
-    </a>
+    Discover offers
 
-    <a
-      class="profile-action"
-      href="profile.html"
-    >
-      👤 My Profile / UID
-    </a>
+    <span class="title-gradient">
+      worth opening.
+    </span>
 
-    <a
-      class="profile-action"
-      href="https://t.me/IncomeOffersOfficia"
-      target="_blank"
-      rel="noopener"
+  </h1>
+
+
+  <p class="description">
+
+    Browse trusted campaigns,
+    promotional offers and opportunities.
+    Open an offer to see its complete details.
+
+  </p>
+
+
+  <div class="cta-box">
+
+    <input
+      class="email"
+      id="emailInput"
+      type="email"
+      placeholder="Enter your email"
+      autocomplete="email"
     >
-      📢 Join Telegram
-    </a>
+
 
     <button
-      class="profile-action logout"
-      id="logoutButton"
+      class="start"
+      id="startButton"
       type="button"
     >
-      🚪 Logout
+      Get Started
     </button>
 
   </div>
 
-</div>
 
+  <div class="cards">
 
-<!-- HERO -->
+    <div class="card">
 
-<main class="hero">
+      <div class="card-number">
+        24/7
+      </div>
 
-  <div class="hero-content">
-
-    <div class="badge">
-
-      <span class="badge-dot"></span>
-
-      LIVE INCOME OFFERS
+      <div class="card-title">
+        New opportunities and active offers
+        are available whenever you need them.
+      </div>
 
     </div>
 
 
-    <h1>
+    <div class="card">
 
-      Discover offers
-      <br>
+      <div class="card-number">
+        ⚡
+      </div>
 
-      <span class="gradient-text">
-        worth opening.
-      </span>
-
-    </h1>
-
-
-    <p class="hero-description">
-
-      Browse trusted campaigns, promotional offers
-      and opportunities. Open an offer to see its
-      complete details.
-
-    </p>
-
-
-    <div class="cta-area">
-
-      <input
-        class="email-input"
-        id="emailInput"
-        type="email"
-        autocomplete="email"
-        placeholder="Enter your email"
-      >
-
-      <button
-        class="primary-button"
-        id="startButton"
-        type="button"
-      >
-        Get Started
-      </button>
+      <div class="card-title">
+        Simple, fast and easy to explore
+        the latest opportunities.
+      </div>
 
     </div>
-
-
-    <div
-      class="telegram"
-      id="telegramCard"
-    >
-
-      <div class="telegram-text">
-
-        📢 Latest Offers & Updates
-
-        <small>
-          Join our official Telegram channel.
-        </small>
-
-      </div>
-
-      <a
-        class="telegram-button"
-        href="https://t.me/IncomeOffersOfficia"
-        target="_blank"
-        rel="noopener"
-      >
-        Join
-      </a>
-
-    </div>
-
-
-    <section class="features">
-
-      <div class="card">
-
-        <div class="card-icon">
-          ⚡
-        </div>
-
-        <div class="card-number">
-          24/7
-        </div>
-
-        <div class="card-title">
-          Active Opportunities
-        </div>
-
-        <div class="card-text">
-          Discover available offers whenever
-          you need them.
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-icon">
-          🛡️
-        </div>
-
-        <div class="card-number">
-          Safe
-        </div>
-
-        <div class="card-title">
-          Clear Information
-        </div>
-
-        <div class="card-text">
-          Review offer details before deciding
-          whether to participate.
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-icon">
-          🚀
-        </div>
-
-        <div class="card-number">
-          Easy
-        </div>
-
-        <div class="card-title">
-          Simple Experience
-        </div>
-
-        <div class="card-text">
-          Browse, open and keep track of
-          the offers you interact with.
-        </div>
-
-      </div>
-
-    </section>
 
   </div>
 
-</main>
 
+  <div class="scroll-indicator">
 
-<!-- SOUND -->
+    <span>
+      Explore
+    </span>
 
-<button
-  class="sound-button"
-  id="soundButton"
-  type="button"
-  aria-label="Toggle sound"
->
-  🔇
-</button>
+    <span class="scroll-arrow">
+      ↓
+    </span>
+
+  </div>
+
 
 </div>
 
+</section>
 
-<!-- SUPABASE -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script src="supabase-config.js"></script>
+
 
 <script>
 
-/* ELEMENTS */
-
-const loginLink =
-  document.getElementById("loginLink");
-
-const profileButton =
-  document.getElementById("profileButton");
-
-const profilePanel =
-  document.getElementById("profilePanel");
-
-const profileEmail =
-  document.getElementById("profileEmail");
-
-const logoutButton =
-  document.getElementById("logoutButton");
+/* =========================
+   ELEMENTS
+========================= */
 
 const emailInput =
-  document.getElementById("emailInput");
+document.getElementById(
+  "emailInput"
+);
 
 const startButton =
-  document.getElementById("startButton");
+document.getElementById(
+  "startButton"
+);
 
-const telegramCard =
-  document.getElementById("telegramCard");
-
-const soundButton =
-  document.getElementById("soundButton");
-
-
-/* SOUND */
-
-let soundEnabled = false;
-let audioContext = null;
-
-
-function enableAudio(){
-
-  if(!audioContext){
-
-    audioContext =
-      new (
-        window.AudioContext ||
-        window.webkitAudioContext
-      )();
-
-  }
-
-  if(
-    audioContext.state === "suspended"
-  ){
-
-    audioContext.resume();
-
-  }
-
-}
-
-
-function playClick(){
-
-  if(!soundEnabled) return;
-
-  enableAudio();
-
-  const oscillator =
-    audioContext.createOscillator();
-
-  const gain =
-    audioContext.createGain();
-
-  oscillator.type = "sine";
-
-  oscillator.frequency.setValueAtTime(
-    520,
-    audioContext.currentTime
-  );
-
-  oscillator.frequency.exponentialRampToValueAtTime(
-    260,
-    audioContext.currentTime + .07
-  );
-
-  gain.gain.setValueAtTime(
-    .045,
-    audioContext.currentTime
-  );
-
-  gain.gain.exponentialRampToValueAtTime(
-    .001,
-    audioContext.currentTime + .08
-  );
-
-  oscillator.connect(gain);
-  gain.connect(audioContext.destination);
-
-  oscillator.start();
-
-  oscillator.stop(
-    audioContext.currentTime + .09
-  );
-
-}
-
-
-/* SOUND TOGGLE */
-
-soundButton.addEventListener(
-  "click",
-  function(){
-
-    enableAudio();
-
-    soundEnabled =
-      !soundEnabled;
-
-    soundButton.textContent =
-      soundEnabled
-        ? "🔊"
-        : "🔇";
-
-    if(soundEnabled){
-      playClick();
-    }
-
-  }
+const loginLink =
+document.getElementById(
+  "loginLink"
 );
 
 
-/* TOUCH RIPPLE */
-
-document.addEventListener(
-  "pointerdown",
-  function(event){
-
-    const target =
-      event.target.closest("button,a");
-
-    if(!target) return;
-
-    playClick();
-
-    const ripple =
-      document.createElement("span");
-
-    ripple.className =
-      "ripple";
-
-    ripple.style.left =
-      event.clientX + "px";
-
-    ripple.style.top =
-      event.clientY + "px";
-
-    document.body.appendChild(ripple);
-
-    setTimeout(
-      function(){
-        ripple.remove();
-      },
-      600
-    );
-
-  }
-);
-
-
-/* UI */
+/* =========================
+   UPDATE SESSION UI
+========================= */
 
 function updateUI(session){
 
@@ -1147,19 +1110,11 @@ function updateUI(session){
     startButton.textContent =
       "View Offers";
 
-    loginLink.style.display =
-      "none";
+    loginLink.textContent =
+      "My Profile";
 
-    profileButton.style.display =
-      "block";
-
-    profileEmail.textContent =
-      session.user.email ||
-      "Logged in user";
-
-    telegramCard.classList.add(
-      "show"
-    );
+    loginLink.href =
+      "profile.html";
 
   }else{
 
@@ -1169,33 +1124,38 @@ function updateUI(session){
     startButton.textContent =
       "Get Started";
 
-    loginLink.style.display =
-      "block";
+    loginLink.textContent =
+      "Login";
 
-    profileButton.style.display =
-      "none";
-
-    profilePanel.classList.remove(
-      "show"
-    );
-
-    profileEmail.textContent =
-      "";
-
-    telegramCard.classList.remove(
-      "show"
-    );
+    loginLink.href =
+      "login.html";
 
   }
 
 }
 
 
-/* SESSION */
+/* =========================
+   LOAD SESSION
+========================= */
 
 async function loadSession(){
 
   try{
+
+    if(
+      typeof supabaseClient ===
+      "undefined"
+    ){
+
+      console.error(
+        "Supabase client not found."
+      );
+
+      return;
+
+    }
+
 
     const {
       data,
@@ -1205,95 +1165,73 @@ async function loadSession(){
         .auth
         .getSession();
 
+
     if(error){
 
-      console.error(error);
+      console.error(
+        "Session error:",
+        error
+      );
 
       return;
 
     }
 
+
     updateUI(
       data.session
     );
 
+
   }catch(error){
 
-    console.error(error);
+    console.error(
+      "Session exception:",
+      error
+    );
 
   }
 
 }
 
 
-/* AUTH LISTENER */
+/* =========================
+   AUTH LISTENER
+========================= */
 
-supabaseClient
-  .auth
-  .onAuthStateChange(
-    function(
-      event,
-      session
-    ){
+if(
+  typeof supabaseClient !==
+  "undefined"
+){
 
-      updateUI(session);
+  supabaseClient
+    .auth
+    .onAuthStateChange(
+      function(
+        event,
+        session
+      ){
 
-    }
-  );
+        updateUI(
+          session
+        );
 
-
-/* PROFILE */
-
-profileButton.addEventListener(
-  "click",
-  function(event){
-
-    event.stopPropagation();
-
-    profilePanel.classList.toggle(
-      "show"
+      }
     );
 
-    playClick();
-
-  }
-);
+}
 
 
-/* CLOSE PROFILE */
-
-document.addEventListener(
-  "click",
-  function(event){
-
-    if(
-      profilePanel.classList.contains(
-        "show"
-      ) &&
-      !profilePanel.contains(
-        event.target
-      ) &&
-      event.target !==
-        profileButton
-    ){
-
-      profilePanel.classList.remove(
-        "show"
-      );
-
-    }
-
-  }
-);
-
-
-/* GET STARTED */
+/* =========================
+   GET STARTED
+========================= */
 
 startButton.addEventListener(
   "click",
   async function(){
 
-    playClick();
+    startButton.disabled =
+      true;
 
     try{
 
@@ -1304,7 +1242,11 @@ startButton.addEventListener(
           .auth
           .getSession();
 
-      if(data.session){
+
+      if(
+        data &&
+        data.session
+      ){
 
         window.location.href =
           "offer.html";
@@ -1313,37 +1255,70 @@ startButton.addEventListener(
 
       }
 
+
+      const email =
+        emailInput.value
+          .trim()
+          .toLowerCase();
+
+
+      if(!email){
+
+        window.location.href =
+          "login.html";
+
+        return;
+
+      }
+
+
+      if(
+        !email.includes("@") ||
+        !email.includes(".")
+      ){
+
+        alert(
+          "Please enter a valid email address."
+        );
+
+        startButton.disabled =
+          false;
+
+        return;
+
+      }
+
+
+      window.location.href =
+        "login.html?email=" +
+        encodeURIComponent(
+          email
+        );
+
+
     }catch(error){
 
-      console.error(error);
-
-    }
-
-
-    const email =
-      emailInput.value.trim();
-
-
-    if(!email){
+      console.error(
+        "Get Started error:",
+        error
+      );
 
       window.location.href =
         "login.html";
 
-      return;
-
     }
 
-
-    if(!email.includes("@")){
-
-      alert(
-        "Please enter a valid email."
-      );
-
-      return;
-
-    }
+  }
+);
 
 
-    window.location.href =
-      "login.html?e
+/* =========================
+   START
+========================= */
+
+loadSession();
+
+</script>
+
+</body>
+</html>
