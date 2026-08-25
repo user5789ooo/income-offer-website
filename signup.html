@@ -6,142 +6,180 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#050505">
 
-<title>SAHIL - Create Account</title>
+<title>Income Offers - Create Account</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
 
 <style>
 
 *{
   box-sizing:border-box;
-  font-family:Arial,sans-serif;
+  margin:0;
+  padding:0;
 }
 
 body{
-  margin:0;
   min-height:100vh;
-  background:#050505;
-  color:white;
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(105,75,255,.20),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(0,180,255,.10),
+      transparent 35%
+    ),
+    #050505;
+  color:#fff;
+  font-family:'Geist',Arial,sans-serif;
   display:flex;
   align-items:center;
   justify-content:center;
   padding:20px;
+  overflow:hidden;
 }
 
 .box{
+  position:relative;
   width:100%;
   max-width:430px;
   padding:30px;
   border:1px solid rgba(255,255,255,.12);
-  border-radius:26px;
-  background:rgba(255,255,255,.06);
-  box-shadow:0 25px 80px rgba(0,0,0,.4);
+  border-radius:28px;
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(25px);
+  box-shadow:0 30px 90px rgba(0,0,0,.5);
+  animation:boxIn .7s ease both;
+}
+
+@keyframes boxIn{
+  from{
+    opacity:0;
+    transform:translateY(30px) scale(.96);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
 }
 
 .logo{
-  width:70px;
-  height:70px;
+  width:76px;
+  height:76px;
   margin:0 auto 20px;
-  border-radius:20px;
-  background:white;
-  color:#111;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:38px;
-  font-weight:bold;
+  display:block;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.45);
+  box-shadow:0 0 30px rgba(105,75,255,.35);
+  animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-5px);
+  }
 }
 
 h1{
   text-align:center;
-  margin:0 0 8px;
+  font-size:32px;
+  letter-spacing:-.05em;
 }
 
 .subtitle{
+  margin:9px 0 28px;
   text-align:center;
-  color:#888;
-  margin-bottom:28px;
+  color:rgba(255,255,255,.5);
+  font-size:14px;
+  line-height:1.5;
 }
 
 label{
   display:block;
-  margin:15px 0 7px;
-  font-weight:bold;
-}
-
-.field{
-  position:relative;
+  margin:0 0 8px;
+  color:rgba(255,255,255,.8);
+  font-size:13px;
+  font-weight:700;
 }
 
 input{
   width:100%;
-  padding:15px;
-  padding-right:58px;
-  border:1px solid rgba(255,255,255,.15);
-  border-radius:13px;
-  background:#181818;
-  color:white;
-  font-size:16px;
+  height:54px;
+  padding:0 16px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:16px;
   outline:none;
+  background:rgba(255,255,255,.065);
+  color:#fff;
+  font-size:16px;
+  transition:.2s ease;
+}
+
+input::placeholder{
+  color:rgba(255,255,255,.3);
 }
 
 input:focus{
-  border-color:#aaa;
-}
-
-.eye{
-  position:absolute;
-  right:4px;
-  top:50%;
-  transform:translateY(-50%);
-  width:48px;
-  height:48px;
-  border:0;
-  padding:0;
-  background:transparent;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  cursor:pointer;
-  z-index:10;
-  -webkit-tap-highlight-color:transparent;
+  border-color:rgba(150,130,255,.7);
+  box-shadow:0 0 0 4px rgba(105,75,255,.12);
 }
 
 .create{
   width:100%;
-  margin-top:22px;
-  padding:15px;
+  height:54px;
+  margin-top:15px;
   border:0;
-  border-radius:999px;
-  background:white;
-  color:#111;
-  font-size:16px;
-  font-weight:bold;
+  border-radius:16px;
+  background:#fff;
+  color:#080808;
+  font-weight:800;
   cursor:pointer;
+  transition:.2s ease;
+}
+
+.create:active{
+  transform:scale(.97);
 }
 
 .create:disabled{
   opacity:.5;
+  cursor:not-allowed;
 }
 
 .message{
+  min-height:22px;
   margin-top:16px;
   text-align:center;
-  font-size:14px;
+  font-size:13px;
   line-height:1.5;
 }
 
 .login{
   margin-top:24px;
   padding-top:20px;
-  border-top:1px solid rgba(255,255,255,.1);
+  border-top:1px solid rgba(255,255,255,.08);
   text-align:center;
-  color:#888;
+  color:rgba(255,255,255,.5);
+  font-size:13px;
 }
 
 .login a{
-  color:white;
-  font-weight:bold;
+  color:#fff;
+  font-weight:700;
   text-decoration:none;
 }
 
@@ -149,8 +187,43 @@ input:focus{
   display:block;
   margin-top:20px;
   text-align:center;
-  color:#777;
+  color:rgba(255,255,255,.4);
   text-decoration:none;
+  font-size:13px;
+}
+
+.success-icon{
+  display:none;
+  width:65px;
+  height:65px;
+  margin:20px auto 5px;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:rgba(101,255,155,.12);
+  border:1px solid rgba(101,255,155,.35);
+  font-size:30px;
+  animation:successPop .5s ease both;
+}
+
+.success-icon.show{
+  display:flex;
+}
+
+@keyframes successPop{
+  from{
+    opacity:0;
+    transform:scale(.4);
+  }
+
+  70%{
+    transform:scale(1.12);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
 }
 
 </style>
@@ -161,16 +234,23 @@ input:focus{
 
 <div class="box">
 
-  <div class="logo">
-    S
-  </div>
+  <img
+    class="logo"
+    src="assets/income-offers-logo.jpg"
+    alt="Income Offers"
+  >
+
 
   <h1>
     Create Account
   </h1>
 
-  <p class="subtitle">
-    Join SAHIL to continue
+
+  <p
+    class="subtitle"
+    id="subtitle"
+  >
+    Enter your email to create your account
   </p>
 
 
@@ -183,64 +263,10 @@ input:focus{
     <input
       id="email"
       type="email"
-      placeholder="Enter your email"
+      placeholder="Enter your Gmail / email"
       autocomplete="email"
       required
     >
-
-
-    <label for="password">
-      Password
-    </label>
-
-    <div class="field">
-
-      <input
-        id="password"
-        type="password"
-        placeholder="Create password"
-        minlength="6"
-        autocomplete="new-password"
-        required
-      >
-
-      <button
-        type="button"
-        class="eye"
-        id="passwordEye"
-        aria-label="Show password"
-      >
-        👁️
-      </button>
-
-    </div>
-
-
-    <label for="confirmPassword">
-      Confirm Password
-    </label>
-
-    <div class="field">
-
-      <input
-        id="confirmPassword"
-        type="password"
-        placeholder="Confirm password"
-        minlength="6"
-        autocomplete="new-password"
-        required
-      >
-
-      <button
-        type="button"
-        class="eye"
-        id="confirmEye"
-        aria-label="Show confirm password"
-      >
-        👁️
-      </button>
-
-    </div>
 
 
     <button
@@ -252,6 +278,14 @@ input:focus{
     </button>
 
   </form>
+
+
+  <div
+    class="success-icon"
+    id="successIcon"
+  >
+    ✓
+  </div>
 
 
   <div
@@ -288,17 +322,6 @@ input:focus{
 <script>
 
 /* =========================
-   SUPABASE
-========================= */
-
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
-
-
-/* =========================
    ELEMENTS
 ========================= */
 
@@ -312,16 +335,6 @@ const emailInput =
     "email"
   );
 
-const passwordInput =
-  document.getElementById(
-    "password"
-  );
-
-const confirmInput =
-  document.getElementById(
-    "confirmPassword"
-  );
-
 const createButton =
   document.getElementById(
     "createButton"
@@ -332,66 +345,34 @@ const message =
     "message"
   );
 
-
-/* =========================
-   PASSWORD EYE
-========================= */
-
-function setupEye(
-  buttonId,
-  input
-){
-
-  const button =
-    document.getElementById(
-      buttonId
-    );
-
-  button.addEventListener(
-    "click",
-    function(event){
-
-      event.preventDefault();
-
-      event.stopPropagation();
-
-      if(
-        input.type ===
-        "password"
-      ){
-
-        input.type =
-          "text";
-
-        button.textContent =
-          "🙈";
-
-      }else{
-
-        input.type =
-          "password";
-
-        button.textContent =
-          "👁️";
-
-      }
-
-    }
+const subtitle =
+  document.getElementById(
+    "subtitle"
   );
 
-}
+const successIcon =
+  document.getElementById(
+    "successIcon"
+  );
 
 
-setupEye(
-  "passwordEye",
-  passwordInput
-);
+/* =========================
+   SUPABASE
+========================= */
 
-
-setupEye(
-  "confirmEye",
-  confirmInput
-);
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY,
+    {
+      auth:{
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true,
+        storage:window.localStorage
+      }
+    }
+  );
 
 
 /* =========================
@@ -400,7 +381,7 @@ setupEye(
 
 function showMessage(
   text,
-  success
+  success=false
 ){
 
   message.textContent =
@@ -415,7 +396,7 @@ function showMessage(
 
 
 /* =========================
-   SIGNUP
+   CREATE ACCOUNT
 ========================= */
 
 form.addEventListener(
@@ -430,18 +411,11 @@ form.addEventListener(
         .trim()
         .toLowerCase();
 
-    const password =
-      passwordInput.value;
-
-    const confirmPassword =
-      confirmInput.value;
-
 
     if(!email){
 
       showMessage(
-        "Please enter your email.",
-        false
+        "Please enter your email."
       );
 
       return;
@@ -449,26 +423,10 @@ form.addEventListener(
     }
 
 
-    if(password.length < 6){
+    if(!email.includes("@")){
 
       showMessage(
-        "Password must be at least 6 characters.",
-        false
-      );
-
-      return;
-
-    }
-
-
-    if(
-      password !==
-      confirmPassword
-    ){
-
-      showMessage(
-        "Passwords do not match.",
-        false
+        "Please enter a valid email."
       );
 
       return;
@@ -484,14 +442,21 @@ form.addEventListener(
 
 
     showMessage(
-      "Creating your account...",
+      "Preparing your account...",
       true
     );
 
 
     try{
 
-      /* CREATE ACCOUNT */
+      /*
+        Magic Link authentication.
+
+        This creates the user when
+        the email does not already
+        exist and sends a secure
+        authentication link.
+      */
 
       const {
         data,
@@ -499,13 +464,17 @@ form.addEventListener(
       } =
         await supabaseClient
           .auth
-          .signUp({
+          .signInWithOtp({
 
-            email:
-              email,
+            email:email,
 
-            password:
-              password
+            options:{
+              shouldCreateUser:true,
+
+              emailRedirectTo:
+                window.location.origin +
+                "/index.html"
+            }
 
           });
 
@@ -518,9 +487,8 @@ form.addEventListener(
         );
 
         showMessage(
-          "Signup failed: " +
-          error.message,
-          false
+          "Unable to create account: " +
+          error.message
         );
 
         createButton.disabled =
@@ -534,132 +502,20 @@ form.addEventListener(
       }
 
 
-      /* =====================
-         SESSION CREATED
-      ===================== */
+      successIcon.classList.add(
+        "show"
+      );
 
-      if(
-        data &&
-        data.session
-      ){
-
-        showMessage(
-          "Account created! Opening website...",
-          true
-        );
-
-
-        setTimeout(
-          function(){
-
-            window.location.replace(
-              "offer.html"
-            );
-
-          },
-          700
-        );
-
-        return;
-
-      }
-
-
-      /* =====================
-         NO SESSION
-      ===================== */
+      subtitle.textContent =
+        "Check your email to continue";
 
       showMessage(
-        "Account created. Logging you in...",
+        "A secure sign-in link has been sent to your email.",
         true
       );
-
-
-      /*
-        Try login manually.
-        This handles the case where
-        signup returned no session.
-      */
-
-      const {
-        data: loginData,
-        error: loginError
-      } =
-        await supabaseClient
-          .auth
-          .signInWithPassword({
-
-            email:
-              email,
-
-            password:
-              password
-
-          });
-
-
-      if(
-        !loginError &&
-        loginData &&
-        loginData.session
-      ){
-
-        showMessage(
-          "Login successful! Opening website...",
-          true
-        );
-
-
-        setTimeout(
-          function(){
-
-            window.location.replace(
-              "offer.html"
-            );
-
-          },
-          700
-        );
-
-        return;
-
-      }
-
-
-      /* =====================
-         LOGIN FAILED
-      ===================== */
-
-      console.error(
-        "AUTO LOGIN ERROR:",
-        loginError
-      );
-
-
-      showMessage(
-        "Account created. Please login once to continue.",
-        true
-      );
-
-
-      createButton.disabled =
-        false;
 
       createButton.textContent =
-        "Create Account";
-
-
-      setTimeout(
-        function(){
-
-          window.location.replace(
-            "login.html"
-          );
-
-        },
-        1500
-      );
-
+        "Email Sent";
 
     }catch(error){
 
@@ -668,13 +524,9 @@ form.addEventListener(
         error
       );
 
-
       showMessage(
-        "Something went wrong: " +
-        error.message,
-        false
+        "Something went wrong. Please try again."
       );
-
 
       createButton.disabled =
         false;
@@ -686,6 +538,63 @@ form.addEventListener(
 
   }
 );
+
+
+/* =========================
+   EXISTING SESSION
+========================= */
+
+async function checkExistingSession(){
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .auth
+        .getSession();
+
+
+    if(error){
+
+      console.error(
+        error
+      );
+
+      return;
+
+    }
+
+
+    if(
+      data &&
+      data.session
+    ){
+
+      window.location.replace(
+        "index.html"
+      );
+
+    }
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+checkExistingSession();
 
 </script>
 
