@@ -18,1091 +18,1109 @@ rel="stylesheet">
 <style>
 
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html,body{
-min-height:100%;
+  min-height:100%;
 }
 
 body{
-min-height:100vh;
-min-height:100svh;
+  min-height:100vh;
+  min-height:100svh;
 
-background:
-radial-gradient(
-circle at 15% 15%,
-rgba(115,55,255,.22),
-transparent 32%
-),
-radial-gradient(
-circle at 90% 80%,
-rgba(0,190,255,.12),
-transparent 34%
-),
-#050507;
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(115,55,255,.22),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(0,190,255,.12),
+      transparent 34%
+    ),
+    #050507;
 
-color:#fff;
+  color:#fff;
 
-font-family:'Geist',Arial,sans-serif;
+  font-family:'Geist',Arial,sans-serif;
 
-display:flex;
-align-items:center;
-justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-padding:18px;
+  padding:18px;
 
-overflow-x:hidden;
+  overflow-x:hidden;
+
+  -webkit-font-smoothing:antialiased;
 }
 
 button,
 input{
-font:inherit;
+  font:inherit;
 }
 
 button{
--webkit-tap-highlight-color:transparent;
+  -webkit-tap-highlight-color:transparent;
 }
 
 a{
-color:inherit;
-text-decoration:none;
+  color:inherit;
+  text-decoration:none;
 }
 
 
 /* =========================
-BACKGROUND
+   BACKGROUND
 ========================= */
 
 .background{
-position:fixed;
-inset:0;
-overflow:hidden;
-pointer-events:none;
-z-index:-1;
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  overflow:hidden;
+  pointer-events:none;
 }
 
 .orb{
-position:absolute;
-border-radius:50%;
-filter:blur(75px);
+  position:absolute;
+  border-radius:50%;
+  filter:blur(75px);
 }
 
 .orb.one{
-width:330px;
-height:330px;
-top:-130px;
-left:-100px;
-background:#6d35ff;
-opacity:.32;
+  width:330px;
+  height:330px;
+  top:-130px;
+  left:-100px;
 
-animation:
-orbOne
-9s
-ease-in-out
-infinite
-alternate;
+  background:#6d35ff;
+  opacity:.32;
+
+  animation:
+    orbOne
+    9s
+    ease-in-out
+    infinite
+    alternate;
 }
 
 .orb.two{
-width:300px;
-height:300px;
-right:-120px;
-bottom:-100px;
-background:#00bfff;
-opacity:.20;
+  width:300px;
+  height:300px;
+  right:-120px;
+  bottom:-100px;
 
-animation:
-orbTwo
-11s
-ease-in-out
-infinite
-alternate;
+  background:#00bfff;
+  opacity:.20;
+
+  animation:
+    orbTwo
+    11s
+    ease-in-out
+    infinite
+    alternate;
 }
 
 @keyframes orbOne{
 
-from{
-transform:translate(0,0) scale(1);
-}
+  from{
+    transform:
+      translate(0,0)
+      scale(1);
+  }
 
-to{
-transform:translate(120px,100px) scale(1.25);
-}
+  to{
+    transform:
+      translate(120px,100px)
+      scale(1.25);
+  }
 
 }
 
 @keyframes orbTwo{
 
-from{
-transform:translate(0,0) scale(1);
-}
+  from{
+    transform:
+      translate(0,0)
+      scale(1);
+  }
 
-to{
-transform:translate(-100px,-80px) scale(1.2);
-}
+  to{
+    transform:
+      translate(-100px,-80px)
+      scale(1.2);
+  }
 
 }
 
 
 /* =========================
-PAGE
+   PAGE
 ========================= */
 
 .page{
-width:100%;
-max-width:900px;
+  width:100%;
+  max-width:920px;
 }
 
 
 /* =========================
-BRAND
+   BRAND
 ========================= */
 
 .brand{
-text-align:center;
-margin-bottom:18px;
+  text-align:center;
+  margin-bottom:18px;
 
-animation:
-fadeDown
-.7s
-ease
-both;
+  animation:
+    fadeDown
+    .7s
+    ease
+    both;
 }
 
 .brand-logo{
-width:55px;
-height:55px;
+  width:55px;
+  height:55px;
 
-display:block;
-margin:0 auto 9px;
+  display:block;
 
-object-fit:cover;
-border-radius:50%;
+  margin:
+    0 auto 9px;
 
-border:
-1px solid
-rgba(255,255,255,.3);
+  object-fit:cover;
 
-box-shadow:
-0 0 30px
-rgba(115,65,255,.35);
+  border-radius:50%;
+
+  border:
+    1px solid
+    rgba(255,255,255,.3);
+
+  box-shadow:
+    0 0 30px
+    rgba(115,65,255,.35);
 }
 
 .brand-name{
-font-size:19px;
-font-weight:800;
+  font-size:19px;
+  font-weight:800;
+  letter-spacing:-.03em;
 }
 
 .brand-owner{
-margin-top:3px;
+  margin-top:3px;
 
-color:
-rgba(255,255,255,.3);
+  color:
+    rgba(255,255,255,.3);
 
-font-size:8px;
-font-weight:700;
+  font-size:8px;
+  font-weight:700;
 
-letter-spacing:.2em;
+  letter-spacing:.2em;
 }
 
 @keyframes fadeDown{
 
-from{
-opacity:0;
-transform:translateY(-15px);
-}
+  from{
+    opacity:0;
+    transform:translateY(-15px);
+  }
 
-to{
-opacity:1;
-transform:translateY(0);
-}
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 
 }
 
 
 /* =========================
-CARD
+   CARD
 ========================= */
 
 .auth-card{
-position:relative;
+  width:100%;
+  min-height:550px;
 
-width:100%;
-min-height:550px;
+  display:grid;
 
-display:grid;
-grid-template-columns:1fr 1fr;
+  grid-template-columns:
+    1fr 1fr;
 
-border:
-1px solid
-rgba(255,255,255,.14);
+  border:
+    1px solid
+    rgba(255,255,255,.14);
 
-border-radius:30px;
+  border-radius:30px;
 
-background:
-rgba(255,255,255,.045);
+  background:
+    rgba(255,255,255,.045);
 
-backdrop-filter:
-blur(30px);
+  backdrop-filter:
+    blur(30px);
 
--webkit-backdrop-filter:
-blur(30px);
+  -webkit-backdrop-filter:
+    blur(30px);
 
-box-shadow:
-0 35px 100px
-rgba(0,0,0,.55),
+  box-shadow:
+    0 35px 100px
+    rgba(0,0,0,.55),
 
-inset 0 1px 0
-rgba(255,255,255,.06);
+    inset 0 1px 0
+    rgba(255,255,255,.06);
 
-overflow:hidden;
+  overflow:hidden;
 
-animation:
-cardIn
-.8s
-cubic-bezier(.16,1,.3,1)
-both;
+  animation:
+    cardIn
+    .8s
+    cubic-bezier(.16,1,.3,1)
+    both;
 }
 
 @keyframes cardIn{
 
-from{
-opacity:0;
-transform:
-translateY(30px)
-scale(.97);
-}
+  from{
+    opacity:0;
+    transform:
+      translateY(30px)
+      scale(.97);
+  }
 
-to{
-opacity:1;
-transform:
-translateY(0)
-scale(1);
-}
+  to{
+    opacity:1;
+    transform:
+      translateY(0)
+      scale(1);
+  }
 
 }
 
 
 /* =========================
-FORM
+   FORM SIDE
 ========================= */
 
 .form-side{
-padding:42px;
+  padding:42px;
 
-display:flex;
-align-items:center;
+  display:flex;
+  align-items:center;
 
-background:
-linear-gradient(
-135deg,
-rgba(255,255,255,.075),
-rgba(255,255,255,.025)
-);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.075),
+      rgba(255,255,255,.025)
+    );
 }
 
 .form-content{
-width:100%;
-max-width:390px;
-margin:auto;
+  width:100%;
+  max-width:390px;
+  margin:auto;
 }
 
 .mode-label{
-display:flex;
-align-items:center;
-gap:7px;
+  display:flex;
+  align-items:center;
 
-color:#a979ff;
+  gap:7px;
 
-font-size:10px;
-font-weight:800;
+  margin-bottom:12px;
 
-letter-spacing:.15em;
+  color:#a979ff;
 
-margin-bottom:12px;
+  font-size:10px;
+  font-weight:800;
+
+  letter-spacing:.15em;
 }
 
 .mode-dot{
-width:6px;
-height:6px;
+  width:6px;
+  height:6px;
 
-border-radius:50%;
+  border-radius:50%;
 
-background:#9d62ff;
+  background:#9d62ff;
 
-box-shadow:
-0 0 12px
-#9d62ff;
+  box-shadow:
+    0 0 12px
+    #9d62ff;
 }
 
 h1{
-font-size:
-clamp(
-2.2rem,
-5vw,
-3.2rem
-);
+  font-size:
+    clamp(
+      2.2rem,
+      5vw,
+      3.2rem
+    );
 
-line-height:1;
-letter-spacing:-.06em;
+  line-height:1;
+
+  letter-spacing:-.06em;
 }
 
 .subtitle{
-margin-top:11px;
+  margin-top:11px;
 
-color:
-rgba(255,255,255,.45);
+  color:
+    rgba(255,255,255,.45);
 
-font-size:13px;
-line-height:1.6;
+  font-size:13px;
+
+  line-height:1.6;
 }
 
+
+/* =========================
+   FIELDS
+========================= */
+
 .field{
-margin-top:21px;
+  margin-top:21px;
 }
 
 label{
-display:block;
+  display:block;
 
-margin-bottom:8px;
+  margin-bottom:8px;
 
-color:
-rgba(255,255,255,.75);
+  color:
+    rgba(255,255,255,.75);
 
-font-size:12px;
-font-weight:700;
+  font-size:12px;
+  font-weight:700;
 }
 
 .input-wrap{
-position:relative;
+  position:relative;
 }
 
 input[type="email"],
 input[type="password"],
 input[type="text"]{
-width:100%;
-height:52px;
 
-padding:
-0 16px;
+  width:100%;
+  height:52px;
 
-border:
-1px solid
-rgba(255,255,255,.12);
+  padding:
+    0 16px;
 
-border-radius:14px;
+  border:
+    1px solid
+    rgba(255,255,255,.12);
 
-outline:none;
+  border-radius:14px;
 
-background:
-rgba(255,255,255,.055);
+  outline:none;
 
-color:#fff;
+  background:
+    rgba(255,255,255,.055);
 
-font-size:14px;
+  color:#fff;
 
-transition:
-border-color .2s,
-background .2s,
-box-shadow .2s;
+  font-size:14px;
+
+  transition:
+    border-color .2s,
+    background .2s,
+    box-shadow .2s;
 }
 
 input::placeholder{
-color:
-rgba(255,255,255,.28);
+  color:
+    rgba(255,255,255,.28);
 }
 
 input:focus{
-border-color:
-rgba(160,115,255,.65);
 
-background:
-rgba(255,255,255,.08);
+  border-color:
+    rgba(160,115,255,.65);
 
-box-shadow:
-0 0 0 4px
-rgba(125,70,255,.1);
+  background:
+    rgba(255,255,255,.08);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(125,70,255,.1);
 }
 
 .password-input{
-padding-right:52px !important;
+  padding-right:55px !important;
 }
 
 
 /* =========================
-EYE
+   EYE
 ========================= */
 
 .eye{
-position:absolute;
 
-right:4px;
-top:50%;
+  position:absolute;
 
-width:44px;
-height:44px;
+  right:4px;
+  top:50%;
 
-transform:
-translateY(-50%);
+  width:44px;
+  height:44px;
 
-display:flex;
-align-items:center;
-justify-content:center;
+  transform:
+    translateY(-50%);
 
-border:0;
-outline:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-background:transparent;
+  border:0;
+  outline:0;
 
-color:#fff;
+  border-radius:10px;
 
-cursor:pointer;
+  background:transparent;
 
-font-size:18px;
+  color:#fff;
 
-z-index:10;
+  cursor:pointer;
 
-touch-action:manipulation;
+  font-size:18px;
+
+  z-index:5;
+
+  touch-action:manipulation;
+}
+
+.eye:hover{
+  background:
+    rgba(255,255,255,.06);
 }
 
 .eye:active{
-transform:
-translateY(-50%)
-scale(.9);
+  transform:
+    translateY(-50%)
+    scale(.9);
 }
 
 
 /* =========================
-OPTIONS
+   OPTIONS
 ========================= */
 
 .options{
-margin-top:13px;
 
-display:flex;
-align-items:center;
-justify-content:space-between;
+  margin-top:13px;
 
-gap:10px;
+  display:flex;
+
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
 }
 
 .remember{
-display:flex;
-align-items:center;
 
-gap:7px;
+  display:flex;
 
-color:
-rgba(255,255,255,.42);
+  align-items:center;
 
-font-size:11px;
+  gap:7px;
 
-cursor:pointer;
+  color:
+    rgba(255,255,255,.42);
+
+  font-size:11px;
+
+  cursor:pointer;
 }
 
 .remember input{
-width:14px !important;
-height:14px !important;
 
-padding:0 !important;
+  width:14px !important;
+  height:14px !important;
 
-accent-color:#985cff;
+  padding:0 !important;
+
+  accent-color:#985cff;
+
+  cursor:pointer;
 }
 
 .forgot{
-border:0;
-background:none;
 
-color:#a979ff;
+  border:0;
 
-font-size:11px;
-font-weight:700;
+  background:none;
 
-cursor:pointer;
+  color:#a979ff;
 
-padding:5px;
+  font-size:11px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  padding:5px;
+}
+
+.forgot:hover{
+  color:#c7a4ff;
 }
 
 
 /* =========================
-LOGIN BUTTON
+   LOGIN BUTTON
 ========================= */
 
 .main-button{
-width:100%;
-height:52px;
 
-margin-top:22px;
+  width:100%;
+  height:52px;
 
-border:0;
-border-radius:15px;
+  margin-top:22px;
 
-background:
-linear-gradient(
-100deg,
-#6335ff,
-#b34cff,
-#6d5cff
-);
+  border:0;
 
-background-size:200% auto;
+  border-radius:15px;
 
-color:#fff;
+  background:
+    linear-gradient(
+      100deg,
+      #6335ff,
+      #b34cff,
+      #6d5cff
+    );
 
-font-size:14px;
-font-weight:800;
+  background-size:200% auto;
 
-cursor:pointer;
+  color:#fff;
 
-box-shadow:
-0 15px 35px
-rgba(105,55,255,.22);
+  font-size:14px;
 
-transition:.2s;
+  font-weight:800;
 
-animation:
-buttonGradient
-5s
-ease
-infinite
-alternate;
+  cursor:pointer;
+
+  box-shadow:
+    0 15px 35px
+    rgba(105,55,255,.22);
+
+  transition:
+    transform .2s,
+    opacity .2s,
+    box-shadow .2s;
+
+  animation:
+    buttonGradient
+    5s
+    ease
+    infinite
+    alternate;
 }
 
 @keyframes buttonGradient{
 
-from{
-background-position:0% 50%;
-}
+  from{
+    background-position:0% 50%;
+  }
 
-to{
-background-position:100% 50%;
-}
+  to{
+    background-position:100% 50%;
+  }
 
 }
 
 .main-button:hover{
-transform:translateY(-2px);
 
-box-shadow:
-0 20px 45px
-rgba(105,55,255,.32);
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 20px 45px
+    rgba(105,55,255,.32);
 }
 
 .main-button:active{
-transform:scale(.98);
+  transform:scale(.98);
 }
 
 .main-button:disabled{
-opacity:.55;
-cursor:not-allowed;
+  opacity:.55;
+  cursor:not-allowed;
+  transform:none;
 }
 
 
 /* =========================
-MESSAGES
+   MESSAGES
 ========================= */
 
 .message{
-min-height:20px;
 
-margin-top:13px;
+  min-height:20px;
 
-padding:
-0 4px;
+  margin-top:13px;
 
-text-align:center;
+  padding:
+    0 4px;
 
-font-size:11px;
+  text-align:center;
 
-line-height:1.5;
+  font-size:11px;
+
+  line-height:1.5;
 }
 
 .success{
-display:none;
 
-margin-top:12px;
+  display:none;
 
-padding:10px;
+  margin-top:12px;
 
-border:
-1px solid
-rgba(101,255,155,.2);
+  padding:10px;
 
-border-radius:12px;
+  border:
+    1px solid
+    rgba(101,255,155,.2);
 
-background:
-rgba(101,255,155,.06);
+  border-radius:12px;
 
-color:#8dffa9;
+  background:
+    rgba(101,255,155,.06);
 
-text-align:center;
+  color:#8dffa9;
 
-font-size:11px;
+  text-align:center;
 
-line-height:1.5;
+  font-size:11px;
+
+  line-height:1.5;
 }
 
 .success.show{
-display:block;
+  display:block;
 }
 
 
 /* =========================
-SWITCH
+   SWITCH
 ========================= */
 
 .switch-text{
-margin-top:22px;
 
-color:
-rgba(255,255,255,.4);
+  margin-top:22px;
 
-text-align:center;
+  color:
+    rgba(255,255,255,.4);
 
-font-size:12px;
+  text-align:center;
+
+  font-size:12px;
 }
 
 .switch-button{
-border:0;
-background:none;
 
-color:#b47aff;
+  border:0;
 
-font-weight:800;
+  background:none;
 
-cursor:pointer;
+  color:#b47aff;
+
+  font-weight:800;
+
+  cursor:pointer;
+
+  padding:3px;
+}
+
+.switch-button:hover{
+  color:#d0adff;
 }
 
 .back{
-display:block;
 
-margin-top:16px;
+  display:block;
 
-text-align:center;
+  margin-top:16px;
 
-color:
-rgba(255,255,255,.3);
+  text-align:center;
 
-font-size:11px;
+  color:
+    rgba(255,255,255,.3);
+
+  font-size:11px;
+}
+
+.back:hover{
+  color:#fff;
 }
 
 
 /* =========================
-WELCOME
+   WELCOME SIDE
 ========================= */
 
 .welcome-side{
-position:relative;
 
-padding:42px;
+  position:relative;
 
-display:flex;
-align-items:center;
+  padding:42px;
 
-overflow:hidden;
+  display:flex;
 
-background:
-radial-gradient(
-circle at 50% 35%,
-rgba(130,60,255,.22),
-transparent 48%
-),
+  align-items:center;
 
-linear-gradient(
-145deg,
-rgba(45,20,90,.42),
-rgba(5,5,10,.3)
-);
+  overflow:hidden;
+
+  background:
+
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(130,60,255,.22),
+      transparent 48%
+    ),
+
+    linear-gradient(
+      145deg,
+      rgba(45,20,90,.42),
+      rgba(5,5,10,.3)
+    );
+}
+
+.welcome-side::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:240px;
+  height:240px;
+
+  top:-90px;
+  right:-90px;
+
+  border-radius:50%;
+
+  background:
+    rgba(125,70,255,.18);
+
+  filter:blur(45px);
+}
+
+.welcome-side::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  left:-80px;
+  bottom:-70px;
+
+  border-radius:50%;
+
+  background:
+    rgba(0,190,255,.12);
+
+  filter:blur(45px);
 }
 
 .welcome-content{
-position:relative;
-z-index:2;
+  position:relative;
+  z-index:2;
 }
 
 .welcome-small{
-color:#a979ff;
 
-font-size:10px;
-font-weight:800;
+  color:#a979ff;
 
-letter-spacing:.2em;
+  font-size:10px;
+
+  font-weight:800;
+
+  letter-spacing:.2em;
 }
 
 .welcome-title{
-margin-top:13px;
 
-font-size:
-clamp(
-2.2rem,
-5vw,
-3.5rem
-);
+  margin-top:13px;
 
-line-height:.98;
+  font-size:
+    clamp(
+      2.2rem,
+      5vw,
+      3.5rem
+    );
 
-letter-spacing:-.07em;
+  line-height:.98;
+
+  letter-spacing:-.07em;
 }
 
 .welcome-title span{
-display:block;
 
-background:
-linear-gradient(
-100deg,
-#fff,
-#a66cff,
-#63dfff
-);
+  display:block;
 
--webkit-background-clip:text;
-background-clip:text;
+  background:
+    linear-gradient(
+      100deg,
+      #fff,
+      #a66cff,
+      #63dfff
+    );
 
--webkit-text-fill-color:transparent;
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  -webkit-text-fill-color:transparent;
 }
 
 .welcome-description{
-max-width:360px;
 
-margin-top:18px;
+  max-width:360px;
 
-color:
-rgba(255,255,255,.46);
+  margin-top:18px;
 
-font-size:13px;
+  color:
+    rgba(255,255,255,.46);
 
-line-height:1.7;
+  font-size:13px;
+
+  line-height:1.7;
 }
 
 .lock{
-width:145px;
-height:145px;
 
-margin:35px auto 20px;
+  width:145px;
+  height:145px;
 
-display:flex;
-align-items:center;
-justify-content:center;
+  margin:
+    35px auto 20px;
 
-border-radius:38px;
+  display:flex;
 
-font-size:70px;
+  align-items:center;
+  justify-content:center;
 
-background:
-linear-gradient(
-145deg,
-rgba(170,100,255,.28),
-rgba(55,20,120,.12)
-);
+  border-radius:38px;
 
-border:
-1px solid
-rgba(175,120,255,.35);
+  font-size:70px;
 
-box-shadow:
-0 0 50px
-rgba(130,65,255,.25),
+  background:
+    linear-gradient(
+      145deg,
+      rgba(170,100,255,.28),
+      rgba(55,20,120,.12)
+    );
 
-inset 0 0 35px
-rgba(175,100,255,.08);
+  border:
+    1px solid
+    rgba(175,120,255,.35);
 
-animation:
-lockFloat
-4s
-ease-in-out
-infinite;
+  box-shadow:
+
+    0 0 50px
+    rgba(130,65,255,.25),
+
+    inset 0 0 35px
+    rgba(175,100,255,.08);
+
+  animation:
+    lockFloat
+    4s
+    ease-in-out
+    infinite;
 }
 
 @keyframes lockFloat{
 
-0%,100%{
-transform:
-rotate(-5deg)
-translateY(0);
-}
+  0%,100%{
+    transform:
+      rotate(-5deg)
+      translateY(0);
+  }
 
-50%{
-transform:
-rotate(5deg)
-translateY(-12px);
-}
+  50%{
+    transform:
+      rotate(5deg)
+      translateY(-12px);
+  }
 
 }
 
 .features{
-display:grid;
 
-grid-template-columns:
-repeat(3,1fr);
+  display:grid;
 
-gap:8px;
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:8px;
 }
 
 .feature{
-padding:12px 8px;
 
-border:
-1px solid
-rgba(255,255,255,.08);
+  padding:
+    12px 8px;
 
-border-radius:13px;
+  border:
+    1px solid
+    rgba(255,255,255,.08);
 
-background:
-rgba(255,255,255,.035);
+  border-radius:13px;
 
-text-align:center;
+  background:
+    rgba(255,255,255,.035);
+
+  text-align:center;
 }
 
 .feature-icon{
-font-size:17px;
+  font-size:17px;
 }
 
 .feature-text{
-margin-top:5px;
 
-color:
-rgba(255,255,255,.42);
+  margin-top:5px;
 
-font-size:9px;
+  color:
+    rgba(255,255,255,.42);
+
+  font-size:9px;
+
+  line-height:1.3;
 }
 
 
 /* =========================
-MONEY ANIMATION
+   LOADING
 ========================= */
 
-.money-layer{
-position:fixed;
+.loading-dot{
 
-inset:0;
+  display:inline-block;
 
-z-index:9999;
+  width:6px;
+  height:6px;
 
-pointer-events:none;
+  margin-left:5px;
 
-overflow:hidden;
+  border-radius:50%;
 
-display:none;
+  background:#fff;
+
+  animation:
+    loadingPulse
+    .8s
+    infinite
+    alternate;
 }
 
-.money-layer.show{
-display:block;
-}
+@keyframes loadingPulse{
 
-.money{
-position:absolute;
+  from{
+    opacity:.3;
+    transform:scale(.7);
+  }
 
-top:-80px;
-
-font-size:28px;
-
-animation:
-moneyFall
-2.7s
-linear
-forwards;
-
-filter:
-drop-shadow(
-0 5px 10px
-rgba(0,0,0,.35)
-);
-}
-
-@keyframes moneyFall{
-
-0%{
-transform:
-translateY(-80px)
-rotate(0deg);
-
-opacity:0;
-}
-
-10%{
-opacity:1;
-}
-
-100%{
-transform:
-translateY(115vh)
-rotate(720deg);
-
-opacity:0;
-}
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
 
 }
 
 
 /* =========================
-SUCCESS OVERLAY
-========================= */
-
-.success-overlay{
-position:fixed;
-
-inset:0;
-
-z-index:9998;
-
-display:none;
-
-align-items:center;
-justify-content:center;
-
-pointer-events:none;
-
-background:
-rgba(5,3,15,.25);
-
-backdrop-filter:
-blur(3px);
-}
-
-.success-overlay.show{
-display:flex;
-}
-
-.success-message{
-padding:
-25px 35px;
-
-border:
-1px solid
-rgba(255,255,255,.18);
-
-border-radius:24px;
-
-background:
-rgba(20,10,40,.82);
-
-box-shadow:
-0 25px 80px
-rgba(0,0,0,.5);
-
-text-align:center;
-
-animation:
-successPop
-.6s
-ease
-both;
-}
-
-.success-message .big{
-font-size:40px;
-}
-
-.success-message h2{
-margin-top:7px;
-
-font-size:24px;
-}
-
-.success-message p{
-margin-top:5px;
-
-color:
-rgba(255,255,255,.55);
-
-font-size:12px;
-}
-
-@keyframes successPop{
-
-from{
-opacity:0;
-transform:
-scale(.65)
-translateY(20px);
-}
-
-70%{
-transform:
-scale(1.06);
-}
-
-to{
-opacity:1;
-transform:
-scale(1);
-}
-
-}
-
-
-/* =========================
-MOBILE
+   MOBILE
 ========================= */
 
 @media(max-width:700px){
 
-body{
-padding:12px;
-align-items:flex-start;
-}
+  body{
 
-.page{
-margin-top:12px;
-}
+    padding:12px;
 
-.brand{
-margin-bottom:14px;
-}
+    align-items:flex-start;
+  }
 
-.brand-logo{
-width:48px;
-height:48px;
-}
+  .page{
+    margin-top:12px;
+  }
 
-.auth-card{
-display:block;
+  .brand{
+    margin-bottom:14px;
+  }
 
-min-height:auto;
+  .brand-logo{
 
-border-radius:24px;
-}
+    width:48px;
+    height:48px;
+  }
 
-.form-side{
-padding:
-28px 21px;
-}
+  .auth-card{
 
-.welcome-side{
-display:none;
-}
+    display:block;
 
-h1{
-font-size:2.4rem;
-}
+    min-height:auto;
+
+    border-radius:24px;
+  }
+
+  .form-side{
+
+    padding:
+      28px 21px;
+  }
+
+  .welcome-side{
+    display:none;
+  }
+
+  h1{
+    font-size:2.4rem;
+  }
 
 }
 
 @media(max-width:390px){
 
-.form-side{
-padding:
-25px 17px;
-}
+  .form-side{
+    padding:
+      25px 17px;
+  }
 
 }
 
 
 /* =========================
-REDUCED MOTION
+   REDUCED MOTION
 ========================= */
 
 @media(prefers-reduced-motion:reduce){
 
-*,
-*::before,
-*::after{
-animation-duration:.01ms !important;
-transition-duration:.01ms !important;
-}
+  *,
+  *::before,
+  *::after{
+
+    animation-duration:
+      .01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      .01ms !important;
+  }
 
 }
 
@@ -1110,46 +1128,14 @@ transition-duration:.01ms !important;
 
 </head>
 
+
 <body>
 
 
 <div class="background">
 
-<div class="orb one"></div>
-<div class="orb two"></div>
-
-</div>
-
-
-<!-- MONEY -->
-
-<div
-class="money-layer"
-id="moneyLayer">
-</div>
-
-
-<!-- SUCCESS -->
-
-<div
-class="success-overlay"
-id="successOverlay">
-
-<div class="success-message">
-
-<div class="big">
-💰
-</div>
-
-<h2>
-Welcome!
-</h2>
-
-<p>
-Login successful. Opening your offers...
-</p>
-
-</div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
 
 </div>
 
@@ -1161,20 +1147,20 @@ Login successful. Opening your offers...
 
 <div class="brand">
 
-<img
-class="brand-logo"
-src="assets/income-offers-logo.jpg"
-alt="Income Offers"
-onerror="this.style.display='none'"
->
+  <img
+    class="brand-logo"
+    src="assets/income-offers-logo.jpg"
+    alt="Income Offers"
+    onerror="this.style.display='none'"
+  >
 
-<div class="brand-name">
-Income Offers
-</div>
+  <div class="brand-name">
+    Income Offers
+  </div>
 
-<div class="brand-owner">
-OWNER: SAHIL
-</div>
+  <div class="brand-owner">
+    OWNER: SAHIL
+  </div>
 
 </div>
 
@@ -1184,6 +1170,8 @@ OWNER: SAHIL
 <div class="auth-card">
 
 
+<!-- FORM -->
+
 <section class="form-side">
 
 <div class="form-content">
@@ -1191,73 +1179,75 @@ OWNER: SAHIL
 
 <div class="mode-label">
 
-<span class="mode-dot"></span>
+  <span class="mode-dot"></span>
 
-<span>
-WELCOME BACK
-</span>
+  <span>
+    WELCOME BACK
+  </span>
 
 </div>
 
 
 <h1>
-Login
+  Login
 </h1>
 
 
 <p class="subtitle">
-Login with your email and password to continue.
+  Login with your email and password to continue.
 </p>
 
 
-<form
-id="loginForm"
-autocomplete="on"
->
+<form id="loginForm">
 
+
+<!-- EMAIL -->
 
 <div class="field">
 
 <label for="email">
-Email
+  Email
 </label>
 
 <input
-id="email"
-type="email"
-placeholder="Enter your email"
-autocomplete="username"
-inputmode="email"
-required
+  id="email"
+  type="email"
+  placeholder="Enter your email"
+  autocomplete="email"
+  inputmode="email"
+  required
 >
 
 </div>
 
 
+<!-- PASSWORD -->
+
 <div class="field">
 
 <label for="password">
-Password
+  Password
 </label>
 
 <div class="input-wrap">
 
 <input
-id="password"
-class="password-input"
-type="password"
-placeholder="Enter your password"
-autocomplete="current-password"
-required
+  id="password"
+  class="password-input"
+  type="password"
+  placeholder="Enter your password"
+  autocomplete="current-password"
+  minlength="6"
+  required
 >
 
 <button
-id="eyeButton"
-class="eye"
-type="button"
-aria-label="Show password"
+  id="eyeButton"
+  class="eye"
+  type="button"
+  aria-label="Show password"
 >
-👁️
+  👁️
 </button>
 
 </div>
@@ -1265,15 +1255,17 @@ aria-label="Show password"
 </div>
 
 
+<!-- OPTIONS -->
+
 <div class="options">
 
 
 <label class="remember">
 
 <input
-id="remember"
-type="checkbox"
-checked
+  id="remember"
+  type="checkbox"
+  checked
 >
 
 Remember me
@@ -1282,9 +1274,9 @@ Remember me
 
 
 <button
-id="forgotButton"
-class="forgot"
-type="button"
+  id="forgotButton"
+  class="forgot"
+  type="button"
 >
 Forgot Password?
 </button>
@@ -1293,10 +1285,12 @@ Forgot Password?
 </div>
 
 
+<!-- LOGIN -->
+
 <button
-id="loginButton"
-class="main-button"
-type="submit"
+  id="loginButton"
+  class="main-button"
+  type="submit"
 >
 Login →
 </button>
@@ -1306,15 +1300,15 @@ Login →
 
 
 <div
-id="successBox"
-class="success">
-</div>
+  id="successBox"
+  class="success"
+></div>
 
 
 <div
-id="message"
-class="message">
-</div>
+  id="message"
+  class="message"
+></div>
 
 
 <div class="switch-text">
@@ -1322,9 +1316,9 @@ class="message">
 Don't have an account?
 
 <button
-class="switch-button"
-id="signupButton"
-type="button"
+  id="signupButton"
+  class="switch-button"
+  type="button"
 >
 Create Account
 </button>
@@ -1333,8 +1327,8 @@ Create Account
 
 
 <a
-class="back"
-href="index.html"
+  class="back"
+  href="index.html"
 >
 ← Back to Home
 </a>
@@ -1350,6 +1344,7 @@ href="index.html"
 <section class="welcome-side">
 
 <div class="welcome-content">
+
 
 <div class="welcome-small">
 INCOME OFFERS
@@ -1368,11 +1363,7 @@ Back.
 
 
 <p class="welcome-description">
-
-Login to explore active offers,
-track your activity and continue
-where you left off.
-
+Login to explore active offers, track your activity and continue where you left off.
 </p>
 
 
@@ -1425,6 +1416,7 @@ Track Activity
 
 </div>
 
+
 </div>
 
 </section>
@@ -1438,8 +1430,8 @@ Track Activity
 <!-- SUPABASE -->
 
 <script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-</script>
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
 <script src="supabase-config.js"></script>
 
@@ -1452,569 +1444,320 @@ INCOME OFFERS
 STABLE PASSWORD LOGIN
 ====================================================
 
-Email + Password only.
+This page uses:
 
-NO OTP.
-NO MAGIC LINK.
+Supabase Email + Password
+
+No OTP.
+No Magic Link.
 
 supabase-config.js creates:
 
 supabaseClient
 
-This page intentionally does NOT run
-getSession() -> redirect -> getSession()
-on page load.
-
-That prevents login-page redirect loops.
+Do NOT create another Supabase client here.
 ====================================================
 */
 
 
-const loginForm =
-document.getElementById(
-"loginForm"
-);
-
-const emailInput =
-document.getElementById(
-"email"
-);
-
-const passwordInput =
-document.getElementById(
-"password"
-);
-
-const eyeButton =
-document.getElementById(
-"eyeButton"
-);
-
-const loginButton =
-document.getElementById(
-"loginButton"
-);
-
-const forgotButton =
-document.getElementById(
-"forgotButton"
-);
-
-const signupButton =
-document.getElementById(
-"signupButton"
-);
-
-const message =
-document.getElementById(
-"message"
-);
-
-const successBox =
-document.getElementById(
-"successBox"
-);
-
-const moneyLayer =
-document.getElementById(
-"moneyLayer"
-);
-
-const successOverlay =
-document.getElementById(
-"successOverlay"
-);
+"use strict";
 
 
 /* =========================
-MESSAGE
+   ELEMENTS
+========================= */
+
+const loginForm =
+  document.getElementById(
+    "loginForm"
+  );
+
+const emailInput =
+  document.getElementById(
+    "email"
+  );
+
+const passwordInput =
+  document.getElementById(
+    "password"
+  );
+
+const eyeButton =
+  document.getElementById(
+    "eyeButton"
+  );
+
+const loginButton =
+  document.getElementById(
+    "loginButton"
+  );
+
+const forgotButton =
+  document.getElementById(
+    "forgotButton"
+  );
+
+const signupButton =
+  document.getElementById(
+    "signupButton"
+  );
+
+const message =
+  document.getElementById(
+    "message"
+  );
+
+const successBox =
+  document.getElementById(
+    "successBox"
+  );
+
+
+/* =========================
+   MESSAGE
 ========================= */
 
 function showMessage(
-text,
-success = false
+  text,
+  success = false
 ){
 
-message.textContent =
-text;
+  message.textContent =
+    text;
 
-message.style.color =
-success
-? "#8dffa9"
-: "#ff7777";
-
+  message.style.color =
+    success
+      ? "#8dffa9"
+      : "#ff7777";
 }
 
 
 /* =========================
-CLEAR
+   CLEAR
 ========================= */
 
 function clearMessage(){
 
-message.textContent = "";
+  message.textContent =
+    "";
 
-successBox.classList.remove(
-"show"
-);
+  message.style.color =
+    "";
+
+  successBox.textContent =
+    "";
+
+  successBox.classList.remove(
+    "show"
+  );
 
 }
 
 
 /* =========================
-EYE
+   EYE BUTTON
 ========================= */
 
 eyeButton.addEventListener(
-"click",
-function(event){
+  "click",
+  function(event){
 
-event.preventDefault();
-event.stopPropagation();
+    event.preventDefault();
 
-const show =
-passwordInput.type ===
-"password";
+    event.stopPropagation();
 
-passwordInput.type =
-show
-? "text"
-: "password";
+    const show =
+      passwordInput.type ===
+      "password";
 
-eyeButton.textContent =
-show
-? "🙈"
-: "👁️";
+    passwordInput.type =
+      show
+        ? "text"
+        : "password";
 
-eyeButton.setAttribute(
-"aria-label",
-show
-? "Hide password"
-: "Show password"
-);
+    eyeButton.textContent =
+      show
+        ? "🙈"
+        : "👁️";
 
-}
+    eyeButton.setAttribute(
+      "aria-label",
+      show
+        ? "Hide password"
+        : "Show password"
+    );
+
+  }
 );
 
 
 /* =========================
-SIGNUP
+   SIGNUP
 ========================= */
 
 signupButton.addEventListener(
-"click",
-function(){
+  "click",
+  function(){
 
-window.location.href =
-"signup.html";
+    window.location.href =
+      "signup.html";
 
-}
+  }
 );
 
 
 /* =========================
-MONEY
+   FORGOT PASSWORD
 ========================= */
 
-function playMoneyAnimation(){
+forgotButton.addEventListener(
+  "click",
+  async function(){
 
-moneyLayer.innerHTML = "";
+    clearMessage();
 
-moneyLayer.classList.add(
-"show"
+    const email =
+      emailInput.value
+        .trim()
+        .toLowerCase();
+
+    if(!email){
+
+      showMessage(
+        "Enter your email first."
+      );
+
+      emailInput.focus();
+
+      return;
+    }
+
+
+    if(
+      !email.includes("@")
+    ){
+
+      showMessage(
+        "Please enter a valid email address."
+      );
+
+      emailInput.focus();
+
+      return;
+    }
+
+
+    forgotButton.disabled =
+      true;
+
+    forgotButton.textContent =
+      "Sending...";
+
+
+    try{
+
+      if(
+        typeof supabaseClient ===
+        "undefined"
+      ){
+
+        throw new Error(
+          "Supabase is not loaded."
+        );
+
+      }
+
+
+      /*
+       * IMPORTANT:
+       *
+       * This URL must match the URL
+       * configured in Supabase Auth.
+       *
+       * If reset-password.html is in
+       * the same folder, this works
+       * for deployed websites.
+       */
+
+      const redirectUrl =
+        new URL(
+          "reset-password.html",
+          window.location.href
+        ).href;
+
+
+      const {
+        error
+      } =
+      await supabaseClient
+        .auth
+        .resetPasswordForEmail(
+          email,
+          {
+            redirectTo:
+              redirectUrl
+          }
+        );
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      successBox.textContent =
+        "✓ Password reset link sent. Check your email.";
+
+      successBox.classList.add(
+        "show"
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "PASSWORD RESET ERROR:",
+        error
+      );
+
+      showMessage(
+        error.message ||
+        "Unable to send reset email."
+      );
+
+    }finally{
+
+      forgotButton.disabled =
+        false;
+
+      forgotButton.textContent =
+        "Forgot Password?";
+
+    }
+
+  }
 );
-
-successOverlay.classList.add(
-"show"
-);
-
-
-const symbols = [
-"💵",
-"💰",
-"💸",
-"💲",
-"🤑"
-];
-
-
-for(
-let i = 0;
-i < 50;
-i++
-){
-
-const money =
-document.createElement(
-"div"
-);
-
-money.className =
-"money";
-
-money.textContent =
-symbols[
-Math.floor(
-Math.random() *
-symbols.length
-)
-];
-
-money.style.left =
-Math.random() * 100 +
-"%";
-
-money.style.animationDelay =
-Math.random() * .8 +
-"s";
-
-money.style.fontSize =
-20 +
-Math.random() * 22 +
-"px";
-
-moneyLayer.appendChild(
-money
-);
-
-}
-
-
-setTimeout(
-function(){
-
-moneyLayer.classList.remove(
-"show"
-);
-
-successOverlay.classList.remove(
-"show"
-);
-
-},
-3000
-);
-
-}
 
 
 /* =========================
-SUCCESS SOUND
+   INPUT CLEANUP
 ========================= */
 
-function playSuccessSound(){
+emailInput.addEventListener(
+  "input",
+  function(){
 
-try{
+    if(message.textContent){
 
-const AudioContext =
-window.AudioContext ||
-window.webkitAudioContext;
+      clearMessage();
 
-if(!AudioContext){
-return;
-}
+    }
 
-const ctx =
-new AudioContext();
-
-const now =
-ctx.currentTime;
-
-
-function tone(
-frequency,
-start,
-duration
-){
-
-const oscillator =
-ctx.createOscillator();
-
-const gain =
-ctx.createGain();
-
-oscillator.type =
-"sine";
-
-oscillator.frequency.value =
-frequency;
-
-gain.gain.setValueAtTime(
-0.0001,
-start
+  }
 );
 
-gain.gain.exponentialRampToValueAtTime(
-0.18,
-start + 0.02
-);
-
-gain.gain.exponentialRampToValueAtTime(
-0.0001,
-start + duration
-);
-
-oscillator.connect(gain);
-
-gain.connect(
-ctx.destination
-);
-
-oscillator.start(start);
-
-oscillator.stop(
-start + duration + 0.02
-);
-
-}
-
-
-tone(
-523.25,
-now,
-0.16
-);
-
-tone(
-659.25,
-now + 0.12,
-0.16
-);
-
-tone(
-783.99,
-now + 0.24,
-0.22
-);
-
-
-setTimeout(
-function(){
-
-ctx.close();
-
-},
-1000
-);
-
-}catch(error){
-
-console.warn(
-"Success sound unavailable:",
-error
-);
-
-}
-
-}
-
-
-/* =========================
-VALIDATE
-========================= */
-
-function validateInput(){
-
-const email =
-emailInput.value
-.trim()
-.toLowerCase();
-
-const password =
-passwordInput.value;
-
-
-if(!email){
-
-showMessage(
-"Please enter your email."
-);
-
-emailInput.focus();
-
-return null;
-
-}
-
-
-if(
-!email.includes("@") ||
-!email.includes(".")
-){
-
-showMessage(
-"Please enter a valid email address."
-);
-
-emailInput.focus();
-
-return null;
-
-}
-
-
-if(!password){
-
-showMessage(
-"Please enter your password."
-);
-
-passwordInput.focus();
-
-return null;
-
-}
-
-
-if(password.length < 6){
-
-showMessage(
-"Password must be at least 6 characters."
-);
-
-passwordInput.focus();
-
-return null;
-
-}
-
-
-return {
-email,
-password
-};
-
-}
-
-
-/* =========================
-LOGIN
-========================= */
-
-loginForm.addEventListener(
-"submit",
-async function(event){
-
-event.preventDefault();
-
-event.stopPropagation();
-
-
-clearMessage();
-
-
-if(
-typeof supabaseClient ===
-"undefined"
-){
-
-showMessage(
-"Supabase is not loaded. Please refresh once."
-);
-
-return;
-
-}
-
-
-const values =
-validateInput();
-
-if(!values){
-return;
-}
-
-
-loginButton.disabled =
-true;
-
-loginButton.textContent =
-"Signing in...";
-
-
-showMessage(
-"Checking your account...",
-true
-);
-
-
-try{
-
-const result =
-await supabaseClient
-.auth
-.signInWithPassword({
-
-email:
-values.email,
-
-password:
-values.password
-
-});
-
-
-const data =
-result.data;
-
-const error =
-result.error;
-
-
-if(error){
-
-console.error(
-"LOGIN ERROR:",
-error
-);
-
-
-let text =
-error.message ||
-"Unable to login.";
-
-
-if(
-text.toLowerCase()
-.includes("invalid login credentials")
-){
-
-text =
-"Incorrect email or password.";
-
-}
-
-
-if(
-text.toLowerCase()
-.includes("email not confirmed")
-){
-
-text =
-"Please confirm your email before logging in.";
-
-}
-
-
-showMessage(
-text
-);
-
-loginButton.disabled =
-false;
-
-loginButton.textContent =
-"Login →";
-
-return;
-
-}
-
-
-/*
-========================================
-IMPORTANT
-========================================
-
-Only redirect AFTER Supabase has returned
-a valid user
+passwordInput.addEventListener(
+  "input",
+  functio
