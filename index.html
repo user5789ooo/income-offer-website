@@ -4,7 +4,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#070611">
+<meta name="theme-color" content="#06060b">
 
 <title>Income Offers - SAHIL</title>
 
@@ -30,14 +30,13 @@ html{
 
 body{
   min-height:100vh;
-  background:#06060b;
-  color:white;
-  font-family:'Geist',Arial,sans-serif;
   overflow-x:hidden;
+  background:#06060b;
+  color:#fff;
+  font-family:'Geist',Arial,sans-serif;
 }
 
-button,
-input{
+button{
   font:inherit;
 }
 
@@ -54,17 +53,18 @@ a{
 .background{
   position:fixed;
   inset:0;
-  z-index:-5;
+  z-index:-10;
   overflow:hidden;
+
   background:
     radial-gradient(
       circle at 15% 15%,
-      rgba(107,64,255,.18),
+      rgba(105,75,255,.22),
       transparent 32%
     ),
     radial-gradient(
-      circle at 85% 70%,
-      rgba(0,190,255,.12),
+      circle at 85% 75%,
+      rgba(0,190,255,.13),
       transparent 34%
     ),
     #06060b;
@@ -72,73 +72,103 @@ a{
 
 .glow{
   position:absolute;
-  width:320px;
-  height:320px;
+  width:360px;
+  height:360px;
   border-radius:50%;
-  filter:blur(80px);
-  opacity:.5;
+  filter:blur(90px);
+  opacity:.55;
 }
 
 .glow-one{
-  top:-120px;
-  left:-100px;
-  background:#7c3cff;
+  top:-150px;
+  left:-120px;
+  background:#7040ff;
+
   animation:
-    glowOne 9s ease-in-out infinite alternate;
+    glowOne
+    9s
+    ease-in-out
+    infinite
+    alternate;
 }
 
 .glow-two{
-  right:-120px;
-  bottom:5%;
+  right:-150px;
+  bottom:-80px;
   background:#00bfff;
+
   animation:
-    glowTwo 11s ease-in-out infinite alternate;
+    glowTwo
+    11s
+    ease-in-out
+    infinite
+    alternate;
 }
 
 @keyframes glowOne{
+
   from{
-    transform:translate(0,0) scale(1);
+    transform:
+      translate(0,0)
+      scale(1);
   }
+
   to{
-    transform:translate(130px,100px) scale(1.25);
+    transform:
+      translate(130px,100px)
+      scale(1.3);
   }
+
 }
 
 @keyframes glowTwo{
+
   from{
-    transform:translate(0,0) scale(1);
+    transform:
+      translate(0,0)
+      scale(1);
   }
+
   to{
-    transform:translate(-120px,-80px) scale(1.2);
+    transform:
+      translate(-120px,-90px)
+      scale(1.25);
   }
+
 }
 
 
 /* =========================
-   POLICY BAR
+   TOP POLICY
 ========================= */
 
 .policy-wrap{
   width:100%;
   overflow:hidden;
+
   border-bottom:
     1px solid
     rgba(255,255,255,.08);
 
-  background:#030305;
+  background:
+    rgba(0,0,0,.35);
 }
 
 .policy-track{
   width:max-content;
+
   display:flex;
   align-items:center;
+
   gap:70px;
+
   padding:9px 0;
+
   white-space:nowrap;
 
   animation:
     policyScroll
-    24s
+    25s
     linear
     infinite;
 }
@@ -146,11 +176,6 @@ a{
 .policy-item{
   font-size:11px;
   font-weight:600;
-  letter-spacing:.02em;
-}
-
-.policy-item strong{
-  color:#fff;
 }
 
 .policy-item.warning{
@@ -158,37 +183,15 @@ a{
 }
 
 @keyframes policyScroll{
+
   from{
     transform:translateX(0);
   }
+
   to{
     transform:translateX(-50%);
   }
-}
 
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-  position:relative;
-  min-height:calc(100vh - 40px);
-  min-height:calc(100svh - 40px);
-  overflow:hidden;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(6,6,11,.15),
-      rgba(6,6,11,.5)
-    );
-  pointer-events:none;
 }
 
 
@@ -198,13 +201,13 @@ a{
 
 .nav{
   position:relative;
-  z-index:10;
+  z-index:20;
 
   max-width:1250px;
   margin:auto;
 
   padding:
-    24px 24px;
+    22px 24px;
 
   display:flex;
   align-items:center;
@@ -218,74 +221,86 @@ a{
 }
 
 @keyframes navIn{
+
   from{
     opacity:0;
     transform:translateY(-18px);
   }
+
   to{
     opacity:1;
     transform:translateY(0);
   }
+
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:13px;
+  gap:12px;
 }
 
 .logo{
-  width:62px;
-  height:62px;
+  width:58px;
+  height:58px;
+
   border-radius:50%;
 
   object-fit:cover;
 
   border:
     2px solid
-    rgba(255,255,255,.35);
+    rgba(255,255,255,.3);
+
+  background:#111;
 
   box-shadow:
-    0 0 25px
-    rgba(120,80,255,.18);
+    0 0 30px
+    rgba(105,75,255,.25);
 
-  transition:
-    transform .35s ease,
-    box-shadow .35s ease;
+  transition:.35s;
 }
 
 .logo:hover{
   transform:
     rotate(-5deg)
-    scale(1.05);
+    scale(1.06);
 
   box-shadow:
-    0 0 35px
-    rgba(120,80,255,.35);
+    0 0 40px
+    rgba(105,75,255,.4);
 }
 
 .brand-text{
   display:flex;
   flex-direction:column;
-  gap:4px;
+  gap:3px;
 }
 
 .brand-name{
-  font-size:22px;
+  font-size:21px;
   font-weight:800;
   letter-spacing:-.04em;
 }
 
 .owner{
-  color:rgba(255,255,255,.38);
-  font-size:10px;
+  color:
+    rgba(255,255,255,.38);
+
+  font-size:9px;
   font-weight:700;
+
   letter-spacing:.2em;
 }
 
-.login{
+
+/* =========================
+   NAV LOGIN
+========================= */
+
+.nav-login{
   padding:
-    12px 23px;
+    11px 21px;
 
   border:
     1px solid
@@ -296,45 +311,54 @@ a{
   background:
     rgba(255,255,255,.07);
 
-  color:white;
-
-  font-size:14px;
-  font-weight:600;
-
   backdrop-filter:blur(15px);
 
-  transition:
-    transform .25s ease,
-    background .25s ease;
+  font-size:13px;
+  font-weight:700;
+
+  transition:.25s;
 }
 
-.login:hover{
+.nav-login:hover{
   transform:translateY(-2px);
+
   background:
     rgba(255,255,255,.13);
 }
 
 
 /* =========================
-   HERO CONTENT
+   HERO
 ========================= */
+
+.hero{
+  position:relative;
+
+  min-height:
+    calc(100vh - 40px);
+
+  min-height:
+    calc(100svh - 40px);
+
+  overflow:hidden;
+}
 
 .hero-content{
   position:relative;
   z-index:5;
 
-  max-width:900px;
-  margin:0 auto;
+  max-width:1050px;
 
   min-height:
-    calc(100vh - 125px);
+    calc(100vh - 115px);
 
   min-height:
-    calc(100svh - 125px);
+    calc(100svh - 115px);
+
+  margin:auto;
 
   padding:
-    65px 24px
-    70px;
+    45px 24px 70px;
 
   display:flex;
   flex-direction:column;
@@ -355,11 +379,11 @@ a{
   gap:9px;
 
   padding:
-    10px 17px;
+    9px 16px;
 
   border:
     1px solid
-    rgba(255,255,255,.14);
+    rgba(255,255,255,.13);
 
   border-radius:999px;
 
@@ -369,15 +393,15 @@ a{
   backdrop-filter:blur(18px);
 
   color:
-    rgba(255,255,255,.75);
+    rgba(255,255,255,.72);
 
-  font-size:12px;
+  font-size:11px;
   font-weight:700;
 
   animation:
     badgeIn
-    .9s
-    .15s
+    .8s
+    .1s
     cubic-bezier(.16,1,.3,1)
     both;
 }
@@ -385,11 +409,14 @@ a{
 .badge-dot{
   width:8px;
   height:8px;
+
   border-radius:50%;
+
   background:#57ff9a;
+
   box-shadow:
-    0 0 14px
-    rgba(87,255,154,.9);
+    0 0 15px
+    #57ff9a;
 
   animation:
     livePulse
@@ -399,29 +426,35 @@ a{
 }
 
 @keyframes livePulse{
+
   0%,100%{
     transform:scale(1);
     opacity:1;
   }
+
   50%{
     transform:scale(1.45);
     opacity:.6;
   }
+
 }
 
 @keyframes badgeIn{
+
   from{
     opacity:0;
     transform:
       translateY(20px)
       scale(.95);
   }
+
   to{
     opacity:1;
     transform:
       translateY(0)
       scale(1);
   }
+
 }
 
 
@@ -430,15 +463,15 @@ a{
 ========================= */
 
 h1{
-  max-width:850px;
+  max-width:900px;
 
-  margin-top:28px;
+  margin-top:24px;
 
   font-size:
     clamp(
       3rem,
-      10vw,
-      6.7rem
+      9vw,
+      6.5rem
     );
 
   line-height:.94;
@@ -450,26 +483,9 @@ h1{
   animation:
     titleIn
     .9s
-    .25s
+    .2s
     cubic-bezier(.16,1,.3,1)
     both;
-}
-
-@keyframes titleIn{
-  from{
-    opacity:0;
-    transform:
-      translateY(35px)
-      scale(.97);
-    filter:blur(8px);
-  }
-  to{
-    opacity:1;
-    transform:
-      translateY(0)
-      scale(1);
-    filter:blur(0);
-  }
 }
 
 .title-gradient{
@@ -478,33 +494,61 @@ h1{
   background:
     linear-gradient(
       100deg,
-      #ffffff 5%,
+      #fff 5%,
       #78aaff 45%,
       #b17aff 75%,
       #63ddff 100%
     );
+
+  background-size:200% auto;
 
   -webkit-background-clip:text;
   background-clip:text;
 
   -webkit-text-fill-color:transparent;
 
-  background-size:200% auto;
-
   animation:
     gradientMove
     5s
     ease-in-out
-    infinite alternate;
+    infinite
+    alternate;
+}
+
+@keyframes titleIn{
+
+  from{
+    opacity:0;
+
+    transform:
+      translateY(35px)
+      scale(.97);
+
+    filter:blur(8px);
+  }
+
+  to{
+    opacity:1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+    filter:blur(0);
+  }
+
 }
 
 @keyframes gradientMove{
+
   from{
     background-position:0% 50%;
   }
+
   to{
     background-position:100% 50%;
   }
+
 }
 
 
@@ -513,269 +557,497 @@ h1{
 ========================= */
 
 .description{
-  max-width:680px;
+  max-width:650px;
 
-  margin-top:27px;
+  margin-top:22px;
 
   color:
-    rgba(255,255,255,.55);
+    rgba(255,255,255,.52);
 
   font-size:
-    clamp(14px,2vw,17px);
+    clamp(
+      14px,
+      2vw,
+      16px
+    );
 
   line-height:1.7;
 
   animation:
     fadeUp
     .8s
-    .45s
+    .4s
     cubic-bezier(.16,1,.3,1)
     both;
 }
 
 @keyframes fadeUp{
+
   from{
     opacity:0;
     transform:translateY(22px);
   }
+
   to{
     opacity:1;
     transform:translateY(0);
   }
+
 }
 
 
 /* =========================
-   CTA
+   3D AUTH AREA
 ========================= */
 
-.cta-box{
+.auth-scene{
   width:100%;
-  max-width:650px;
+  max-width:820px;
 
-  margin-top:32px;
+  margin-top:35px;
 
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+  perspective:1400px;
 
   animation:
     fadeUp
-    .8s
-    .58s
+    .9s
+    .52s
     cubic-bezier(.16,1,.3,1)
     both;
 }
 
-.email{
-  width:100%;
+.auth-card{
+  position:relative;
 
-  padding:
-    18px 22px;
+  width:100%;
+  min-height:330px;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  overflow:hidden;
 
   border:
     1px solid
-    rgba(255,255,255,.13);
+    rgba(255,255,255,.14);
 
-  border-radius:22px;
-
-  outline:none;
+  border-radius:30px;
 
   background:
-    rgba(255,255,255,.06);
+    rgba(255,255,255,.045);
 
-  color:white;
+  backdrop-filter:blur(25px);
 
-  font-size:16px;
+  box-shadow:
+    0 35px 100px
+    rgba(0,0,0,.45);
 
-  backdrop-filter:blur(18px);
+  transform-style:preserve-3d;
+
+  animation:
+    cardFloat
+    6s
+    ease-in-out
+    infinite;
+}
+
+@keyframes cardFloat{
+
+  0%,100%{
+    transform:
+      rotateX(0deg)
+      rotateY(0deg)
+      translateY(0);
+  }
+
+  50%{
+    transform:
+      rotateX(1deg)
+      rotateY(-1deg)
+      translateY(-7px);
+  }
+
+}
+
+
+/* =========================
+   LOGIN SIDE
+========================= */
+
+.auth-side{
+  position:relative;
+
+  padding:38px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  text-align:left;
+}
+
+.auth-side h2{
+  font-size:27px;
+  letter-spacing:-.05em;
+}
+
+.auth-side p{
+  margin-top:10px;
+
+  max-width:300px;
+
+  color:
+    rgba(255,255,255,.45);
+
+  font-size:13px;
+
+  line-height:1.6;
+}
+
+
+/* =========================
+   3D BLADE
+========================= */
+
+.auth-blade{
+  position:absolute;
+
+  top:-8%;
+
+  left:43%;
+
+  width:18%;
+
+  height:116%;
+
+  z-index:5;
+
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(255,255,255,.95),
+      rgba(160,180,255,.92),
+      rgba(105,75,255,.85)
+    );
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      72% 100%,
+      0 100%
+    );
+
+  filter:
+    drop-shadow(
+      0 0 30px
+      rgba(105,75,255,.35)
+    );
+
+  transform:
+    translateX(-105%)
+    skewX(-5deg);
+
+  animation:
+    bladeIn
+    1.1s
+    .7s
+    cubic-bezier(.16,1,.3,1)
+    both;
+}
+
+@keyframes bladeIn{
+
+  from{
+    transform:
+      translateX(-170%)
+      skewX(-5deg);
+  }
+
+  to{
+    transform:
+      translateX(0)
+      skewX(-5deg);
+  }
+
+}
+
+
+/* =========================
+   WELCOME SIDE
+========================= */
+
+.welcome-side{
+  position:relative;
+
+  padding:38px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  text-align:left;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(105,75,255,.14),
+      rgba(0,190,255,.07)
+    );
+}
+
+.welcome-small{
+  color:
+    rgba(255,255,255,.35);
+
+  font-size:9px;
+  font-weight:800;
+
+  letter-spacing:.25em;
+}
+
+.welcome-side h2{
+  margin-top:12px;
+
+  font-size:35px;
+
+  line-height:1;
+
+  letter-spacing:-.06em;
+}
+
+.welcome-side h2 span{
+  display:block;
+
+  color:
+    #9b8cff;
+}
+
+.welcome-side p{
+  max-width:280px;
+
+  margin-top:13px;
+
+  color:
+    rgba(255,255,255,.48);
+
+  font-size:12px;
+
+  line-height:1.6;
+}
+
+
+/* =========================
+   AUTH BUTTONS
+========================= */
+
+.auth-buttons{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  margin-top:24px;
+
+  max-width:310px;
+}
+
+.auth-button{
+  position:relative;
+
+  width:100%;
+
+  padding:
+    14px 18px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.14);
+
+  border-radius:15px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:13px;
+  font-weight:800;
+
+  overflow:hidden;
 
   transition:
-    border-color .25s,
+    transform .25s,
     background .25s,
     box-shadow .25s;
 }
 
-.email::placeholder{
-  color:
-    rgba(255,255,255,.35);
-}
+.auth-button::before{
+  content:"";
 
-.email:focus{
-  border-color:
-    rgba(255,255,255,.35);
+  position:absolute;
+
+  inset:0;
 
   background:
-    rgba(255,255,255,.09);
+    linear-gradient(
+      110deg,
+      transparent,
+      rgba(255,255,255,.25),
+      transparent
+    );
 
-  box-shadow:
-    0 0 30px
-    rgba(110,130,255,.08);
-}
-
-.start{
-  width:100%;
-
-  padding:
-    18px;
-
-  border:0;
-
-  border-radius:22px;
-
-  background:white;
-
-  color:#080808;
-
-  font-size:16px;
-  font-weight:800;
-
-  cursor:pointer;
-
-  box-shadow:
-    0 15px 45px
-    rgba(0,0,0,.25);
+  transform:
+    translateX(-120%);
 
   transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    opacity .2s ease;
+    transform .6s;
 }
 
-.start:hover{
+.auth-button:hover::before{
+  transform:
+    translateX(120%);
+}
+
+.auth-button:hover{
   transform:
     translateY(-3px);
+}
+
+.login-button{
+  background:#fff;
+  color:#090909;
 
   box-shadow:
-    0 20px 55px
-    rgba(0,0,0,.4);
+    0 12px 35px
+    rgba(0,0,0,.25);
 }
 
-.start:active{
-  transform:
-    scale(.98);
+.signup-button{
+  background:
+    rgba(255,255,255,.07);
+
+  color:#fff;
 }
 
-.start:disabled{
-  opacity:.5;
-  cursor:not-allowed;
+.auth-button:active{
+  transform:scale(.97);
 }
 
 
 /* =========================
-   CARDS
+   FEATURE CARDS
 ========================= */
 
-.cards{
+.features{
   width:100%;
-  max-width:850px;
+  max-width:820px;
 
-  margin-top:45px;
+  margin-top:18px;
 
   display:grid;
   grid-template-columns:
-    repeat(2,1fr);
+    repeat(3,1fr);
 
-  gap:14px;
-
-  animation:
-    fadeUp
-    .8s
-    .72s
-    cubic-bezier(.16,1,.3,1)
-    both;
+  gap:12px;
 }
 
-.card{
-  min-height:155px;
-
-  padding:25px;
+.feature{
+  padding:18px;
 
   border:
     1px solid
-    rgba(255,255,255,.10);
+    rgba(255,255,255,.09);
 
-  border-radius:24px;
+  border-radius:20px;
 
   background:
-    rgba(255,255,255,.055);
+    rgba(255,255,255,.04);
 
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(18px);
 
   text-align:left;
 
-  transition:
-    transform .35s ease,
-    background .35s ease,
-    border-color .35s ease;
+  transition:.3s;
 }
 
-.card:hover{
-  transform:
-    translateY(-7px);
-
-  background:
-    rgba(255,255,255,.08);
+.feature:hover{
+  transform:translateY(-5px);
 
   border-color:
     rgba(255,255,255,.18);
+
+  background:
+    rgba(255,255,255,.07);
 }
 
-.card-number{
-  font-size:34px;
-  font-weight:800;
-  letter-spacing:-.05em;
+.feature-icon{
+  font-size:24px;
 }
 
-.card-title{
-  margin-top:12px;
+.feature strong{
+  display:block;
 
-  color:
-    rgba(255,255,255,.55);
+  margin-top:10px;
 
   font-size:13px;
+}
 
-  line-height:1.55;
+.feature span{
+  display:block;
+
+  margin-top:5px;
+
+  color:
+    rgba(255,255,255,.4);
+
+  font-size:10px;
+
+  line-height:1.5;
 }
 
 
 /* =========================
-   SCROLL INDICATOR
+   EXPLORE
 ========================= */
 
-.scroll-indicator{
-  margin-top:35px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:8px;
+.explore{
+  margin-top:25px;
 
   color:
-    rgba(255,255,255,.28);
+    rgba(255,255,255,.25);
 
-  font-size:10px;
+  font-size:9px;
+
+  letter-spacing:.2em;
   text-transform:uppercase;
-  letter-spacing:.15em;
 
   animation:
-    scrollFloat
+    exploreFloat
     2s
     ease-in-out
     infinite;
 }
 
-.scroll-arrow{
+.explore-arrow{
+  display:block;
+
+  margin-top:7px;
+
   font-size:18px;
 }
 
-@keyframes scrollFloat{
+@keyframes exploreFloat{
+
   0%,100%{
     transform:translateY(0);
   }
+
   50%{
     transform:translateY(6px);
   }
+
 }
 
 
@@ -783,57 +1055,145 @@ h1{
    MOBILE
 ========================= */
 
-@media(max-width:600px){
+@media(max-width:700px){
 
   .nav{
     padding:
-      18px 16px;
+      17px 15px;
   }
 
   .logo{
-    width:54px;
-    height:54px;
+    width:50px;
+    height:50px;
   }
 
   .brand-name{
-    font-size:19px;
+    font-size:18px;
   }
 
   .owner{
-    font-size:8px;
+    font-size:7px;
   }
 
-  .login{
+  .nav-login{
     padding:
-      11px 19px;
+      10px 17px;
+
+    font-size:12px;
   }
 
   .hero-content{
     padding:
-      45px 18px
-      55px;
+      35px 16px
+      50px;
   }
 
   h1{
-    margin-top:24px;
     font-size:
       clamp(
-        3rem,
+        2.9rem,
         14vw,
-        4.7rem
+        4.5rem
       );
   }
 
   .description{
-    font-size:14px;
+    font-size:13px;
   }
 
-  .cards{
+  .auth-card{
+    min-height:500px;
+
+    display:block;
+  }
+
+  .auth-blade{
+    top:48%;
+
+    left:-5%;
+
+    width:110%;
+
+    height:12%;
+
+    clip-path:
+      polygon(
+        0 0,
+        100% 0,
+        96% 100%,
+        4% 100%
+      );
+
+    transform:
+      translateY(-150%)
+      skewY(-2deg);
+
+    animation:
+      bladeMobile
+      1s
+      .7s
+      cubic-bezier(.16,1,.3,1)
+      both;
+  }
+
+  @keyframes bladeMobile{
+
+    from{
+      transform:
+        translateY(-300%)
+        skewY(-2deg);
+    }
+
+    to{
+      transform:
+        translateY(0)
+        skewY(-2deg);
+    }
+
+  }
+
+  .auth-side{
+    min-height:245px;
+
+    padding:
+      28px 24px;
+  }
+
+  .welcome-side{
+    min-height:245px;
+
+    padding:
+      28px 24px;
+  }
+
+  .auth-side h2{
+    font-size:24px;
+  }
+
+  .welcome-side h2{
+    font-size:29px;
+  }
+
+  .auth-buttons{
+    margin-top:17px;
+  }
+
+  .features{
     grid-template-columns:1fr;
   }
 
-  .card{
-    min-height:auto;
+  .feature{
+    display:flex;
+    align-items:center;
+    gap:13px;
+  }
+
+  .feature strong{
+    margin-top:0;
+  }
+
+  .feature span{
+    margin-top:3px;
   }
 
 }
@@ -848,9 +1208,16 @@ h1{
   *,
   *::before,
   *::after{
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    scroll-behavior:auto !important;
+
+    animation-duration:
+      .01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      .01ms !important;
+
   }
 
 }
@@ -862,10 +1229,13 @@ h1{
 <body>
 
 
+<!-- =========================
+     BACKGROUND
+========================= -->
+
 <div class="background">
 
   <div class="glow glow-one"></div>
-
   <div class="glow glow-two"></div>
 
 </div>
@@ -880,28 +1250,27 @@ h1{
   <div class="policy-track">
 
     <div class="policy-item">
-      😍 Welcome to Offer Income
+      😍 Welcome to Income Offers
     </div>
 
     <div class="policy-item">
-      ✅ We Share Trusted Campaigns & Promotional Offers.
+      ✅ Trusted Campaigns & Promotional Offers
     </div>
 
     <div class="policy-item warning">
-      ⚠️ Disclaimer: Please do your own research before using any earning method. We do not promise Guaranteed Earnings.
-    </div>
-
-
-    <div class="policy-item">
-      😍 Welcome to Offer Income
+      ⚠️ Please do your own research. No guaranteed earnings.
     </div>
 
     <div class="policy-item">
-      ✅ We Share Trusted Campaigns & Promotional Offers.
+      😍 Welcome to Income Offers
+    </div>
+
+    <div class="policy-item">
+      ✅ Trusted Campaigns & Promotional Offers
     </div>
 
     <div class="policy-item warning">
-      ⚠️ Disclaimer: Please do your own research before using any earning method. We do not promise Guaranteed Earnings.
+      ⚠️ Please do your own research. No guaranteed earnings.
     </div>
 
   </div>
@@ -925,7 +1294,7 @@ h1{
 
     <img
       class="logo"
-      src="income-offers-logo.jpg"
+      src="assets/income-offers-logo.jpg"
       alt="Income Offers"
       onerror="this.style.display='none'"
     >
@@ -946,8 +1315,7 @@ h1{
 
 
   <a
-    class="login"
-    id="loginLink"
+    class="nav-login"
     href="login.html"
   >
     Login
@@ -957,7 +1325,7 @@ h1{
 
 
 <!-- =========================
-     HERO CONTENT
+     HERO
 ========================= -->
 
 <div class="hero-content">
@@ -967,9 +1335,7 @@ h1{
 
     <span class="badge-dot"></span>
 
-    <span>
-      LIVE INCOME OFFERS
-    </span>
+    LIVE INCOME OFFERS
 
   </div>
 
@@ -989,72 +1355,183 @@ h1{
 
     Browse trusted campaigns,
     promotional offers and opportunities.
-    Open an offer to see its complete details.
+    Create your account and explore
+    the latest offers.
 
   </p>
 
 
-  <div class="cta-box">
+  <!-- =========================
+       3D LOGIN / SIGNUP CARD
+  ========================= -->
 
-    <input
-      class="email"
-      id="emailInput"
-      type="email"
-      placeholder="Enter your email"
-      autocomplete="email"
-    >
+  <div class="auth-scene">
+
+    <div class="auth-card">
 
 
-    <button
-      class="start"
-      id="startButton"
-      type="button"
-    >
-      Get Started
-    </button>
+      <!-- LEFT -->
+
+      <div class="auth-side">
+
+        <div>
+
+          <div
+            style="
+            color:rgba(255,255,255,.35);
+            font-size:9px;
+            font-weight:800;
+            letter-spacing:.22em;
+            "
+          >
+            MEMBER ACCESS
+          </div>
+
+          <h2>
+            Welcome back.
+          </h2>
+
+          <p>
+            Already have an account?
+            Sign in and continue exploring
+            your active offers.
+          </p>
+
+        </div>
+
+
+        <div class="auth-buttons">
+
+          <a
+            class="auth-button login-button"
+            href="login.html"
+          >
+            🔐 Login
+          </a>
+
+          <a
+            class="auth-button signup-button"
+            href="signup.html"
+          >
+            ✨ Create Account
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- 3D BLADE -->
+
+      <div class="auth-blade"></div>
+
+
+      <!-- RIGHT -->
+
+      <div class="welcome-side">
+
+        <div class="welcome-small">
+          INCOME OFFERS
+        </div>
+
+        <h2>
+          Start your
+          <span>journey.</span>
+        </h2>
+
+        <p>
+          Simple access.
+          Clean experience.
+          New opportunities whenever
+          you need them.
+        </p>
+
+      </div>
+
+
+    </div>
 
   </div>
 
 
-  <div class="cards">
+  <!-- =========================
+       FEATURES
+  ========================= -->
 
-    <div class="card">
-
-      <div class="card-number">
-        24/7
-      </div>
-
-      <div class="card-title">
-        New opportunities and active offers
-        are available whenever you need them.
-      </div>
-
-    </div>
+  <div class="features">
 
 
-    <div class="card">
+    <div class="feature">
 
-      <div class="card-number">
+      <div class="feature-icon">
         ⚡
       </div>
 
-      <div class="card-title">
-        Simple, fast and easy to explore
-        the latest opportunities.
+      <div>
+
+        <strong>
+          Fast Access
+        </strong>
+
+        <span>
+          Quickly explore active opportunities.
+        </span>
+
       </div>
 
     </div>
 
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🎁
+      </div>
+
+      <div>
+
+        <strong>
+          New Offers
+        </strong>
+
+        <span>
+          Discover campaigns and promotions.
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🔒
+      </div>
+
+      <div>
+
+        <strong>
+          Your Account
+        </strong>
+
+        <span>
+          Keep your activity connected to your account.
+        </span>
+
+      </div>
+
+    </div>
+
+
   </div>
 
 
-  <div class="scroll-indicator">
+  <div class="explore">
 
-    <span>
-      Explore
-    </span>
+    Explore
 
-    <span class="scroll-arrow">
+    <span class="explore-arrow">
       ↓
     </span>
 
@@ -1065,260 +1542,6 @@ h1{
 
 </section>
 
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script src="supabase-config.js"></script>
-
-
-<script>
-
-/* =========================
-   ELEMENTS
-========================= */
-
-const emailInput =
-document.getElementById(
-  "emailInput"
-);
-
-const startButton =
-document.getElementById(
-  "startButton"
-);
-
-const loginLink =
-document.getElementById(
-  "loginLink"
-);
-
-
-/* =========================
-   UPDATE SESSION UI
-========================= */
-
-function updateUI(session){
-
-  if(
-    session &&
-    session.user
-  ){
-
-    emailInput.style.display =
-      "none";
-
-    startButton.textContent =
-      "View Offers";
-
-    loginLink.textContent =
-      "My Profile";
-
-    loginLink.href =
-      "profile.html";
-
-  }else{
-
-    emailInput.style.display =
-      "block";
-
-    startButton.textContent =
-      "Get Started";
-
-    loginLink.textContent =
-      "Login";
-
-    loginLink.href =
-      "login.html";
-
-  }
-
-}
-
-
-/* =========================
-   LOAD SESSION
-========================= */
-
-async function loadSession(){
-
-  try{
-
-    if(
-      typeof supabaseClient ===
-      "undefined"
-    ){
-
-      console.error(
-        "Supabase client not found."
-      );
-
-      return;
-
-    }
-
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .auth
-        .getSession();
-
-
-    if(error){
-
-      console.error(
-        "Session error:",
-        error
-      );
-
-      return;
-
-    }
-
-
-    updateUI(
-      data.session
-    );
-
-
-  }catch(error){
-
-    console.error(
-      "Session exception:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =========================
-   AUTH LISTENER
-========================= */
-
-if(
-  typeof supabaseClient !==
-  "undefined"
-){
-
-  supabaseClient
-    .auth
-    .onAuthStateChange(
-      function(
-        event,
-        session
-      ){
-
-        updateUI(
-          session
-        );
-
-      }
-    );
-
-}
-
-
-/* =========================
-   GET STARTED
-========================= */
-
-startButton.addEventListener(
-  "click",
-  async function(){
-
-    startButton.disabled =
-      true;
-
-    try{
-
-      const {
-        data
-      } =
-        await supabaseClient
-          .auth
-          .getSession();
-
-
-      if(
-        data &&
-        data.session
-      ){
-
-        window.location.href =
-          "offer.html";
-
-        return;
-
-      }
-
-
-      const email =
-        emailInput.value
-          .trim()
-          .toLowerCase();
-
-
-      if(!email){
-
-        window.location.href =
-          "login.html";
-
-        return;
-
-      }
-
-
-      if(
-        !email.includes("@") ||
-        !email.includes(".")
-      ){
-
-        alert(
-          "Please enter a valid email address."
-        );
-
-        startButton.disabled =
-          false;
-
-        return;
-
-      }
-
-
-      window.location.href =
-        "login.html?email=" +
-        encodeURIComponent(
-          email
-        );
-
-
-    }catch(error){
-
-      console.error(
-        "Get Started error:",
-        error
-      );
-
-      window.location.href =
-        "login.html";
-
-    }
-
-  }
-);
-
-
-/* =========================
-   START
-========================= */
-
-loadSession();
-
-</script>
 
 </body>
 </html>
