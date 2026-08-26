@@ -10,9 +10,17 @@ jobs:
 
     steps:
 
-      - name: Checkout website
+      # =========================
+      # CHECKOUT WEBSITE
+      # =========================
+
+      - name: Checkout repository
         uses: actions/checkout@v4
 
+
+      # =========================
+      # JAVA
+      # =========================
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -21,12 +29,17 @@ jobs:
           java-version: "17"
 
 
+      # =========================
+      # ANDROID SDK
+      # =========================
+
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
 
       - name: Install Android SDK
         run: |
+
           yes | sdkmanager --licenses || true
 
           sdkmanager \
@@ -35,17 +48,367 @@ jobs:
             "build-tools;35.0.0"
 
 
-      - name: Download Gradle
+      # =========================
+      # GRADLE
+      # =========================
+
+      - name: Setup Gradle
         run: |
-          wget -q https://services.gradle.org/distributions/gradle-8.7-bin.zip
+
+          wget -q \
+            https://services.gradle.org/distributions/gradle-8.7-bin.zip
+
           unzip -q gradle-8.7-bin.zip
+
           echo "$PWD/gradle-8.7/bin" >> "$GITHUB_PATH"
 
 
-      - name: Prepare website assets
+      # =========================
+      # CREATE ANDROID PROJECT
+      # =========================
+
+      - name: Create Android project
         run: |
 
+          mkdir -p app/src/main/java/com/incomeoffers/app
+          mkdir -p app/src/main/res/values
+          mkdir -p app/src/main/res/drawable
           mkdir -p app/src/main/assets/www
+
+
+          # -------------------------
+          # settings.gradle
+          # -------------------------
+
+          cat > settings.gradle <<'EOF'
+          pluginManagement {
+              repositories {
+                  google()
+                  mavenCentral()
+                  gradlePluginPortal()
+              }
+          }
+
+          dependencyResolutionManagement {
+              repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
+              repositories {
+                  google()
+                  mavenCentral()
+              }
+          }
+
+          rootProject.name = "IncomeOffers"
+
+          include(":app")
+          EOF
+
+
+          # -------------------------
+          # Root build.gradle
+          # -------------------------
+
+          cat > build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application' version '8.6.1' apply false
+          }
+          EOF
+
+
+          # -------------------------
+          # app/build.gradle
+          # -------------------------
+
+          cat > app/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application'
+          }
+
+          android {
+              namespace 'com.incomeoffers.app'
+
+              compileSdk 35
+
+              defaultConfig {
+                  applicationId 'com.incomeoffers.app'
+
+                  minSdk 23
+
+                  targetSdk 35
+
+                  versionCode 1
+
+                  versionName "1.0"
+              }
+
+              buildTypes {
+
+                  debug {
+                      minifyEnabled false
+                  }
+
+                  release {
+                      minifyEnabled false
+                      shrinkResources false
+                  }
+              }
+
+              compileOptions {
+                  sourceCompatibility JavaVersion.VERSION_17
+                  targetCompatibility JavaVersion.VERSION_17
+              }
+          }
+          EOF
+
+
+          # -------------------------
+          # AndroidManifest.xml
+          # -------------------------
+
+          cat > app/src/main/AndroidManifest.xml <<'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+
+          <manifest
+              xmlns:android="http://schemas.android.com/apk/res/android">
+
+              <uses-permission
+                  android:name="android.permission.INTERNET" />
+
+              <application
+                  android:allowBackup="false"
+                  android:usesCleartextTraffic="true"
+                  android:theme="@style/AppTheme"
+                  android:label="Income Offers">
+
+                  <activity
+                      android:name=".MainActivity"
+                      android:exported="true">
+
+                      <intent-filter>
+
+                          <action
+                              android:name="android.intent.action.MAIN" />
+
+                          <category
+                              android:name="android.intent.category.LAUNCHER" />
+
+                      </intent-filter>
+
+                  </activity>
+
+              </application>
+
+          </manifest>
+          EOF
+
+
+          # -------------------------
+          # styles.xml
+          # -------------------------
+
+          cat > app/src/main/res/values/styles.xml <<'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+
+          <resources>
+
+              <style
+                  name="AppTheme"
+                  parent="android:style/Theme.Material.Light.NoActionBar">
+
+                  <item name="android:fontFamily">sans</item>
+
+                  <item name="android:windowLightStatusBar">
+                      false
+                  </item>
+
+                  <item name="android:statusBarColor">
+                      #05030B
+                  </item>
+
+                  <item name="android:navigationBarColor">
+                      #05030B
+                  </item>
+
+              </style>
+
+          </resources>
+          EOF
+
+
+          # -------------------------
+          # MainActivity.java
+          # -------------------------
+
+          cat > app/src/main/java/com/incomeoffers/app/MainActivity.java <<'EOF'
+          package com.incomeoffers.app;
+
+          import android.app.Activity;
+          import android.os.Bundle;
+          import android.webkit.WebChromeClient;
+          import android.webkit.WebResourceRequest;
+          import android.webkit.WebSettings;
+          import android.webkit.WebView;
+          import android.webkit.WebViewClient;
+          import android.content.Intent;
+          import android.net.Uri;
+
+          public class MainActivity extends Activity {
+
+              private WebView webView;
+
+              @Override
+              protected void onCreate(Bundle savedInstanceState) {
+
+                  super.onCreate(savedInstanceState);
+
+                  webView = new WebView(this);
+
+                  setContentView(webView);
+
+                  WebSettings settings =
+                          webView.getSettings();
+
+                  settings.setJavaScriptEnabled(true);
+
+                  settings.setDomStorageEnabled(true);
+
+                  settings.setDatabaseEnabled(true);
+
+                  settings.setAllowFileAccess(true);
+
+                  settings.setAllowContentAccess(true);
+
+                  settings.setJavaScriptCanOpenWindowsAutomatically(true);
+
+                  settings.setSupportMultipleWindows(false);
+
+                  webView.setWebChromeClient(
+                          new WebChromeClient()
+                  );
+
+                  webView.setWebViewClient(
+                          new WebViewClient() {
+
+                              @Override
+                              public boolean shouldOverrideUrlLoading(
+                                      WebView view,
+                                      WebResourceRequest request) {
+
+                                  Uri uri =
+                                          request.getUrl();
+
+                                  String scheme =
+                                          uri.getScheme();
+
+                                  if (
+                                      scheme != null &&
+                                      (
+                                          scheme.equals("http") ||
+                                          scheme.equals("https")
+                                      )
+                                  ) {
+
+                                      view.loadUrl(
+                                              uri.toString()
+                                      );
+
+                                      return true;
+                                  }
+
+                                  try {
+
+                                      Intent intent =
+                                              new Intent(
+                                                      Intent.ACTION_VIEW,
+                                                      uri
+                                              );
+
+                                      startActivity(intent);
+
+                                  } catch (Exception ignored) {
+                                  }
+
+                                  return true;
+                              }
+
+                              @Override
+                              public boolean shouldOverrideUrlLoading(
+                                      WebView view,
+                                      String url) {
+
+                                  if (
+                                      url.startsWith("http://") ||
+                                      url.startsWith("https://")
+                                  ) {
+
+                                      view.loadUrl(url);
+
+                                  } else {
+
+                                      try {
+
+                                          Intent intent =
+                                                  new Intent(
+                                                          Intent.ACTION_VIEW,
+                                                          Uri.parse(url)
+                                                  );
+
+                                          startActivity(intent);
+
+                                      } catch (Exception ignored) {
+                                      }
+                                  }
+
+                                  return true;
+                              }
+                          }
+                  );
+
+                  webView.loadUrl(
+                          "file:///android_asset/www/index.html"
+                  );
+              }
+
+              @Override
+              public void onBackPressed() {
+
+                  if (
+                      webView != null &&
+                      webView.canGoBack()
+                  ) {
+
+                      webView.goBack();
+
+                  } else {
+
+                      super.onBackPressed();
+                  }
+              }
+
+              @Override
+              protected void onDestroy() {
+
+                  if (webView != null) {
+
+                      webView.loadUrl("about:blank");
+
+                      webView.stopLoading();
+
+                      webView.destroy();
+                  }
+
+                  super.onDestroy();
+              }
+          }
+          EOF
+
+
+      # =========================
+      # COPY WEBSITE
+      # =========================
+
+      - name: Copy website into APK
+        run: |
 
           echo "Copying website files..."
 
@@ -65,46 +428,47 @@ jobs:
               \) \
             -exec cp -f {} app/src/main/assets/www/ \;
 
+
           if [ -d "assets" ]; then
+
             cp -R assets app/src/main/assets/www/
+
           fi
 
-          echo "Website files copied."
+
+          echo "Website copied."
+
+          echo "Files inside APK assets:"
 
           find app/src/main/assets/www \
-            -maxdepth 2 \
+            -maxdepth 3 \
             -type f \
             | sort
 
 
-      - name: Check Android project
-        run: |
-          echo "Checking Android project..."
-
-          test -f settings.gradle
-          test -f build.gradle
-          test -f app/build.gradle
-          test -f app/src/main/AndroidManifest.xml
-          test -f app/src/main/java/com/incomeoffers/app/MainActivity.java
-          test -f app/src/main/res/values/styles.xml
-
-          echo "Android project OK."
-
+      # =========================
+      # BUILD APK
+      # =========================
 
       - name: Build Debug APK
         run: |
-          chmod +x gradlew 2>/dev/null || true
 
-          if [ -f "./gradlew" ]; then
-            ./gradlew assembleDebug
-          else
-            gradle assembleDebug
-          fi
+          gradle assembleDebug \
+            --no-daemon \
+            --stacktrace
 
+
+      # =========================
+      # UPLOAD APK
+      # =========================
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
+
         with:
-          name: Income-Offers-Debug-APK
+
+          name: Income-Offers-APK
+
           path: app/build/outputs/apk/debug/app-debug.apk
+
           if-no-files-found: error
