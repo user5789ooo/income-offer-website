@@ -19,47 +19,47 @@ rel="stylesheet">
 <style>
 
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 html{
-  scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-  min-height:100vh;
-  min-height:100svh;
-  background:
-    radial-gradient(
-      circle at 15% 15%,
-      rgba(115,55,255,.22),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 90% 80%,
-      rgba(0,190,255,.12),
-      transparent 34%
-    ),
-    #050507;
-  color:#fff;
-  font-family:'Geist',Arial,sans-serif;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  overflow-x:hidden;
+min-height:100vh;
+min-height:100svh;
+background:
+radial-gradient(
+circle at 15% 15%,
+rgba(115,55,255,.22),
+transparent 32%
+),
+radial-gradient(
+circle at 90% 80%,
+rgba(0,190,255,.12),
+transparent 34%
+),
+#050507;
+color:#fff;
+font-family:'Geist',Arial,sans-serif;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+overflow-x:hidden;
 }
 
 button,
 input{
-  font:inherit;
+font:inherit;
 }
 
 a{
-  color:inherit;
-  text-decoration:none;
+color:inherit;
+text-decoration:none;
 }
 
 
@@ -68,137 +68,128 @@ a{
 ========================= */
 
 .background{
-  position:fixed;
-  inset:0;
-  z-index:-5;
-  overflow:hidden;
+position:fixed;
+inset:0;
+z-index:-5;
+overflow:hidden;
 }
 
 .orb{
-  position:absolute;
-  border-radius:50%;
-  filter:blur(75px);
-  pointer-events:none;
+position:absolute;
+border-radius:50%;
+filter:blur(75px);
+pointer-events:none;
 }
 
 .orb-one{
-  width:330px;
-  height:330px;
-  top:-130px;
-  left:-100px;
-  background:#6d35ff;
-  opacity:.32;
-  animation:
-    orbOne
-    9s
-    ease-in-out
-    infinite
-    alternate;
+width:330px;
+height:330px;
+top:-130px;
+left:-100px;
+background:#6d35ff;
+opacity:.32;
+animation:
+orbOne
+9s
+ease-in-out
+infinite
+alternate;
 }
 
 .orb-two{
-  width:300px;
-  height:300px;
-  right:-120px;
-  bottom:-100px;
-  background:#00bfff;
-  opacity:.22;
-  animation:
-    orbTwo
-    11s
-    ease-in-out
-    infinite
-    alternate;
+width:300px;
+height:300px;
+right:-120px;
+bottom:-100px;
+background:#00bfff;
+opacity:.22;
+animation:
+orbTwo
+11s
+ease-in-out
+infinite
+alternate;
 }
 
 @keyframes orbOne{
-
-  from{
-    transform:translate(0,0) scale(1);
-  }
-
-  to{
-    transform:translate(120px,100px) scale(1.25);
-  }
-
+from{
+transform:translate(0,0) scale(1);
+}
+to{
+transform:translate(120px,100px) scale(1.25);
+}
 }
 
 @keyframes orbTwo{
-
-  from{
-    transform:translate(0,0) scale(1);
-  }
-
-  to{
-    transform:translate(-100px,-80px) scale(1.2);
-  }
-
+from{
+transform:translate(0,0) scale(1);
+}
+to{
+transform:translate(-100px,-80px) scale(1.2);
+}
 }
 
 .particle{
-  position:absolute;
-  width:5px;
-  height:5px;
-  border-radius:50%;
-  background:#a979ff;
-  box-shadow:
-    0 0 15px
-    rgba(170,110,255,.9);
-  opacity:.45;
-  animation:
-    particleFloat
-    5s
-    ease-in-out
-    infinite
-    alternate;
+position:absolute;
+width:5px;
+height:5px;
+border-radius:50%;
+background:#a979ff;
+box-shadow:
+0 0 15px
+rgba(170,110,255,.9);
+opacity:.45;
+animation:
+particleFloat
+5s
+ease-in-out
+infinite
+alternate;
 }
 
 .p1{
-  left:12%;
-  top:22%;
+left:12%;
+top:22%;
 }
 
 .p2{
-  left:82%;
-  top:17%;
-  animation-delay:1s;
+left:82%;
+top:17%;
+animation-delay:1s;
 }
 
 .p3{
-  left:88%;
-  top:63%;
-  animation-delay:2s;
+left:88%;
+top:63%;
+animation-delay:2s;
 }
 
 .p4{
-  left:18%;
-  top:78%;
-  animation-delay:3s;
+left:18%;
+top:78%;
+animation-delay:3s;
 }
 
 @keyframes particleFloat{
-
-  from{
-    transform:translateY(0) scale(.8);
-    opacity:.25;
-  }
-
-  to{
-    transform:translateY(-25px) scale(1.3);
-    opacity:.8;
-  }
-
+from{
+transform:translateY(0) scale(.8);
+opacity:.25;
+}
+to{
+transform:translateY(-25px) scale(1.3);
+opacity:.8;
+}
 }
 
 
 /* =========================
-   WRAPPER
+   PAGE
 ========================= */
 
 .page{
-  width:100%;
-  max-width:940px;
-  perspective:1800px;
+width:100%;
+max-width:940px;
+perspective:1800px;
 }
 
 
@@ -207,54 +198,51 @@ a{
 ========================= */
 
 .brand{
-  text-align:center;
-  margin-bottom:22px;
-  animation:
-    fadeDown
-    .8s
-    cubic-bezier(.16,1,.3,1)
-    both;
+text-align:center;
+margin-bottom:22px;
+animation:
+fadeDown
+.8s
+cubic-bezier(.16,1,.3,1)
+both;
 }
 
 .brand-logo{
-  width:58px;
-  height:58px;
-  margin:0 auto 10px;
-  display:block;
-  object-fit:cover;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.3);
-  box-shadow:
-    0 0 30px
-    rgba(115,65,255,.35);
+width:58px;
+height:58px;
+margin:0 auto 10px;
+display:block;
+object-fit:cover;
+border-radius:50%;
+border:1px solid rgba(255,255,255,.3);
+box-shadow:
+0 0 30px
+rgba(115,65,255,.35);
 }
 
 .brand-name{
-  font-size:19px;
-  font-weight:800;
-  letter-spacing:-.04em;
+font-size:19px;
+font-weight:800;
+letter-spacing:-.04em;
 }
 
 .brand-owner{
-  margin-top:3px;
-  color:rgba(255,255,255,.32);
-  font-size:8px;
-  font-weight:700;
-  letter-spacing:.2em;
+margin-top:3px;
+color:rgba(255,255,255,.32);
+font-size:8px;
+font-weight:700;
+letter-spacing:.2em;
 }
 
 @keyframes fadeDown{
-
-  from{
-    opacity:0;
-    transform:translateY(-18px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-
+from{
+opacity:0;
+transform:translateY(-18px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 
@@ -263,64 +251,60 @@ a{
 ========================= */
 
 .auth-card{
-  position:relative;
-  width:100%;
-  min-height:570px;
+position:relative;
+width:100%;
+min-height:570px;
 
-  display:grid;
-  grid-template-columns:1fr 1fr;
+display:grid;
+grid-template-columns:1fr 1fr;
 
-  border:
-    1px solid
-    rgba(255,255,255,.14);
+border:
+1px solid
+rgba(255,255,255,.14);
 
-  border-radius:30px;
+border-radius:30px;
 
-  background:
-    rgba(255,255,255,.045);
+background:
+rgba(255,255,255,.045);
 
-  backdrop-filter:
-    blur(30px);
+backdrop-filter:
+blur(30px);
 
-  -webkit-backdrop-filter:
-    blur(30px);
+-webkit-backdrop-filter:
+blur(30px);
 
-  box-shadow:
-    0 35px 100px
-    rgba(0,0,0,.55),
+box-shadow:
+0 35px 100px
+rgba(0,0,0,.55),
+inset 0 1px 0
+rgba(255,255,255,.06);
 
-    inset 0 1px 0
-    rgba(255,255,255,.06);
+overflow:hidden;
 
-  overflow:hidden;
+transform-style:preserve-3d;
 
-  transform-style:preserve-3d;
-
-  animation:
-    cardIn
-    .9s
-    cubic-bezier(.16,1,.3,1)
-    both;
+animation:
+cardIn
+.9s
+cubic-bezier(.16,1,.3,1)
+both;
 }
 
 @keyframes cardIn{
-
-  from{
-    opacity:0;
-    transform:
-      translateY(35px)
-      rotateX(5deg)
-      scale(.96);
-  }
-
-  to{
-    opacity:1;
-    transform:
-      translateY(0)
-      rotateX(0)
-      scale(1);
-  }
-
+from{
+opacity:0;
+transform:
+translateY(35px)
+rotateX(5deg)
+scale(.96);
+}
+to{
+opacity:1;
+transform:
+translateY(0)
+rotateX(0)
+scale(1);
+}
 }
 
 
@@ -329,20 +313,23 @@ a{
 ========================= */
 
 .form-side{
-  position:relative;
-  z-index:3;
-  padding:42px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.075),
-      rgba(255,255,255,.025)
-    );
-  transition:
-    transform .85s cubic-bezier(.16,1,.3,1);
+position:relative;
+z-index:3;
+padding:42px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.075),
+rgba(255,255,255,.025)
+);
+
+transition:
+transform .85s
+cubic-bezier(.16,1,.3,1);
 }
 
 
@@ -351,55 +338,56 @@ a{
 ========================= */
 
 .welcome-side{
-  position:relative;
-  z-index:2;
-  min-height:100%;
-  padding:42px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  overflow:hidden;
+position:relative;
+z-index:2;
+min-height:100%;
+padding:42px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+overflow:hidden;
 
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      rgba(130,60,255,.22),
-      transparent 48%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(45,20,90,.42),
-      rgba(5,5,10,.3)
-    );
+background:
+radial-gradient(
+circle at 50% 35%,
+rgba(130,60,255,.22),
+transparent 48%
+),
+linear-gradient(
+145deg,
+rgba(45,20,90,.42),
+rgba(5,5,10,.3)
+);
 
-  transition:
-    transform .85s cubic-bezier(.16,1,.3,1);
+transition:
+transform .85s
+cubic-bezier(.16,1,.3,1);
 }
 
 .welcome-side::before{
-  content:"";
-  position:absolute;
-  width:240px;
-  height:240px;
-  border-radius:50%;
-  right:-90px;
-  top:-90px;
-  background:
-    rgba(125,70,255,.18);
-  filter:blur(45px);
+content:"";
+position:absolute;
+width:240px;
+height:240px;
+border-radius:50%;
+right:-90px;
+top:-90px;
+background:
+rgba(125,70,255,.18);
+filter:blur(45px);
 }
 
 .welcome-side::after{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  left:-80px;
-  bottom:-70px;
-  background:
-    rgba(0,190,255,.12);
-  filter:blur(45px);
+content:"";
+position:absolute;
+width:180px;
+height:180px;
+border-radius:50%;
+left:-80px;
+bottom:-70px;
+background:
+rgba(0,190,255,.12);
+filter:blur(45px);
 }
 
 
@@ -408,451 +396,438 @@ a{
 ========================= */
 
 .form-content{
-  width:100%;
-  max-width:390px;
-  margin:auto;
+width:100%;
+max-width:390px;
+margin:auto;
 }
 
 .mode-label{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  margin-bottom:12px;
-  color:#a979ff;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.15em;
-  text-transform:uppercase;
+display:inline-flex;
+align-items:center;
+gap:7px;
+margin-bottom:12px;
+color:#a979ff;
+font-size:10px;
+font-weight:800;
+letter-spacing:.15em;
+text-transform:uppercase;
 }
 
 .mode-dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#9d62ff;
-  box-shadow:
-    0 0 12px
-    #9d62ff;
+width:6px;
+height:6px;
+border-radius:50%;
+background:#9d62ff;
+box-shadow:
+0 0 12px
+#9d62ff;
 }
 
 h1{
-  font-size:
-    clamp(
-      2.2rem,
-      5vw,
-      3.2rem
-    );
-  line-height:1;
-  letter-spacing:-.06em;
+font-size:
+clamp(
+2.2rem,
+5vw,
+3.2rem
+);
+line-height:1;
+letter-spacing:-.06em;
 }
 
 .subtitle{
-  margin-top:11px;
-  color:rgba(255,255,255,.45);
-  font-size:13px;
-  line-height:1.6;
+margin-top:11px;
+color:rgba(255,255,255,.45);
+font-size:13px;
+line-height:1.6;
 }
 
 .field{
-  margin-top:22px;
+margin-top:22px;
 }
 
 label{
-  display:block;
-  margin-bottom:8px;
-  color:rgba(255,255,255,.75);
-  font-size:12px;
-  font-weight:700;
+display:block;
+margin-bottom:8px;
+color:rgba(255,255,255,.75);
+font-size:12px;
+font-weight:700;
 }
 
 .input-wrap{
-  position:relative;
+position:relative;
 }
 
 input{
-  width:100%;
-  height:52px;
-  padding:
-    0 16px;
+width:100%;
+height:52px;
+padding:0 16px;
 
-  border:
-    1px solid
-    rgba(255,255,255,.12);
+border:
+1px solid
+rgba(255,255,255,.12);
 
-  border-radius:14px;
+border-radius:14px;
 
-  outline:none;
+outline:none;
 
-  background:
-    rgba(255,255,255,.055);
+background:
+rgba(255,255,255,.055);
 
-  color:white;
+color:white;
 
-  font-size:14px;
+font-size:14px;
 
-  transition:
-    border-color .25s,
-    background .25s,
-    box-shadow .25s,
-    transform .25s;
+transition:
+border-color .25s,
+background .25s,
+box-shadow .25s,
+transform .25s;
 }
 
 input::placeholder{
-  color:
-    rgba(255,255,255,.28);
+color:
+rgba(255,255,255,.28);
 }
 
 input:focus{
-  border-color:
-    rgba(160,115,255,.65);
+border-color:
+rgba(160,115,255,.65);
 
-  background:
-    rgba(255,255,255,.08);
+background:
+rgba(255,255,255,.08);
 
-  box-shadow:
-    0 0 0 4px
-    rgba(125,70,255,.1);
+box-shadow:
+0 0 0 4px
+rgba(125,70,255,.1);
 
-  transform:
-    translateY(-1px);
+transform:
+translateY(-1px);
 }
 
 .password-input{
-  padding-right:52px;
+padding-right:52px;
 }
 
 .eye{
-  position:absolute;
-  top:50%;
-  right:4px;
-  width:44px;
-  height:44px;
-  transform:translateY(-50%);
-  border:0;
-  background:transparent;
-  color:rgba(255,255,255,.6);
-  cursor:pointer;
-  font-size:17px;
+position:absolute;
+top:50%;
+right:4px;
+width:44px;
+height:44px;
+transform:translateY(-50%);
+border:0;
+background:transparent;
+color:rgba(255,255,255,.6);
+cursor:pointer;
+font-size:17px;
 }
 
 .options{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-top:13px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin-top:13px;
 }
 
 .remember{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  color:rgba(255,255,255,.42);
-  font-size:11px;
-  cursor:pointer;
+display:flex;
+align-items:center;
+gap:7px;
+color:rgba(255,255,255,.42);
+font-size:11px;
+cursor:pointer;
 }
 
 .remember input{
-  width:14px;
-  height:14px;
-  padding:0;
-  accent-color:#985cff;
-  box-shadow:none;
-  transform:none;
+width:14px;
+height:14px;
+padding:0;
+accent-color:#985cff;
+box-shadow:none;
+transform:none;
 }
 
 .forgot{
-  color:#a979ff;
-  font-size:11px;
-  font-weight:700;
+color:#a979ff;
+font-size:11px;
+font-weight:700;
+cursor:pointer;
 }
 
 .main-button{
-  width:100%;
-  height:52px;
-  margin-top:22px;
-  border:0;
-  border-radius:15px;
-  background:
-    linear-gradient(
-      100deg,
-      #6335ff,
-      #b34cff,
-      #6d5cff
-    );
-  background-size:200% auto;
-  color:white;
-  font-size:14px;
-  font-weight:800;
-  cursor:pointer;
+width:100%;
+height:52px;
+margin-top:22px;
+border:0;
+border-radius:15px;
 
-  box-shadow:
-    0 15px 35px
-    rgba(105,55,255,.22);
+background:
+linear-gradient(
+100deg,
+#6335ff,
+#b34cff,
+#6d5cff
+);
 
-  transition:
-    transform .2s,
-    opacity .2s,
-    box-shadow .2s;
+background-size:200% auto;
 
-  animation:
-    buttonGradient
-    5s
-    ease
-    infinite
-    alternate;
+color:white;
+font-size:14px;
+font-weight:800;
+cursor:pointer;
+
+box-shadow:
+0 15px 35px
+rgba(105,55,255,.22);
+
+transition:
+transform .2s,
+opacity .2s,
+box-shadow .2s;
+
+animation:
+buttonGradient
+5s
+ease
+infinite
+alternate;
 }
 
 @keyframes buttonGradient{
-
-  from{
-    background-position:0% 50%;
-  }
-
-  to{
-    background-position:100% 50%;
-  }
-
+from{
+background-position:0% 50%;
+}
+to{
+background-position:100% 50%;
+}
 }
 
 .main-button:hover{
-  transform:translateY(-2px);
-  box-shadow:
-    0 20px 45px
-    rgba(105,55,255,.32);
+transform:translateY(-2px);
+box-shadow:
+0 20px 45px
+rgba(105,55,255,.32);
 }
 
 .main-button:active{
-  transform:scale(.98);
+transform:scale(.98);
 }
 
 .main-button:disabled{
-  opacity:.5;
-  cursor:not-allowed;
+opacity:.5;
+cursor:not-allowed;
 }
 
 .switch-text{
-  margin-top:22px;
-  color:rgba(255,255,255,.4);
-  text-align:center;
-  font-size:12px;
+margin-top:22px;
+color:rgba(255,255,255,.4);
+text-align:center;
+font-size:12px;
 }
 
 .switch-button{
-  border:0;
-  background:none;
-  color:#b47aff;
-  font-weight:800;
-  cursor:pointer;
+border:0;
+background:none;
+color:#b47aff;
+font-weight:800;
+cursor:pointer;
 }
 
 .message{
-  min-height:20px;
-  margin-top:13px;
-  padding:0 4px;
-  text-align:center;
-  font-size:11px;
-  line-height:1.5;
+min-height:20px;
+margin-top:13px;
+padding:0 4px;
+text-align:center;
+font-size:11px;
+line-height:1.5;
 }
-
-.back{
-  display:block;
-  margin-top:17px;
-  text-align:center;
-  color:rgba(255,255,255,.3);
-  font-size:11px;
-}
-
-.back:hover{
-  color:white;
-}
-
-
-/* =========================
-   WELCOME CONTENT
-========================= */
-
-.welcome-content{
-  position:relative;
-  z-index:3;
-}
-
-.welcome-small{
-  color:#a979ff;
-  font-size:10px;
-  font-weight:800;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-}
-
-.welcome-title{
-  margin-top:13px;
-  font-size:
-    clamp(
-      2.2rem,
-      5vw,
-      3.5rem
-    );
-  line-height:.98;
-  letter-spacing:-.07em;
-}
-
-.welcome-title span{
-  display:block;
-  background:
-    linear-gradient(
-      100deg,
-      #fff,
-      #a66cff,
-      #63dfff
-    );
-  -webkit-background-clip:text;
-  background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.welcome-description{
-  max-width:360px;
-  margin-top:18px;
-  color:rgba(255,255,255,.46);
-  font-size:13px;
-  line-height:1.7;
-}
-
-.lock{
-  width:155px;
-  height:155px;
-  margin:35px auto 20px;
-  border-radius:38px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:75px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(170,100,255,.28),
-      rgba(55,20,120,.12)
-    );
-
-  border:
-    1px solid
-    rgba(175,120,255,.35);
-
-  box-shadow:
-    0 0 50px
-    rgba(130,65,255,.25),
-
-    inset 0 0 35px
-    rgba(175,100,255,.08);
-
-  transform:
-    rotate(-5deg)
-    translateZ(50px);
-
-  animation:
-    lockFloat
-    4s
-    ease-in-out
-    infinite;
-}
-
-@keyframes lockFloat{
-
-  0%,100%{
-    transform:
-      rotate(-5deg)
-      translateY(0)
-      translateZ(50px);
-  }
-
-  50%{
-    transform:
-      rotate(5deg)
-      translateY(-12px)
-      translateZ(80px);
-  }
-
-}
-
-.features{
-  display:grid;
-  grid-template-columns:
-    repeat(3,1fr);
-  gap:8px;
-  margin-top:25px;
-}
-
-.feature{
-  padding:12px 8px;
-  border:
-    1px solid
-    rgba(255,255,255,.08);
-  border-radius:13px;
-  background:
-    rgba(255,255,255,.035);
-  text-align:center;
-}
-
-.feature-icon{
-  font-size:17px;
-}
-
-.feature-text{
-  margin-top:5px;
-  color:rgba(255,255,255,.42);
-  font-size:9px;
-  line-height:1.3;
-}
-
-
-/* =========================
-   SWITCH ANIMATION
-========================= */
-
-.auth-card.signup-mode .form-side{
-  transform:
-    translateX(100%);
-}
-
-.auth-card.signup-mode .welcome-side{
-  transform:
-    translateX(-100%);
-}
-
-
-/*
-  Visual text changes through JS.
-  The actual two columns slide across
-  each other to create the 3D effect.
-*/
-
-
-/* =========================
-   SUCCESS
-========================= */
 
 .success{
-  display:none;
-  margin-top:14px;
-  padding:11px;
-  border:
-    1px solid
-    rgba(101,255,155,.2);
-  border-radius:12px;
-  background:
-    rgba(101,255,155,.06);
-  color:#8dffa9;
-  text-align:center;
-  font-size:11px;
-  line-height:1.5;
+display:none;
+margin-top:14px;
+padding:11px;
+border:
+1px solid
+rgba(101,255,155,.2);
+border-radius:12px;
+background:
+rgba(101,255,155,.06);
+color:#8dffa9;
+text-align:center;
+font-size:11px;
+line-height:1.5;
 }
 
 .success.show{
-  display:block;
+display:block;
+}
+
+.back{
+display:block;
+margin-top:17px;
+text-align:center;
+color:rgba(255,255,255,.3);
+font-size:11px;
+}
+
+.back:hover{
+color:white;
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome-content{
+position:relative;
+z-index:3;
+}
+
+.welcome-small{
+color:#a979ff;
+font-size:10px;
+font-weight:800;
+letter-spacing:.2em;
+text-transform:uppercase;
+}
+
+.welcome-title{
+margin-top:13px;
+font-size:
+clamp(
+2.2rem,
+5vw,
+3.5rem
+);
+line-height:.98;
+letter-spacing:-.07em;
+}
+
+.welcome-title span{
+display:block;
+
+background:
+linear-gradient(
+100deg,
+#fff,
+#a66cff,
+#63dfff
+);
+
+-webkit-background-clip:text;
+background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.welcome-description{
+max-width:360px;
+margin-top:18px;
+color:rgba(255,255,255,.46);
+font-size:13px;
+line-height:1.7;
+}
+
+.lock{
+width:155px;
+height:155px;
+margin:35px auto 20px;
+border-radius:38px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:75px;
+
+background:
+linear-gradient(
+145deg,
+rgba(170,100,255,.28),
+rgba(55,20,120,.12)
+);
+
+border:
+1px solid
+rgba(175,120,255,.35);
+
+box-shadow:
+0 0 50px
+rgba(130,65,255,.25),
+
+inset 0 0 35px
+rgba(175,100,255,.08);
+
+transform:
+rotate(-5deg)
+translateZ(50px);
+
+animation:
+lockFloat
+4s
+ease-in-out
+infinite;
+}
+
+@keyframes lockFloat{
+0%,100%{
+transform:
+rotate(-5deg)
+translateY(0)
+translateZ(50px);
+}
+50%{
+transform:
+rotate(5deg)
+translateY(-12px)
+translateZ(80px);
+}
+}
+
+.features{
+display:grid;
+grid-template-columns:
+repeat(3,1fr);
+gap:8px;
+margin-top:25px;
+}
+
+.feature{
+padding:12px 8px;
+border:
+1px solid
+rgba(255,255,255,.08);
+border-radius:13px;
+background:
+rgba(255,255,255,.035);
+text-align:center;
+}
+
+.feature-icon{
+font-size:17px;
+}
+
+.feature-text{
+margin-top:5px;
+color:rgba(255,255,255,.42);
+font-size:9px;
+line-height:1.3;
+}
+
+
+/* =========================
+   SIGNUP 3D SWITCH
+========================= */
+
+.auth-card.signup-mode .form-side{
+transform:
+translateX(100%);
+}
+
+.auth-card.signup-mode .welcome-side{
+transform:
+translateX(-100%);
 }
 
 
@@ -862,99 +837,89 @@ input:focus{
 
 @media(max-width:700px){
 
-  body{
-    padding:14px;
-    align-items:flex-start;
-  }
+body{
+padding:14px;
+align-items:flex-start;
+}
 
-  .page{
-    margin-top:15px;
-  }
+.page{
+margin-top:15px;
+}
 
-  .brand{
-    margin-bottom:15px;
-  }
+.brand{
+margin-bottom:15px;
+}
 
-  .brand-logo{
-    width:48px;
-    height:48px;
-  }
+.brand-logo{
+width:48px;
+height:48px;
+}
 
-  .auth-card{
-    min-height:auto;
-    display:block;
-    overflow:hidden;
-  }
+.auth-card{
+min-height:auto;
+display:block;
+overflow:hidden;
+}
 
-  .form-side{
-    min-height:555px;
-    padding:28px 22px;
-    transform:none !important;
-  }
+.form-side{
+min-height:555px;
+padding:28px 22px;
+transform:none !important;
+}
 
-  .welcome-side{
-    min-height:390px;
-    padding:30px 22px;
-    transform:none !important;
-    display:none;
-  }
+.welcome-side{
+min-height:390px;
+padding:30px 22px;
+transform:none !important;
+display:none;
+}
 
-  /*
-    On mobile we show the welcome panel
-    as a smaller animated section.
-  */
+.auth-card.signup-mode .form-side{
+display:flex;
+}
 
-  .auth-card.signup-mode .form-side{
-    display:none;
-  }
+.auth-card.signup-mode .welcome-side{
+display:none;
+}
 
-  .auth-card.signup-mode .welcome-side{
-    display:flex;
-  }
+.lock{
+width:110px;
+height:110px;
+margin:28px auto 15px;
+font-size:54px;
+}
 
-  .lock{
-    width:110px;
-    height:110px;
-    margin:28px auto 15px;
-    font-size:54px;
-  }
+.features{
+margin-top:18px;
+}
 
-  .features{
-    margin-top:18px;
-  }
+.welcome-description{
+font-size:12px;
+}
 
-  .welcome-description{
-    font-size:12px;
-  }
-
-  h1{
-    font-size:2.4rem;
-  }
+h1{
+font-size:2.4rem;
+}
 
 }
 
-
-/* =========================
-   SMALL PHONES
-========================= */
-
 @media(max-width:390px){
 
-  body{
-    padding:10px;
-  }
+body{
+padding:10px;
+}
 
-  .form-side{
-    padding:25px 18px;
-  }
+.form-side{
+padding:25px 18px;
+}
 
-  .auth-card{
-    border-radius:23px;
-  }
+.auth-card{
+border-radius:23px;
+}
 
-  .features{
-    grid-template-columns:1fr;
-  }
+.features{
+grid-template-columns:1fr;
+}
 
 }
 
@@ -965,13 +930,13 @@ input:focus{
 
 @media(prefers-reduced-motion:reduce){
 
-  *,
-  *::before,
-  *::after{
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    transition-duration:.01ms !important;
-  }
+*,
+*::before,
+*::after{
+animation-duration:.01ms !important;
+animation-iteration-count:1 !important;
+transition-duration:.01ms !important;
+}
 
 }
 
@@ -985,13 +950,13 @@ input:focus{
 
 <div class="background">
 
-  <div class="orb orb-one"></div>
-  <div class="orb orb-two"></div>
+<div class="orb orb-one"></div>
+<div class="orb orb-two"></div>
 
-  <div class="particle p1"></div>
-  <div class="particle p2"></div>
-  <div class="particle p3"></div>
-  <div class="particle p4"></div>
+<div class="particle p1"></div>
+<div class="particle p2"></div>
+<div class="particle p3"></div>
+<div class="particle p4"></div>
 
 </div>
 
@@ -999,43 +964,31 @@ input:focus{
 <div class="page">
 
 
-<!-- =========================
-     BRAND
-========================= -->
-
 <div class="brand">
 
-  <img
-    class="brand-logo"
-    src="assets/income-offers-logo.jpg"
-    alt="Income Offers"
-    onerror="this.style.display='none'"
-  >
+<img
+class="brand-logo"
+src="assets/income-offers-logo.jpg"
+alt="Income Offers"
+onerror="this.style.display='none'"
+>
 
-  <div class="brand-name">
-    Income Offers
-  </div>
+<div class="brand-name">
+Income Offers
+</div>
 
-  <div class="brand-owner">
-    OWNER: SAHIL
-  </div>
+<div class="brand-owner">
+OWNER: SAHIL
+</div>
 
 </div>
 
 
-<!-- =========================
-     AUTH CARD
-========================= -->
-
 <div
-  class="auth-card"
-  id="authCard"
+class="auth-card"
+id="authCard"
 >
 
-
-<!-- =========================
-     FORM
-========================= -->
 
 <section class="form-side">
 
@@ -1107,7 +1060,6 @@ required
 class="eye"
 id="eyeButton"
 type="button"
-aria-label="Show password"
 >
 👁️
 </button>
@@ -1135,13 +1087,13 @@ Remember me
 </label>
 
 
-<a
+<button
 class="forgot"
-href="#"
 id="forgotButton"
+type="button"
 >
 Forgot Password?
-</a>
+</button>
 
 </div>
 
@@ -1201,10 +1153,6 @@ href="index.html"
 
 </section>
 
-
-<!-- =========================
-     WELCOME
-========================= -->
 
 <section class="welcome-side">
 
@@ -1289,10 +1237,6 @@ Track Activity
 </div>
 
 
-<!-- =========================
-     SUPABASE
-========================= -->
-
 <script
 src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 ></script>
@@ -1304,10 +1248,8 @@ src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 
 /*
 ====================================================
-INCOME OFFERS AUTH
+INCOME OFFERS PASSWORD AUTH
 ====================================================
-
-This page uses:
 
 Email + Password
 
@@ -1323,99 +1265,59 @@ supabaseClient
 
 
 const authCard =
-document.getElementById(
-  "authCard"
-);
+document.getElementById("authCard");
 
 const authForm =
-document.getElementById(
-  "authForm"
-);
+document.getElementById("authForm");
 
 const emailInput =
-document.getElementById(
-  "email"
-);
+document.getElementById("email");
 
 const passwordInput =
-document.getElementById(
-  "password"
-);
+document.getElementById("password");
 
 const rememberInput =
-document.getElementById(
-  "remember"
-);
+document.getElementById("remember");
 
 const eyeButton =
-document.getElementById(
-  "eyeButton"
-);
+document.getElementById("eyeButton");
 
 const mainButton =
-document.getElementById(
-  "mainButton"
-);
+document.getElementById("mainButton");
 
 const message =
-document.getElementById(
-  "message"
-);
+document.getElementById("message");
 
 const successBox =
-document.getElementById(
-  "successBox"
-);
+document.getElementById("successBox");
 
 const switchButton =
-document.getElementById(
-  "switchButton"
-);
+document.getElementById("switchButton");
 
 const switchQuestion =
-document.getElementById(
-  "switchQuestion"
-);
+document.getElementById("switchQuestion");
 
 const formTitle =
-document.getElementById(
-  "formTitle"
-);
+document.getElementById("formTitle");
 
 const formSubtitle =
-document.getElementById(
-  "formSubtitle"
-);
+document.getElementById("formSubtitle");
 
 const modeLabel =
-document.getElementById(
-  "modeLabel"
-);
+document.getElementById("modeLabel");
 
 const welcomeTitle =
-document.getElementById(
-  "welcomeTitle"
-);
+document.getElementById("welcomeTitle");
 
 const welcomeDescription =
-document.getElementById(
-  "welcomeDescription"
-);
+document.getElementById("welcomeDescription");
 
 const loginOptions =
-document.getElementById(
-  "loginOptions"
-);
+document.getElementById("loginOptions");
 
 const forgotButton =
-document.getElementById(
-  "forgotButton"
-);
+document.getElementById("forgotButton");
 
-
-/* =========================
-   MODE
-========================= */
 
 let signupMode = false;
 
@@ -1425,103 +1327,411 @@ let signupMode = false;
 ========================= */
 
 function showMessage(
-  text,
-  success = false
+text,
+success=false
 ){
 
-  message.textContent =
-    text;
+message.textContent =
+text;
 
-  message.style.color =
-    success
-      ? "#8dffa9"
-      : "#ff7777";
+message.style.color =
+success
+? "#8dffa9"
+: "#ff7777";
 
 }
 
 
 /* =========================
-   CLEAR MESSAGE
+   CLEAR
 ========================= */
 
 function clearMessages(){
 
-  message.textContent = "";
+message.textContent = "";
 
-  successBox.classList.remove(
-    "show"
-  );
+successBox.classList.remove(
+"show"
+);
 
 }
 
 
 /* =========================
-   SWITCH LOGIN / SIGNUP
+   PASSWORD EYE
+========================= */
+
+eyeButton.addEventListener(
+"click",
+function(){
+
+if(
+passwordInput.type ===
+"password"
+){
+
+passwordInput.type =
+"text";
+
+eyeButton.textContent =
+"🙈";
+
+}else{
+
+passwordInput.type =
+"password";
+
+eyeButton.textContent =
+"👁️";
+
+}
+
+});
+
+
+/* =========================
+   MODE
 ========================= */
 
 function updateMode(){
 
-  clearMessages();
+clearMessages();
 
-  authCard.classList.toggle(
-    "signup-mode",
-    signupMode
-  );
+authCard.classList.toggle(
+"signup-mode",
+signupMode
+);
 
 
-  if(signupMode){
+if(signupMode){
 
-    modeLabel.textContent =
-      "NEW ACCOUNT";
+modeLabel.textContent =
+"NEW ACCOUNT";
 
-    formTitle.textContent =
-      "Create Account";
+formTitle.textContent =
+"Create Account";
 
-    formSubtitle.textContent =
-      "Create your account with your own password.";
+formSubtitle.textContent =
+"Create your account with your own password.";
 
-    mainButton.textContent =
-      "Create Account →";
+mainButton.textContent =
+"Create Account →";
 
-    switchQuestion.textContent =
-      "Already have an account?";
+switchQuestion.textContent =
+"Already have an account?";
 
-    switchButton.textContent =
-      "Login";
+switchButton.textContent =
+"Login";
 
-    welcomeTitle.innerHTML =
-      "Join";
-      
-    welcomeTitle.innerHTML +=
-      "<span>Income Offers.</span>";
+welcomeTitle.innerHTML =
+'Join <span>Income Offers.</span>';
 
-    welcomeDescription.textContent =
-      "Create your account, save your password and access your offers whenever you want.";
+welcomeDescription.textContent =
+"Create your account, save your password and access your offers whenever you want.";
 
-    loginOptions.style.display =
-      "none";
+loginOptions.style.display =
+"none";
 
-  }else{
+passwordInput.autocomplete =
+"new-password";
 
-    modeLabel.textContent =
-      "WELCOME BACK";
+}else{
 
-    formTitle.textContent =
-      "Login";
+modeLabel.textContent =
+"WELCOME BACK";
 
-    formSubtitle.textContent =
-      "Welcome back. Login to continue to your account.";
+formTitle.textContent =
+"Login";
 
-    mainButton.textContent =
-      "Login →";
+formSubtitle.textContent =
+"Welcome back. Login to continue to your account.";
 
-    switchQuestion.textContent =
-      "Don't have an account?";
+mainButton.textContent =
+"Login →";
 
-    switchButton.textContent =
-      "Create Account";
+switchQuestion.textContent =
+"Don't have an account?";
 
-    welcomeTitle.innerHTML =
-      "Welcome";
+switchButton.textContent =
+"Create Account";
 
- 
+welcomeTitle.innerHTML =
+'Welcome <span>Back.</span>';
+
+welcomeDescription.textContent =
+"Login to explore active offers, track your activity and continue where you left off.";
+
+loginOptions.style.display =
+"flex";
+
+passwordInput.autocomplete =
+"current-password";
+
+}
+
+}
+
+
+/* =========================
+   SWITCH
+========================= */
+
+switchButton.addEventListener(
+"click",
+function(){
+
+signupMode =
+!signupMode;
+
+passwordInput.value =
+"";
+
+updateMode();
+
+});
+
+
+
+/* =========================
+   CHECK SESSION
+========================= */
+
+async function checkExistingSession(){
+
+try{
+
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.getSession();
+
+
+if(error){
+
+console.warn(
+"Session check:",
+error.message
+);
+
+return;
+
+}
+
+
+if(
+data &&
+data.session &&
+data.session.user
+){
+
+window.location.replace(
+"offer.html"
+);
+
+}
+
+}catch(error){
+
+console.warn(
+"Session exception:",
+error
+);
+
+}
+
+}
+
+
+/* =========================
+   PASSWORD LOGIN
+========================= */
+
+async function loginUser(
+email,
+password
+){
+
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
+
+
+if(error){
+
+throw error;
+
+}
+
+
+if(
+!data ||
+!data.user ||
+!data.session
+){
+
+throw new Error(
+"Unable to create login session."
+);
+
+}
+
+
+return data;
+
+}
+
+
+/* =========================
+   SIGNUP
+========================= */
+
+async function createAccount(
+email,
+password
+){
+
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.signUp({
+
+email:email,
+
+password:password
+
+});
+
+
+if(error){
+
+throw error;
+
+}
+
+
+return data;
+
+}
+
+
+/* =========================
+   FORM SUBMIT
+========================= */
+
+authForm.addEventListener(
+"submit",
+async function(event){
+
+event.preventDefault();
+
+
+const email =
+emailInput.value
+.trim()
+.toLowerCase();
+
+const password =
+passwordInput.value;
+
+
+if(!email){
+
+showMessage(
+"Please enter your email."
+);
+
+return;
+
+}
+
+
+if(
+!email.includes("@") ||
+!email.includes(".")
+){
+
+showMessage(
+"Please enter a valid email address."
+);
+
+return;
+
+}
+
+
+if(!password){
+
+showMessage(
+"Please enter your password."
+);
+
+return;
+
+}
+
+
+if(password.length < 6){
+
+showMessage(
+"Password must be at least 6 characters."
+);
+
+return;
+
+}
+
+
+mainButton.disabled =
+true;
+
+
+try{
+
+
+/* =========================
+   CREATE ACCOUNT
+========================= */
+
+if(signupMode){
+
+mainButton.textContent =
+"Creating Account...";
+
+showMessage(
+"Creating your secure account...",
+true
+);
+
+
+const data =
+await createAccount(
+email,
+password
+);
+
+
+/*
+If Supabase immediately creates
+a session, go directly to offers.
+*/
+
+if(
+data &&
+data.session &&
+data.u
