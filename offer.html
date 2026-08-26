@@ -7,7 +7,7 @@
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0"
+  content="width=device-width,initial-scale=1.0"
 >
 
 <meta
@@ -24,7 +24,7 @@
 
 <link
   rel="preconnect"
-  href="https://fonts.googleapis.com"
+  href="https://fonts.gstatic.com"
   crossorigin
 >
 
@@ -32,7 +32,6 @@
   href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap"
   rel="stylesheet"
 >
-
 
 <style>
 
@@ -62,6 +61,7 @@ a{
 
 button{
   font:inherit;
+  -webkit-tap-highlight-color:transparent;
 }
 
 
@@ -73,6 +73,7 @@ button{
   position:fixed;
   inset:0;
   z-index:-2;
+  overflow:hidden;
 
   background:
     radial-gradient(
@@ -152,8 +153,7 @@ header{
   max-width:1200px;
   margin:auto;
 
-  padding:
-    15px 20px;
+  padding:15px 20px;
 
   display:flex;
   align-items:center;
@@ -171,7 +171,6 @@ header{
   height:42px;
 
   object-fit:cover;
-
   border-radius:50%;
 
   border:
@@ -207,7 +206,7 @@ header{
 
 
 /* =========================
-   DESKTOP NAV
+   DESKTOP
 ========================= */
 
 .desktop-actions{
@@ -217,8 +216,7 @@ header{
 }
 
 .nav-btn{
-  padding:
-    9px 14px;
+  padding:9px 14px;
 
   border:
     1px solid
@@ -272,7 +270,6 @@ header{
 .menu-backdrop{
   position:fixed;
   inset:0;
-
   z-index:80;
 
   background:
@@ -304,8 +301,7 @@ header{
   max-width:88%;
   height:100%;
 
-  padding:
-    24px 20px;
+  padding:24px 20px;
 
   background:#0a0a0a;
 
@@ -359,7 +355,6 @@ header{
 
 .profile-box{
   padding:16px;
-
   margin-bottom:14px;
 
   border:
@@ -398,7 +393,6 @@ header{
   width:100%;
 
   padding:14px;
-
   margin-bottom:8px;
 
   border:
@@ -417,6 +411,8 @@ header{
   text-align:left;
 
   cursor:pointer;
+
+  transition:.2s;
 }
 
 .menu-item:hover{
@@ -429,7 +425,6 @@ header{
 
 .telegram{
   margin-top:15px;
-
   padding:17px;
 
   border-radius:17px;
@@ -448,14 +443,12 @@ header{
 }
 
 .telegram p{
-  margin:
-    0 0 13px;
+  margin:0 0 13px;
 
   color:
     rgba(255,255,255,.8);
 
   font-size:11px;
-
   line-height:1.5;
 }
 
@@ -473,7 +466,6 @@ header{
   text-align:center;
 
   font-size:12px;
-
   font-weight:800;
 }
 
@@ -567,7 +559,6 @@ h1{
     rgba(255,255,255,.48);
 
   font-size:14px;
-
   line-height:1.7;
 }
 
@@ -598,8 +589,7 @@ h1{
 }
 
 .refresh{
-  padding:
-    9px 14px;
+  padding:9px 14px;
 
   border:
     1px solid
@@ -629,7 +619,7 @@ h1{
 
 
 /* =========================
-   OFFER GRID
+   OFFERS
 ========================= */
 
 .container{
@@ -776,8 +766,14 @@ h1{
   transition:.2s;
 }
 
+.open-btn:hover{
+  transform:
+    translateY(-1px);
+}
+
 .open-btn:active{
-  transform:scale(.94);
+  transform:
+    scale(.94);
 }
 
 
@@ -819,12 +815,14 @@ h1{
     rgba(255,255,255,.43);
 
   font-size:12px;
-
   line-height:1.6;
 }
 
 .state-error{
-  margin-top:14px;
+  max-width:650px;
+
+  margin:
+    14px auto 0;
 
   padding:10px;
 
@@ -1046,14 +1044,9 @@ h1{
 <div class="background"></div>
 
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
 
 <nav class="nav">
-
 
 <a
   class="brand"
@@ -1109,15 +1102,10 @@ OWNER: SAHIL
 ☰
 </button>
 
-
 </nav>
 
 </header>
 
-
-<!-- =========================
-     SIDE MENU
-========================= -->
 
 <div
   class="menu-backdrop"
@@ -1129,7 +1117,6 @@ OWNER: SAHIL
   class="side-menu"
   id="sideMenu"
 >
-
 
 <div class="menu-head">
 
@@ -1222,16 +1209,10 @@ Join Telegram Channel
 🚪 Logout
 </button>
 
-
 </aside>
 
 
-<!-- =========================
-     HERO
-========================= -->
-
 <section class="hero">
-
 
 <div class="eyebrow">
 
@@ -1253,16 +1234,10 @@ rewards and opportunities.
 Open an offer to see the complete details.
 </p>
 
-
 </section>
 
 
-<!-- =========================
-     TOOLBAR
-========================= -->
-
 <div class="toolbar">
-
 
 <div
   class="count"
@@ -1280,22 +1255,15 @@ Loading offers...
 ↻ Refresh
 </button>
 
-
 </div>
 
 
-<!-- =========================
-     OFFERS
-========================= -->
-
 <main class="container">
-
 
 <div
   class="offer-grid"
   id="offerGrid"
 >
-
 
 <div class="state">
 
@@ -1313,19 +1281,12 @@ Please wait...
 
 </div>
 
-
 </div>
-
 
 </main>
 
 
-<!-- =========================
-     BOTTOM NAV
-========================= -->
-
 <nav class="bottom-nav">
-
 
 <a
   class="bottom-link"
@@ -1362,13 +1323,8 @@ History
 Profile
 </a>
 
-
 </nav>
 
-
-<!-- =========================
-     SUPABASE
-========================= -->
 
 <script
   src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
@@ -1381,17 +1337,22 @@ Profile
 
 /*
 ====================================================
-IMPORTANT
+INCOME OFFERS - STABLE OFFER PAGE
 ====================================================
+
+IMPORTANT:
 
 supabase-config.js already creates:
 
-const supabaseClient = ...
+const supabaseClient
 
-Do NOT create another client here.
+Do NOT create another Supabase client here.
 
 ====================================================
 */
+
+
+"use strict";
 
 
 /* =========================
@@ -1399,49 +1360,89 @@ Do NOT create another client here.
 ========================= */
 
 const menuButton =
-document.getElementById(
-  "menuButton"
-);
+  document.getElementById(
+    "menuButton"
+  );
 
 const sideMenu =
-document.getElementById(
-  "sideMenu"
-);
+  document.getElementById(
+    "sideMenu"
+  );
 
 const menuBackdrop =
-document.getElementById(
-  "menuBackdrop"
-);
+  document.getElementById(
+    "menuBackdrop"
+  );
 
 const closeMenu =
-document.getElementById(
-  "closeMenu"
-);
+  document.getElementById(
+    "closeMenu"
+  );
 
 const logoutButton =
-document.getElementById(
-  "logoutButton"
-);
+  document.getElementById(
+    "logoutButton"
+  );
 
 const profileEmail =
-document.getElementById(
-  "profileEmail"
-);
+  document.getElementById(
+    "profileEmail"
+  );
 
 const offerGrid =
-document.getElementById(
-  "offerGrid"
-);
+  document.getElementById(
+    "offerGrid"
+  );
 
 const offerCount =
-document.getElementById(
-  "offerCount"
-);
+  document.getElementById(
+    "offerCount"
+  );
 
 const refreshButton =
-document.getElementById(
-  "refreshButton"
-);
+  document.getElementById(
+    "refreshButton"
+  );
+
+
+/* =========================
+   SUPABASE CHECK
+========================= */
+
+if(
+  typeof supabaseClient ===
+  "undefined"
+){
+
+  offerCount.textContent =
+    "System error";
+
+  offerGrid.innerHTML = `
+
+    <div class="state">
+
+      <div class="state-icon">
+        ⚠️
+      </div>
+
+      <h2>
+        Supabase unavailable
+      </h2>
+
+      <p>
+        The Supabase client could not be loaded.
+        Please refresh the page.
+      </p>
+
+    </div>
+
+  `;
+
+  throw new Error(
+    "supabaseClient is not available."
+  );
+
+}
 
 
 /* =========================
@@ -1563,10 +1564,12 @@ async function getSession(){
         .auth
         .getSession();
 
-    if(result.error){
+    if(
+      result.error
+    ){
 
       console.warn(
-        "Session check:",
+        "Session error:",
         result.error.message
       );
 
@@ -1574,12 +1577,16 @@ async function getSession(){
 
     }
 
-    return (
+    if(
       result.data &&
       result.data.session
-    )
-      ? result.data.session
-      : null;
+    ){
+
+      return result.data.session;
+
+    }
+
+    return null;
 
   }catch(error){
 
@@ -1591,6 +1598,33 @@ async function getSession(){
     return null;
 
   }
+
+}
+
+
+/* =========================
+   REQUIRE LOGIN
+========================= */
+
+async function requireLogin(){
+
+  const session =
+    await getSession();
+
+  if(
+    !session ||
+    !session.user
+  ){
+
+    window.location.replace(
+      "login.html"
+    );
+
+    return null;
+
+  }
+
+  return session;
 
 }
 
@@ -1639,14 +1673,6 @@ async function logActivity(
     const session =
       await getSession();
 
-    /*
-      IMPORTANT:
-      Activity logging is OPTIONAL.
-
-      If it fails, the offer page
-      must still work.
-    */
-
     if(
       !session ||
       !session.user
@@ -1656,6 +1682,13 @@ async function logActivity(
 
     }
 
+
+    /*
+      Activity logging is optional.
+
+      If activity_logs does not exist,
+      the offer page continues normally.
+    */
 
     const result =
       await supabaseClient
@@ -1683,7 +1716,9 @@ async function logActivity(
         });
 
 
-    if(result.error){
+    if(
+      result.error
+    ){
 
       console.warn(
         "Activity log skipped:",
@@ -1719,13 +1754,21 @@ async function updateOfferProgress(
 
     if(
       !session ||
-      !session.user
+      !session.user ||
+      !offerId
     ){
 
       return;
 
     }
 
+
+    /*
+      Progress is optional.
+
+      We deliberately do not allow
+      this function to block navigation.
+    */
 
     const userId =
       session.user.id;
@@ -1738,52 +1781,3 @@ async function updateOfferProgress(
           "id,click_count"
         )
         .eq(
-          "user_id",
-          userId
-        )
-        .eq(
-          "offer_id",
-          offerId
-        )
-        .maybeSingle();
-
-
-    if(result.error){
-
-      console.warn(
-        "Progress lookup skipped:",
-        result.error.message
-      );
-
-      return;
-
-    }
-
-
-    const now =
-      new Date().toISOString();
-
-
-    if(!result.data){
-
-      const insertResult =
-        await supabaseClient
-          .from("offer_progress")
-          .insert({
-
-            user_id:
-              userId,
-
-            offer_id:
-              offerId,
-
-            click_count:
-              1,
-
-            view_count:
-              0,
-
-            started:
-              false,
-
-            compl
