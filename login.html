@@ -9,19 +9,13 @@
 
 <title>Income Offers - Login</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
 <style>
 
 *{
 box-sizing:border-box;
 margin:0;
 padding:0;
+font-family:Arial,sans-serif;
 }
 
 html{
@@ -30,21 +24,11 @@ scroll-behavior:smooth;
 
 body{
 min-height:100vh;
-min-height:100svh;
 background:
-radial-gradient(
-circle at 15% 15%,
-rgba(115,55,255,.22),
-transparent 32%
-),
-radial-gradient(
-circle at 90% 80%,
-rgba(0,190,255,.12),
-transparent 34%
-),
+radial-gradient(circle at 15% 15%,rgba(115,55,255,.22),transparent 32%),
+radial-gradient(circle at 90% 80%,rgba(0,190,255,.12),transparent 34%),
 #050507;
 color:#fff;
-font-family:'Geist',Arial,sans-serif;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -55,6 +39,10 @@ overflow-x:hidden;
 button,
 input{
 font:inherit;
+}
+
+button{
+cursor:pointer;
 }
 
 a{
@@ -88,6 +76,7 @@ top:-130px;
 left:-100px;
 background:#6d35ff;
 opacity:.32;
+
 animation:
 orbOne
 9s
@@ -102,7 +91,8 @@ height:300px;
 right:-120px;
 bottom:-100px;
 background:#00bfff;
-opacity:.22;
+opacity:.20;
+
 animation:
 orbTwo
 11s
@@ -112,73 +102,27 @@ alternate;
 }
 
 @keyframes orbOne{
+
 from{
 transform:translate(0,0) scale(1);
 }
+
 to{
 transform:translate(120px,100px) scale(1.25);
 }
+
 }
 
 @keyframes orbTwo{
+
 from{
 transform:translate(0,0) scale(1);
 }
+
 to{
 transform:translate(-100px,-80px) scale(1.2);
 }
-}
 
-.particle{
-position:absolute;
-width:5px;
-height:5px;
-border-radius:50%;
-background:#a979ff;
-box-shadow:
-0 0 15px
-rgba(170,110,255,.9);
-opacity:.45;
-animation:
-particleFloat
-5s
-ease-in-out
-infinite
-alternate;
-}
-
-.p1{
-left:12%;
-top:22%;
-}
-
-.p2{
-left:82%;
-top:17%;
-animation-delay:1s;
-}
-
-.p3{
-left:88%;
-top:63%;
-animation-delay:2s;
-}
-
-.p4{
-left:18%;
-top:78%;
-animation-delay:3s;
-}
-
-@keyframes particleFloat{
-from{
-transform:translateY(0) scale(.8);
-opacity:.25;
-}
-to{
-transform:translateY(-25px) scale(1.3);
-opacity:.8;
-}
 }
 
 
@@ -189,7 +133,7 @@ opacity:.8;
 .page{
 width:100%;
 max-width:940px;
-perspective:1800px;
+perspective:1600px;
 }
 
 
@@ -199,18 +143,13 @@ perspective:1800px;
 
 .brand{
 text-align:center;
-margin-bottom:22px;
-animation:
-fadeDown
-.8s
-cubic-bezier(.16,1,.3,1)
-both;
+margin-bottom:20px;
 }
 
 .brand-logo{
 width:58px;
 height:58px;
-margin:0 auto 10px;
+margin:0 auto;
 display:block;
 object-fit:cover;
 border-radius:50%;
@@ -221,9 +160,9 @@ rgba(115,65,255,.35);
 }
 
 .brand-name{
+margin-top:8px;
 font-size:19px;
 font-weight:800;
-letter-spacing:-.04em;
 }
 
 .brand-owner{
@@ -234,20 +173,9 @@ font-weight:700;
 letter-spacing:.2em;
 }
 
-@keyframes fadeDown{
-from{
-opacity:0;
-transform:translateY(-18px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
 
 /* =========================
-   AUTH CARD
+   CARD
 ========================= */
 
 .auth-card{
@@ -267,55 +195,53 @@ border-radius:30px;
 background:
 rgba(255,255,255,.045);
 
-backdrop-filter:
-blur(30px);
-
--webkit-backdrop-filter:
-blur(30px);
+backdrop-filter:blur(30px);
+-webkit-backdrop-filter:blur(30px);
 
 box-shadow:
 0 35px 100px
 rgba(0,0,0,.55),
+
 inset 0 1px 0
 rgba(255,255,255,.06);
 
 overflow:hidden;
 
-transform-style:preserve-3d;
-
 animation:
 cardIn
-.9s
-cubic-bezier(.16,1,.3,1)
+.8s
+ease
 both;
 }
 
 @keyframes cardIn{
+
 from{
 opacity:0;
 transform:
-translateY(35px)
+translateY(30px)
 rotateX(5deg)
-scale(.96);
+scale(.97);
 }
+
 to{
 opacity:1;
-transform:
-translateY(0)
-rotateX(0)
-scale(1);
+transform:none;
 }
+
 }
 
 
 /* =========================
-   FORM SIDE
+   FORM
 ========================= */
 
 .form-side{
 position:relative;
 z-index:3;
+
 padding:42px;
+
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -328,72 +254,10 @@ rgba(255,255,255,.025)
 );
 
 transition:
-transform .85s
+transform
+.7s
 cubic-bezier(.16,1,.3,1);
 }
-
-
-/* =========================
-   WELCOME SIDE
-========================= */
-
-.welcome-side{
-position:relative;
-z-index:2;
-min-height:100%;
-padding:42px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-overflow:hidden;
-
-background:
-radial-gradient(
-circle at 50% 35%,
-rgba(130,60,255,.22),
-transparent 48%
-),
-linear-gradient(
-145deg,
-rgba(45,20,90,.42),
-rgba(5,5,10,.3)
-);
-
-transition:
-transform .85s
-cubic-bezier(.16,1,.3,1);
-}
-
-.welcome-side::before{
-content:"";
-position:absolute;
-width:240px;
-height:240px;
-border-radius:50%;
-right:-90px;
-top:-90px;
-background:
-rgba(125,70,255,.18);
-filter:blur(45px);
-}
-
-.welcome-side::after{
-content:"";
-position:absolute;
-width:180px;
-height:180px;
-border-radius:50%;
-left:-80px;
-bottom:-70px;
-background:
-rgba(0,190,255,.12);
-filter:blur(45px);
-}
-
-
-/* =========================
-   FORM CONTENT
-========================= */
 
 .form-content{
 width:100%;
@@ -402,25 +266,25 @@ margin:auto;
 }
 
 .mode-label{
-display:inline-flex;
-align-items:center;
-gap:7px;
-margin-bottom:12px;
 color:#a979ff;
 font-size:10px;
 font-weight:800;
 letter-spacing:.15em;
-text-transform:uppercase;
+margin-bottom:12px;
 }
 
 .mode-dot{
+display:inline-block;
 width:6px;
 height:6px;
 border-radius:50%;
 background:#9d62ff;
+
 box-shadow:
 0 0 12px
 #9d62ff;
+
+margin-right:7px;
 }
 
 h1{
@@ -430,6 +294,7 @@ clamp(
 5vw,
 3.2rem
 );
+
 line-height:1;
 letter-spacing:-.06em;
 }
@@ -442,7 +307,7 @@ line-height:1.6;
 }
 
 .field{
-margin-top:22px;
+margin-top:20px;
 }
 
 label{
@@ -460,7 +325,9 @@ position:relative;
 input{
 width:100%;
 height:52px;
-padding:0 16px;
+
+padding:
+0 16px;
 
 border:
 1px solid
@@ -478,10 +345,16 @@ color:white;
 font-size:14px;
 
 transition:
-border-color .25s,
-background .25s,
-box-shadow .25s,
-transform .25s;
+.25s;
+}
+
+input:focus{
+border-color:
+rgba(160,115,255,.65);
+
+box-shadow:
+0 0 0 4px
+rgba(125,70,255,.10);
 }
 
 input::placeholder{
@@ -489,76 +362,85 @@ color:
 rgba(255,255,255,.28);
 }
 
-input:focus{
-border-color:
-rgba(160,115,255,.65);
-
-background:
-rgba(255,255,255,.08);
-
-box-shadow:
-0 0 0 4px
-rgba(125,70,255,.1);
-
-transform:
-translateY(-1px);
-}
-
 .password-input{
 padding-right:52px;
 }
 
+
+/* =========================
+   EYE
+========================= */
+
 .eye{
 position:absolute;
-top:50%;
-right:4px;
+
+right:3px;
+top:4px;
+
 width:44px;
 height:44px;
-transform:translateY(-50%);
+
 border:0;
+
 background:transparent;
-color:rgba(255,255,255,.6);
-cursor:pointer;
+
+color:white;
+
 font-size:17px;
+
+z-index:5;
 }
+
+
+/* =========================
+   OPTIONS
+========================= */
 
 .options{
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:10px;
-margin-top:13px;
+
+margin-top:12px;
+
+font-size:11px;
+
+color:
+rgba(255,255,255,.55);
 }
 
 .remember{
 display:flex;
 align-items:center;
-gap:7px;
-color:rgba(255,255,255,.42);
-font-size:11px;
-cursor:pointer;
+gap:6px;
 }
 
 .remember input{
 width:14px;
 height:14px;
-padding:0;
-accent-color:#985cff;
-box-shadow:none;
-transform:none;
 }
 
 .forgot{
+border:0;
+background:none;
+
 color:#a979ff;
+
 font-size:11px;
 font-weight:700;
-cursor:pointer;
 }
+
+
+/* =========================
+   BUTTON
+========================= */
 
 .main-button{
 width:100%;
 height:52px;
-margin-top:22px;
+
+margin-top:21px;
+
 border:0;
 border-radius:15px;
 
@@ -570,21 +452,16 @@ linear-gradient(
 #6d5cff
 );
 
-background-size:200% auto;
+background-size:200%;
 
 color:white;
+
 font-size:14px;
 font-weight:800;
-cursor:pointer;
 
 box-shadow:
 0 15px 35px
 rgba(105,55,255,.22);
-
-transition:
-transform .2s,
-opacity .2s,
-box-shadow .2s;
 
 animation:
 buttonGradient
@@ -592,22 +469,25 @@ buttonGradient
 ease
 infinite
 alternate;
+
+transition:
+.2s;
 }
 
 @keyframes buttonGradient{
+
 from{
 background-position:0% 50%;
 }
+
 to{
 background-position:100% 50%;
 }
+
 }
 
 .main-button:hover{
 transform:translateY(-2px);
-box-shadow:
-0 20px 45px
-rgba(105,55,255,.32);
 }
 
 .main-button:active{
@@ -619,60 +499,91 @@ opacity:.5;
 cursor:not-allowed;
 }
 
-.switch-text{
-margin-top:22px;
-color:rgba(255,255,255,.4);
-text-align:center;
-font-size:12px;
-}
 
-.switch-button{
-border:0;
-background:none;
-color:#b47aff;
-font-weight:800;
-cursor:pointer;
-}
+/* =========================
+   MESSAGE
+========================= */
 
 .message{
 min-height:20px;
-margin-top:13px;
-padding:0 4px;
+
+margin-top:12px;
+
 text-align:center;
+
 font-size:11px;
+
 line-height:1.5;
 }
 
 .success{
 display:none;
-margin-top:14px;
-padding:11px;
+
+margin-top:10px;
+
+padding:10px;
+
+border-radius:12px;
+
+background:
+rgba(101,255,155,.06);
+
 border:
 1px solid
 rgba(101,255,155,.2);
-border-radius:12px;
-background:
-rgba(101,255,155,.06);
+
 color:#8dffa9;
+
 text-align:center;
+
 font-size:11px;
-line-height:1.5;
 }
 
 .success.show{
 display:block;
 }
 
-.back{
-display:block;
-margin-top:17px;
+
+/* =========================
+   SWITCH
+========================= */
+
+.switch-text{
+margin-top:20px;
+
 text-align:center;
-color:rgba(255,255,255,.3);
-font-size:11px;
+
+color:
+rgba(255,255,255,.4);
+
+font-size:12px;
 }
 
-.back:hover{
-color:white;
+.switch-button{
+border:0;
+background:none;
+
+color:#b47aff;
+
+font-weight:800;
+}
+
+
+/* =========================
+   BACK
+========================= */
+
+.back{
+display:block;
+
+text-align:center;
+
+margin-top:16px;
+
+color:
+rgba(255,255,255,.3);
+
+font-size:11px;
 }
 
 
@@ -680,28 +591,53 @@ color:white;
    WELCOME
 ========================= */
 
-.welcome-content{
+.welcome-side{
 position:relative;
-z-index:3;
+
+padding:42px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+
+overflow:hidden;
+
+background:
+radial-gradient(
+circle at 50% 35%,
+rgba(130,60,255,.22),
+transparent 48%
+),
+
+linear-gradient(
+145deg,
+rgba(45,20,90,.42),
+rgba(5,5,10,.3)
+);
 }
 
 .welcome-small{
 color:#a979ff;
+
 font-size:10px;
+
 font-weight:800;
+
 letter-spacing:.2em;
-text-transform:uppercase;
 }
 
 .welcome-title{
-margin-top:13px;
+margin-top:12px;
+
 font-size:
 clamp(
 2.2rem,
 5vw,
 3.5rem
 );
+
 line-height:.98;
+
 letter-spacing:-.07em;
 }
 
@@ -718,24 +654,32 @@ linear-gradient(
 
 -webkit-background-clip:text;
 background-clip:text;
+
 -webkit-text-fill-color:transparent;
 }
 
 .welcome-description{
-max-width:360px;
 margin-top:18px;
-color:rgba(255,255,255,.46);
+
+color:
+rgba(255,255,255,.46);
+
 font-size:13px;
+
 line-height:1.7;
 }
 
 .lock{
 width:155px;
 height:155px;
-margin:35px auto 20px;
+
+margin:
+35px auto 20px;
+
 border-radius:38px;
 
 display:flex;
+
 align-items:center;
 justify-content:center;
 
@@ -754,14 +698,7 @@ rgba(175,120,255,.35);
 
 box-shadow:
 0 0 50px
-rgba(130,65,255,.25),
-
-inset 0 0 35px
-rgba(175,100,255,.08);
-
-transform:
-rotate(-5deg)
-translateZ(50px);
+rgba(130,65,255,.25);
 
 animation:
 lockFloat
@@ -771,63 +708,166 @@ infinite;
 }
 
 @keyframes lockFloat{
+
 0%,100%{
 transform:
-rotate(-5deg)
 translateY(0)
-translateZ(50px);
+rotate(-5deg);
 }
+
 50%{
 transform:
-rotate(5deg)
 translateY(-12px)
-translateZ(80px);
+rotate(5deg);
 }
+
 }
 
 .features{
 display:grid;
+
 grid-template-columns:
 repeat(3,1fr);
+
 gap:8px;
-margin-top:25px;
 }
 
 .feature{
 padding:12px 8px;
+
 border:
 1px solid
 rgba(255,255,255,.08);
+
 border-radius:13px;
+
 background:
 rgba(255,255,255,.035);
+
 text-align:center;
+
+font-size:9px;
+
+color:
+rgba(255,255,255,.42);
 }
 
 .feature-icon{
 font-size:17px;
-}
 
-.feature-text{
-margin-top:5px;
-color:rgba(255,255,255,.42);
-font-size:9px;
-line-height:1.3;
+margin-bottom:5px;
 }
 
 
 /* =========================
-   SIGNUP 3D SWITCH
+   SIGNUP MODE
 ========================= */
 
-.auth-card.signup-mode .form-side{
+.auth-card.signup-mode
+.form-side{
 transform:
 translateX(100%);
 }
 
-.auth-card.signup-mode .welcome-side{
+.auth-card.signup-mode
+.welcome-side{
 transform:
 translateX(-100%);
+}
+
+
+/* =========================
+   MONEY SUCCESS
+========================= */
+
+.money-rain{
+position:fixed;
+
+inset:0;
+
+z-index:100;
+
+pointer-events:none;
+
+overflow:hidden;
+}
+
+.money{
+position:absolute;
+
+top:-80px;
+
+font-size:28px;
+
+animation:
+moneyFall
+var(--duration)
+linear
+var(--delay)
+forwards;
+}
+
+@keyframes moneyFall{
+
+0%{
+transform:
+translateY(-80px)
+rotate(0deg);
+
+opacity:0;
+}
+
+10%{
+opacity:1;
+}
+
+100%{
+transform:
+translate(
+var(--x),
+110vh
+)
+rotate(
+var(--rotation)
+);
+
+opacity:0;
+}
+
+}
+
+.success-flash{
+position:fixed;
+
+inset:0;
+
+z-index:99;
+
+pointer-events:none;
+
+background:
+radial-gradient(
+circle,
+rgba(170,100,255,.22),
+transparent 55%
+);
+
+animation:
+flash
+.8s
+forwards;
+}
+
+@keyframes flash{
+
+from{
+opacity:1;
+}
+
+to{
+opacity:0;
+}
+
 }
 
 
@@ -838,16 +878,13 @@ translateX(-100%);
 @media(max-width:700px){
 
 body{
-padding:14px;
+padding:12px;
+
 align-items:flex-start;
 }
 
 .page{
-margin-top:15px;
-}
-
-.brand{
-margin-bottom:15px;
+margin-top:12px;
 }
 
 .brand-logo{
@@ -856,69 +893,34 @@ height:48px;
 }
 
 .auth-card{
-min-height:auto;
 display:block;
-overflow:hidden;
+
+min-height:auto;
 }
 
 .form-side{
 min-height:555px;
-padding:28px 22px;
+
+padding:
+28px 22px;
+
 transform:none !important;
 }
 
 .welcome-side{
-min-height:390px;
-padding:30px 22px;
-transform:none !important;
 display:none;
 }
 
-.auth-card.signup-mode .form-side{
+.auth-card.signup-mode
+.form-side{
 display:flex;
-}
-
-.auth-card.signup-mode .welcome-side{
-display:none;
 }
 
 .lock{
 width:110px;
 height:110px;
-margin:28px auto 15px;
+
 font-size:54px;
-}
-
-.features{
-margin-top:18px;
-}
-
-.welcome-description{
-font-size:12px;
-}
-
-h1{
-font-size:2.4rem;
-}
-
-}
-
-@media(max-width:390px){
-
-body{
-padding:10px;
-}
-
-.form-side{
-padding:25px 18px;
-}
-
-.auth-card{
-border-radius:23px;
-}
-
-.features{
-grid-template-columns:1fr;
 }
 
 }
@@ -930,11 +932,8 @@ grid-template-columns:1fr;
 
 @media(prefers-reduced-motion:reduce){
 
-*,
-*::before,
-*::after{
+*{
 animation-duration:.01ms !important;
-animation-iteration-count:1 !important;
 transition-duration:.01ms !important;
 }
 
@@ -951,12 +950,8 @@ transition-duration:.01ms !important;
 <div class="background">
 
 <div class="orb orb-one"></div>
-<div class="orb orb-two"></div>
 
-<div class="particle p1"></div>
-<div class="particle p2"></div>
-<div class="particle p3"></div>
-<div class="particle p4"></div>
+<div class="orb orb-two"></div>
 
 </div>
 
@@ -1024,15 +1019,15 @@ Welcome back. Login to continue to your account.
 
 <div class="field">
 
-<label for="email">
+<label>
 Email
 </label>
 
 <input
 id="email"
 type="email"
-placeholder="Enter your email"
 autocomplete="email"
+placeholder="Enter your email"
 required
 >
 
@@ -1041,9 +1036,10 @@ required
 
 <div class="field">
 
-<label for="password">
+<label>
 Password
 </label>
+
 
 <div class="input-wrap">
 
@@ -1051,14 +1047,15 @@ Password
 id="password"
 class="password-input"
 type="password"
-placeholder="Enter your password"
 autocomplete="current-password"
+placeholder="Enter your password"
 required
 >
 
+
 <button
-class="eye"
 id="eyeButton"
+class="eye"
 type="button"
 >
 👁️
@@ -1088,8 +1085,8 @@ Remember me
 
 
 <button
-class="forgot"
 id="forgotButton"
+class="forgot"
 type="button"
 >
 Forgot Password?
@@ -1099,8 +1096,8 @@ Forgot Password?
 
 
 <button
-class="main-button"
 id="mainButton"
+class="main-button"
 type="submit"
 >
 Login →
@@ -1111,16 +1108,16 @@ Login →
 
 
 <div
-class="success"
 id="successBox"
+class="success"
 >
-✓ Account created successfully.
+✓ Success
 </div>
 
 
 <div
-class="message"
 id="message"
+class="message"
 ></div>
 
 
@@ -1131,8 +1128,8 @@ Don't have an account?
 </span>
 
 <button
-class="switch-button"
 id="switchButton"
+class="switch-button"
 type="button"
 >
 Create Account
@@ -1156,8 +1153,6 @@ href="index.html"
 
 <section class="welcome-side">
 
-<div class="welcome-content">
-
 <div class="welcome-small">
 INCOME OFFERS
 </div>
@@ -1168,7 +1163,9 @@ class="welcome-title"
 id="welcomeTitle"
 >
 Welcome
-<span>Back.</span>
+<span>
+Back.
+</span>
 </div>
 
 
@@ -1187,15 +1184,14 @@ Login to explore active offers, track your activity and continue where you left 
 
 <div class="features">
 
+
 <div class="feature">
 
 <div class="feature-icon">
 🛡️
 </div>
 
-<div class="feature-text">
 Secure Account
-</div>
 
 </div>
 
@@ -1206,9 +1202,7 @@ Secure Account
 ⚡
 </div>
 
-<div class="feature-text">
 Fast Access
-</div>
 
 </div>
 
@@ -1219,13 +1213,10 @@ Fast Access
 📊
 </div>
 
-<div class="feature-text">
 Track Activity
-</div>
 
 </div>
 
-</div>
 
 </div>
 
@@ -1241,85 +1232,78 @@ Track Activity
 src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
 ></script>
 
-<script src="supabase-config.js"></script>
+<script
+src="supabase-config.js"
+></script>
 
 
 <script>
 
-/*
-====================================================
-INCOME OFFERS PASSWORD AUTH
-====================================================
-
-Email + Password
-
-NO OTP
-NO MAGIC LINK
-
-supabase-config.js already creates:
-
-supabaseClient
-
-====================================================
-*/
-
+/* =========================
+   ELEMENTS
+========================= */
 
 const authCard =
-document.getElementById("authCard");
+document.getElementById(
+"authCard"
+);
 
 const authForm =
-document.getElementById("authForm");
+document.getElementById(
+"authForm"
+);
 
 const emailInput =
-document.getElementById("email");
+document.getElementById(
+"email"
+);
 
 const passwordInput =
-document.getElementById("password");
-
-const rememberInput =
-document.getElementById("remember");
-
-const eyeButton =
-document.getElementById("eyeButton");
+document.getElementById(
+"password"
+);
 
 const mainButton =
-document.getElementById("mainButton");
+document.getElementById(
+"mainButton"
+);
 
 const message =
-document.getElementById("message");
+document.getElementById(
+"message"
+);
 
 const successBox =
-document.getElementById("successBox");
+document.getElementById(
+"successBox"
+);
+
+const eyeButton =
+document.getElementById(
+"eyeButton"
+);
 
 const switchButton =
-document.getElementById("switchButton");
-
-const switchQuestion =
-document.getElementById("switchQuestion");
-
-const formTitle =
-document.getElementById("formTitle");
-
-const formSubtitle =
-document.getElementById("formSubtitle");
-
-const modeLabel =
-document.getElementById("modeLabel");
-
-const welcomeTitle =
-document.getElementById("welcomeTitle");
-
-const welcomeDescription =
-document.getElementById("welcomeDescription");
+document.getElementById(
+"switchButton"
+);
 
 const loginOptions =
-document.getElementById("loginOptions");
+document.getElementById(
+"loginOptions"
+);
 
 const forgotButton =
-document.getElementById("forgotButton");
+document.getElementById(
+"forgotButton"
+);
 
 
-let signupMode = false;
+let signupMode =
+false;
+
+let busy =
+false;
 
 
 /* =========================
@@ -1343,133 +1327,28 @@ success
 
 
 /* =========================
-   CLEAR
-========================= */
-
-function clearMessages(){
-
-message.textContent = "";
-
-successBox.classList.remove(
-"show"
-);
-
-}
-
-
-/* =========================
-   PASSWORD EYE
+   EYE
 ========================= */
 
 eyeButton.addEventListener(
 "click",
 function(){
 
-if(
+const show =
 passwordInput.type ===
-"password"
-){
-
-passwordInput.type =
-"text";
-
-eyeButton.textContent =
-"🙈";
-
-}else{
-
-passwordInput.type =
 "password";
 
-eyeButton.textContent =
-"👁️";
+passwordInput.type =
+show
+? "text"
+: "password";
 
-}
+eyeButton.textContent =
+show
+? "🙈"
+: "👁️";
 
 });
-
-
-/* =========================
-   MODE
-========================= */
-
-function updateMode(){
-
-clearMessages();
-
-authCard.classList.toggle(
-"signup-mode",
-signupMode
-);
-
-
-if(signupMode){
-
-modeLabel.textContent =
-"NEW ACCOUNT";
-
-formTitle.textContent =
-"Create Account";
-
-formSubtitle.textContent =
-"Create your account with your own password.";
-
-mainButton.textContent =
-"Create Account →";
-
-switchQuestion.textContent =
-"Already have an account?";
-
-switchButton.textContent =
-"Login";
-
-welcomeTitle.innerHTML =
-'Join <span>Income Offers.</span>';
-
-welcomeDescription.textContent =
-"Create your account, save your password and access your offers whenever you want.";
-
-loginOptions.style.display =
-"none";
-
-passwordInput.autocomplete =
-"new-password";
-
-}else{
-
-modeLabel.textContent =
-"WELCOME BACK";
-
-formTitle.textContent =
-"Login";
-
-formSubtitle.textContent =
-"Welcome back. Login to continue to your account.";
-
-mainButton.textContent =
-"Login →";
-
-switchQuestion.textContent =
-"Don't have an account?";
-
-switchButton.textContent =
-"Create Account";
-
-welcomeTitle.innerHTML =
-'Welcome <span>Back.</span>';
-
-welcomeDescription.textContent =
-"Login to explore active offers, track your activity and continue where you left off.";
-
-loginOptions.style.display =
-"flex";
-
-passwordInput.autocomplete =
-"current-password";
-
-}
-
-}
 
 
 /* =========================
@@ -1486,17 +1365,338 @@ signupMode =
 passwordInput.value =
 "";
 
-updateMode();
+message.textContent =
+"";
+
+successBox.classList.remove(
+"show"
+);
+
+authCard.classList.toggle(
+"signup-mode",
+signupMode
+);
+
+
+if(signupMode){
+
+document.getElementById(
+"modeLabel"
+).textContent =
+"NEW ACCOUNT";
+
+document.getElementById(
+"formTitle"
+).textContent =
+"Create Account";
+
+document.getElementById(
+"formSubtitle"
+).textContent =
+"Create your account with your own password.";
+
+mainButton.textContent =
+"Create Account →";
+
+document.getElementById(
+"switchQuestion"
+).textContent =
+"Already have an account?";
+
+switchButton.textContent =
+"Login";
+
+document.getElementById(
+"welcomeTitle"
+).innerHTML =
+'Join <span>Income Offers.</span>';
+
+document.getElementById(
+"welcomeDescription"
+).textContent =
+"Create your account with your own password and access your offers whenever you want.";
+
+loginOptions.style.display =
+"none";
+
+passwordInput.autocomplete =
+"new-password";
+
+}else{
+
+document.getElementById(
+"modeLabel"
+).textContent =
+"WELCOME BACK";
+
+document.getElementById(
+"formTitle"
+).textContent =
+"Login";
+
+document.getElementById(
+"formSubtitle"
+).textContent =
+"Welcome back. Login to continue to your account.";
+
+mainButton.textContent =
+"Login →";
+
+document.getElementById(
+"switchQuestion"
+).textContent =
+"Don't have an account?";
+
+switchButton.textContent =
+"Create Account";
+
+document.getElementById(
+"welcomeTitle"
+).innerHTML =
+'Welcome <span>Back.</span>';
+
+document.getElementById(
+"welcomeDescription"
+).textContent =
+"Login to explore active offers, track your activity and continue where you left off.";
+
+loginOptions.style.display =
+"flex";
+
+passwordInput.autocomplete =
+"current-password";
+
+}
 
 });
 
 
-
 /* =========================
-   CHECK SESSION
+   MONEY ANIMATION
 ========================= */
 
-async function checkExistingSession(){
+function moneyRain(){
+
+const flash =
+document.createElement(
+"div"
+);
+
+flash.className =
+"success-flash";
+
+document.body.appendChild(
+flash
+);
+
+setTimeout(
+function(){
+flash.remove();
+},
+900
+);
+
+
+const rain =
+document.createElement(
+"div"
+);
+
+rain.className =
+"money-rain";
+
+document.body.appendChild(
+rain
+);
+
+
+const money =
+[
+"💵",
+"💰",
+"🪙",
+"💸"
+];
+
+
+for(
+let i=0;
+i<45;
+i++
+){
+
+const item =
+document.createElement(
+"span"
+);
+
+item.className =
+"money";
+
+item.textContent =
+money[
+Math.floor(
+Math.random() *
+money.length
+)
+];
+
+
+item.style.left =
+Math.random() *
+100 +
+"vw";
+
+
+item.style.setProperty(
+"--x",
+(
+Math.random() -
+.5
+) *
+180 +
+"px"
+);
+
+
+item.style.setProperty(
+"--rotation",
+(
+Math.random() -
+.5
+) *
+900 +
+"deg"
+);
+
+
+item.style.setProperty(
+"--duration",
+2.2 +
+Math.random() *
+2 +
+"s"
+);
+
+
+item.style.setProperty(
+"--delay",
+Math.random() *
+.6 +
+"s"
+);
+
+
+rain.appendChild(
+item
+);
+
+}
+
+
+setTimeout(
+function(){
+rain.remove();
+},
+5000
+);
+
+
+/* sound */
+
+try{
+
+const AudioContext =
+window.AudioContext ||
+window.webkitAudioContext;
+
+if(AudioContext){
+
+const audio =
+new AudioContext();
+
+const notes =
+[
+660,
+880,
+1046
+];
+
+
+notes.forEach(
+function(
+frequency,
+index
+){
+
+const oscillator =
+audio.createOscillator();
+
+const gain =
+audio.createGain();
+
+const time =
+audio.currentTime +
+index *
+.08;
+
+oscillator.frequency.value =
+frequency;
+
+gain.gain.setValueAtTime(
+.0001,
+time
+);
+
+gain.gain.exponentialRampToValueAtTime(
+.05,
+time +
+.02
+);
+
+gain.gain.exponentialRampToValueAtTime(
+.0001,
+time +
+.2
+);
+
+oscillator.connect(
+gain
+);
+
+gain.connect(
+audio.destination
+);
+
+oscillator.start(
+time
+);
+
+oscillator.stop(
+time +
+.22
+);
+
+});
+
+}
+
+}catch(error){
+
+console.warn(
+"Sound unavailable"
+);
+
+}
+
+}
+
+
+/* =========================
+   SESSION
+========================= */
+
+async function checkSession(){
 
 try{
 
@@ -1512,7 +1712,6 @@ await supabaseClient
 if(error){
 
 console.warn(
-"Session check:",
 error.message
 );
 
@@ -1536,7 +1735,6 @@ window.location.replace(
 }catch(error){
 
 console.warn(
-"Session exception:",
 error
 );
 
@@ -1546,27 +1744,59 @@ error
 
 
 /* =========================
-   PASSWORD LOGIN
+   FORGOT PASSWORD
 ========================= */
 
-async function loginUser(
-email,
-password
-){
+forgotButton.addEventListener(
+"click",
+async function(){
+
+const email =
+emailInput.value
+.trim()
+.toLowerCase();
+
+
+if(!email){
+
+showMessage(
+"Enter your email first."
+);
+
+emailInput.focus();
+
+return;
+
+}
+
+
+forgotButton.disabled =
+true;
+
+
+showMessage(
+"Sending password reset email...",
+true
+);
+
+
+try{
 
 const {
-data,
 error
 } =
 await supabaseClient
 .auth
-.signInWithPassword({
+.resetPasswordForEmail(
+email,
+{
 
-email:email,
+redirectTo:
+window.location.origin +
+"/login.html"
 
-password:password
-
-});
+}
+);
 
 
 if(error){
@@ -1576,32 +1806,108 @@ throw error;
 }
 
 
-if(
-!data ||
-!data.user ||
-!data.session
-){
+showMessage(
+"Password reset email sent. Check your Gmail.",
+true
+);
 
-throw new Error(
-"Unable to create login session."
+
+}catch(error){
+
+showMessage(
+error.message ||
+"Unable to send reset email."
 );
 
 }
 
 
-return data;
+forgotButton.disabled =
+false;
+
+});
+
+
+/* =========================
+   FORM
+========================= */
+
+authForm.addEventListener(
+"submit",
+async function(event){
+
+event.preventDefault();
+
+
+if(busy){
+
+return;
 
 }
 
 
+const email =
+emailInput.value
+.trim()
+.toLowerCase();
+
+const password =
+passwordInput.value;
+
+
+if(
+!email ||
+!email.includes("@")
+){
+
+showMessage(
+"Please enter a valid email address."
+);
+
+return;
+
+}
+
+
+if(
+!password ||
+password.length < 6
+){
+
+showMessage(
+"Password must be at least 6 characters."
+);
+
+return;
+
+}
+
+
+busy =
+true;
+
+mainButton.disabled =
+true;
+
+
+try{
+
+
 /* =========================
-   SIGNUP
+   CREATE ACCOUNT
 ========================= */
 
-async function createAccount(
-email,
-password
-){
+if(signupMode){
+
+mainButton.textContent =
+"Creating Account...";
+
+
+showMessage(
+"Creating your secure account...",
+true
+);
+
 
 const {
 data,
@@ -1625,113 +1931,87 @@ throw error;
 }
 
 
-return data;
-
-}
-
-
-/* =========================
-   FORM SUBMIT
-========================= */
-
-authForm.addEventListener(
-"submit",
-async function(event){
-
-event.preventDefault();
-
-
-const email =
-emailInput.value
-.trim()
-.toLowerCase();
-
-const password =
-passwordInput.value;
-
-
-if(!email){
-
-showMessage(
-"Please enter your email."
-);
-
-return;
-
-}
-
-
 if(
-!email.includes("@") ||
-!email.includes(".")
+data &&
+data.session
 ){
 
-showMessage(
-"Please enter a valid email address."
+successBox.textContent =
+"✓ Account created successfully.";
+
+successBox.classList.add(
+"show"
 );
 
-return;
-
-}
-
-
-if(!password){
-
 showMessage(
-"Please enter your password."
+"Account created successfully.",
+true
 );
 
-return;
-
-}
+moneyRain();
 
 
-if(password.length < 6){
+setTimeout(
+function(){
 
-showMessage(
-"Password must be at least 6 characters."
+window.location.replace(
+"offer.html"
 );
 
-return;
+},
+1100
+);
 
-}
+}else{
 
+successBox.textContent =
+"✓ Account created. Check your email if confirmation is required.";
+
+successBox.classList.add(
+"show"
+);
+
+showMessage(
+"Complete email confirmation if requested.",
+true
+);
+
+moneyRain();
 
 mainButton.disabled =
-true;
+false;
 
+mainButton.textContent =
+"Create Account →";
 
-try{
+busy =
+false;
+
+}
+
+return;
+
+}
 
 
 /* =========================
-   CREATE ACCOUNT
+   LOGIN
 ========================= */
 
-if(signupMode){
-
 mainButton.textContent =
-"Creating Account...";
+"Signing in...";
+
 
 showMessage(
-"Creating your secure account...",
+"Checking your account...",
 true
 );
 
 
-const data =
-await createAccount(
-email,
-password
-);
-
-
-/*
-If Supabase immediately creates
-a session, go directly to offers.
-*/
-
-if(
-data &&
-data.session &&
-data.u
+const {
+data,
+error
+} =
+await supabaseClient
+.auth
+.s
