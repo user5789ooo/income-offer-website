@@ -19,7 +19,7 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Setup Android SDK
+      - name: Setup Android
         uses: android-actions/setup-android@v3
 
       - name: Install Android SDK
@@ -33,338 +33,254 @@ jobs:
           unzip -q gradle-8.7-bin.zip
           echo "$PWD/gradle-8.7/bin" >> "$GITHUB_PATH"
 
-      - name: Create Android project
+      - name: Create project folders
         run: |
           mkdir -p app/src/main/java/com/incomeoffers/app
           mkdir -p app/src/main/res/values
           mkdir -p app/src/main/res/drawable
           mkdir -p app/src/main/assets/www
 
-          cat > settings.gradle <<'EOF'
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.name = "IncomeOffers"
-include(":app")
-EOF
-
-          cat > build.gradle <<'EOF'
-plugins {
-    id 'com.android.application' version '8.6.1' apply false
-}
-EOF
-
-          cat > app/build.gradle <<'EOF'
-plugins {
-    id 'com.android.application'
-}
-
-android {
-    namespace 'com.incomeoffers.app'
-    compileSdk 35
-
-    defaultConfig {
-        applicationId 'com.incomeoffers.app'
-        minSdk 23
-        targetSdk 35
-        versionCode 1
-        versionName '1.0'
-    }
-
-    buildTypes {
-        debug {
-            minifyEnabled false
-        }
-
-        release {
-            minifyEnabled false
-            shrinkResources false
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
-    }
-}
-EOF
-
       - name: Copy website
         run: |
-          echo "Copying website..."
-
-          find . -maxdepth 1 -type f \
-            \( -name "*.html" \
-            -o -name "*.css" \
-            -o -name "*.js" \
-            -o -name "*.json" \
-            -o -name "*.png" \
-            -o -name "*.jpg" \
-            -o -name "*.jpeg" \
-            -o -name "*.webp" \
-            -o -name "*.svg" \
-            -o -name "*.gif" \) \
-            -exec cp -f {} app/src/main/assets/www/ \;
+          find . -maxdepth 1 -type f \( \
+            -name "*.html" -o \
+            -name "*.css" -o \
+            -name "*.js" -o \
+            -name "*.json" -o \
+            -name "*.png" -o \
+            -name "*.jpg" -o \
+            -name "*.jpeg" -o \
+            -name "*.webp" -o \
+            -name "*.svg" \
+          \) -exec cp -f {} app/src/main/assets/www/ \;
 
           if [ -d "assets" ]; then
-            cp -R assets app/src/main/assets/www/
+            cp -R assets/. app/src/main/assets/www/
           fi
 
-          echo "Website files:"
-          find app/src/main/assets/www -type f | sort
-
-      - name: Create launcher icon
+      - name: Create Gradle settings
         run: |
-          cat > app/src/main/res/drawable/income_offers_logo.xml <<'EOF'
-<vector
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportWidth="108"
-    android:viewportHeight="108">
+          printf '%s\n' \
+          'pluginManagement {' \
+          '    repositories {' \
+          '        google()' \
+          '        mavenCentral()' \
+          '        gradlePluginPortal()' \
+          '    }' \
+          '}' \
+          '' \
+          'dependencyResolutionManagement {' \
+          '    repositories {' \
+          '        google()' \
+          '        mavenCentral()' \
+          '    }' \
+          '}' \
+          '' \
+          'rootProject.name = "IncomeOffers"' \
+          'include(":app")' \
+          > settings.gradle
 
-    <path
-        android:fillColor="#08051A"
-        android:pathData="M54,4A50,50 0,1 0,54 104A50,50 0,1 0,54 4" />
-
-    <path
-        android:fillColor="#7C3AED"
-        android:pathData="M54,10A44,44 0,1 0,54 98A44,44 0,1 0,54 10" />
-
-    <path
-        android:fillColor="#08051A"
-        android:pathData="M54,16A38,38 0,1 0,54 92A38,38 0,1 0,54 16" />
-
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M28,39L80,39L80,47L28,47Z" />
-
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M28,51L74,51L74,59L28,59Z" />
-
-    <path
-        android:fillColor="#22D3EE"
-        android:pathData="M35,64L73,64L73,72L35,72Z" />
-
-</vector>
-EOF
-
-      - name: Create AndroidManifest
+      - name: Create root Gradle file
         run: |
-          cat > app/src/main/AndroidManifest.xml <<'EOF'
-<?xml version="1.0" encoding="utf-8"?>
+          printf '%s\n' \
+          'plugins {' \
+          '    id '\''com.android.application'\'' version '\''8.6.1'\'' apply false' \
+          '}' \
+          > build.gradle
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+      - name: Create app Gradle file
+        run: |
+          printf '%s\n' \
+          'plugins {' \
+          '    id '\''com.android.application'\''' \
+          '}' \
+          '' \
+          'android {' \
+          '    namespace '\''com.incomeoffers.app'\''' \
+          '    compileSdk 35' \
+          '' \
+          '    defaultConfig {' \
+          '        applicationId '\''com.incomeoffers.app'\''' \
+          '        minSdk 23' \
+          '        targetSdk 35' \
+          '        versionCode 1' \
+          '        versionName '\''1.0'\''' \
+          '    }' \
+          '' \
+          '    buildTypes {' \
+          '        debug {' \
+          '            minifyEnabled false' \
+          '        }' \
+          '        release {' \
+          '            minifyEnabled false' \
+          '            shrinkResources false' \
+          '        }' \
+          '    }' \
+          '' \
+          '    compileOptions {' \
+          '        sourceCompatibility JavaVersion.VERSION_17' \
+          '        targetCompatibility JavaVersion.VERSION_17' \
+          '    }' \
+          '}' \
+          > app/build.gradle
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <application
-        android:allowBackup="false"
-        android:usesCleartextTraffic="true"
-        android:label="Income Offers"
-        android:theme="@style/AppTheme"
-        android:icon="@drawable/income_offers_logo">
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-    </application>
-
-</manifest>
-EOF
+      - name: Create Android manifest
+        run: |
+          printf '%s\n' \
+          '<?xml version="1.0" encoding="utf-8"?>' \
+          '<manifest xmlns:android="http://schemas.android.com/apk/res/android">' \
+          '    <uses-permission android:name="android.permission.INTERNET" />' \
+          '    <application' \
+          '        android:allowBackup="false"' \
+          '        android:usesCleartextTraffic="true"' \
+          '        android:label="Income Offers"' \
+          '        android:theme="@style/AppTheme"' \
+          '        android:icon="@drawable/income_offers_logo">' \
+          '        <activity' \
+          '            android:name=".MainActivity"' \
+          '            android:exported="true">' \
+          '            <intent-filter>' \
+          '                <action android:name="android.intent.action.MAIN" />' \
+          '                <category android:name="android.intent.category.LAUNCHER" />' \
+          '            </intent-filter>' \
+          '        </activity>' \
+          '    </application>' \
+          '</manifest>' \
+          > app/src/main/AndroidManifest.xml
 
       - name: Create theme
         run: |
-          cat > app/src/main/res/values/styles.xml <<'EOF'
-<?xml version="1.0" encoding="utf-8"?>
+          printf '%s\n' \
+          '<?xml version="1.0" encoding="utf-8"?>' \
+          '<resources>' \
+          '    <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">' \
+          '        <item name="android:fontFamily">sans</item>' \
+          '        <item name="android:statusBarColor">#08051A</item>' \
+          '        <item name="android:navigationBarColor">#08051A</item>' \
+          '        <item name="android:windowLightStatusBar">false</item>' \
+          '    </style>' \
+          '</resources>' \
+          > app/src/main/res/values/styles.xml
 
-<resources>
-
-    <style
-        name="AppTheme"
-        parent="android:style/Theme.Material.NoActionBar">
-
-        <item name="android:fontFamily">sans</item>
-        <item name="android:statusBarColor">#08051A</item>
-        <item name="android:navigationBarColor">#08051A</item>
-        <item name="android:windowLightStatusBar">false</item>
-
-    </style>
-
-</resources>
-EOF
+      - name: Create launcher icon
+        run: |
+          printf '%s\n' \
+          '<?xml version="1.0" encoding="utf-8"?>' \
+          '<vector xmlns:android="http://schemas.android.com/apk/res/android"' \
+          '    android:width="108dp"' \
+          '    android:height="108dp"' \
+          '    android:viewportWidth="108"' \
+          '    android:viewportHeight="108">' \
+          '    <path android:fillColor="#08051A" android:pathData="M54,4A50,50 0,1 0,54 104A50,50 0,1 0,54 4" />' \
+          '    <path android:fillColor="#7C3AED" android:pathData="M54,10A44,44 0,1 0,54 98A44,44 0,1 0,54 10" />' \
+          '    <path android:fillColor="#08051A" android:pathData="M54,16A38,38 0,1 0,54 92A38,38 0,1 0,54 16" />' \
+          '    <path android:fillColor="#FFFFFF" android:pathData="M28,39L80,39L80,47L28,47Z" />' \
+          '    <path android:fillColor="#FFFFFF" android:pathData="M28,51L74,51L74,59L28,59Z" />' \
+          '    <path android:fillColor="#22D3EE" android:pathData="M35,64L73,64L73,72L35,72Z" />' \
+          '</vector>' \
+          > app/src/main/res/drawable/income_offers_logo.xml
 
       - name: Create MainActivity
         run: |
-          cat > app/src/main/java/com/incomeoffers/app/MainActivity.java <<'EOF'
-package com.incomeoffers.app;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-
-public class MainActivity extends Activity {
-
-    private WebView webView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-
-        webView = new WebView(this);
-        setContentView(webView);
-
-        WebSettings settings = webView.getSettings();
-
-        settings.setJavaScriptEnabled(true);
-        settings.setDomStorageEnabled(true);
-        settings.setDatabaseEnabled(true);
-        settings.setAllowFileAccess(true);
-        settings.setAllowContentAccess(true);
-        settings.setJavaScriptCanOpenWindowsAutomatically(true);
-        settings.setSupportMultipleWindows(false);
-        settings.setBuiltInZoomControls(false);
-        settings.setDisplayZoomControls(false);
-        settings.setLoadWithOverviewMode(false);
-        settings.setUseWideViewPort(false);
-
-        webView.setWebChromeClient(new WebChromeClient());
-
-        webView.setWebViewClient(new WebViewClient() {
-
-            @Override
-            public boolean shouldOverrideUrlLoading(
-                    WebView view,
-                    WebResourceRequest request) {
-
-                Uri uri = request.getUrl();
-                String scheme = uri.getScheme();
-
-                if ("file".equalsIgnoreCase(scheme)
-                        || "content".equalsIgnoreCase(scheme)) {
-                    return false;
-                }
-
-                if ("http".equalsIgnoreCase(scheme)
-                        || "https".equalsIgnoreCase(scheme)) {
-
-                    try {
-                        startActivity(
-                                new Intent(
-                                        Intent.ACTION_VIEW,
-                                        uri
-                                )
-                        );
-                    } catch (Exception ignored) {
-                    }
-
-                    return true;
-                }
-
-                try {
-                    startActivity(
-                            new Intent(
-                                    Intent.ACTION_VIEW,
-                                    uri
-                            )
-                    );
-                } catch (Exception ignored) {
-                }
-
-                return true;
-            }
-
-            @Override
-            public boolean shouldOverrideUrlLoading(
-                    WebView view,
-                    String url) {
-
-                if (url == null || url.trim().isEmpty()) {
-                    return false;
-                }
-
-                if (url.startsWith("file:///android_asset/")) {
-                    return false;
-                }
-
-                if (url.startsWith("http://")
-                        || url.startsWith("https://")) {
-
-                    try {
-                        startActivity(
-                                new Intent(
-                                        Intent.ACTION_VIEW,
-                                        Uri.parse(url)
-                                )
-                        );
-                    } catch (Exception ignored) {
-                    }
-
-                    return true;
-                }
-
-                return false;
-            }
-        });
-
-        webView.loadUrl(
-                "file:///android_asset/www/index.html"
-        );
-    }
-
-    @Override
-    public void onBackPressed() {
-
-        if (webView != null && webView.canGoBack()) {
-            webView.goBack();
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-
-        if (webView != null) {
-            webView.loadUrl("about:blank");
-            webView.stopLoading();
-            webView.clearHistory();
-            webView.destroy();
-            webView = null;
-        }
-
-        super.onDestroy();
-    }
-}
-EOF
+          printf '%s\n' \
+          'package com.incomeoffers.app;' \
+          '' \
+          'import android.app.Activity;' \
+          'import android.os.Bundle;' \
+          'import android.content.Intent;' \
+          'import android.net.Uri;' \
+          'import android.webkit.WebChromeClient;' \
+          'import android.webkit.WebResourceRequest;' \
+          'import android.webkit.WebSettings;' \
+          'import android.webkit.WebView;' \
+          'import android.webkit.WebViewClient;' \
+          '' \
+          'public class MainActivity extends Activity {' \
+          '' \
+          '    private WebView webView;' \
+          '' \
+          '    @Override' \
+          '    protected void onCreate(Bundle savedInstanceState) {' \
+          '' \
+          '        super.onCreate(savedInstanceState);' \
+          '' \
+          '        webView = new WebView(this);' \
+          '        setContentView(webView);' \
+          '' \
+          '        WebSettings settings = webView.getSettings();' \
+          '        settings.setJavaScriptEnabled(true);' \
+          '        settings.setDomStorageEnabled(true);' \
+          '        settings.setDatabaseEnabled(true);' \
+          '        settings.setAllowFileAccess(true);' \
+          '        settings.setAllowContentAccess(true);' \
+          '        settings.setJavaScriptCanOpenWindowsAutomatically(true);' \
+          '        settings.setSupportMultipleWindows(false);' \
+          '' \
+          '        webView.setWebChromeClient(new WebChromeClient());' \
+          '' \
+          '        webView.setWebViewClient(new WebViewClient() {' \
+          '' \
+          '            @Override' \
+          '            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {' \
+          '' \
+          '                Uri uri = request.getUrl();' \
+          '                String scheme = uri.getScheme();' \
+          '' \
+          '                if ("file".equalsIgnoreCase(scheme) || "content".equalsIgnoreCase(scheme)) {' \
+          '                    return false;' \
+          '                }' \
+          '' \
+          '                if ("http".equalsIgnoreCase(scheme) || "https".equalsIgnoreCase(scheme)) {' \
+          '                    try {' \
+          '                        startActivity(new Intent(Intent.ACTION_VIEW, uri));' \
+          '                    } catch (Exception ignored) {}' \
+          '                    return true;' \
+          '                }' \
+          '' \
+          '                return false;' \
+          '            }' \
+          '' \
+          '            @Override' \
+          '            public boolean shouldOverrideUrlLoading(WebView view, String url) {' \
+          '                if (url == null || url.trim().isEmpty()) return false;' \
+          '' \
+          '                if (url.startsWith("file:///android_asset/")) return false;' \
+          '' \
+          '                if (url.startsWith("http://") || url.startsWith("https://")) {' \
+          '                    try {' \
+          '                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));' \
+          '                    } catch (Exception ignored) {}' \
+          '                    return true;' \
+          '                }' \
+          '' \
+          '                return false;' \
+          '            }' \
+          '        });' \
+          '' \
+          '        webView.loadUrl("file:///android_asset/www/index.html");' \
+          '    }' \
+          '' \
+          '    @Override' \
+          '    public void onBackPressed() {' \
+          '        if (webView != null && webView.canGoBack()) {' \
+          '            webView.goBack();' \
+          '        } else {' \
+          '            super.onBackPressed();' \
+          '        }' \
+          '    }' \
+          '' \
+          '    @Override' \
+          '    protected void onDestroy() {' \
+          '        if (webView != null) {' \
+          '            webView.loadUrl("about:blank");' \
+          '            webView.stopLoading();' \
+          '            webView.destroy();' \
+          '            webView = null;' \
+          '        }' \
+          '        super.onDestroy();' \
+          '    }' \
+          '}' \
+          > app/src/main/java/com/incomeoffers/app/MainActivity.java
 
       - name: Build APK
         run: |
