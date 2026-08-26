@@ -16,16 +16,8 @@ if (
 
 /*
 ====================================================
-SINGLE SUPABASE CLIENT
-====================================================
-
-Every HTML page must load this file after:
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-Do NOT create another client inside individual
-HTML files.
-
+INCOME OFFERS
+SUPABASE AUTH CONFIG
 ====================================================
 */
 
@@ -35,20 +27,32 @@ const supabaseClient =
     SUPABASE_ANON_KEY,
     {
       auth: {
+
+        /*
+        Keep the session between page changes.
+        */
         persistSession: true,
+
+        /*
+        Automatically refresh expired access tokens.
+        */
         autoRefreshToken: true,
 
         /*
-          IMPORTANT:
-          We are NOT depending on a magic-link
-          redirect for normal password login.
+        Needed for password-reset links.
         */
         detectSessionInUrl: true,
 
-        storage:
-          window.localStorage,
+        /*
+        Browser storage.
+        */
+        storage: window.localStorage,
 
+        /*
+        Normal browser auth.
+        */
         flowType: "pkce"
+
       }
     }
   );
@@ -56,17 +60,19 @@ const supabaseClient =
 
 /*
 ====================================================
-GLOBAL ERROR PROTECTION
+AUTH DEBUG
 ====================================================
 */
 
-window.addEventListener(
-  "unhandledrejection",
-  function(event) {
+supabaseClient.auth.onAuthStateChange(
+  function(event, session){
 
-    console.error(
-      "Unhandled promise rejection:",
-      event.reason
+    console.log(
+      "[INCOME OFFERS AUTH]",
+      event,
+      session && session.user
+        ? session.user.email
+        : "NO SESSION"
     );
 
   }
@@ -75,19 +81,30 @@ window.addEventListener(
 
 /*
 ====================================================
-AUTH STATE DEBUG
+GLOBAL ERROR LOG
 ====================================================
 */
 
-supabaseClient.auth.onAuthStateChange(
-  function(event, session) {
+window.addEventListener(
+  "unhandledrejection",
+  function(event){
 
-    console.log(
-      "Supabase auth:",
-      event,
-      session
-        ? session.user.email
-        : "No session"
+    console.error(
+      "[INCOME OFFERS] Unhandled rejection:",
+      event.reason
+    );
+
+  }
+);
+
+
+window.addEventListener(
+  "error",
+  function(event){
+
+    console.error(
+      "[INCOME OFFERS] JavaScript error:",
+      event.error || event.message
     );
 
   }
