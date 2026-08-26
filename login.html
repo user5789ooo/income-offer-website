@@ -1,53 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#06030f">
 
 <title>Income Offers - Login</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial,sans-serif;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html{
-scroll-behavior:smooth;
+html,body{
+  min-height:100%;
 }
 
 body{
-min-height:100vh;
-background:
-radial-gradient(circle at 15% 15%,rgba(115,55,255,.22),transparent 32%),
-radial-gradient(circle at 90% 80%,rgba(0,190,255,.12),transparent 34%),
-#050507;
-color:#fff;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-overflow-x:hidden;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 15% 15%,rgba(115,55,255,.22),transparent 32%),
+    radial-gradient(circle at 90% 80%,rgba(0,190,255,.12),transparent 34%),
+    #050507;
+  color:#fff;
+  font-family:'Geist',Arial,sans-serif;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  overflow-x:hidden;
 }
 
-button,
-input{
-font:inherit;
+button,input{
+  font:inherit;
 }
 
 button{
-cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
 }
 
 a{
-color:inherit;
-text-decoration:none;
+  color:inherit;
+  text-decoration:none;
 }
 
 
@@ -56,73 +57,47 @@ text-decoration:none;
 ========================= */
 
 .background{
-position:fixed;
-inset:0;
-z-index:-5;
-overflow:hidden;
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:-1;
 }
 
 .orb{
-position:absolute;
-border-radius:50%;
-filter:blur(75px);
-pointer-events:none;
+  position:absolute;
+  border-radius:50%;
+  filter:blur(75px);
 }
 
-.orb-one{
-width:330px;
-height:330px;
-top:-130px;
-left:-100px;
-background:#6d35ff;
-opacity:.32;
-
-animation:
-orbOne
-9s
-ease-in-out
-infinite
-alternate;
+.orb.one{
+  width:330px;
+  height:330px;
+  top:-130px;
+  left:-100px;
+  background:#6d35ff;
+  opacity:.32;
+  animation:orbOne 9s ease-in-out infinite alternate;
 }
 
-.orb-two{
-width:300px;
-height:300px;
-right:-120px;
-bottom:-100px;
-background:#00bfff;
-opacity:.20;
-
-animation:
-orbTwo
-11s
-ease-in-out
-infinite
-alternate;
+.orb.two{
+  width:300px;
+  height:300px;
+  right:-120px;
+  bottom:-100px;
+  background:#00bfff;
+  opacity:.20;
+  animation:orbTwo 11s ease-in-out infinite alternate;
 }
 
 @keyframes orbOne{
-
-from{
-transform:translate(0,0) scale(1);
-}
-
-to{
-transform:translate(120px,100px) scale(1.25);
-}
-
+  from{transform:translate(0,0) scale(1)}
+  to{transform:translate(120px,100px) scale(1.25)}
 }
 
 @keyframes orbTwo{
-
-from{
-transform:translate(0,0) scale(1);
-}
-
-to{
-transform:translate(-100px,-80px) scale(1.2);
-}
-
+  from{transform:translate(0,0) scale(1)}
+  to{transform:translate(-100px,-80px) scale(1.2)}
 }
 
 
@@ -131,9 +106,8 @@ transform:translate(-100px,-80px) scale(1.2);
 ========================= */
 
 .page{
-width:100%;
-max-width:940px;
-perspective:1600px;
+  width:100%;
+  max-width:900px;
 }
 
 
@@ -142,35 +116,44 @@ perspective:1600px;
 ========================= */
 
 .brand{
-text-align:center;
-margin-bottom:20px;
+  text-align:center;
+  margin-bottom:18px;
+  animation:fadeDown .7s ease both;
 }
 
 .brand-logo{
-width:58px;
-height:58px;
-margin:0 auto;
-display:block;
-object-fit:cover;
-border-radius:50%;
-border:1px solid rgba(255,255,255,.3);
-box-shadow:
-0 0 30px
-rgba(115,65,255,.35);
+  width:55px;
+  height:55px;
+  display:block;
+  margin:0 auto 9px;
+  object-fit:cover;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.3);
+  box-shadow:0 0 30px rgba(115,65,255,.35);
 }
 
 .brand-name{
-margin-top:8px;
-font-size:19px;
-font-weight:800;
+  font-size:19px;
+  font-weight:800;
 }
 
 .brand-owner{
-margin-top:3px;
-color:rgba(255,255,255,.32);
-font-size:8px;
-font-weight:700;
-letter-spacing:.2em;
+  margin-top:3px;
+  color:rgba(255,255,255,.3);
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.2em;
+}
+
+@keyframes fadeDown{
+  from{
+    opacity:0;
+    transform:translateY(-15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 
@@ -179,191 +162,146 @@ letter-spacing:.2em;
 ========================= */
 
 .auth-card{
-position:relative;
-width:100%;
-min-height:570px;
+  position:relative;
+  width:100%;
+  min-height:550px;
 
-display:grid;
-grid-template-columns:1fr 1fr;
+  display:grid;
+  grid-template-columns:1fr 1fr;
 
-border:
-1px solid
-rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:30px;
 
-border-radius:30px;
+  background:rgba(255,255,255,.045);
 
-background:
-rgba(255,255,255,.045);
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
 
-backdrop-filter:blur(30px);
--webkit-backdrop-filter:blur(30px);
+  box-shadow:
+    0 35px 100px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,255,255,.06);
 
-box-shadow:
-0 35px 100px
-rgba(0,0,0,.55),
+  overflow:hidden;
 
-inset 0 1px 0
-rgba(255,255,255,.06);
-
-overflow:hidden;
-
-animation:
-cardIn
-.8s
-ease
-both;
+  animation:cardIn .8s cubic-bezier(.16,1,.3,1) both;
 }
 
 @keyframes cardIn{
-
-from{
-opacity:0;
-transform:
-translateY(30px)
-rotateX(5deg)
-scale(.97);
-}
-
-to{
-opacity:1;
-transform:none;
-}
-
+  from{
+    opacity:0;
+    transform:translateY(30px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
 }
 
 
 /* =========================
-   FORM
+   FORM SIDE
 ========================= */
 
 .form-side{
-position:relative;
-z-index:3;
-
-padding:42px;
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-
-background:
-linear-gradient(
-135deg,
-rgba(255,255,255,.075),
-rgba(255,255,255,.025)
-);
-
-transition:
-transform
-.7s
-cubic-bezier(.16,1,.3,1);
+  padding:42px;
+  display:flex;
+  align-items:center;
+  background:linear-gradient(
+    135deg,
+    rgba(255,255,255,.075),
+    rgba(255,255,255,.025)
+  );
 }
 
 .form-content{
-width:100%;
-max-width:390px;
-margin:auto;
+  width:100%;
+  max-width:390px;
+  margin:auto;
 }
 
 .mode-label{
-color:#a979ff;
-font-size:10px;
-font-weight:800;
-letter-spacing:.15em;
-margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#a979ff;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.15em;
+  margin-bottom:12px;
 }
 
 .mode-dot{
-display:inline-block;
-width:6px;
-height:6px;
-border-radius:50%;
-background:#9d62ff;
-
-box-shadow:
-0 0 12px
-#9d62ff;
-
-margin-right:7px;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#9d62ff;
+  box-shadow:0 0 12px #9d62ff;
 }
 
 h1{
-font-size:
-clamp(
-2.2rem,
-5vw,
-3.2rem
-);
-
-line-height:1;
-letter-spacing:-.06em;
+  font-size:clamp(2.2rem,5vw,3.2rem);
+  line-height:1;
+  letter-spacing:-.06em;
 }
 
 .subtitle{
-margin-top:11px;
-color:rgba(255,255,255,.45);
-font-size:13px;
-line-height:1.6;
+  margin-top:11px;
+  color:rgba(255,255,255,.45);
+  font-size:13px;
+  line-height:1.6;
 }
 
 .field{
-margin-top:20px;
+  margin-top:21px;
 }
 
 label{
-display:block;
-margin-bottom:8px;
-color:rgba(255,255,255,.75);
-font-size:12px;
-font-weight:700;
+  display:block;
+  margin-bottom:8px;
+  color:rgba(255,255,255,.75);
+  font-size:12px;
+  font-weight:700;
 }
 
 .input-wrap{
-position:relative;
+  position:relative;
 }
 
-input{
-width:100%;
-height:52px;
+input[type="email"],
+input[type="password"],
+input[type="text"]{
+  width:100%;
+  height:52px;
+  padding:0 16px;
 
-padding:
-0 16px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
 
-border:
-1px solid
-rgba(255,255,255,.12);
+  outline:none;
 
-border-radius:14px;
+  background:rgba(255,255,255,.055);
+  color:#fff;
 
-outline:none;
+  font-size:14px;
 
-background:
-rgba(255,255,255,.055);
-
-color:white;
-
-font-size:14px;
-
-transition:
-.25s;
-}
-
-input:focus{
-border-color:
-rgba(160,115,255,.65);
-
-box-shadow:
-0 0 0 4px
-rgba(125,70,255,.10);
+  transition:
+    border-color .2s,
+    background .2s,
+    box-shadow .2s;
 }
 
 input::placeholder{
-color:
-rgba(255,255,255,.28);
+  color:rgba(255,255,255,.28);
+}
+
+input:focus{
+  border-color:rgba(160,115,255,.65);
+  background:rgba(255,255,255,.08);
+  box-shadow:0 0 0 4px rgba(125,70,255,.1);
 }
 
 .password-input{
-padding-right:52px;
+  padding-right:52px !important;
 }
 
 
@@ -372,23 +310,32 @@ padding-right:52px;
 ========================= */
 
 .eye{
-position:absolute;
+  position:absolute;
+  right:4px;
+  top:50%;
+  width:44px;
+  height:44px;
+  transform:translateY(-50%);
 
-right:3px;
-top:4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-width:44px;
-height:44px;
+  border:0;
+  outline:0;
+  background:transparent;
 
-border:0;
+  color:#fff;
+  cursor:pointer;
 
-background:transparent;
+  font-size:18px;
 
-color:white;
+  z-index:5;
+  touch-action:manipulation;
+}
 
-font-size:17px;
-
-z-index:5;
+.eye:active{
+  transform:translateY(-50%) scale(.9);
 }
 
 
@@ -397,150 +344,117 @@ z-index:5;
 ========================= */
 
 .options{
-display:flex;
-align-items:center;
-justify-content:space-between;
-
-margin-top:12px;
-
-font-size:11px;
-
-color:
-rgba(255,255,255,.55);
+  margin-top:13px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .remember{
-display:flex;
-align-items:center;
-gap:6px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:rgba(255,255,255,.42);
+  font-size:11px;
 }
 
 .remember input{
-width:14px;
-height:14px;
+  width:14px !important;
+  height:14px !important;
+  padding:0 !important;
+  accent-color:#985cff;
 }
 
 .forgot{
-border:0;
-background:none;
-
-color:#a979ff;
-
-font-size:11px;
-font-weight:700;
+  border:0;
+  background:none;
+  color:#a979ff;
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer;
+  padding:5px;
 }
 
 
 /* =========================
-   BUTTON
+   MAIN BUTTON
 ========================= */
 
 .main-button{
-width:100%;
-height:52px;
+  width:100%;
+  height:52px;
+  margin-top:22px;
 
-margin-top:21px;
+  border:0;
+  border-radius:15px;
 
-border:0;
-border-radius:15px;
+  background:
+    linear-gradient(
+      100deg,
+      #6335ff,
+      #b34cff,
+      #6d5cff
+    );
 
-background:
-linear-gradient(
-100deg,
-#6335ff,
-#b34cff,
-#6d5cff
-);
+  background-size:200% auto;
 
-background-size:200%;
+  color:#fff;
+  font-size:14px;
+  font-weight:800;
 
-color:white;
+  cursor:pointer;
 
-font-size:14px;
-font-weight:800;
+  box-shadow:0 15px 35px rgba(105,55,255,.22);
 
-box-shadow:
-0 15px 35px
-rgba(105,55,255,.22);
-
-animation:
-buttonGradient
-5s
-ease
-infinite
-alternate;
-
-transition:
-.2s;
+  transition:.2s;
+  animation:buttonGradient 5s ease infinite alternate;
 }
 
 @keyframes buttonGradient{
-
-from{
-background-position:0% 50%;
-}
-
-to{
-background-position:100% 50%;
-}
-
+  from{background-position:0% 50%}
+  to{background-position:100% 50%}
 }
 
 .main-button:hover{
-transform:translateY(-2px);
+  transform:translateY(-2px);
 }
 
 .main-button:active{
-transform:scale(.98);
+  transform:scale(.98);
 }
 
 .main-button:disabled{
-opacity:.5;
-cursor:not-allowed;
+  opacity:.55;
+  cursor:not-allowed;
 }
 
 
 /* =========================
-   MESSAGE
+   MESSAGES
 ========================= */
 
 .message{
-min-height:20px;
-
-margin-top:12px;
-
-text-align:center;
-
-font-size:11px;
-
-line-height:1.5;
+  min-height:20px;
+  margin-top:13px;
+  text-align:center;
+  font-size:11px;
+  line-height:1.5;
 }
 
 .success{
-display:none;
-
-margin-top:10px;
-
-padding:10px;
-
-border-radius:12px;
-
-background:
-rgba(101,255,155,.06);
-
-border:
-1px solid
-rgba(101,255,155,.2);
-
-color:#8dffa9;
-
-text-align:center;
-
-font-size:11px;
+  display:none;
+  margin-top:12px;
+  padding:10px;
+  border:1px solid rgba(101,255,155,.2);
+  border-radius:12px;
+  background:rgba(101,255,155,.06);
+  color:#8dffa9;
+  text-align:center;
+  font-size:11px;
 }
 
 .success.show{
-display:block;
+  display:block;
 }
 
 
@@ -549,325 +463,243 @@ display:block;
 ========================= */
 
 .switch-text{
-margin-top:20px;
-
-text-align:center;
-
-color:
-rgba(255,255,255,.4);
-
-font-size:12px;
+  margin-top:22px;
+  color:rgba(255,255,255,.4);
+  text-align:center;
+  font-size:12px;
 }
 
 .switch-button{
-border:0;
-background:none;
-
-color:#b47aff;
-
-font-weight:800;
+  border:0;
+  background:none;
+  color:#b47aff;
+  font-weight:800;
+  cursor:pointer;
 }
-
-
-/* =========================
-   BACK
-========================= */
 
 .back{
-display:block;
-
-text-align:center;
-
-margin-top:16px;
-
-color:
-rgba(255,255,255,.3);
-
-font-size:11px;
+  display:block;
+  margin-top:16px;
+  text-align:center;
+  color:rgba(255,255,255,.3);
+  font-size:11px;
 }
 
 
 /* =========================
-   WELCOME
+   WELCOME SIDE
 ========================= */
 
 .welcome-side{
-position:relative;
+  position:relative;
+  padding:42px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
 
-padding:42px;
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(130,60,255,.22),
+      transparent 48%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(45,20,90,.42),
+      rgba(5,5,10,.3)
+    );
+}
 
-display:flex;
-flex-direction:column;
-justify-content:center;
-
-overflow:hidden;
-
-background:
-radial-gradient(
-circle at 50% 35%,
-rgba(130,60,255,.22),
-transparent 48%
-),
-
-linear-gradient(
-145deg,
-rgba(45,20,90,.42),
-rgba(5,5,10,.3)
-);
+.welcome-content{
+  position:relative;
+  z-index:2;
 }
 
 .welcome-small{
-color:#a979ff;
-
-font-size:10px;
-
-font-weight:800;
-
-letter-spacing:.2em;
+  color:#a979ff;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.2em;
 }
 
 .welcome-title{
-margin-top:12px;
-
-font-size:
-clamp(
-2.2rem,
-5vw,
-3.5rem
-);
-
-line-height:.98;
-
-letter-spacing:-.07em;
+  margin-top:13px;
+  font-size:clamp(2.2rem,5vw,3.5rem);
+  line-height:.98;
+  letter-spacing:-.07em;
 }
 
 .welcome-title span{
-display:block;
-
-background:
-linear-gradient(
-100deg,
-#fff,
-#a66cff,
-#63dfff
-);
-
--webkit-background-clip:text;
-background-clip:text;
-
--webkit-text-fill-color:transparent;
+  display:block;
+  background:linear-gradient(100deg,#fff,#a66cff,#63dfff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .welcome-description{
-margin-top:18px;
-
-color:
-rgba(255,255,255,.46);
-
-font-size:13px;
-
-line-height:1.7;
+  max-width:360px;
+  margin-top:18px;
+  color:rgba(255,255,255,.46);
+  font-size:13px;
+  line-height:1.7;
 }
 
 .lock{
-width:155px;
-height:155px;
+  width:145px;
+  height:145px;
+  margin:35px auto 20px;
 
-margin:
-35px auto 20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 
-border-radius:38px;
+  border-radius:38px;
 
-display:flex;
+  font-size:70px;
 
-align-items:center;
-justify-content:center;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(170,100,255,.28),
+      rgba(55,20,120,.12)
+    );
 
-font-size:75px;
+  border:1px solid rgba(175,120,255,.35);
 
-background:
-linear-gradient(
-145deg,
-rgba(170,100,255,.28),
-rgba(55,20,120,.12)
-);
+  box-shadow:
+    0 0 50px rgba(130,65,255,.25),
+    inset 0 0 35px rgba(175,100,255,.08);
 
-border:
-1px solid
-rgba(175,120,255,.35);
-
-box-shadow:
-0 0 50px
-rgba(130,65,255,.25);
-
-animation:
-lockFloat
-4s
-ease-in-out
-infinite;
+  animation:lockFloat 4s ease-in-out infinite;
 }
 
 @keyframes lockFloat{
-
-0%,100%{
-transform:
-translateY(0)
-rotate(-5deg);
-}
-
-50%{
-transform:
-translateY(-12px)
-rotate(5deg);
-}
-
+  0%,100%{
+    transform:rotate(-5deg) translateY(0);
+  }
+  50%{
+    transform:rotate(5deg) translateY(-12px);
+  }
 }
 
 .features{
-display:grid;
-
-grid-template-columns:
-repeat(3,1fr);
-
-gap:8px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
 }
 
 .feature{
-padding:12px 8px;
-
-border:
-1px solid
-rgba(255,255,255,.08);
-
-border-radius:13px;
-
-background:
-rgba(255,255,255,.035);
-
-text-align:center;
-
-font-size:9px;
-
-color:
-rgba(255,255,255,.42);
+  padding:12px 8px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:13px;
+  background:rgba(255,255,255,.035);
+  text-align:center;
 }
 
 .feature-icon{
-font-size:17px;
+  font-size:17px;
+}
 
-margin-bottom:5px;
+.feature-text{
+  margin-top:5px;
+  color:rgba(255,255,255,.42);
+  font-size:9px;
 }
 
 
 /* =========================
-   SIGNUP MODE
+   MONEY SUCCESS ANIMATION
 ========================= */
 
-.auth-card.signup-mode
-.form-side{
-transform:
-translateX(100%);
+.money-layer{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  pointer-events:none;
+  overflow:hidden;
+  display:none;
 }
 
-.auth-card.signup-mode
-.welcome-side{
-transform:
-translateX(-100%);
-}
-
-
-/* =========================
-   MONEY SUCCESS
-========================= */
-
-.money-rain{
-position:fixed;
-
-inset:0;
-
-z-index:100;
-
-pointer-events:none;
-
-overflow:hidden;
+.money-layer.show{
+  display:block;
 }
 
 .money{
-position:absolute;
-
-top:-80px;
-
-font-size:28px;
-
-animation:
-moneyFall
-var(--duration)
-linear
-var(--delay)
-forwards;
+  position:absolute;
+  top:-80px;
+  font-size:28px;
+  animation:moneyFall 2.8s linear forwards;
+  filter:drop-shadow(0 5px 10px rgba(0,0,0,.35));
 }
 
 @keyframes moneyFall{
-
-0%{
-transform:
-translateY(-80px)
-rotate(0deg);
-
-opacity:0;
+  0%{
+    transform:translateY(-80px) rotate(0deg);
+    opacity:0;
+  }
+  10%{
+    opacity:1;
+  }
+  100%{
+    transform:translateY(115vh) rotate(720deg);
+    opacity:0;
+  }
 }
 
-10%{
-opacity:1;
+.success-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9998;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+  background:rgba(5,3,15,.25);
+  backdrop-filter:blur(3px);
 }
 
-100%{
-transform:
-translate(
-var(--x),
-110vh
-)
-rotate(
-var(--rotation)
-);
-
-opacity:0;
+.success-overlay.show{
+  display:flex;
 }
 
+.success-message{
+  padding:25px 35px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:24px;
+  background:rgba(20,10,40,.75);
+  box-shadow:0 25px 80px rgba(0,0,0,.5);
+  text-align:center;
+  animation:successPop .6s ease both;
 }
 
-.success-flash{
-position:fixed;
-
-inset:0;
-
-z-index:99;
-
-pointer-events:none;
-
-background:
-radial-gradient(
-circle,
-rgba(170,100,255,.22),
-transparent 55%
-);
-
-animation:
-flash
-.8s
-forwards;
+.success-message .big{
+  font-size:40px;
 }
 
-@keyframes flash{
-
-from{
-opacity:1;
+.success-message h2{
+  margin-top:7px;
+  font-size:24px;
 }
 
-to{
-opacity:0;
+.success-message p{
+  margin-top:5px;
+  color:rgba(255,255,255,.55);
+  font-size:12px;
 }
 
+@keyframes successPop{
+  from{
+    opacity:0;
+    transform:scale(.65) translateY(20px);
+  }
+  70%{
+    transform:scale(1.06);
+  }
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
 }
 
 
@@ -877,51 +709,49 @@ opacity:0;
 
 @media(max-width:700px){
 
-body{
-padding:12px;
+  body{
+    padding:12px;
+    align-items:flex-start;
+  }
 
-align-items:flex-start;
+  .page{
+    margin-top:12px;
+  }
+
+  .brand{
+    margin-bottom:14px;
+  }
+
+  .brand-logo{
+    width:48px;
+    height:48px;
+  }
+
+  .auth-card{
+    display:block;
+    min-height:auto;
+    border-radius:24px;
+  }
+
+  .form-side{
+    padding:28px 21px;
+  }
+
+  .welcome-side{
+    display:none;
+  }
+
+  h1{
+    font-size:2.4rem;
+  }
+
 }
 
-.page{
-margin-top:12px;
-}
+@media(max-width:390px){
 
-.brand-logo{
-width:48px;
-height:48px;
-}
-
-.auth-card{
-display:block;
-
-min-height:auto;
-}
-
-.form-side{
-min-height:555px;
-
-padding:
-28px 22px;
-
-transform:none !important;
-}
-
-.welcome-side{
-display:none;
-}
-
-.auth-card.signup-mode
-.form-side{
-display:flex;
-}
-
-.lock{
-width:110px;
-height:110px;
-
-font-size:54px;
-}
+  .form-side{
+    padding:25px 17px;
+  }
 
 }
 
@@ -932,1064 +762,437 @@ font-size:54px;
 
 @media(prefers-reduced-motion:reduce){
 
-*{
-animation-duration:.01ms !important;
-transition-duration:.01ms !important;
-}
+  *,
+  *::before,
+  *::after{
+    animation-duration:.01ms !important;
+    transition-duration:.01ms !important;
+  }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
-
 <div class="background">
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+</div>
 
-<div class="orb orb-one"></div>
 
-<div class="orb orb-two"></div>
+<!-- SUCCESS MONEY -->
+<div class="money-layer" id="moneyLayer"></div>
 
+<div class="success-overlay" id="successOverlay">
+  <div class="success-message">
+    <div class="big">💰</div>
+    <h2>Welcome!</h2>
+    <p>Login successful. Opening your offers...</p>
+  </div>
 </div>
 
 
 <div class="page">
 
+  <div class="brand">
 
-<div class="brand">
+    <img
+      class="brand-logo"
+      src="assets/income-offers-logo.jpg"
+      alt="Income Offers"
+      onerror="this.style.display='none'"
+    >
 
-<img
-class="brand-logo"
-src="assets/income-offers-logo.jpg"
-alt="Income Offers"
-onerror="this.style.display='none'"
->
+    <div class="brand-name">
+      Income Offers
+    </div>
 
-<div class="brand-name">
-Income Offers
-</div>
+    <div class="brand-owner">
+      OWNER: SAHIL
+    </div>
 
-<div class="brand-owner">
-OWNER: SAHIL
-</div>
+  </div>
 
-</div>
 
+  <div class="auth-card">
 
-<div
-class="auth-card"
-id="authCard"
->
+    <section class="form-side">
 
+      <div class="form-content">
 
-<section class="form-side">
+        <div class="mode-label">
+          <span class="mode-dot"></span>
+          <span>WELCOME BACK</span>
+        </div>
 
-<div class="form-content">
+        <h1>Login</h1>
 
+        <p class="subtitle">
+          Login with your email and password to continue.
+        </p>
 
-<div class="mode-label">
 
-<span class="mode-dot"></span>
+        <form id="loginForm">
 
-<span id="modeLabel">
-WELCOME BACK
-</span>
+          <div class="field">
 
-</div>
+            <label for="email">
+              Email
+            </label>
 
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              required
+            >
 
-<h1 id="formTitle">
-Login
-</h1>
+          </div>
 
 
-<p
-class="subtitle"
-id="formSubtitle"
->
-Welcome back. Login to continue to your account.
-</p>
+          <div class="field">
 
+            <label for="password">
+              Password
+            </label>
 
-<form id="authForm">
+            <div class="input-wrap">
 
+              <input
+                id="password"
+                class="password-input"
+                type="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+              >
 
-<div class="field">
+              <button
+                id="eyeButton"
+                class="eye"
+                type="button"
+                aria-label="Show password"
+              >
+                👁️
+              </button>
 
-<label>
-Email
-</label>
+            </div>
 
-<input
-id="email"
-type="email"
-autocomplete="email"
-placeholder="Enter your email"
-required
->
+          </div>
 
-</div>
 
+          <div class="options">
 
-<div class="field">
+            <label class="remember">
 
-<label>
-Password
-</label>
+              <input
+                id="remember"
+                type="checkbox"
+                checked
+              >
 
+              Remember me
 
-<div class="input-wrap">
+            </label>
 
-<input
-id="password"
-class="password-input"
-type="password"
-autocomplete="current-password"
-placeholder="Enter your password"
-required
->
 
+            <button
+              id="forgotButton"
+              class="forgot"
+              type="button"
+            >
+              Forgot Password?
+            </button>
 
-<button
-id="eyeButton"
-class="eye"
-type="button"
->
-👁️
-</button>
+          </div>
 
-</div>
 
-</div>
+          <button
+            id="loginButton"
+            class="main-button"
+            type="submit"
+          >
+            Login →
+          </button>
 
+        </form>
 
-<div
-class="options"
-id="loginOptions"
->
 
-<label class="remember">
+        <div
+          id="successBox"
+          class="success"
+        ></div>
 
-<input
-id="remember"
-type="checkbox"
-checked
->
 
-Remember me
+        <div
+          id="message"
+          class="message"
+        ></div>
 
-</label>
 
+        <div class="switch-text">
 
-<button
-id="forgotButton"
-class="forgot"
-type="button"
->
-Forgot Password?
-</button>
+          Don't have an account?
 
-</div>
+          <button
+            class="switch-button"
+            id="signupButton"
+            type="button"
+          >
+            Create Account
+          </button>
 
+        </div>
 
-<button
-id="mainButton"
-class="main-button"
-type="submit"
->
-Login →
-</button>
 
+        <a
+          class="back"
+          href="index.html"
+        >
+          ← Back to Home
+        </a>
 
-</form>
+      </div>
 
+    </section>
 
-<div
-id="successBox"
-class="success"
->
-✓ Success
-</div>
 
+    <section class="welcome-side">
 
-<div
-id="message"
-class="message"
-></div>
+      <div class="welcome-content">
 
+        <div class="welcome-small">
+          INCOME OFFERS
+        </div>
 
-<div class="switch-text">
+        <div class="welcome-title">
+          Welcome
+          <span>Back.</span>
+        </div>
 
-<span id="switchQuestion">
-Don't have an account?
-</span>
+        <p class="welcome-description">
+          Login to explore active offers, track your activity and continue where you left off.
+        </p>
 
-<button
-id="switchButton"
-class="switch-button"
-type="button"
->
-Create Account
-</button>
+        <div class="lock">
+          🔐
+        </div>
 
-</div>
+        <div class="features">
 
+          <div class="feature">
+            <div class="feature-icon">🛡️</div>
+            <div class="feature-text">Secure Account</div>
+          </div>
 
-<a
-class="back"
-href="index.html"
->
-← Back to Home
-</a>
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-text">Fast Access</div>
+          </div>
 
+          <div class="feature">
+            <div class="feature-icon">📊</div>
+            <div class="feature-text">Track Activity</div>
+          </div>
 
-</div>
+        </div>
 
-</section>
+      </div>
 
+    </section>
 
-<section class="welcome-side">
-
-<div class="welcome-small">
-INCOME OFFERS
-</div>
-
-
-<div
-class="welcome-title"
-id="welcomeTitle"
->
-Welcome
-<span>
-Back.
-</span>
-</div>
-
-
-<p
-class="welcome-description"
-id="welcomeDescription"
->
-Login to explore active offers, track your activity and continue where you left off.
-</p>
-
-
-<div class="lock">
-🔐
-</div>
-
-
-<div class="features">
-
-
-<div class="feature">
-
-<div class="feature-icon">
-🛡️
-</div>
-
-Secure Account
+  </div>
 
 </div>
 
 
-<div class="feature">
-
-<div class="feature-icon">
-⚡
-</div>
-
-Fast Access
-
-</div>
-
-
-<div class="feature">
-
-<div class="feature-icon">
-📊
-</div>
-
-Track Activity
-
-</div>
-
-
-</div>
-
-</section>
-
-
-</div>
-
-</div>
-
-
-<script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
-
-<script
-src="supabase-config.js"
-></script>
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
 
 
 <script>
 
-/* =========================
-   ELEMENTS
-========================= */
+/*
+====================================================
+INCOME OFFERS - STABLE PASSWORD LOGIN
+====================================================
 
-const authCard =
-document.getElementById(
-"authCard"
-);
+Uses:
+Email + Password
 
-const authForm =
-document.getElementById(
-"authForm"
-);
+No OTP.
+No Magic Link.
+
+supabase-config.js creates supabaseClient.
+
+IMPORTANT:
+Do not create another Supabase client here.
+====================================================
+*/
+
+
+const loginForm =
+  document.getElementById("loginForm");
 
 const emailInput =
-document.getElementById(
-"email"
-);
+  document.getElementById("email");
 
 const passwordInput =
-document.getElementById(
-"password"
-);
-
-const mainButton =
-document.getElementById(
-"mainButton"
-);
-
-const message =
-document.getElementById(
-"message"
-);
-
-const successBox =
-document.getElementById(
-"successBox"
-);
+  document.getElementById("password");
 
 const eyeButton =
-document.getElementById(
-"eyeButton"
-);
+  document.getElementById("eyeButton");
 
-const switchButton =
-document.getElementById(
-"switchButton"
-);
-
-const loginOptions =
-document.getElementById(
-"loginOptions"
-);
+const loginButton =
+  document.getElementById("loginButton");
 
 const forgotButton =
-document.getElementById(
-"forgotButton"
-);
+  document.getElementById("forgotButton");
 
+const signupButton =
+  document.getElementById("signupButton");
 
-let signupMode =
-false;
+const message =
+  document.getElementById("message");
 
-let busy =
-false;
+const successBox =
+  document.getElementById("successBox");
+
+const moneyLayer =
+  document.getElementById("moneyLayer");
+
+const successOverlay =
+  document.getElementById("successOverlay");
 
 
 /* =========================
    MESSAGE
 ========================= */
 
-function showMessage(
-text,
-success=false
-){
+function showMessage(text,success=false){
 
-message.textContent =
-text;
+  message.textContent = text;
 
-message.style.color =
-success
-? "#8dffa9"
-: "#ff7777";
+  message.style.color =
+    success
+      ? "#8dffa9"
+      : "#ff7777";
 
 }
 
 
 /* =========================
-   EYE
+   EYE BUTTON
 ========================= */
 
 eyeButton.addEventListener(
-"click",
-function(){
+  "click",
+  function(event){
 
-const show =
-passwordInput.type ===
-"password";
+    event.preventDefault();
 
-passwordInput.type =
-show
-? "text"
-: "password";
+    const isPassword =
+      passwordInput.type === "password";
 
-eyeButton.textContent =
-show
-? "🙈"
-: "👁️";
+    passwordInput.type =
+      isPassword
+        ? "text"
+        : "password";
 
-});
+    eyeButton.textContent =
+      isPassword
+        ? "🙈"
+        : "👁️";
+
+    eyeButton.setAttribute(
+      "aria-label",
+      isPassword
+        ? "Hide password"
+        : "Show password"
+    );
+
+    passwordInput.focus();
+
+  }
+);
 
 
 /* =========================
-   SWITCH
+   SIGNUP
 ========================= */
 
-switchButton.addEventListener(
-"click",
-function(){
+signupButton.addEventListener(
+  "click",
+  function(){
 
-signupMode =
-!signupMode;
+    window.location.href =
+      "signup.html";
 
-passwordInput.value =
-"";
-
-message.textContent =
-"";
-
-successBox.classList.remove(
-"show"
+  }
 );
-
-authCard.classList.toggle(
-"signup-mode",
-signupMode
-);
-
-
-if(signupMode){
-
-document.getElementById(
-"modeLabel"
-).textContent =
-"NEW ACCOUNT";
-
-document.getElementById(
-"formTitle"
-).textContent =
-"Create Account";
-
-document.getElementById(
-"formSubtitle"
-).textContent =
-"Create your account with your own password.";
-
-mainButton.textContent =
-"Create Account →";
-
-document.getElementById(
-"switchQuestion"
-).textContent =
-"Already have an account?";
-
-switchButton.textContent =
-"Login";
-
-document.getElementById(
-"welcomeTitle"
-).innerHTML =
-'Join <span>Income Offers.</span>';
-
-document.getElementById(
-"welcomeDescription"
-).textContent =
-"Create your account with your own password and access your offers whenever you want.";
-
-loginOptions.style.display =
-"none";
-
-passwordInput.autocomplete =
-"new-password";
-
-}else{
-
-document.getElementById(
-"modeLabel"
-).textContent =
-"WELCOME BACK";
-
-document.getElementById(
-"formTitle"
-).textContent =
-"Login";
-
-document.getElementById(
-"formSubtitle"
-).textContent =
-"Welcome back. Login to continue to your account.";
-
-mainButton.textContent =
-"Login →";
-
-document.getElementById(
-"switchQuestion"
-).textContent =
-"Don't have an account?";
-
-switchButton.textContent =
-"Create Account";
-
-document.getElementById(
-"welcomeTitle"
-).innerHTML =
-'Welcome <span>Back.</span>';
-
-document.getElementById(
-"welcomeDescription"
-).textContent =
-"Login to explore active offers, track your activity and continue where you left off.";
-
-loginOptions.style.display =
-"flex";
-
-passwordInput.autocomplete =
-"current-password";
-
-}
-
-});
 
 
 /* =========================
    MONEY ANIMATION
 ========================= */
 
-function moneyRain(){
+function playSuccessAnimation(){
 
-const flash =
-document.createElement(
-"div"
-);
+  moneyLayer.innerHTML = "";
 
-flash.className =
-"success-flash";
+  moneyLayer.classList.add("show");
 
-document.body.appendChild(
-flash
-);
+  successOverlay.classList.add("show");
 
-setTimeout(
-function(){
-flash.remove();
-},
-900
-);
 
+  const symbols = [
+    "💵",
+    "💰",
+    "🤑",
+    "💸",
+    "💲"
+  ];
 
-const rain =
-document.createElement(
-"div"
-);
 
-rain.className =
-"money-rain";
+  for(
+    let i = 0;
+    i < 45;
+    i++
+  ){
 
-document.body.appendChild(
-rain
-);
+    const money =
+      document.createElement("div");
 
+    money.className =
+      "money";
 
-const money =
-[
-"💵",
-"💰",
-"🪙",
-"💸"
-];
+    money.textContent =
+      symbols[
+        Math.floor(
+          Math.random() *
+          symbols.length
+        )
+      ];
 
+    money.style.left =
+      Math.random() * 100 + "%";
 
-for(
-let i=0;
-i<45;
-i++
-){
+    money.style.animationDelay =
+      Math.random() * .9 + "s";
 
-const item =
-document.createElement(
-"span"
-);
+    money.style.fontSize =
+      (20 + Math.random() * 20) + "px";
 
-item.className =
-"money";
+    moneyLayer.appendChild(
+      money
+    );
 
-item.textContent =
-money[
-Math.floor(
-Math.random() *
-money.length
-)
-];
-
-
-item.style.left =
-Math.random() *
-100 +
-"vw";
-
-
-item.style.setProperty(
-"--x",
-(
-Math.random() -
-.5
-) *
-180 +
-"px"
-);
-
-
-item.style.setProperty(
-"--rotation",
-(
-Math.random() -
-.5
-) *
-900 +
-"deg"
-);
-
-
-item.style.setProperty(
-"--duration",
-2.2 +
-Math.random() *
-2 +
-"s"
-);
-
-
-item.style.setProperty(
-"--delay",
-Math.random() *
-.6 +
-"s"
-);
-
-
-rain.appendChild(
-item
-);
-
-}
-
-
-setTimeout(
-function(){
-rain.remove();
-},
-5000
-);
-
-
-/* sound */
-
-try{
-
-const AudioContext =
-window.AudioContext ||
-window.webkitAudioContext;
-
-if(AudioContext){
-
-const audio =
-new AudioContext();
-
-const notes =
-[
-660,
-880,
-1046
-];
-
-
-notes.forEach(
-function(
-frequency,
-index
-){
-
-const oscillator =
-audio.createOscillator();
-
-const gain =
-audio.createGain();
-
-const time =
-audio.currentTime +
-index *
-.08;
-
-oscillator.frequency.value =
-frequency;
-
-gain.gain.setValueAtTime(
-.0001,
-time
-);
-
-gain.gain.exponentialRampToValueAtTime(
-.05,
-time +
-.02
-);
-
-gain.gain.exponentialRampToValueAtTime(
-.0001,
-time +
-.2
-);
-
-oscillator.connect(
-gain
-);
-
-gain.connect(
-audio.destination
-);
-
-oscillator.start(
-time
-);
-
-oscillator.stop(
-time +
-.22
-);
-
-});
-
-}
-
-}catch(error){
-
-console.warn(
-"Sound unavailable"
-);
-
-}
-
-}
-
-
-/* =========================
-   SESSION
-========================= */
-
-async function checkSession(){
-
-try{
-
-const {
-data,
-error
-} =
-await supabaseClient
-.auth
-.getSession();
-
-
-if(error){
-
-console.warn(
-error.message
-);
-
-return;
-
-}
-
-
-if(
-data &&
-data.session &&
-data.session.user
-){
-
-window.location.replace(
-"offer.html"
-);
-
-}
-
-}catch(error){
-
-console.warn(
-error
-);
-
-}
-
-}
-
-
-/* =========================
-   FORGOT PASSWORD
-========================= */
-
-forgotButton.addEventListener(
-"click",
-async function(){
-
-const email =
-emailInput.value
-.trim()
-.toLowerCase();
-
-
-if(!email){
-
-showMessage(
-"Enter your email first."
-);
-
-emailInput.focus();
-
-return;
-
-}
-
-
-forgotButton.disabled =
-true;
-
-
-showMessage(
-"Sending password reset email...",
-true
-);
-
-
-try{
-
-const {
-error
-} =
-await supabaseClient
-.auth
-.resetPasswordForEmail(
-email,
-{
-
-redirectTo:
-window.location.origin +
-"/login.html"
-
-}
-);
-
-
-if(error){
-
-throw error;
-
-}
-
-
-showMessage(
-"Password reset email sent. Check your Gmail.",
-true
-);
-
-
-}catch(error){
-
-showMessage(
-error.message ||
-"Unable to send reset email."
-);
-
-}
-
-
-forgotButton.disabled =
-false;
-
-});
-
-
-/* =========================
-   FORM
-========================= */
-
-authForm.addEventListener(
-"submit",
-async function(event){
-
-event.preventDefault();
-
-
-if(busy){
-
-return;
-
-}
-
-
-const email =
-emailInput.value
-.trim()
-.toLowerCase();
-
-const password =
-passwordInput.value;
-
-
-if(
-!email ||
-!email.includes("@")
-){
-
-showMessage(
-"Please enter a valid email address."
-);
-
-return;
-
-}
-
-
-if(
-!password ||
-password.length < 6
-){
-
-showMessage(
-"Password must be at least 6 characters."
-);
-
-return;
-
-}
-
-
-busy =
-true;
-
-mainButton.disabled =
-true;
-
-
-try{
-
-
-/* =========================
-   CREATE ACCOUNT
-========================= */
-
-if(signupMode){
-
-mainButton.textContent =
-"Creating Account...";
-
-
-showMessage(
-"Creating your secure account...",
-true
-);
-
-
-const {
-data,
-error
-} =
-await supabaseClient
-.auth
-.signUp({
-
-email:email,
-
-password:password
-
-});
-
-
-if(error){
-
-throw error;
-
-}
-
-
-if(
-data &&
-data.session
-){
-
-successBox.textContent =
-"✓ Account created successfully.";
-
-successBox.classList.add(
-"show"
-);
-
-showMessage(
-"Account created successfully.",
-true
-);
-
-moneyRain();
-
-
-setTimeout(
-function(){
-
-window.location.replace(
-"offer.html"
-);
-
-},
-1100
-);
-
-}else{
-
-successBox.textContent =
-"✓ Account created. Check your email if confirmation is required.";
-
-successBox.classList.add(
-"show"
-);
-
-showMessage(
-"Complete email confirmation if requested.",
-true
-);
-
-moneyRain();
-
-mainButton.disabled =
-false;
-
-mainButton.textContent =
-"Create Account →";
-
-busy =
-false;
-
-}
-
-return;
+  }
 
 }
 
@@ -1998,20 +1201,88 @@ return;
    LOGIN
 ========================= */
 
-mainButton.textContent =
-"Signing in...";
+loginForm.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
 
 
-showMessage(
-"Checking your account...",
-true
-);
+    if(
+      typeof supabaseClient ===
+      "undefined"
+    ){
+
+      showMessage(
+        "Supabase is not loaded."
+      );
+
+      return;
+
+    }
 
 
-const {
-data,
-error
-} =
-await supabaseClient
-.auth
-.s
+    const email =
+      emailInput.value
+        .trim()
+        .toLowerCase();
+
+    const password =
+      passwordInput.value;
+
+
+    if(!email){
+
+      showMessage(
+        "Please enter your email."
+      );
+
+      return;
+
+    }
+
+
+    if(!password){
+
+      showMessage(
+        "Please enter your password."
+      );
+
+      return;
+
+    }
+
+
+    if(password.length < 6){
+
+      showMessage(
+        "Password must be at least 6 characters."
+      );
+
+      return;
+
+    }
+
+
+    loginButton.disabled =
+      true;
+
+    loginButton.textContent =
+      "Signing in...";
+
+    showMessage(
+      "Checking your account...",
+      true
+    );
+
+
+    try{
+
+      const {
+        data,
+        error
+      } =
+      await supabaseClient.auth
+        .signInWithPassword({
+
+        
