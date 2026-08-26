@@ -2,52 +2,183 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#050507">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#070511">
+<meta name="description" content="Income Offers - discover active offers and opportunities.">
 <title>Income Offers - SAHIL</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
 *{
   box-sizing:border-box;
   margin:0;
-  padding:0;
+  padding:0
 }
 
 html{
-  scroll-behavior:smooth;
+  scroll-behavior:smooth
 }
 
 body{
   min-height:100vh;
-  overflow-x:hidden;
-  background:#050507;
+  background:#05030b;
   color:#fff;
   font-family:'Geist',Arial,sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased
 }
 
 a{
   color:inherit;
-  text-decoration:none;
+  text-decoration:none
 }
 
 button{
-  font:inherit;
+  font:inherit
 }
 
+
 /* =========================
-   INTRO ANIMATION
+   ROYAL BACKGROUND
 ========================= */
 
-#ioIntro{
+body:before,
+body:after{
+  content:"";
   position:fixed;
   inset:0;
-  z-index:999999;
+  pointer-events:none;
+  z-index:-5
+}
+
+body:before{
+  background:
+    radial-gradient(
+      circle at 12% 8%,
+      rgba(91,38,255,.32),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 88% 18%,
+      rgba(38,91,255,.20),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 65% 90%,
+      rgba(157,35,255,.18),
+      transparent 34%
+    ),
+    #05030b
+}
+
+body:after{
+  background:
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      rgba(126,75,255,.05) 45%,
+      transparent 70%
+    );
+
+  animation:
+    ambient
+    12s
+    ease-in-out
+    infinite
+    alternate
+}
+
+@keyframes ambient{
+
+  from{
+    transform:
+      translate3d(-2%,0,0)
+      scale(1)
+  }
+
+  to{
+    transform:
+      translate3d(2%,1%,0)
+      scale(1.06)
+  }
+
+}
+
+
+.orb{
+  position:fixed;
+  border-radius:50%;
+  filter:blur(80px);
+  pointer-events:none;
+  z-index:-4
+}
+
+.orb.a{
+  width:300px;
+  height:300px;
+  left:-120px;
+  top:25%;
+  background:#5222ff;
+  opacity:.25;
+
+  animation:
+    orbA
+    9s
+    ease-in-out
+    infinite
+    alternate
+}
+
+.orb.b{
+  width:280px;
+  height:280px;
+  right:-120px;
+  bottom:5%;
+  background:#1268ff;
+  opacity:.18;
+
+  animation:
+    orbB
+    11s
+    ease-in-out
+    infinite
+    alternate
+}
+
+@keyframes orbA{
+
+  to{
+    transform:
+      translate(100px,-70px)
+      scale(1.2)
+  }
+
+}
+
+@keyframes orbB{
+
+  to{
+    transform:
+      translate(-80px,-90px)
+      scale(1.25)
+  }
+
+}
+
+
+/* =========================
+   OPENING SPLASH
+========================= */
+
+#splash{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+
+  background:#05030b;
 
   display:flex;
   align-items:center;
@@ -55,546 +186,354 @@ button{
 
   overflow:hidden;
 
-  background:#050507;
-
   transition:
-    opacity .9s cubic-bezier(.16,1,.3,1),
-    visibility .9s;
+    opacity .65s ease,
+    visibility .65s ease
 }
 
-#ioIntro.hide{
+#splash.hide{
   opacity:0;
   visibility:hidden;
-  pointer-events:none;
+  pointer-events:none
 }
 
-.intro-bg{
+.splash-glow{
   position:absolute;
-  inset:-30%;
+
+  width:330px;
+  height:330px;
+
+  border-radius:50%;
 
   background:
     radial-gradient(
-      circle at 50% 45%,
-      rgba(130,70,255,.34),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 20% 20%,
-      rgba(70,110,255,.18),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 80% 80%,
-      rgba(0,210,255,.14),
-      transparent 28%
+      circle,
+      rgba(111,48,255,.42),
+      transparent 68%
     );
 
-  filter:blur(15px);
+  filter:blur(20px);
 
   animation:
-    introBg
-    6s
+    sGlow
+    2.4s
     ease-in-out
     infinite
-    alternate;
+    alternate
 }
 
-.intro-ring{
+@keyframes sGlow{
+
+  to{
+    transform:scale(1.3);
+    opacity:.7
+  }
+
+}
+
+.splash-ring{
   position:absolute;
 
-  width:230px;
-  height:230px;
-
-  border-radius:50%;
+  width:235px;
+  height:235px;
 
   border:
     1px solid
-    rgba(175,125,255,.3);
+    rgba(146,104,255,.28);
 
-  box-shadow:
-    0 0 80px
-    rgba(130,70,255,.25),
-    inset 0 0 45px
-    rgba(130,70,255,.08);
+  border-radius:50%;
 
   animation:
-    introRing
-    1.4s
-    cubic-bezier(.16,1,.3,1)
-    both;
+    ring
+    2.2s
+    ease-out
+    infinite
 }
 
-.intro-ring::before,
-.intro-ring::after{
-  content:"";
-
-  position:absolute;
-
-  border-radius:50%;
-
-  border:
-    1px solid
-    rgba(255,255,255,.09);
+.splash-ring.r2{
+  width:300px;
+  height:300px;
+  animation-delay:.25s
 }
 
-.intro-ring::before{
-  inset:20px;
+.splash-ring.r3{
+  width:370px;
+  height:370px;
+  animation-delay:.5s
 }
 
-.intro-ring::after{
-  inset:43px;
+@keyframes ring{
 
-  border-color:
-    rgba(99,223,255,.14);
+  0%{
+    transform:scale(.72);
+    opacity:0
+  }
+
+  35%{
+    opacity:1
+  }
+
+  100%{
+    transform:scale(1.12);
+    opacity:0
+  }
+
 }
 
-.intro-core{
+.splash-card{
   position:relative;
+  z-index:2;
 
-  width:108px;
-  height:108px;
+  width:130px;
+  height:130px;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  border-radius:36px;
 
-  border-radius:30px;
+  padding:9px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(170,100,255,.32),
-      rgba(55,20,120,.14)
+      rgba(139,88,255,.38),
+      rgba(26,88,255,.12)
     );
 
   border:
     1px solid
-    rgba(190,145,255,.4);
+    rgba(190,160,255,.35);
 
   box-shadow:
-    0 0 60px
-    rgba(130,65,255,.4),
-    inset 0 0 35px
+    0 0 65px
+    rgba(105,55,255,.34),
+    inset 0 0 30px
     rgba(255,255,255,.06);
 
-  transform:
-    rotate(-10deg)
-    scale(.4);
-
-  opacity:0;
-
   animation:
-    introCore
-    1s
-    .25s
-    cubic-bezier(.16,1,.3,1)
-    forwards;
+    splashFloat
+    2.6s
+    ease-in-out
+    infinite
 }
 
-.intro-core span{
-  font-size:46px;
+.splash-card img{
+  width:100%;
+  height:100%;
 
-  transform:rotate(10deg);
+  object-fit:cover;
 
-  filter:
-    drop-shadow(
-      0 8px 18px
-      rgba(0,0,0,.4)
-    );
+  border-radius:29px;
+
+  background:#0c0820
 }
 
-.intro-text{
+@keyframes splashFloat{
+
+  0%,100%{
+    transform:
+      translateY(0)
+      rotate(-2deg)
+  }
+
+  50%{
+    transform:
+      translateY(-12px)
+      rotate(2deg)
+  }
+
+}
+
+.splash-name{
   position:absolute;
 
   top:
-    calc(50% + 125px);
+    calc(50% + 115px);
+
+  left:0;
+  right:0;
 
   text-align:center;
 
-  opacity:0;
-
-  transform:
-    translateY(15px);
-
-  animation:
-    introText
-    .7s
-    .75s
-    cubic-bezier(.16,1,.3,1)
-    forwards;
-}
-
-.intro-name{
-  font-size:25px;
+  font-size:26px;
   font-weight:800;
-  letter-spacing:-.05em;
+
+  letter-spacing:-.04em
 }
 
-.intro-owner{
-  margin-top:8px;
+.splash-owner{
+  position:absolute;
+
+  top:
+    calc(50% + 151px);
+
+  left:0;
+  right:0;
+
+  text-align:center;
 
   color:
     rgba(255,255,255,.35);
 
-  font-size:8px;
-  font-weight:700;
+  font-size:9px;
+  font-weight:800;
 
-  letter-spacing:.25em;
+  letter-spacing:.24em
 }
 
-.intro-loader{
+.splash-loader{
   position:absolute;
 
-  bottom:55px;
+  bottom:10%;
 
-  width:120px;
-  height:2px;
+  width:95px;
+  height:3px;
 
-  overflow:hidden;
-
-  border-radius:10px;
+  border-radius:99px;
 
   background:
     rgba(255,255,255,.08);
+
+  overflow:hidden
 }
 
-.intro-loader span{
+.splash-loader i{
   display:block;
 
-  width:35%;
+  width:40%;
   height:100%;
 
   background:
     linear-gradient(
       90deg,
-      #6335ff,
-      #63dfff
+      #5d2cff,
+      #9f55ff,
+      #28b7ff
     );
 
   animation:
-    introLoad
-    1.8s
+    loader
+    1.5s
     ease-in-out
-    forwards;
+    infinite
 }
 
-@keyframes introBg{
+@keyframes loader{
 
   from{
-    transform:
-      scale(1)
-      rotate(0);
+    transform:translateX(-120%)
   }
 
   to{
-    transform:
-      scale(1.1)
-      rotate(3deg);
-  }
-
-}
-
-@keyframes introRing{
-
-  from{
-    opacity:0;
-    transform:scale(.45);
-  }
-
-  to{
-    opacity:1;
-    transform:scale(1);
-  }
-
-}
-
-@keyframes introCore{
-
-  to{
-    opacity:1;
-
-    transform:
-      rotate(-5deg)
-      scale(1);
-  }
-
-}
-
-@keyframes introText{
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-
-}
-
-@keyframes introLoad{
-
-  from{
-    transform:translateX(-130%);
-  }
-
-  to{
-    transform:translateX(330%);
+    transform:translateX(350%)
   }
 
 }
 
 
 /* =========================
-   BACKGROUND
+   NAVIGATION
 ========================= */
 
-.background{
-  position:fixed;
-  inset:0;
-
-  z-index:-10;
-
-  overflow:hidden;
-
-  background:
-    radial-gradient(
-      circle at 15% 15%,
-      rgba(105,75,255,.22),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 85% 75%,
-      rgba(0,190,255,.13),
-      transparent 34%
-    ),
-    #050507;
-}
-
-.glow{
-  position:absolute;
-
-  width:360px;
-  height:360px;
-
-  border-radius:50%;
-
-  filter:blur(90px);
-
-  opacity:.55;
-}
-
-.glow-one{
-  top:-150px;
-  left:-120px;
-
-  background:#7040ff;
-
-  animation:
-    glowOne
-    9s
-    ease-in-out
-    infinite
-    alternate;
-}
-
-.glow-two{
-  right:-150px;
-  bottom:-80px;
-
-  background:#00bfff;
-
-  animation:
-    glowTwo
-    11s
-    ease-in-out
-    infinite
-    alternate;
-}
-
-@keyframes glowOne{
-
-  from{
-    transform:
-      translate(0,0)
-      scale(1);
-  }
-
-  to{
-    transform:
-      translate(130px,100px)
-      scale(1.3);
-  }
-
-}
-
-@keyframes glowTwo{
-
-  from{
-    transform:
-      translate(0,0)
-      scale(1);
-  }
-
-  to{
-    transform:
-      translate(-120px,-90px)
-      scale(1.25);
-  }
-
-}
-
-
-/* =========================
-   POLICY
-========================= */
-
-.policy-wrap{
-  width:100%;
-
-  overflow:hidden;
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
 
   border-bottom:
     1px solid
     rgba(255,255,255,.08);
 
   background:
-    rgba(0,0,0,.35);
+    rgba(5,3,11,.72);
+
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px)
 }
-
-.policy-track{
-  width:max-content;
-
-  display:flex;
-  align-items:center;
-
-  gap:70px;
-
-  padding:9px 0;
-
-  white-space:nowrap;
-
-  animation:
-    policyScroll
-    25s
-    linear
-    infinite;
-}
-
-.policy-item{
-  font-size:11px;
-  font-weight:600;
-}
-
-.policy-item.warning{
-  color:#ffd36a;
-}
-
-@keyframes policyScroll{
-
-  from{
-    transform:translateX(0);
-  }
-
-  to{
-    transform:translateX(-50%);
-  }
-
-}
-
-
-/* =========================
-   NAV
-========================= */
 
 .nav{
-  position:relative;
-
-  z-index:20;
-
-  max-width:1250px;
-
+  max-width:1200px;
   margin:auto;
 
   padding:
-    22px 24px;
+    14px 18px;
 
   display:flex;
-
   align-items:center;
-  justify-content:center;
-
-  animation:
-    navIn
-    .8s
-    .3s
-    cubic-bezier(.16,1,.3,1)
-    both;
+  justify-content:space-between
 }
 
 .brand{
   display:flex;
-
   align-items:center;
-
-  gap:12px;
+  gap:10px
 }
 
-.logo{
-  width:58px;
-  height:58px;
+.brand img{
+  width:43px;
+  height:43px;
 
   border-radius:50%;
 
   object-fit:cover;
 
   border:
-    2px solid
-    rgba(255,255,255,.3);
-
-  background:#111;
+    1px solid
+    rgba(255,255,255,.28);
 
   box-shadow:
-    0 0 30px
-    rgba(105,75,255,.25);
-}
-
-.brand-text{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:3px;
+    0 0 25px
+    rgba(95,45,255,.35)
 }
 
 .brand-name{
-  font-size:21px;
+  display:block;
 
-  font-weight:800;
-
-  letter-spacing:-.04em;
+  font-size:17px;
+  font-weight:800
 }
 
 .owner{
+  display:block;
+
+  margin-top:2px;
+
   color:
-    rgba(255,255,255,.38);
+    rgba(255,255,255,.36);
 
-  font-size:9px;
+  font-size:8px;
+  font-weight:800;
 
-  font-weight:700;
-
-  letter-spacing:.2em;
+  letter-spacing:.18em
 }
 
-@keyframes navIn{
+.nav-actions{
+  display:flex;
+  gap:8px
+}
 
-  from{
-    opacity:0;
-    transform:translateY(-18px);
-  }
+.nav-btn{
+  padding:
+    9px 14px;
 
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  border:
+    1px solid
+    rgba(255,255,255,.11);
 
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.055);
+
+  font-size:12px;
+  font-weight:700;
+
+  transition:.2s
+}
+
+.nav-btn:hover{
+  background:
+    rgba(255,255,255,.11);
+
+  transform:translateY(-1px)
 }
 
 
@@ -603,163 +542,111 @@ button{
 ========================= */
 
 .hero{
-  position:relative;
-
-  min-height:
-    calc(100vh - 40px);
-
-  min-height:
-    calc(100svh - 40px);
-
-  overflow:hidden;
-}
-
-.hero-content{
-  position:relative;
-
-  z-index:5;
-
-  max-width:1050px;
-
-  min-height:
-    calc(100vh - 115px);
-
-  min-height:
-    calc(100svh - 115px);
-
+  max-width:1200px;
   margin:auto;
 
   padding:
-    45px 24px 70px;
+    65px 20px 35px;
 
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  text-align:center;
+  text-align:center
 }
-
-
-/* =========================
-   BADGE
-========================= */
 
 .badge{
   display:inline-flex;
-
   align-items:center;
-
-  gap:9px;
+  gap:8px;
 
   padding:
-    9px 16px;
+    8px 13px;
 
   border:
     1px solid
-    rgba(255,255,255,.13);
+    rgba(151,111,255,.25);
 
   border-radius:999px;
 
   background:
-    rgba(255,255,255,.055);
+    rgba(102,55,255,.08);
 
-  backdrop-filter:blur(18px);
+  color:#c8b5ff;
 
-  color:
-    rgba(255,255,255,.72);
+  font-size:10px;
+  font-weight:800;
 
-  font-size:11px;
-
-  font-weight:700;
+  letter-spacing:.12em;
 
   animation:
-    fadeUp
+    up
     .8s
-    .45s
-    both;
+    both
 }
 
-.badge-dot{
-  width:8px;
-  height:8px;
+.dot{
+  width:7px;
+  height:7px;
 
   border-radius:50%;
 
-  background:#57ff9a;
+  background:#70ffad;
 
   box-shadow:
-    0 0 15px
-    #57ff9a;
+    0 0 13px
+    #70ffad;
 
   animation:
-    livePulse
+    pulse
     1.5s
-    ease-in-out
-    infinite;
+    infinite
 }
 
-@keyframes livePulse{
-
-  0%,100%{
-    transform:scale(1);
-    opacity:1;
-  }
+@keyframes pulse{
 
   50%{
-    transform:scale(1.45);
-    opacity:.6;
+    transform:scale(1.35);
+    opacity:.55
   }
 
 }
-
-
-/* =========================
-   TITLE
-========================= */
 
 h1{
   max-width:900px;
 
-  margin-top:24px;
+  margin:
+    20px auto 0;
 
   font-size:
     clamp(
       3rem,
-      9vw,
-      6.5rem
+      10vw,
+      6.4rem
     );
 
-  line-height:.94;
+  line-height:.91;
 
   letter-spacing:-.075em;
 
   font-weight:800;
 
   animation:
-    titleIn
+    up
     .9s
-    .5s
-    cubic-bezier(.16,1,.3,1)
-    both;
+    .08s
+    both
 }
 
-.title-gradient{
+.gradient{
   display:block;
 
   background:
     linear-gradient(
       100deg,
-      #fff 5%,
-      #78aaff 45%,
-      #b17aff 75%,
-      #63ddff 100%
+      #fff 8%,
+      #a27cff 43%,
+      #6b7cff 70%,
+      #32c8ff
     );
 
-  background-size:200% auto;
+  background-size:220% auto;
 
   -webkit-background-clip:text;
   background-clip:text;
@@ -767,126 +654,180 @@ h1{
   -webkit-text-fill-color:transparent;
 
   animation:
-    gradientMove
+    gradient
     5s
     ease-in-out
     infinite
-    alternate;
+    alternate
 }
 
-@keyframes titleIn{
-
-  from{
-    opacity:0;
-
-    transform:
-      translateY(35px)
-      scale(.97);
-
-    filter:blur(8px);
-  }
+@keyframes gradient{
 
   to{
-    opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
-    filter:blur(0);
+    background-position:100% 50%
   }
 
 }
 
-@keyframes gradientMove{
-
-  from{
-    background-position:0% 50%;
-  }
-
-  to{
-    background-position:100% 50%;
-  }
-
-}
-
-
-/* =========================
-   DESCRIPTION
-========================= */
-
-.description{
+.hero p{
   max-width:650px;
 
-  margin-top:22px;
+  margin:
+    22px auto 0;
 
   color:
-    rgba(255,255,255,.52);
+    rgba(255,255,255,.48);
 
-  font-size:
-    clamp(
-      14px,
-      2vw,
-      16px
-    );
+  font-size:14px;
 
   line-height:1.7;
 
   animation:
-    fadeUp
+    up
     .8s
-    .7s
-    both;
+    .2s
+    both
 }
 
-@keyframes fadeUp{
+@keyframes up{
 
   from{
     opacity:0;
-
-    transform:translateY(22px);
+    transform:translateY(22px)
   }
 
   to{
     opacity:1;
-
-    transform:translateY(0);
+    transform:none
   }
 
 }
 
 
 /* =========================
-   EXPLORE BUTTON
+   CTA
 ========================= */
 
-.explore-button{
-  margin-top:38px;
+.cta{
+  max-width:850px;
+  margin:
+    35px auto 0;
+
+  padding:28px;
+
+  border:
+    1px solid
+    rgba(164,130,255,.20);
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(87,40,255,.16),
+      rgba(26,113,255,.08)
+    );
+
+  box-shadow:
+    0 30px 100px
+    rgba(0,0,0,.35),
+    inset 0 1px
+    rgba(255,255,255,.06);
+
+  position:relative;
+  overflow:hidden;
+
+  animation:
+    up
+    .9s
+    .3s
+    both
+}
+
+.cta:before{
+  content:"";
+
+  position:absolute;
+
+  width:240px;
+  height:240px;
+
+  right:-90px;
+  top:-110px;
+
+  border-radius:50%;
+
+  background:
+    rgba(70,135,255,.18);
+
+  filter:blur(30px)
+}
+
+.cta-label{
+  position:relative;
+
+  color:#a98cff;
+
+  font-size:9px;
+  font-weight:800;
+
+  letter-spacing:.22em
+}
+
+.cta h2{
+  position:relative;
+
+  margin-top:8px;
+
+  font-size:
+    clamp(
+      1.7rem,
+      4vw,
+      2.5rem
+    );
+
+  letter-spacing:-.05em
+}
+
+.cta p{
+  position:relative;
+
+  margin:
+    8px auto 20px;
+
+  color:
+    rgba(255,255,255,.45);
+
+  font-size:12px;
+
+  max-width:540px;
+
+  line-height:1.6
+}
+
+.primary{
+  position:relative;
 
   display:inline-flex;
-
   align-items:center;
   justify-content:center;
-
-  gap:10px;
+  gap:8px;
 
   min-width:210px;
 
   padding:
-    15px 25px;
+    14px 22px;
 
-  border:
-    1px solid
-    rgba(255,255,255,.18);
+  border:0;
 
-  border-radius:999px;
+  border-radius:15px;
 
   background:
     linear-gradient(
-      100deg,
-      #6335ff,
-      #b34cff,
-      #3b9dff
+      105deg,
+      #5a2aff,
+      #8b42ff,
+      #266dff
     );
 
   background-size:200% auto;
@@ -894,51 +835,34 @@ h1{
   color:#fff;
 
   font-size:13px;
-
   font-weight:800;
 
   box-shadow:
-    0 18px 45px
-    rgba(105,55,255,.25);
+    0 16px 40px
+    rgba(85,45,255,.3);
 
   animation:
-    buttonIn
-    .8s
-    .9s
-    both;
+    buttonGradient
+    5s
+    ease
+    infinite
+    alternate;
 
-  transition:
-    transform .25s,
-    box-shadow .25s;
-
+  transition:.2s
 }
 
-.explore-button:hover{
-  transform:translateY(-3px);
-
-  box-shadow:
-    0 23px 55px
-    rgba(105,55,255,.38);
+.primary:hover{
+  transform:translateY(-2px)
 }
 
-.explore-button:active{
-  transform:scale(.97);
+.primary:active{
+  transform:scale(.97)
 }
 
-@keyframes buttonIn{
-
-  from{
-    opacity:0;
-    transform:
-      translateY(20px)
-      scale(.95);
-  }
+@keyframes buttonGradient{
 
   to{
-    opacity:1;
-    transform:
-      translateY(0)
-      scale(1);
+    background-position:100% 50%
   }
 
 }
@@ -949,138 +873,208 @@ h1{
 ========================= */
 
 .features{
-  width:100%;
+  max-width:850px;
 
-  max-width:900px;
-
-  margin-top:45px;
+  margin:
+    16px auto 0;
 
   display:grid;
 
   grid-template-columns:
     repeat(3,1fr);
 
-  gap:12px;
-
-  animation:
-    fadeUp
-    .8s
-    1s
-    both;
+  gap:10px
 }
 
 .feature{
-  padding:18px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.09);
-
-  border-radius:17px;
-
-  background:
-    rgba(255,255,255,.045);
-
-  backdrop-filter:blur(18px);
+  padding:17px 13px;
 
   text-align:left;
 
-  transition:.3s;
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  border-radius:18px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  backdrop-filter:blur(16px);
+
+  transition:.25s
 }
 
 .feature:hover{
-  transform:translateY(-5px);
+  transform:translateY(-4px);
 
   border-color:
-    rgba(255,255,255,.18);
+    rgba(157,119,255,.25);
 
   background:
-    rgba(255,255,255,.07);
+    rgba(110,65,255,.06)
 }
 
-.feature-icon{
-  font-size:22px;
-}
-
-.feature strong{
+.feature b{
   display:block;
 
-  margin-top:10px;
+  margin-top:8px;
 
-  font-size:13px;
+  font-size:12px
 }
 
 .feature span{
   display:block;
 
-  margin-top:5px;
+  margin-top:4px;
 
   color:
-    rgba(255,255,255,.4);
+    rgba(255,255,255,.37);
 
-  font-size:10px;
+  font-size:9px;
 
-  line-height:1.5;
+  line-height:1.5
 }
 
 
 /* =========================
-   EXPLORE HINT
+   INFO
 ========================= */
 
-.explore-hint{
-  margin-top:28px;
+.info{
+  max-width:1200px;
+
+  margin:
+    25px auto 105px;
+
+  padding:
+    0 20px;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:14px
+}
+
+.info-card{
+  padding:22px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  border-radius:22px;
+
+  background:
+    rgba(255,255,255,.035)
+}
+
+.info-card .small{
+  color:#a98cff;
+
+  font-size:9px;
+  font-weight:800;
+
+  letter-spacing:.18em
+}
+
+.info-card h3{
+  margin-top:8px;
+
+  font-size:19px
+}
+
+.info-card p{
+  margin-top:8px;
 
   color:
-    rgba(255,255,255,.25);
+    rgba(255,255,255,.42);
+
+  font-size:11px;
+
+  line-height:1.65
+}
+
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+  position:fixed;
+
+  left:50%;
+  bottom:14px;
+
+  transform:
+    translateX(-50%);
+
+  z-index:60;
+
+  width:
+    min(
+      calc(100% - 28px),
+      470px
+    );
+
+  display:flex;
+
+  padding:7px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.11);
+
+  border-radius:999px;
+
+  background:
+    rgba(8,6,15,.88);
+
+  backdrop-filter:blur(22px);
+
+  box-shadow:
+    0 18px 60px
+    rgba(0,0,0,.48)
+}
+
+.bottom-link{
+  flex:1;
+
+  padding:
+    8px 4px;
+
+  border-radius:999px;
+
+  text-align:center;
+
+  color:
+    rgba(255,255,255,.43);
 
   font-size:10px;
 
-  letter-spacing:.15em;
-
-  text-transform:uppercase;
-
-  animation:
-    hint
-    2s
-    ease-in-out
-    infinite;
+  transition:.2s
 }
 
-.explore-arrow{
-  display:inline-block;
+.bottom-link span{
+  display:block;
 
-  margin-left:5px;
+  font-size:17px;
 
-  animation:
-    arrow
-    1.4s
-    ease-in-out
-    infinite;
+  margin-bottom:3px
 }
 
-@keyframes hint{
+.bottom-link.active,
+.bottom-link:hover{
+  color:#fff;
 
-  0%,100%{
-    opacity:.35;
-  }
-
-  50%{
-    opacity:.8;
-  }
-
-}
-
-@keyframes arrow{
-
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(5px);
-  }
-
+  background:
+    linear-gradient(
+      135deg,
+      rgba(111,61,255,.28),
+      rgba(41,105,255,.18)
+    )
 }
 
 
@@ -1092,66 +1086,73 @@ h1{
 
   .nav{
     padding:
-      17px 15px;
+      12px 14px
   }
 
-  .logo{
-    width:50px;
-    height:50px;
+  .brand img{
+    width:40px;
+    height:40px
   }
 
   .brand-name{
-    font-size:18px;
+    font-size:16px
   }
 
-  .owner{
-    font-size:7px;
+  .nav-actions .nav-btn:first-child{
+    display:none
   }
 
-  .hero-content{
+  .hero{
     padding:
-      35px 16px
-      50px;
+      50px 16px 25px
   }
 
   h1{
     font-size:
       clamp(
-        2.9rem,
+        2.8rem,
         14vw,
-        4.5rem
-      );
+        4.3rem
+      )
   }
 
-  .description{
-    font-size:13px;
+  .hero p{
+    font-size:13px
+  }
+
+  .cta{
+    padding:24px 18px;
+    border-radius:25px
   }
 
   .features{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr
   }
 
   .feature{
-    text-align:center;
+    text-align:center
   }
 
-  .intro-ring{
-    width:190px;
-    height:190px;
+  .info{
+    grid-template-columns:1fr;
+    padding:0 16px
   }
 
-  .intro-core{
-    width:95px;
-    height:95px;
+  .splash-card{
+    width:118px;
+    height:118px
   }
 
-  .intro-text{
+  .splash-name{
     top:
-      calc(50% + 108px);
+      calc(50% + 105px);
+
+    font-size:23px
   }
 
-  .intro-name{
-    font-size:22px;
+  .splash-owner{
+    top:
+      calc(50% + 138px)
   }
 
 }
@@ -1164,17 +1165,11 @@ h1{
 @media(prefers-reduced-motion:reduce){
 
   *,
-  *::before,
-  *::after{
-
-    animation-duration:
-      .01ms !important;
-
-    animation-iteration-count:
-      1 !important;
-
-    transition-duration:
-      .01ms !important;
+  *:before,
+  *:after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important
   }
 
 }
@@ -1182,113 +1177,74 @@ h1{
 </style>
 </head>
 
+
 <body>
+
+<div class="orb a"></div>
+<div class="orb b"></div>
 
 
 <!-- =========================
      OPENING ANIMATION
 ========================= -->
 
-<div id="ioIntro">
+<div
+  id="splash"
+  aria-label="Income Offers loading"
+>
 
-  <div class="intro-bg"></div>
+  <div class="splash-glow"></div>
 
-  <div class="intro-ring"></div>
+  <div class="splash-ring"></div>
+  <div class="splash-ring r2"></div>
+  <div class="splash-ring r3"></div>
 
-  <div class="intro-core">
-    <span>💰</span>
+  <div class="splash-card">
+
+    <img
+      id="splashLogo"
+      src="income-offers-logo.jpg"
+      alt="Income Offers"
+    >
+
   </div>
 
-  <div class="intro-text">
-
-    <div class="intro-name">
-      Income Offers
-    </div>
-
-    <div class="intro-owner">
-      OWNER: SAHIL
-    </div>
-
+  <div class="splash-name">
+    Income Offers
   </div>
 
-  <div class="intro-loader">
-    <span></span>
+  <div class="splash-owner">
+    OWNER: SAHIL
   </div>
 
-</div>
-
-
-<!-- =========================
-     BACKGROUND
-========================= -->
-
-<div class="background">
-
-  <div class="glow glow-one"></div>
-  <div class="glow glow-two"></div>
-
-</div>
-
-
-<!-- =========================
-     POLICY
-========================= -->
-
-<div class="policy-wrap">
-
-  <div class="policy-track">
-
-    <div class="policy-item">
-      😍 Welcome to Income Offers
-    </div>
-
-    <div class="policy-item">
-      ✅ Trusted Campaigns & Promotional Offers
-    </div>
-
-    <div class="policy-item warning">
-      ⚠️ Please do your own research. No guaranteed earnings.
-    </div>
-
-    <div class="policy-item">
-      😍 Welcome to Income Offers
-    </div>
-
-    <div class="policy-item">
-      ✅ Trusted Campaigns & Promotional Offers
-    </div>
-
-    <div class="policy-item warning">
-      ⚠️ Please do your own research. No guaranteed earnings.
-    </div>
-
+  <div class="splash-loader">
+    <i></i>
   </div>
 
 </div>
 
 
 <!-- =========================
-     HERO
+     HEADER
 ========================= -->
 
-<section class="hero">
-
+<header>
 
 <nav class="nav">
 
   <a
     class="brand"
     href="index.html"
+    aria-label="Income Offers Home"
   >
 
     <img
-      class="logo"
-      src="assets/income-offers-logo.jpg"
+      id="brandLogo"
+      src="income-offers-logo.jpg"
       alt="Income Offers"
-      onerror="this.style.display='none'"
     >
 
-    <span class="brand-text">
+    <span>
 
       <span class="brand-name">
         Income Offers
@@ -1302,15 +1258,41 @@ h1{
 
   </a>
 
+
+  <div class="nav-actions">
+
+    <a
+      class="nav-btn"
+      href="offer.html"
+    >
+      🎁 Offers
+    </a>
+
+    <a
+      class="nav-btn"
+      href="history.html"
+    >
+      📜 History
+    </a>
+
+  </div>
+
 </nav>
 
+</header>
 
-<div class="hero-content">
 
+<!-- =========================
+     MAIN
+========================= -->
+
+<main>
+
+<section class="hero">
 
   <div class="badge">
 
-    <span class="badge-dot"></span>
+    <span class="dot"></span>
 
     LIVE INCOME OFFERS
 
@@ -1321,52 +1303,79 @@ h1{
 
     Discover offers
 
-    <span class="title-gradient">
+    <span class="gradient">
       worth opening.
     </span>
 
   </h1>
 
 
-  <p class="description">
+  <p>
 
-    Browse trusted campaigns,
+    Browse active campaigns,
     promotional offers and opportunities.
-    Explore the latest active offers
-    without creating an account.
+    No account or login is required
+    to explore and complete offers.
 
   </p>
 
 
-  <a
-    class="explore-button"
-    href="offer.html"
-  >
+  <!-- CTA -->
 
-    🎁 Explore Offers
+  <div class="cta">
 
-    <span>
-      →
-    </span>
+    <div class="cta-label">
+      OPEN ACCESS
+    </div>
 
-  </a>
+    <h2>
+      Start exploring offers.
+    </h2>
 
+    <p>
+
+      Tap below to view the latest offers.
+      When you open an offer, the offer
+      system can create the unique
+      6-character tracking ID used
+      for completion tracking.
+
+    </p>
+
+
+    <a
+      class="primary"
+      href="offer.html"
+    >
+
+      🎁 View All Offers
+
+      <span>
+        →
+      </span>
+
+    </a>
+
+  </div>
+
+
+  <!-- FEATURES -->
 
   <div class="features">
 
-
     <div class="feature">
 
-      <div class="feature-icon">
+      <div>
         ⚡
       </div>
 
-      <strong>
+      <b>
         Fast Access
-      </strong>
+      </b>
 
       <span>
-        Open the latest offers instantly.
+        Open offers instantly
+        without a login screen.
       </span>
 
     </div>
@@ -1374,16 +1383,17 @@ h1{
 
     <div class="feature">
 
-      <div class="feature-icon">
+      <div>
         🎁
       </div>
 
-      <strong>
-        New Offers
-      </strong>
+      <b>
+        Active Offers
+      </b>
 
       <span>
-        Discover active campaigns and promotions.
+        See currently available
+        campaigns and rewards.
       </span>
 
     </div>
@@ -1391,197 +1401,257 @@ h1{
 
     <div class="feature">
 
-      <div class="feature-icon">
-        🔎
+      <div>
+        🆔
       </div>
 
-      <strong>
-        Easy to Explore
-      </strong>
+      <b>
+        Offer Tracking
+      </b>
 
       <span>
-        No login required to browse offers.
+        Offer activity can be linked
+        to a unique user ID.
       </span>
 
     </div>
 
-
   </div>
-
-
-  <div class="explore-hint">
-
-    Explore offers
-
-    <span class="explore-arrow">
-      ↓
-    </span>
-
-  </div>
-
-
-</div>
 
 </section>
 
 
-<script>
+<!-- INFO -->
 
-/* =========================
-   INTRO CONTROL
-========================= */
+<section class="info">
+
+  <div class="info-card">
+
+    <div class="small">
+      HOW IT WORKS
+    </div>
+
+    <h3>
+      Choose an offer
+    </h3>
+
+    <p>
+
+      Open the Offers page,
+      select a campaign and follow
+      its instructions. The login/signup
+      flow is intentionally removed
+      from this home page.
+
+    </p>
+
+  </div>
+
+
+  <div class="info-card">
+
+    <div class="small">
+      IMPORTANT
+    </div>
+
+    <h3>
+      Check each campaign
+    </h3>
+
+    <p>
+
+      Read the offer requirements
+      before completing anything.
+      Earnings or rewards are not
+      guaranteed and may depend
+      on the campaign provider.
+
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- =========================
+     BOTTOM NAV
+========================= -->
+
+<nav
+  class="bottom-nav"
+  aria-label="Main navigation"
+>
+
+  <a
+    class="bottom-link active"
+    href="index.html"
+  >
+    <span>🏠</span>
+    Home
+  </a>
+
+
+  <a
+    class="bottom-link"
+    href="offer.html"
+  >
+    <span>🎁</span>
+    Offers
+  </a>
+
+
+  <a
+    class="bottom-link"
+    href="history.html"
+  >
+    <span>📜</span>
+    History
+  </a>
+
+
+  <a
+    class="bottom-link"
+    href="profile.html"
+  >
+    <span>👤</span>
+    Profile
+  </a>
+
+</nav>
+
+
+<script>
 
 (function(){
 
-  const intro =
+  const splash =
     document.getElementById(
-      "ioIntro"
+      'splash'
     );
 
-  if(!intro){
-    return;
-  }
+  const splashLogo =
+    document.getElementById(
+      'splashLogo'
+    );
 
-  function hideIntro(){
+  const brandLogo =
+    document.getElementById(
+      'brandLogo'
+    );
 
-    setTimeout(
+
+  /*
+  ================================================
+  LOGO FALLBACK
+
+  First tries:
+  income-offers-logo.jpg
+
+  If that does not exist:
+  assets/income-offers-logo.jpg
+  ================================================
+  */
+
+  function logoFallback(img){
+
+    img.addEventListener(
+      'error',
       function(){
 
-        intro.classList.add(
-          "hide"
-        );
+        if(
+          !img.dataset.fallback
+        ){
 
-        setTimeout(
-          function(){
+          img.dataset.fallback =
+            '1';
 
-            intro.remove();
+          img.src =
+            'assets/income-offers-logo.jpg';
 
-          },
-          1000
-        );
+        }
 
-      },
-      1900
+      }
     );
 
   }
+
+
+  logoFallback(
+    splashLogo
+  );
+
+  logoFallback(
+    brandLogo
+  );
+
+
+  /*
+  ================================================
+  SHORT CINEMATIC OPENING
+  ================================================
+  */
+
+  const hideSplash =
+    () => {
+
+      splash.classList.add(
+        'hide'
+      );
+
+      setTimeout(
+        () => {
+          splash.remove();
+        },
+        700
+      );
+
+    };
 
 
   if(
     document.readyState ===
-    "loading"
+    'complete'
   ){
 
-    document.addEventListener(
-      "DOMContentLoaded",
-      hideIntro,
+    setTimeout(
+      hideSplash,
+      1700
+    );
+
+  }else{
+
+    window.addEventListener(
+      'load',
+      () => {
+
+        setTimeout(
+          hideSplash,
+          1700
+        );
+
+      },
       {
         once:true
       }
     );
 
-  }else{
 
-    hideIntro();
+    /*
+      Safety fallback.
+      Splash cannot remain forever
+      if a resource loads slowly.
+    */
+
+    setTimeout(
+      hideSplash,
+      2400
+    );
 
   }
 
 })();
-
-
-/* =========================
-   BUTTON RIPPLE
-========================= */
-
-document.addEventListener(
-  "click",
-  function(event){
-
-    const button =
-      event.target.closest(
-        ".explore-button"
-      );
-
-    if(!button){
-      return;
-    }
-
-    const ripple =
-      document.createElement(
-        "span"
-      );
-
-    ripple.style.position =
-      "fixed";
-
-    ripple.style.left =
-      event.clientX + "px";
-
-    ripple.style.top =
-      event.clientY + "px";
-
-    ripple.style.width =
-      "10px";
-
-    ripple.style.height =
-      "10px";
-
-    ripple.style.borderRadius =
-      "50%";
-
-    ripple.style.background =
-      "rgba(255,255,255,.5)";
-
-    ripple.style.pointerEvents =
-      "none";
-
-    ripple.style.zIndex =
-      "999999";
-
-    ripple.style.transform =
-      "translate(-50%,-50%)";
-
-    ripple.style.animation =
-      "buttonRipple .6s ease-out forwards";
-
-    document.body.appendChild(
-      ripple
-    );
-
-    setTimeout(
-      function(){
-        ripple.remove();
-      },
-      700
-    );
-
-  }
-);
-
-const rippleStyle =
-document.createElement("style");
-
-rippleStyle.textContent = `
-
-@keyframes buttonRipple{
-
-  to{
-
-    opacity:0;
-
-    transform:
-      translate(-50%,-50%)
-      scale(15);
-
-  }
-
-}
-
-`;
-
-document.head.appendChild(
-  rippleStyle
-);
 
 </script>
 
