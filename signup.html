@@ -8,37 +8,22 @@
 
 <title>Income Offers - Create Account</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet">
-
 <style>
 
 *{
 box-sizing:border-box;
 margin:0;
 padding:0;
+font-family:Arial,sans-serif;
 }
 
 body{
 min-height:100vh;
 background:
-radial-gradient(
-circle at 20% 15%,
-rgba(105,75,255,.20),
-transparent 35%
-),
-radial-gradient(
-circle at 85% 80%,
-rgba(0,180,255,.10),
-transparent 35%
-),
+radial-gradient(circle at 20% 15%,rgba(105,75,255,.20),transparent 35%),
+radial-gradient(circle at 85% 80%,rgba(0,180,255,.10),transparent 35%),
 #050505;
 color:#fff;
-font-family:'Geist',Arial,sans-serif;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -58,17 +43,14 @@ animation:boxIn .7s ease both;
 }
 
 @keyframes boxIn{
-
 from{
 opacity:0;
 transform:translateY(30px) scale(.96);
 }
-
 to{
 opacity:1;
 transform:translateY(0) scale(1);
 }
-
 }
 
 .logo{
@@ -80,19 +62,6 @@ object-fit:cover;
 border-radius:50%;
 border:2px solid rgba(255,255,255,.45);
 box-shadow:0 0 30px rgba(105,75,255,.35);
-animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float{
-
-0%,100%{
-transform:translateY(0);
-}
-
-50%{
-transform:translateY(-5px);
-}
-
 }
 
 h1{
@@ -102,7 +71,7 @@ letter-spacing:-.05em;
 }
 
 .subtitle{
-margin:9px 0 28px;
+margin:9px 0 25px;
 text-align:center;
 color:rgba(255,255,255,.5);
 font-size:14px;
@@ -111,16 +80,20 @@ line-height:1.5;
 
 label{
 display:block;
-margin:0 0 8px;
+margin:14px 0 7px;
 color:rgba(255,255,255,.8);
 font-size:13px;
 font-weight:700;
 }
 
+.input-box{
+position:relative;
+}
+
 input{
 width:100%;
 height:54px;
-padding:0 16px;
+padding:0 48px 0 16px;
 border:1px solid rgba(255,255,255,.12);
 border-radius:16px;
 outline:none;
@@ -130,19 +103,33 @@ font-size:16px;
 transition:.2s ease;
 }
 
-input::placeholder{
-color:rgba(255,255,255,.3);
-}
-
 input:focus{
 border-color:rgba(150,130,255,.7);
 box-shadow:0 0 0 4px rgba(105,75,255,.12);
 }
 
+input::placeholder{
+color:rgba(255,255,255,.3);
+}
+
+.eye{
+position:absolute;
+right:5px;
+top:50%;
+transform:translateY(-50%);
+width:42px;
+height:42px;
+border:0;
+background:transparent;
+color:white;
+cursor:pointer;
+font-size:18px;
+}
+
 .create{
 width:100%;
 height:54px;
-margin-top:15px;
+margin-top:18px;
 border:0;
 border-radius:16px;
 background:#fff;
@@ -204,29 +191,10 @@ border-radius:50%;
 background:rgba(101,255,155,.12);
 border:1px solid rgba(101,255,155,.35);
 font-size:30px;
-animation:successPop .5s ease both;
 }
 
 .success-icon.show{
 display:flex;
-}
-
-@keyframes successPop{
-
-from{
-opacity:0;
-transform:scale(.4);
-}
-
-70%{
-transform:scale(1.12);
-}
-
-to{
-opacity:1;
-transform:scale(1);
-}
-
 }
 
 </style>
@@ -244,25 +212,15 @@ alt="Income Offers"
 onerror="this.style.display='none'"
 >
 
+<h1>Create Account</h1>
 
-<h1>
-Create Account
-</h1>
-
-
-<p
-class="subtitle"
-id="subtitle"
->
-Enter your email to create your account
+<p class="subtitle" id="subtitle">
+Create your account with an email and password
 </p>
-
 
 <form id="signupForm">
 
-<label for="email">
-Email
-</label>
+<label for="email">Email</label>
 
 <input
 id="email"
@@ -272,6 +230,49 @@ autocomplete="email"
 required
 >
 
+<label for="password">Password</label>
+
+<div class="input-box">
+
+<input
+id="password"
+type="password"
+placeholder="Create a password"
+autocomplete="new-password"
+required
+>
+
+<button
+class="eye"
+id="passwordEye"
+type="button"
+>
+👁️
+</button>
+
+</div>
+
+<label for="confirmPassword">Confirm Password</label>
+
+<div class="input-box">
+
+<input
+id="confirmPassword"
+type="password"
+placeholder="Enter password again"
+autocomplete="new-password"
+required
+>
+
+<button
+class="eye"
+id="confirmEye"
+type="button"
+>
+👁️
+</button>
+
+</div>
 
 <button
 type="submit"
@@ -283,7 +284,6 @@ Create Account
 
 </form>
 
-
 <div
 class="success-icon"
 id="successIcon"
@@ -291,12 +291,10 @@ id="successIcon"
 ✓
 </div>
 
-
 <div
 class="message"
 id="message"
 ></div>
-
 
 <div class="login">
 
@@ -308,7 +306,6 @@ Login
 
 </div>
 
-
 <a
 class="back"
 href="index.html"
@@ -319,74 +316,50 @@ href="index.html"
 </div>
 
 
-<!-- SUPABASE -->
-
-<script
-src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script src="supabase-config.js"></script>
 
-
 <script>
 
-/*
-====================================================
-IMPORTANT
-====================================================
-
-supabase-config.js already creates:
-
-supabaseClient
-
-DO NOT create another client here.
-
-====================================================
-*/
-
-
 const form =
-document.getElementById(
-"signupForm"
-);
+document.getElementById("signupForm");
 
 const emailInput =
-document.getElementById(
-"email"
-);
+document.getElementById("email");
+
+const passwordInput =
+document.getElementById("password");
+
+const confirmPasswordInput =
+document.getElementById("confirmPassword");
 
 const createButton =
-document.getElementById(
-"createButton"
-);
+document.getElementById("createButton");
 
 const message =
-document.getElementById(
-"message"
-);
+document.getElementById("message");
 
 const subtitle =
-document.getElementById(
-"subtitle"
-);
+document.getElementById("subtitle");
 
 const successIcon =
-document.getElementById(
-"successIcon"
-);
+document.getElementById("successIcon");
+
+const passwordEye =
+document.getElementById("passwordEye");
+
+const confirmEye =
+document.getElementById("confirmEye");
 
 
 /* =========================
    MESSAGE
 ========================= */
 
-function showMessage(
-text,
-success = false
-){
+function showMessage(text,success=false){
 
-message.textContent =
-text;
+message.textContent = text;
 
 message.style.color =
 success
@@ -394,6 +367,48 @@ success
 : "#ff7777";
 
 }
+
+
+/* =========================
+   PASSWORD VISIBILITY
+========================= */
+
+passwordEye.addEventListener(
+"click",
+function(){
+
+if(passwordInput.type === "password"){
+
+passwordInput.type = "text";
+passwordEye.textContent = "🙈";
+
+}else{
+
+passwordInput.type = "password";
+passwordEye.textContent = "👁️";
+
+}
+
+});
+
+
+confirmEye.addEventListener(
+"click",
+function(){
+
+if(confirmPasswordInput.type === "password"){
+
+confirmPasswordInput.type = "text";
+confirmEye.textContent = "🙈";
+
+}else{
+
+confirmPasswordInput.type = "password";
+confirmEye.textContent = "👁️";
+
+}
+
+});
 
 
 /* =========================
@@ -408,22 +423,14 @@ const {
 data,
 error
 } =
-await supabaseClient
-.auth
-.getSession();
-
+await supabaseClient.auth.getSession();
 
 if(error){
 
-console.warn(
-"Session check:",
-error.message
-);
-
+console.warn(error.message);
 return;
 
 }
-
 
 if(
 data &&
@@ -431,18 +438,13 @@ data.session &&
 data.session.user
 ){
 
-window.location.replace(
-"offer.html"
-);
+window.location.replace("offer.html");
 
 }
 
 }catch(error){
 
-console.warn(
-"Session exception:",
-error
-);
+console.warn(error);
 
 }
 
@@ -459,11 +461,16 @@ async function(event){
 
 event.preventDefault();
 
-
 const email =
 emailInput.value
 .trim()
 .toLowerCase();
+
+const password =
+passwordInput.value;
+
+const confirmPassword =
+confirmPasswordInput.value;
 
 
 if(!email){
@@ -491,15 +498,35 @@ return;
 }
 
 
-createButton.disabled =
-true;
-
-createButton.textContent =
-"Sending Link...";
-
+if(password.length < 6){
 
 showMessage(
-"Sending secure login link...",
+"Password must be at least 6 characters."
+);
+
+return;
+
+}
+
+
+if(password !== confirmPassword){
+
+showMessage(
+"Passwords do not match."
+);
+
+return;
+
+}
+
+
+createButton.disabled = true;
+
+createButton.textContent =
+"Creating Account...";
+
+showMessage(
+"Creating your secure account...",
 true
 );
 
@@ -507,37 +534,20 @@ true
 try{
 
 /*
-====================================================
-MAGIC LINK
-====================================================
-
-This sends the verification/login email.
-
-If the email is new, Supabase creates
-the user automatically when allowed.
-
-====================================================
+========================================
+PASSWORD ACCOUNT CREATION
+========================================
 */
 
 const {
 data,
 error
 } =
-await supabaseClient
-.auth
-.signInWithOtp({
+await supabaseClient.auth.signUp({
 
 email:email,
 
-options:{
-
-shouldCreateUser:true,
-
-emailRedirectTo:
-window.location.origin +
-"/index.html"
-
-}
+password:password
 
 });
 
@@ -545,7 +555,7 @@ window.location.origin +
 if(error){
 
 console.error(
-"CREATE ACCOUNT ERROR:",
+"SIGNUP ERROR:",
 error
 );
 
@@ -553,8 +563,7 @@ showMessage(
 error.message
 );
 
-createButton.disabled =
-false;
+createButton.disabled = false;
 
 createButton.textContent =
 "Create Account";
@@ -565,29 +574,79 @@ return;
 
 
 /*
-SUCCESS
+========================================
+IMPORTANT
+========================================
+
+Depending on Supabase Auth settings,
+email confirmation may still be required.
+
+If confirmation is disabled,
+the user will be logged in immediately.
+
+========================================
 */
 
-successIcon.classList.add(
-"show"
-);
+if(
+data &&
+data.session &&
+data.user
+){
+
+successIcon.classList.add("show");
 
 subtitle.textContent =
-"Check your email to continue";
+"Account created successfully";
 
 showMessage(
-"Secure login link sent. Check your email and tap the link to continue.",
+"Account created. Opening your offers...",
 true
 );
 
 createButton.textContent =
-"Email Sent ✓";
+"Account Created ✓";
+
+
+setTimeout(
+function(){
+
+window.location.replace(
+"offer.html"
+);
+
+},
+700
+);
+
+return;
+
+}
+
+
+/*
+If Supabase requires email confirmation.
+*/
+
+successIcon.classList.add("show");
+
+subtitle.textContent =
+"Account created";
+
+showMessage(
+"Account created. Please complete the email verification required by your account settings.",
+true
+);
+
+createButton.textContent =
+"Account Created ✓";
+
+createButton.disabled = false;
 
 
 }catch(error){
 
 console.error(
-"CREATE ACCOUNT EXCEPTION:",
+"SIGNUP EXCEPTION:",
 error
 );
 
@@ -595,8 +654,7 @@ showMessage(
 "Something went wrong. Please try again."
 );
 
-createButton.disabled =
-false;
+createButton.disabled = false;
 
 createButton.textContent =
 "Create Account";
