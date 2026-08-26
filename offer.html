@@ -1,36 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<meta
-  name="theme-color"
-  content="#16072f"
->
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050505">
 <title>Income Offers - Offers</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap"
-  rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
 *{
   box-sizing:border-box;
   margin:0;
@@ -43,19 +23,10 @@ html{
 
 body{
   min-height:100vh;
-
-  background:
-    #07020f;
-
+  background:#050505;
   color:#fff;
-
-  font-family:
-    'Geist',
-    Arial,
-    sans-serif;
-
+  font-family:'Geist',Arial,sans-serif;
   overflow-x:hidden;
-
   -webkit-font-smoothing:antialiased;
 }
 
@@ -66,461 +37,73 @@ a{
 
 button{
   font:inherit;
+  -webkit-tap-highlight-color:transparent;
 }
 
-
-/* =====================================================
-   ROYAL BACKGROUND
-===================================================== */
+/* BACKGROUND */
 
 .background{
   position:fixed;
-
   inset:0;
-
-  z-index:-5;
-
+  z-index:-2;
   overflow:hidden;
-
   background:
-
-    radial-gradient(
-      circle at 8% 5%,
-      rgba(92,45,255,.48),
-      transparent 30%
-    ),
-
-    radial-gradient(
-      circle at 92% 18%,
-      rgba(33,111,255,.30),
-      transparent 28%
-    ),
-
-    radial-gradient(
-      circle at 50% 75%,
-      rgba(128,45,255,.20),
-      transparent 38%
-    ),
-
-    linear-gradient(
-      135deg,
-      #08020f 0%,
-      #100526 42%,
-      #06112a 100%
-    );
-}
-
-.background::before{
-  content:"";
-
-  position:absolute;
-
-  width:650px;
-  height:650px;
-
-  left:-250px;
-  top:250px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(105,48,255,.24),
-      transparent 68%
-    );
-
-  filter:blur(25px);
-
-  animation:
-    backgroundFloat
-    12s
-    ease-in-out
-    infinite
-    alternate;
+    radial-gradient(circle at 10% 10%,rgba(105,75,255,.18),transparent 30%),
+    radial-gradient(circle at 90% 80%,rgba(0,180,255,.10),transparent 35%),
+    #050505;
 }
 
 .background::after{
   content:"";
-
   position:absolute;
-
-  width:600px;
-  height:600px;
-
-  right:-250px;
-  bottom:-180px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(0,174,255,.20),
-      transparent 68%
-    );
-
-  filter:blur(25px);
-
-  animation:
-    backgroundFloat2
-    14s
-    ease-in-out
-    infinite
-    alternate;
+  inset:-30%;
+  background:radial-gradient(circle,rgba(255,255,255,.025),transparent 35%);
+  animation:bgMove 12s ease-in-out infinite alternate;
 }
 
-@keyframes backgroundFloat{
-
+@keyframes bgMove{
   from{
-    transform:
-      translate(0,0)
-      scale(1);
+    transform:translate(-3%,-2%) scale(1);
   }
-
   to{
-    transform:
-      translate(100px,-70px)
-      scale(1.18);
+    transform:translate(3%,2%) scale(1.08);
   }
-
 }
 
-@keyframes backgroundFloat2{
-
-  from{
-    transform:
-      translate(0,0)
-      scale(1);
-  }
-
-  to{
-    transform:
-      translate(-100px,-80px)
-      scale(1.2);
-  }
-
-}
-
-
-/* =====================================================
-   SPLASH SCREEN
-===================================================== */
-
-.splash{
-  position:fixed;
-
-  inset:0;
-
-  z-index:99999;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  flex-direction:column;
-
-  background:
-
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(102,50,255,.30),
-      transparent 28%
-    ),
-
-    linear-gradient(
-      145deg,
-      #05020b,
-      #12042a 50%,
-      #031323
-    );
-
-  transition:
-    opacity .8s ease,
-    visibility .8s ease;
-}
-
-.splash.hide{
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-}
-
-.splash-logo-wrap{
-  position:relative;
-
-  width:250px;
-  height:250px;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-}
-
-.splash-logo{
-  position:relative;
-
-  z-index:5;
-
-  width:150px;
-  height:150px;
-
-  object-fit:cover;
-
-  border-radius:50%;
-
-  border:
-    2px solid
-    rgba(148,110,255,.75);
-
-  box-shadow:
-
-    0 0 25px
-    rgba(105,50,255,.8),
-
-    0 0 65px
-    rgba(78,67,255,.45),
-
-    0 0 110px
-    rgba(0,180,255,.20);
-
-  animation:
-    logoFloat
-    2.5s
-    ease-in-out
-    infinite;
-}
-
-@keyframes logoFloat{
-
-  0%,100%{
-    transform:
-      scale(1)
-      rotate(0deg);
-  }
-
-  50%{
-    transform:
-      scale(1.045)
-      rotate(2deg);
-  }
-
-}
-
-.splash-ring{
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  border-radius:50%;
-
-  border:
-    1px solid
-    rgba(132,87,255,.42);
-
-  transform:
-    translate(-50%,-50%);
-
-  pointer-events:none;
-}
-
-.ring-one{
-  width:185px;
-  height:185px;
-
-  animation:
-    ringPulse
-    3s
-    ease-out
-    infinite;
-}
-
-.ring-two{
-  width:220px;
-  height:220px;
-
-  animation:
-    ringPulse
-    3s
-    ease-out
-    infinite
-    .7s;
-}
-
-.ring-three{
-  width:255px;
-  height:255px;
-
-  animation:
-    ringPulse
-    3s
-    ease-out
-    infinite
-    1.4s;
-}
-
-@keyframes ringPulse{
-
-  0%{
-    opacity:.8;
-
-    transform:
-      translate(-50%,-50%)
-      scale:.72;
-  }
-
-  100%{
-    opacity:0;
-
-    transform:
-      translate(-50%,-50%)
-      scale(1.08);
-  }
-
-}
-
-.splash-title{
-  margin-top:18px;
-
-  font-size:30px;
-
-  font-weight:800;
-
-  letter-spacing:-.04em;
-
-  text-shadow:
-    0 0 25px
-    rgba(126,76,255,.45);
-}
-
-.splash-owner{
-  margin-top:7px;
-
-  color:
-    rgba(255,255,255,.40);
-
-  font-size:10px;
-
-  font-weight:700;
-
-  letter-spacing:.28em;
-}
-
-.splash-loader{
-  width:120px;
-  height:3px;
-
-  margin-top:185px;
-
-  overflow:hidden;
-
-  border-radius:999px;
-
-  background:
-    rgba(255,255,255,.08);
-}
-
-.splash-loader span{
-  display:block;
-
-  width:45%;
-  height:100%;
-
-  border-radius:999px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #6b35ff,
-      #8b5cff,
-      #20c8ff
-    );
-
-  animation:
-    loaderMove
-    1.5s
-    ease-in-out
-    infinite;
-}
-
-@keyframes loaderMove{
-
-  0%{
-    transform:translateX(-120%);
-  }
-
-  100%{
-    transform:translateX(280%);
-  }
-
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
+/* HEADER */
 
 header{
   position:sticky;
-
   top:0;
-
   z-index:50;
-
-  border-bottom:
-    1px solid
-    rgba(146,104,255,.16);
-
-  background:
-    rgba(8,3,18,.70);
-
-  backdrop-filter:
-    blur(24px);
-
-  -webkit-backdrop-filter:
-    blur(24px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(5,5,5,.78);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
 }
 
 .nav{
   max-width:1200px;
-
   margin:auto;
-
-  padding:
-    15px 20px;
-
+  padding:15px 20px;
   display:flex;
-
   align-items:center;
   justify-content:space-between;
 }
 
 .brand{
   display:flex;
-
   align-items:center;
-
   gap:10px;
 }
 
 .brand-logo{
   width:42px;
   height:42px;
-
   object-fit:cover;
-
   border-radius:50%;
-
-  border:
-    1px solid
-    rgba(160,125,255,.65);
-
-  box-shadow:
-    0 0 20px
-    rgba(105,55,255,.35);
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow:0 0 22px rgba(105,75,255,.25);
 }
 
 .brand-text{
@@ -535,135 +118,86 @@ header{
 
 .brand-owner{
   margin-top:2px;
-
   font-size:8px;
-
   font-weight:700;
-
   letter-spacing:.16em;
-
-  color:
-    rgba(185,165,255,.55);
+  color:rgba(255,255,255,.38);
 }
 
+.desktop-actions{
+  display:none;
+  align-items:center;
+  gap:8px;
+}
 
-/* =====================================================
-   MENU BUTTON
-===================================================== */
+.nav-btn{
+  padding:9px 14px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  font-size:12px;
+  transition:.2s;
+}
+
+.nav-btn:hover{
+  background:rgba(255,255,255,.12);
+  transform:translateY(-1px);
+}
+
+/* MENU */
 
 .menu-button{
-  width:44px;
-  height:44px;
-
-  border:
-    1px solid
-    rgba(157,115,255,.30);
-
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.1);
   border-radius:50%;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(111,60,255,.18),
-      rgba(24,110,255,.10)
-    );
-
+  background:rgba(255,255,255,.07);
   color:#fff;
-
   cursor:pointer;
-
-  font-size:23px;
-
-  box-shadow:
-    0 8px 30px
-    rgba(69,35,160,.22);
-
-  transition:.25s;
+  font-size:22px;
 }
-
-.menu-button:active{
-  transform:scale(.92);
-}
-
-
-/* =====================================================
-   SIDE MENU
-===================================================== */
 
 .menu-backdrop{
   position:fixed;
-
   inset:0;
-
   z-index:80;
-
-  background:
-    rgba(3,1,10,.70);
-
-  backdrop-filter:
-    blur(8px);
-
+  background:rgba(0,0,0,.68);
+  backdrop-filter:blur(7px);
   opacity:0;
-
   pointer-events:none;
-
   transition:.3s;
 }
 
 .menu-backdrop.open{
   opacity:1;
-
   pointer-events:auto;
 }
 
 .side-menu{
   position:fixed;
-
   top:0;
   right:0;
-
   z-index:90;
-
-  width:315px;
+  width:310px;
   max-width:88%;
-
   height:100%;
-
   padding:24px 20px;
-
+  background:#0a0a0a;
+  border-left:1px solid rgba(255,255,255,.1);
+  transform:translateX(100%);
+  transition:.4s cubic-bezier(.16,1,.3,1);
   overflow-y:auto;
-
-  background:
-
-    linear-gradient(
-      160deg,
-      #100522,
-      #07152d
-    );
-
-  border-left:
-    1px solid
-    rgba(145,105,255,.20);
-
-  transform:
-    translateX(100%);
-
-  transition:
-    .4s
-    cubic-bezier(.16,1,.3,1);
 }
 
 .side-menu.open{
-  transform:
-    translateX(0);
+  transform:translateX(0);
 }
 
 .menu-head{
   display:flex;
-
   align-items:center;
   justify-content:space-between;
-
   margin-bottom:22px;
 }
 
@@ -674,487 +208,224 @@ header{
 .close-btn{
   width:38px;
   height:38px;
-
   border:0;
-
   border-radius:50%;
-
-  background:
-    rgba(255,255,255,.08);
-
+  background:rgba(255,255,255,.08);
   color:#fff;
-
   font-size:20px;
-
   cursor:pointer;
 }
 
 .profile-box{
   padding:16px;
-
   margin-bottom:14px;
-
-  border:
-    1px solid
-    rgba(142,105,255,.20);
-
+  border:1px solid rgba(255,255,255,.1);
   border-radius:16px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(102,50,255,.14),
-      rgba(0,153,255,.08)
-    );
+  background:rgba(255,255,255,.055);
 }
 
 .profile-box strong{
   display:block;
-
   font-size:14px;
 }
 
 .profile-box span{
   display:block;
-
   margin-top:5px;
-
-  color:
-    rgba(220,210,255,.48);
-
+  color:rgba(255,255,255,.45);
   font-size:11px;
-
   word-break:break-all;
 }
 
 .menu-item{
   display:flex;
-
   align-items:center;
-
   gap:11px;
-
   width:100%;
-
   padding:14px;
-
   margin-bottom:8px;
-
-  border:
-    1px solid
-    rgba(140,105,255,.10);
-
+  border:1px solid transparent;
   border-radius:13px;
-
-  background:
-    rgba(255,255,255,.045);
-
+  background:rgba(255,255,255,.05);
   color:#fff;
-
   font-size:14px;
-
   text-align:left;
-
   cursor:pointer;
-
   transition:.2s;
 }
 
 .menu-item:hover{
-  background:
-    rgba(108,58,255,.16);
-
-  border-color:
-    rgba(143,105,255,.24);
+  background:rgba(255,255,255,.09);
+  border-color:rgba(255,255,255,.08);
 }
 
 .telegram{
   margin-top:15px;
-
   padding:17px;
-
   border-radius:17px;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #176eff,
-      #7135ff
-    );
-
-  box-shadow:
-    0 12px 35px
-    rgba(68,55,255,.22);
+  background:linear-gradient(135deg,#168bd0,#229ed9);
 }
 
 .telegram strong{
   display:block;
-
   margin-bottom:6px;
 }
 
 .telegram p{
-  margin:
-    0 0 13px;
-
-  color:
-    rgba(255,255,255,.80);
-
+  margin:0 0 13px;
+  color:rgba(255,255,255,.8);
   font-size:11px;
-
   line-height:1.5;
 }
 
 .telegram a{
   display:block;
-
   padding:11px;
-
   border-radius:10px;
-
   background:#fff;
-
-  color:#101020;
-
+  color:#111;
   text-align:center;
-
   font-size:12px;
-
   font-weight:800;
 }
 
-
-/* =====================================================
-   HERO
-===================================================== */
+/* HERO */
 
 .hero{
   max-width:1200px;
-
   margin:auto;
-
-  padding:
-    58px 20px 32px;
+  padding:48px 20px 28px;
 }
 
 .eyebrow{
   display:flex;
-
   align-items:center;
-
-  gap:9px;
-
-  color:
-    #b5a5ff;
-
+  gap:8px;
+  color:rgba(255,255,255,.45);
   font-size:11px;
-
-  font-weight:800;
-
-  letter-spacing:.12em;
+  font-weight:700;
+  letter-spacing:.1em;
 }
 
 .live-dot{
-  width:8px;
-  height:8px;
-
+  width:7px;
+  height:7px;
   border-radius:50%;
-
-  background:
-    #65ffa4;
-
-  box-shadow:
-    0 0 15px
-    #65ffa4;
-
-  animation:
-    livePulse
-    1.8s
-    infinite;
+  background:#65ff9b;
+  box-shadow:0 0 14px #65ff9b;
+  animation:pulse 1.8s infinite;
 }
 
-@keyframes livePulse{
-
+@keyframes pulse{
   0%,100%{
-    opacity:.45;
+    opacity:.4;
     transform:scale(.8);
   }
-
   50%{
     opacity:1;
     transform:scale(1.15);
   }
-
 }
 
 h1{
-  margin-top:13px;
-
-  max-width:800px;
-
-  font-size:
-    clamp(
-      2.65rem,
-      7vw,
-      5.3rem
-    );
-
-  line-height:.98;
-
-  letter-spacing:-.065em;
-
-  background:
-    linear-gradient(
-      100deg,
-      #ffffff 20%,
-      #c6b6ff 55%,
-      #5ccfff 100%
-    );
-
-  -webkit-background-clip:text;
-
-  background-clip:text;
-
-  color:transparent;
+  margin-top:12px;
+  max-width:750px;
+  font-size:clamp(2.5rem,7vw,5rem);
+  line-height:1;
+  letter-spacing:-.06em;
 }
 
 .hero-description{
-  max-width:650px;
-
-  margin-top:20px;
-
-  color:
-    rgba(224,215,255,.58);
-
+  max-width:620px;
+  margin-top:17px;
+  color:rgba(255,255,255,.48);
   font-size:14px;
-
-  line-height:1.75;
+  line-height:1.7;
 }
 
-
-/* =====================================================
-   TOOLBAR
-===================================================== */
+/* TOOLBAR */
 
 .toolbar{
   max-width:1200px;
-
   margin:auto;
-
-  padding:
-    0 20px 22px;
-
+  padding:0 20px 20px;
   display:flex;
-
   align-items:center;
   justify-content:space-between;
-
   gap:12px;
 }
 
 .count{
-  color:
-    rgba(216,207,255,.52);
-
+  color:rgba(255,255,255,.42);
   font-size:12px;
 }
 
 .refresh{
-  padding:
-    11px 17px;
-
-  border:
-    1px solid
-    rgba(151,112,255,.24);
-
+  padding:9px 14px;
+  border:1px solid rgba(255,255,255,.1);
   border-radius:999px;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(106,55,255,.14),
-      rgba(24,143,255,.10)
-    );
-
+  background:rgba(255,255,255,.06);
   color:#fff;
-
   cursor:pointer;
-
-  box-shadow:
-    0 8px 25px
-    rgba(69,43,150,.18);
-
-  transition:.25s;
+  transition:.2s;
 }
 
 .refresh:hover{
-  border-color:
-    rgba(174,143,255,.42);
-
-  transform:
-    translateY(-2px);
+  background:rgba(255,255,255,.12);
 }
 
 .refresh:disabled{
   opacity:.5;
-
   cursor:not-allowed;
 }
 
-
-/* =====================================================
-   OFFER CONTAINER
-===================================================== */
+/* OFFERS */
 
 .container{
   max-width:1200px;
-
   margin:auto;
-
-  padding:
-    0 20px 120px;
+  padding:0 20px 110px;
 }
 
 .offer-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(
-      auto-fit,
-      minmax(260px,1fr)
-    );
-
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:18px;
 }
 
-
-/* =====================================================
-   OFFER CARD
-===================================================== */
-
 .offer-card{
-  position:relative;
-
   overflow:hidden;
-
-  border:
-    1px solid
-    rgba(147,108,255,.20);
-
-  border-radius:24px;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      rgba(112,61,255,.12),
-      rgba(13,31,67,.48)
-    );
-
-  backdrop-filter:
-    blur(18px);
-
-  box-shadow:
-
-    0 15px 50px
-    rgba(3,1,15,.35),
-
-    inset 0 1px 0
-    rgba(255,255,255,.06);
-
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:22px;
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(18px);
   opacity:0;
-
-  animation:
-    cardIn
-    .65s
-    cubic-bezier(.16,1,.3,1)
-    forwards;
-
+  animation:cardIn .6s cubic-bezier(.16,1,.3,1) forwards;
   transition:.3s;
 }
 
-.offer-card::before{
-  content:"";
-
-  position:absolute;
-
-  left:-30%;
-  top:-50%;
-
-  width:160%;
-  height:100%;
-
-  background:
-    linear-gradient(
-      110deg,
-      transparent 35%,
-      rgba(255,255,255,.08),
-      transparent 65%
-    );
-
-  transform:
-    translateX(-40%)
-    rotate(10deg);
-
-  transition:.7s;
-
-  pointer-events:none;
-}
-
-.offer-card:hover::before{
-  transform:
-    translateX(40%)
-    rotate(10deg);
-}
-
 .offer-card:hover{
-  transform:
-    translateY(-7px);
-
-  border-color:
-    rgba(166,130,255,.42);
-
-  box-shadow:
-
-    0 22px 65px
-    rgba(45,20,130,.35),
-
-    0 0 35px
-    rgba(85,45,255,.10);
+  transform:translateY(-6px);
+  border-color:rgba(255,255,255,.2);
 }
 
 @keyframes cardIn{
-
   from{
     opacity:0;
-
-    transform:
-      translateY(28px)
-      scale(.97);
+    transform:translateY(25px);
   }
-
   to{
     opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
+    transform:translateY(0);
   }
-
 }
 
 .offer-image{
   width:100%;
-
   aspect-ratio:16/9;
-
   object-fit:cover;
-
   display:block;
-
-  background:#110722;
+  background:#111;
 }
 
 .offer-body{
@@ -1162,113 +433,62 @@ h1{
 }
 
 .offer-title{
-  margin:
-    0 0 8px;
-
+  margin:0 0 8px;
   font-size:19px;
-
   font-weight:700;
 }
 
 .offer-description{
   min-height:45px;
-
-  color:
-    rgba(222,215,255,.55);
-
+  color:rgba(255,255,255,.48);
   font-size:13px;
-
   line-height:1.6;
 }
 
 .offer-footer{
   display:flex;
-
   align-items:center;
   justify-content:space-between;
-
   gap:10px;
-
   margin-top:18px;
 }
 
 .date{
-  color:
-    rgba(209,198,255,.38);
-
+  color:rgba(255,255,255,.32);
   font-size:10px;
 }
 
 .open-btn{
   display:inline-flex;
-
   align-items:center;
   justify-content:center;
-
-  padding:
-    10px 16px;
-
+  padding:10px 15px;
   border-radius:999px;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      #ffffff,
-      #dcd2ff
-    );
-
-  color:#120a25;
-
+  border:0;
+  background:#fff;
+  color:#111;
   font-size:12px;
-
   font-weight:800;
-
-  box-shadow:
-    0 7px 25px
-    rgba(127,85,255,.20);
-
+  cursor:pointer;
   transition:.2s;
 }
 
 .open-btn:hover{
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 10px 30px
-    rgba(127,85,255,.35);
+  transform:translateY(-1px);
 }
 
 .open-btn:active{
   transform:scale(.94);
 }
 
-
-/* =====================================================
-   STATE
-===================================================== */
+/* STATE */
 
 .state{
   grid-column:1/-1;
-
-  padding:
-    65px 20px;
-
-  border:
-    1px solid
-    rgba(146,106,255,.18);
-
+  padding:65px 20px;
+  border:1px solid rgba(255,255,255,.08);
   border-radius:22px;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      rgba(105,55,255,.10),
-      rgba(20,55,100,.08)
-    );
-
+  background:rgba(255,255,255,.04);
   text-align:center;
 }
 
@@ -1277,186 +497,74 @@ h1{
 }
 
 .state h2{
-  margin:
-    12px 0 7px;
-
+  margin:12px 0 7px;
   font-size:20px;
 }
 
 .state p{
-  color:
-    rgba(216,206,255,.45);
-
+  color:rgba(255,255,255,.43);
   font-size:12px;
-
   line-height:1.6;
 }
 
 .state-error{
-  margin-top:14px;
-
+  max-width:650px;
+  margin:14px auto 0;
   padding:10px;
-
   border-radius:10px;
-
-  background:
-    rgba(255,70,100,.08);
-
-  color:
-    rgba(255,145,160,.85);
-
+  background:rgba(255,70,70,.08);
+  color:rgba(255,130,130,.85);
   font-size:11px;
-
   line-height:1.5;
-
   word-break:break-word;
 }
 
-
-/* =====================================================
-   BOTTOM NAV
-===================================================== */
+/* BOTTOM NAV */
 
 .bottom-nav{
   position:fixed;
-
   left:50%;
   bottom:15px;
-
   z-index:40;
-
-  transform:
-    translateX(-50%);
-
-  width:
-    min(
-      calc(100% - 30px),
-      460px
-    );
-
+  transform:translateX(-50%);
+  width:min(calc(100% - 30px),460px);
   display:flex;
-
   padding:7px;
-
-  border:
-    1px solid
-    rgba(154,118,255,.24);
-
+  border:1px solid rgba(255,255,255,.1);
   border-radius:999px;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(13,7,28,.90),
-      rgba(7,23,48,.90)
-    );
-
-  backdrop-filter:
-    blur(22px);
-
-  box-shadow:
-
-    0 18px 55px
-    rgba(0,0,0,.55),
-
-    0 0 30px
-    rgba(82,44,200,.12);
+  background:rgba(10,10,10,.84);
+  backdrop-filter:blur(20px);
+  box-shadow:0 15px 50px rgba(0,0,0,.4);
 }
 
 .bottom-link{
   flex:1;
-
-  padding:
-    8px 4px;
-
+  padding:8px 4px;
   border-radius:999px;
-
-  color:
-    rgba(218,210,255,.42);
-
+  color:rgba(255,255,255,.42);
   text-align:center;
-
   font-size:10px;
-
-  transition:.25s;
+  transition:.2s;
 }
 
 .bottom-link span{
   display:block;
-
   margin-bottom:3px;
-
   font-size:17px;
 }
 
 .bottom-link.active{
   color:#fff;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(112,58,255,.40),
-      rgba(25,137,255,.22)
-    );
-
-  box-shadow:
-    inset 0 1px 0
-    rgba(255,255,255,.08);
+  background:rgba(255,255,255,.1);
 }
-
-
-/* =====================================================
-   RIPPLE
-===================================================== */
-
-.ripple{
-  position:fixed;
-
-  z-index:9999;
-
-  width:8px;
-  height:8px;
-
-  border-radius:50%;
-
-  background:
-    rgba(180,155,255,.55);
-
-  pointer-events:none;
-
-  transform:
-    translate(-50%,-50%);
-
-  animation:
-    ripple
-    .55s
-    ease-out
-    forwards;
-}
-
-@keyframes ripple{
-
-  to{
-    opacity:0;
-
-    transform:
-      translate(-50%,-50%)
-      scale(12);
-  }
-
-}
-
-
-/* =====================================================
-   DESKTOP
-===================================================== */
 
 @media(min-width:700px){
-
   .menu-button{
     display:none;
+  }
+
+  .desktop-actions{
+    display:flex;
   }
 
   .nav{
@@ -1470,16 +578,9 @@ h1{
     padding-left:32px;
     padding-right:32px;
   }
-
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
 @media(max-width:520px){
-
   .brand-logo{
     width:40px;
     height:40px;
@@ -1490,168 +591,697 @@ h1{
   }
 
   .hero{
-    padding-top:48px;
+    padding-top:42px;
   }
 
   .offer-grid{
     grid-template-columns:1fr;
   }
-
-  .splash-title{
-    font-size:28px;
-  }
-
 }
 
-
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
-
 @media(prefers-reduced-motion:reduce){
-
   *,
   *::before,
   *::after{
-
-    animation-duration:
-      .01ms !important;
-
-    animation-iteration-count:
-      1 !important;
-
-    transition-duration:
-      .01ms !important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
   }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
-
 <div class="background"></div>
 
+<header>
+<nav class="nav">
 
-<!-- =====================================================
-     OPENING SPLASH
-===================================================== -->
+<a class="brand" href="index.html">
+  <img
+    class="brand-logo"
+    src="income-offers-logo.jpg"
+    alt="Income Offers"
+    onerror="this.style.display='none'"
+  >
 
-<div
-  class="splash"
-  id="splash"
+  <div class="brand-text">
+    <div class="brand-name">Income Offers</div>
+    <div class="brand-owner">OWNER: SAHIL</div>
+  </div>
+</a>
+
+<div class="desktop-actions">
+  <a class="nav-btn" href="history.html">📜 History</a>
+  <a class="nav-btn" href="profile.html">👤 Profile</a>
+</div>
+
+<button
+  class="menu-button"
+  id="menuButton"
+  type="button"
+>☰</button>
+
+</nav>
+</header>
+
+<div class="menu-backdrop" id="menuBackdrop"></div>
+
+<aside class="side-menu" id="sideMenu">
+
+<div class="menu-head">
+  <h2>Income Offers</h2>
+
+  <button
+    class="close-btn"
+    id="closeMenu"
+    type="button"
+  >×</button>
+</div>
+
+<div class="profile-box">
+  <strong>My Account</strong>
+  <span id="profileEmail">
+    Checking visitor ID...
+  </span>
+</div>
+
+<a class="menu-item" href="index.html">🏠 Home</a>
+<a class="menu-item" href="offer.html">🎁 Offers</a>
+<a class="menu-item" href="history.html">📜 My History</a>
+<a class="menu-item" href="profile.html">👤 My Profile</a>
+
+<div class="telegram">
+  <strong>📢 Official Telegram</strong>
+
+  <p>
+    Get new offers and important updates.
+  </p>
+
+  <a
+    href="https://t.me/IncomeOffersOfficia"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Join Telegram Channel
+  </a>
+</div>
+
+<button
+  class="menu-item"
+  id="logoutButton"
+  type="button"
 >
+  🆔 My Visitor ID
+</button>
 
-  <div class="splash-logo-wrap">
+</aside>
 
-    <div class="splash-ring ring-one"></div>
-    <div class="splash-ring ring-two"></div>
-    <div class="splash-ring ring-three"></div>
+<section class="hero">
 
-    <img
-      src="assets/income-offers-logo.jpg"
-      class="splash-logo"
-      alt="Income Offers"
-    >
+<div class="eyebrow">
+  <span class="live-dot"></span>
+  LIVE OFFERS
+</div>
 
-  </div>
+<h1>
+  Discover offers worth opening.
+</h1>
 
-  <div class="splash-title">
-    Income Offers
-  </div>
+<p class="hero-description">
+  Browse the latest active offers, rewards and opportunities.
+  Open an offer to see the complete details.
+</p>
 
-  <div class="splash-owner">
-    OWNER: SAHIL
-  </div>
+</section>
 
-  <div class="splash-loader">
-    <span></span>
-  </div>
+<div class="toolbar">
+
+<div class="count" id="offerCount">
+  Loading offers...
+</div>
+
+<button
+  class="refresh"
+  id="refreshButton"
+  type="button"
+>
+  ↻ Refresh
+</button>
 
 </div>
 
+<main class="container">
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+<div class="offer-grid" id="offerGrid">
 
-<header>
+<div class="state">
 
-<nav class="nav">
+<div class="state-icon">⏳</div>
 
-  <a
-    class="brand"
-    href="index.html"
-  >
+<h2>Loading offers</h2>
 
-    <img
-      class="brand-logo"
-      src="assets/income-offers-logo.jpg"
-      alt="Income Offers"
-      onerror="this.style.display='none'"
-    >
+<p>Please wait...</p>
 
-    <div class="brand-text">
+</div>
 
-      <div class="brand-name">
-        Income Offers
-      </div>
+</div>
 
-      <div class="brand-owner">
-        OWNER: SAHIL
-      </div>
+</main>
 
-    </div>
+<nav class="bottom-nav">
 
-  </a>
+<a class="bottom-link" href="index.html">
+  <span>🏠</span>
+  Home
+</a>
 
+<a class="bottom-link active" href="offer.html">
+  <span>🎁</span>
+  Offers
+</a>
 
-  <button
-    class="menu-button"
-    id="menuButton"
-    type="button"
-  >
-    ☰
-  </button>
+<a class="bottom-link" href="history.html">
+  <span>📜</span>
+  History
+</a>
+
+<a class="bottom-link" href="profile.html">
+  <span>👤</span>
+  Profile
+</a>
 
 </nav>
 
-</header>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+
+<script>
+const menuButton =
+  document.getElementById("menuButton");
+
+const sideMenu =
+  document.getElementById("sideMenu");
+
+const menuBackdrop =
+  document.getElementById("menuBackdrop");
+
+const closeMenu =
+  document.getElementById("closeMenu");
+
+const profileEmail =
+  document.getElementById("profileEmail");
+
+const logoutButton =
+  document.getElementById("logoutButton");
+
+const offerGrid =
+  document.getElementById("offerGrid");
+
+const offerCount =
+  document.getElementById("offerCount");
+
+const refreshButton =
+  document.getElementById("refreshButton");
+
+const VISITOR_KEY =
+  "income_offers_visitor_id_v1";
+
+let visitorId = null;
 
 
-<!-- =====================================================
-     MENU BACKDROP
-===================================================== -->
+/* =========================
+   MENU
+========================= */
 
-<div
-  class="menu-backdrop"
-  id="menuBackdrop"
-></div>
+function openMenu(){
+  sideMenu.classList.add("open");
+  menuBackdrop.classList.add("open");
+}
+
+function closeSideMenu(){
+  sideMenu.classList.remove("open");
+  menuBackdrop.classList.remove("open");
+}
+
+if(menuButton){
+  menuButton.addEventListener(
+    "click",
+    openMenu
+  );
+}
+
+if(closeMenu){
+  closeMenu.addEventListener(
+    "click",
+    closeSideMenu
+  );
+}
+
+if(menuBackdrop){
+  menuBackdrop.addEventListener(
+    "click",
+    closeSideMenu
+  );
+}
 
 
-<!-- =====================================================
-     SIDE MENU
-===================================================== -->
+/* =========================
+   VISITOR ID
+========================= */
 
-<aside
-  class="side-menu"
-  id="sideMenu"
->
+function createVisitorId(){
 
-  <div class="menu-head">
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
-    <h2>
-      Income Offers
-    </h2>
+  let id = "";
 
-    <button
-      class="close-btn"
-     
+  for(let i = 0; i < 6; i++){
+
+    id += chars[
+      Math.floor(
+        Math.random() * chars.length
+      )
+    ];
+
+  }
+
+  return id;
+}
+
+function getStoredVisitorId(){
+
+  try{
+
+    return localStorage.getItem(
+      VISITOR_KEY
+    );
+
+  }catch(error){
+
+    console.warn(
+      "localStorage unavailable",
+      error
+    );
+
+    return null;
+  }
+}
+
+function saveVisitorId(id){
+
+  try{
+
+    localStorage.setItem(
+      VISITOR_KEY,
+      id
+    );
+
+  }catch(error){
+
+    console.warn(
+      "Could not save visitor ID",
+      error
+    );
+  }
+}
+
+function getVisitorId(){
+
+  return (
+    visitorId ||
+    getStoredVisitorId()
+  );
+}
+
+function createVisitorIdOnFirstOfferTap(){
+
+  const existing =
+    getVisitorId();
+
+  if(existing){
+
+    visitorId = existing;
+
+    return existing;
+  }
+
+  const id =
+    createVisitorId();
+
+  saveVisitorId(id);
+
+  visitorId = id;
+
+  updateVisitorDisplay();
+
+  return id;
+}
+
+function updateVisitorDisplay(){
+
+  if(!profileEmail){
+    return;
+  }
+
+  const id =
+    getVisitorId();
+
+  if(id){
+
+    profileEmail.textContent =
+      "Visitor ID: " + id;
+
+  }else{
+
+    profileEmail.textContent =
+      "Visitor ID will be created when you open an offer";
+  }
+}
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function escapeHtml(value){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    value == null
+      ? ""
+      : String(value);
+
+  return div.innerHTML;
+}
+
+function formatDate(value){
+
+  if(!value){
+    return "Recently added";
+  }
+
+  const date =
+    new Date(value);
+
+  if(Number.isNaN(date.getTime())){
+    return "Recently added";
+  }
+
+  return date.toLocaleDateString(
+    undefined,
+    {
+      day:"numeric",
+      month:"short",
+      year:"numeric"
+    }
+  );
+}
+
+function supabaseReady(){
+
+  return (
+    typeof supabaseClient !== "undefined" &&
+    supabaseClient &&
+    typeof supabaseClient.from === "function"
+  );
+}
+
+
+/* =========================
+   ACTIVITY LOG
+========================= */
+
+async function logVisitorEvent(
+  eventType,
+  offerId,
+  metadata = {}
+){
+
+  const id =
+    getVisitorId();
+
+  if(!id || !supabaseReady()){
+    return;
+  }
+
+  try{
+
+    const result =
+      await supabaseClient
+        .from("activity_logs")
+        .insert({
+
+          visitor_id:id,
+
+          offer_id:offerId,
+
+          event_type:eventType,
+
+          page:"offer.html",
+
+          metadata:metadata,
+
+          action:eventType
+        });
+
+    if(result.error){
+
+      console.warn(
+        "Activity log skipped:",
+        result.error.message
+      );
+    }
+
+  }catch(error){
+
+    console.warn(
+      "Activity log exception:",
+      error
+    );
+  }
+}
+
+
+/* =========================
+   STATE
+========================= */
+
+function showState(
+  icon,
+  title,
+  description,
+  errorText = ""
+){
+
+  offerGrid.innerHTML = `
+
+    <div class="state">
+
+      <div class="state-icon">
+        ${escapeHtml(icon)}
+      </div>
+
+      <h2>
+        ${escapeHtml(title)}
+      </h2>
+
+      <p>
+        ${escapeHtml(description)}
+      </p>
+
+      ${
+        errorText
+          ? `
+            <div class="state-error">
+              ${escapeHtml(errorText)}
+            </div>
+          `
+          : ""
+      }
+
+    </div>
+  `;
+}
+
+
+/* =========================
+   LOAD OFFERS
+========================= */
+
+async function loadOffers(){
+
+  offerGrid.innerHTML = `
+    <div class="state">
+      <div class="state-icon">⏳</div>
+      <h2>Loading offers</h2>
+      <p>Please wait...</p>
+    </div>
+  `;
+
+  offerCount.textContent =
+    "Loading offers...";
+
+  if(!supabaseReady()){
+
+    showState(
+      "⚠️",
+      "Offers unavailable",
+      "Supabase is not loaded. Please refresh the page."
+    );
+
+    return;
+  }
+
+  try{
+
+    const result =
+      await supabaseClient
+        .from("offers")
+        .select("*")
+        .order(
+          "created_at",
+          {
+            ascending:false
+          }
+        );
+
+    if(result.error){
+
+      console.error(
+        "Offers query error:",
+        result.error
+      );
+
+      showState(
+        "⚠️",
+        "Could not load offers",
+        "Please try Refresh again.",
+        result.error.message
+      );
+
+      return;
+    }
+
+    const offers =
+      Array.isArray(result.data)
+        ? result.data
+        : [];
+
+    renderOffers(offers);
+
+  }catch(error){
+
+    console.error(
+      "Offers exception:",
+      error
+    );
+
+    showState(
+      "⚠️",
+      "Could not load offers",
+      "Please try again."
+    );
+  }
+}
+
+
+/* =========================
+   RENDER OFFERS
+========================= */
+
+function renderOffers(offers){
+
+  offerGrid.innerHTML = "";
+
+  offerCount.textContent =
+    offers.length +
+    (
+      offers.length === 1
+        ? " active offer"
+        : " active offers"
+    );
+
+  if(!offers.length){
+
+    showState(
+      "🎁",
+      "No active offers",
+      "New offers will appear here."
+    );
+
+    return;
+  }
+
+  offers.forEach(
+    function(offer,index){
+
+      const id =
+        offer.id ??
+        offer.offer_id ??
+        offer.uuid ??
+        index + 1;
+
+      const title =
+        offer.title ??
+        offer.name ??
+        "Untitled Offer";
+
+      const description =
+        offer.description ??
+        offer.details ??
+        "Open this offer to see the complete details.";
+
+      const image =
+        offer.image_url ??
+        offer.image ??
+        offer.thumbnail ??
+        "income-offers-logo.jpg";
+
+      const externalUrl =
+        offer.url ??
+        offer.link ??
+        offer.offer_url ??
+        null;
+
+      const card =
+        document.createElement("article");
+
+      card.className =
+        "offer-card";
+
+      card.style.animationDelay =
+        (index * 70) + "ms";
+
+      card.innerHTML = `
+
+        <img
+          class="offer-image"
+          src="${escapeHtml(image)}"
+          alt="${escapeHtml(title)}"
+          loading="lazy"
+          onerror="this.src='income-offers-logo.jpg'"
+        >
+
+        <div class="offer-body">
+
+          <h2 class="offer-title">
+            ${escapeHtml(title)}
+          </h2>
+
+          <p class="offer-description">
+            ${escapeHtml(description)}
+          </p>
+
+          <div class="offer-footer">
+
+            <span class="date">
+              ${escapeHtml(
+                formatDate(
+                  offer.created_at
+                )
+        
